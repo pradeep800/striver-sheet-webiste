@@ -4,17 +4,18 @@ import { Dispatch, SetStateAction, useRef } from "react";
 import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
 import { NavBarItems } from "@/lib/types/navBarTypes";
-let count = 0;
 type SmallScreenProps = {
   activeNavLink: NavBarItems;
   setActiveLink: Dispatch<SetStateAction<NavBarItems>>;
+  oneTimeClickToHamburger: boolean;
 };
 export default function ISmallScreenNav({
   activeNavLink,
   setActiveLink,
+  oneTimeClickToHamburger,
 }: SmallScreenProps) {
   const nav = useRef<HTMLDivElement>(null);
-  const { hamburgerOn, setHamburgerOn } = useHamburger();
+  const hamburgerOn = useHamburger((state) => state.hamburgerOn);
 
   if (!hamburgerOn) {
     setTimeout(() => {
@@ -30,7 +31,7 @@ export default function ISmallScreenNav({
     <div
       ref={nav}
       className={` sm:hidden flex gap-8 flex-col font-medium text-xl justify-center p-3 bg-[rgba(242,242,242,0.3)] backdrop-blur-md fixed inset-0 ${
-        count++ == 0 && "hidden"
+        !oneTimeClickToHamburger && "hidden"
       } `}
     >
       {NAVBARITEMS.map((navItem, i) => {

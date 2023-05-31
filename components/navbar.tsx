@@ -16,14 +16,14 @@ export default function NavBar() {
     pathName as NavBarItems
   );
   const { hamburgerOn, setHamburgerOn } = useHamburger();
-
+  const [oneTimeClickToHamburger, setOneTimeClickToHamburger] = useState(false);
   return (
     <nav
       className="flex  items-center relative z-[2] "
       onClick={() => hamburgerOn && setHamburgerOn(false)}
     >
       <Link
-        className="mr-auto relative text-2xl font-bold isolate z-[1] hidden sm:block "
+        className="mr-auto relative text-2xl font-bold isolate z-[1] hidden md:block "
         href="/"
         onClick={() => {
           setActiveNavLink("/");
@@ -32,7 +32,7 @@ export default function NavBar() {
         {`Striver's Sheet`}
       </Link>
       <Link
-        className="mr-auto relative text-2xl font-bold isolate z-[1]  block sm:hidden "
+        className="mr-auto relative text-2xl font-bold isolate z-[1]  block md:hidden "
         href="/"
         onClick={() => {
           setActiveNavLink("/");
@@ -47,14 +47,18 @@ export default function NavBar() {
       <SmallScreenNav
         activeNavLink={activeNavLink}
         setActiveLink={setActiveNavLink}
+        oneTimeClickToHamburger={oneTimeClickToHamburger}
       />
-      <Button className="bg-red-500 hover:bg-red-400  mr-2 ml-2 isolate z-[1]">
+      <Button className="bg-red-500 hover:bg-red-400    mr-6 ml-6 md:mr-0 isolate z-[1]">
         <Link className="font-medium text-xl" href="register-or-login">
           Login
         </Link>
       </Button>
-      <div className=" sm:hidden isolate z-[1]">
-        <Hamburger />
+      <div className=" md:hidden isolate z-[1]">
+        <Hamburger
+          oneTimeClickToHamburger={oneTimeClickToHamburger}
+          setOneTimeClickToHamburger={setOneTimeClickToHamburger}
+        />
       </div>
     </nav>
   );

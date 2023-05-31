@@ -23,13 +23,13 @@ export default function ContactPage() {
     e.preventDefault();
   }
   return (
-    <div className="mt-3 h-[80%] flex justify-center items-center">
-      <Card>
+    <div className="mt-3 h-[100%] flex justify-center items-center">
+      <Card className="w-[700px]">
         <CardHeader>
           <CardTitle>Feedback And Feature Request</CardTitle>
           <CardDescription>
-            If you want to give feedback, report bug or feature request you can
-            send me those with this portal
+            {`If you want to give feedback, report bug or feature request you can
+            send me those with this portal (use google drive links to send photo or video)`}
           </CardDescription>
           <CardContent>
             <form className="flex flex-col gap-2" onSubmit={onSubmit}>
@@ -44,7 +44,7 @@ export default function ContactPage() {
                   <SelectItem value="Feature">Feature Request</SelectItem>
                 </SelectContent>
               </Select>
-              <Label htmlFor="type-description">Description</Label>
+              <Label htmlFor="type-description">{`Description`}</Label>
               <Textarea id="type-description" />
               <Button className=" bg-red-500 hover:bg-red-400">Submit</Button>
             </form>

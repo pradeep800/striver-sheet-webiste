@@ -18,7 +18,7 @@ export default function RootLayout({
       <div>
         <NavBar />
       </div>
-      <main className="h-[100%]">{children}</main>
+      <main className="h-[calc(100%-40px)]">{children}</main>
     </>
   );
 }

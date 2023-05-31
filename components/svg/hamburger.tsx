@@ -1,8 +1,15 @@
 "use client";
 import { useHamburger } from "@/lib/useHamburger";
 import { useState } from "react";
-type setOn = React.Dispatch<React.SetStateAction<boolean>>;
-export default function Hamburger() {
+type setOneTimeClickToHamburger = React.Dispatch<React.SetStateAction<boolean>>;
+type HamburgerTypeProps = {
+  oneTimeClickToHamburger: boolean;
+  setOneTimeClickToHamburger: setOneTimeClickToHamburger;
+};
+export default function Hamburger({
+  oneTimeClickToHamburger,
+  setOneTimeClickToHamburger,
+}: HamburgerTypeProps) {
   const { hamburgerOn: on, setHamburgerOn: setOn } = useHamburger();
   if (on) {
     if (typeof document != undefined)
@@ -15,6 +22,7 @@ export default function Hamburger() {
     <svg
       onClick={() => {
         setOn(!on);
+        setOneTimeClickToHamburger(true);
       }}
       width="30"
       height="30"

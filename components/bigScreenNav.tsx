@@ -11,7 +11,7 @@ export default function BigScreenNav({
   setActiveLink,
 }: bigScreenProps) {
   return (
-    <div className="font-medium text-xl hidden sm:flex gap-3  ">
+    <div className="font-medium text-xl hidden md:flex gap-6  ">
       {NAVBARITEMS.map((navItem, i) => {
         return (
           <Link
