@@ -10,7 +10,7 @@ import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
 export const authOption: NextAuthOptions = {
   adapter: PrismaAdapter(prisma as any),
-  pages: { signIn: "/login", error: "/register-or-login/error" },
+  pages: { signIn: "/register-or-login", error: "/register-or-login/error" },
   session: { strategy: "jwt" },
   providers: [
     GithubProvider({
@@ -23,6 +23,9 @@ export const authOption: NextAuthOptions = {
     GoogleProvider({
       clientId: env.GOOGLE_ID,
       clientSecret: env.GOOGLE_SECRET,
+      httpOptions: {
+        timeout: 10000,
+      },
     }),
     EmailProvider({
       from: env.GMAIL,

@@ -11,7 +11,7 @@ import { BellRing, Check, IndianRupee } from "lucide-react";
 import Link from "next/link";
 export default function Price() {
   return (
-    <div className="h-[100%] flex flex-wrap  justify-center items-center gap-5 mt-4 md:mt-0">
+    <div className="h-[100%] flex flex-wrap  justify-center items-center gap-5  pt-6">
       <Card className="min-h-[500px] flex flex-col justify-center basis-[400px]  ">
         <CardHeader>
           <CardTitle>Free Tier</CardTitle>

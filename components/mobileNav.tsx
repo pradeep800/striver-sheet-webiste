@@ -1,17 +1,14 @@
 "use client";
 import { NAVBARITEMS } from "@/static/navBarItems";
-import { Dispatch, SetStateAction, useRef } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
-import { NavBarItems } from "@/lib/types/navBarTypes";
 type SmallScreenProps = {
-  activeNavLink: NavBarItems;
-  setActiveLink: Dispatch<SetStateAction<NavBarItems>>;
+  activeNavLink: string;
   oneTimeClickToHamburger: boolean;
 };
-export default function ISmallScreenNav({
+export default function MobileNav({
   activeNavLink,
-  setActiveLink,
   oneTimeClickToHamburger,
 }: SmallScreenProps) {
   const nav = useRef<HTMLDivElement>(null);
@@ -42,9 +39,6 @@ export default function ISmallScreenNav({
             } will-change-transform ${
               hamburgerOn ? putIntoView[i] : putOutOfView[i]
             } `}
-            onClick={() => {
-              setActiveLink(navItem.url);
-            }}
             key={i}
           >
             <Link
