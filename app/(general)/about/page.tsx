@@ -15,7 +15,7 @@ import { Github, Linkedin, Mail, MenuSquare, Twitter } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="h-[100%] flex items-center justify-center  ">
+    <div className="min-h-[80vh] flex items-center justify-center pt-3">
       <Card className="max-w-[600px]">
         <CardHeader>
           <CardTitle>About Me</CardTitle>

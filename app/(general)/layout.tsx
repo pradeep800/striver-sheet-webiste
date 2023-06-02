@@ -3,6 +3,7 @@ import NavBar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import { User } from "next-auth";
+import Footer from "@/components/footer";
 const asap = Asap({ subsets: ["latin"] });
 
 export const metadata = {
@@ -22,7 +23,10 @@ export default async function RootLayout({
       <div>
         <NavBar user={user} />
       </div>
-      <main className="h-[calc(100%-40px)]">{children}</main>
+      <main className="min-h-[calc(100%-90px)]">{children}</main>
+      <div className="pt-3">
+        <Footer />
+      </div>
     </>
   );
 }

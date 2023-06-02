@@ -23,7 +23,7 @@ export default function ContactPage() {
     e.preventDefault();
   }
   return (
-    <div className="mt-3 h-[100%] flex justify-center items-center">
+    <div className="pt-3 min-h-[80vh] flex justify-center items-center">
       <Card className="w-[700px]">
         <CardHeader>
           <CardTitle>Feedback And Feature Request</CardTitle>
