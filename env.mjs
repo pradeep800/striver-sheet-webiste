@@ -12,9 +12,10 @@ export const env = createEnv({
     NEXTAUTH_URL: z.string().min(1),
     GMAIL: z.string().min(1),
     GENERATED_PASSWORD: z.string().min(1),
+    STRIPE_SECRET: z.string().min(1),
   },
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_STRIPE_SECRET: z.string().min(1),
   },
 
   runtimeEnv: {
@@ -27,5 +28,8 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     GMAIL: process.env.GMAIL,
     GENERATED_PASSWORD: process.env.GENERATED_PASSWORD,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    STRIPE_SECRET: process.env.STRIPE_SECRET,
+    NEXT_PUBLIC_STRIPE_SECRET: process.env.NEXT_PUBLIC_STRIPE_SECRET,
   },
 });

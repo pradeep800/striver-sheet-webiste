@@ -16,6 +16,12 @@ enum Role {
   ADMIN
 }
 
+enum ProblemState {
+  UNATTEMPTED
+  REMINDER
+  SOLVED
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -59,8 +65,10 @@ model User {
 
   accounts      Account[]
   sessions      Session[]
+  striver_sheet striver_sheet?
+  reminders    reminder[]
 
-  Role         Role     @default(USER)
+  Role         Role        @default(USER)
 
   @@map(name: "users")
 }
@@ -72,4 +80,37 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
+}
+model striver_sheet {
+  id        Int       @id  @default(autoincrement())
+  questions question[]
+  userSheet  User @relation(fields: [userId],references: [id])
+  userId    String @unique
+}
+
+model question {
+  quesiton_id       Int           @id @default(autoincrement())
+  solved  ProblemState
+  questionNo Int
+  note     note?
+  sheet   striver_sheet? @relation(fields: [sheet_id], references: [id])
+  sheet_id Int?
+}
+model note{
+  note_id        String   @id @default(cuid())
+  title     String
+  content   Json?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt
+  author question @relation(fields: [author_id],references: [quesiton_id])
+  author_id  Int @unique
+}
+model reminder{
+  reminder_id Int @id
+  created_at DateTime @default(now())
+  reminder_due_date DateTime
+  mail_sended Boolean @default(false)
+  user_sheet  User @relation(fields: [user_id],references: [id])
+  user_id   String @unique
 }

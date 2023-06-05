@@ -5,9 +5,11 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { env } from "@/env.mjs";
-import verificationTemplate from "@/lib/VerificationMailTemplate";
+import verificationTemplate from "./verificationMailTemplate";
 import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
+import { User } from "@prisma/client";
+
 export const authOption: NextAuthOptions = {
   adapter: PrismaAdapter(prisma as any),
   pages: { signIn: "/register-or-login", error: "/register-or-login/error" },
@@ -63,4 +65,25 @@ export const authOption: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          role: token.role,
+          id: token.id,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      //user only will be present when we first Login
+      const User = user as User | undefined;
+
+      if (User) {
+        return { ...token, role: User.Role, id: User.id };
+      }
+      return token;
+    },
+  },
 };

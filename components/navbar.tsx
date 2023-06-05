@@ -9,8 +9,6 @@ import LogIn from "./loginButton";
 import UserAvatar from "./userAvatar";
 import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
-import SS from "@/public/ss.png";
-import Image from "next/image";
 interface UserProps {
   user?: Pick<User, "email" | "image" | "name">;
 }
