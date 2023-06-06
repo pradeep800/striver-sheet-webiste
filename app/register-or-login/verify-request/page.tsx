@@ -13,7 +13,7 @@ export default function VerifyRequest() {
         </CardHeader>
         <div className="px-6 pb-6">
           <CardDescription>
-            A magic link been send to your email
+            A magic link have been send to your email
           </CardDescription>
           <CardDescription>Click on Verify Your Email</CardDescription>
         </div>

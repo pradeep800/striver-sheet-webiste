@@ -19,6 +19,7 @@ export const authOption: NextAuthOptions = {
       httpOptions: {
         timeout: 10000,
       },
+      allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
       clientId: env.GOOGLE_ID,
@@ -26,6 +27,7 @@ export const authOption: NextAuthOptions = {
       httpOptions: {
         timeout: 10000,
       },
+      allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
       from: env.GMAIL,

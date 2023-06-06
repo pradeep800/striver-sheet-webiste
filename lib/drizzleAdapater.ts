@@ -72,6 +72,7 @@ export function DrizzleAdapter(): Adapter {
       await db.delete(users).where(eq(users.id, userId));
     },
     async linkAccount(account) {
+      console.log("link Account", account);
       await db.insert(accounts).values({
         id: crypto.randomUUID(),
         provider: account.provider,
