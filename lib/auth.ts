@@ -7,6 +7,7 @@ import { getValidationMail } from "./verficationMail";
 import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
 import { DrizzleAdapter } from "./drizzleAdapater";
+
 export const authOption: NextAuthOptions = {
   adapter: DrizzleAdapter(),
   pages: { signIn: "/register-or-login", error: "/register-or-login/error" },

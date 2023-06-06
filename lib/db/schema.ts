@@ -10,6 +10,8 @@ import {
   datetime,
   boolean,
   text,
+  index,
+  uniqueIndex,
 } from "drizzle-orm/mysql-core";
 import { type AdapterAccount } from "next-auth/adapters";
 
@@ -19,53 +21,80 @@ const problem_state_enum = mysqlEnum("problem_status", [
   "REMINDER",
   "SOLVE",
 ]);
-
-export const users = mysqlTable("users", {
-  id: varchar("id", { length: 255 }).notNull().primaryKey(),
-  name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 255 }).notNull(),
-  role: role_enum.default("USER"),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: varchar("image", { length: 255 }),
-});
-
 export const accounts = mysqlTable(
   "accounts",
   {
-    userId: varchar("userId", { length: 255 }).notNull(),
-    type: varchar("type", { length: 255 })
-      .$type<AdapterAccount["type"]>()
-      .notNull(),
-    provider: varchar("provider", { length: 255 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
-    refresh_token: varchar("refresh_token", { length: 255 }),
-    access_token: varchar("access_token", { length: 255 }),
-    expires_at: int("expires_at"),
-    token_type: varchar("token_type", { length: 255 }),
-    scope: varchar("scope", { length: 255 }),
+    id: varchar("id", { length: 191 }).primaryKey().notNull(),
+    userId: varchar("userId", { length: 191 }).notNull(),
+    type: varchar("type", { length: 191 }).notNull(),
+    provider: varchar("provider", { length: 191 }).notNull(),
+    providerAccountId: varchar("providerAccountId", { length: 191 }).notNull(),
+    access_token: text("access_token"),
+    expires_in: int("expires_in"),
     id_token: text("id_token"),
-    session_state: varchar("session_state", { length: 255 }),
+    refresh_token: text("refresh_token"),
+    refresh_token_expires_in: int("refresh_token_expires_in"),
+    scope: varchar("scope", { length: 191 }),
+    token_type: varchar("token_type", { length: 191 }),
+    createdAt: timestamp("createdAt").defaultNow().onUpdateNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   },
   (account) => ({
-    compoundKey: primaryKey(account.provider, account.providerAccountId),
+    providerProviderAccountIdIndex: uniqueIndex(
+      "accounts__provider__providerAccountId__idx"
+    ).on(account.provider, account.providerAccountId),
+    userIdIndex: index("accounts__userId__idx").on(account.userId),
   })
 );
 
-export const sessions = mysqlTable("sessions", {
-  sessionToken: varchar("sessionToken", { length: 255 }).notNull().primaryKey(),
-  userId: varchar("userId", { length: 255 }).notNull(),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
-});
+export const sessions = mysqlTable(
+  "sessions",
+  {
+    id: varchar("id", { length: 191 }).primaryKey().notNull(),
+    sessionToken: varchar("sessionToken", { length: 191 }).notNull(),
+    userId: varchar("userId", { length: 191 }).notNull(),
+    expires: datetime("expires").notNull(),
+    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
+    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
+  },
+  (session) => ({
+    sessionTokenIndex: uniqueIndex("sessions__sessionToken__idx").on(
+      session.sessionToken
+    ),
+    userIdIndex: index("sessions__userId__idx").on(session.userId),
+  })
+);
+
+export const users = mysqlTable(
+  "users",
+  {
+    id: varchar("id", { length: 191 }).primaryKey().notNull(),
+    name: varchar("name", { length: 191 }),
+    email: varchar("email", { length: 191 }).notNull(),
+    emailVerified: timestamp("emailVerified"),
+    image: varchar("image", { length: 191 }),
+    role: role_enum.default("USER"),
+    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
+    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
+  },
+  (user) => ({
+    emailIndex: uniqueIndex("users__email__idx").on(user.email),
+  })
+);
 
 export const verificationTokens = mysqlTable(
-  "verificationToken",
+  "verification_tokens",
   {
-    identifier: varchar("identifier", { length: 255 }).notNull(),
-    token: varchar("token", { length: 255 }).notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
+    identifier: varchar("identifier", { length: 191 }).primaryKey().notNull(),
+    token: varchar("token", { length: 191 }).notNull(),
+    expires: datetime("expires").notNull(),
+    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
+    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
-  (vt) => ({
-    compoundKey: primaryKey(vt.identifier, vt.token),
+  (verificationToken) => ({
+    tokenIndex: uniqueIndex("verification_tokens__token__idx").on(
+      verificationToken.token
+    ),
   })
 );
 export const striverSheet = mysqlTable("striverSheet", {
