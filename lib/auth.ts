@@ -5,7 +5,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { env } from "@/env.mjs";
-import verificationTemplate from "./verificationMailTemplate";
+import { getValidationMail } from "./verificationMailTemplate";
 import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
 import { User } from "@prisma/client";
@@ -43,7 +43,7 @@ export const authOption: NextAuthOptions = {
           from: env.GMAIL,
           to: identifier,
           subject: "Verification Link",
-          html: verificationTemplate(url),
+          html: getValidationMail(url),
           headers: {
             References: Date.now().toString(),
           },

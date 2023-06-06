@@ -1,8 +1,15 @@
-import Image from "next/image";
 import striverSheetData from "@/static/striverSheet.json";
-import { getServerSession } from "next-auth";
-import { authOption } from "@/lib/auth";
+
 export default async function Home() {
-  const data = await getServerSession(authOption);
-  return <div>dashboard</div>;
+  let parsedStriverSheetData;
+
+  try {
+    parsedStriverSheetData = JSON.parse(striverSheetData as string);
+  } catch (error) {
+    console.error("Error parsing striverSheetData:", error);
+    parsedStriverSheetData = {}; // or any other appropriate fallback value
+  }
+  const keys = Object.keys(parsedStriverSheetData);
+  console.log(keys);
+  return <div></div>;
 }

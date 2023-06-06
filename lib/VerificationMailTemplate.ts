@@ -1,4 +1,4 @@
-export default function Validate(magicLink: string) {
+export function getValidationMail(magicLink: string) {
   return `
      <table class="main" style="width: 100%; height: 100%;">
       <tr>
