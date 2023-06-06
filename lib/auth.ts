@@ -1,17 +1,14 @@
 import { NextAuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "./prisma";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { env } from "@/env.mjs";
-import { getValidationMail } from "./verificationMailTemplate";
+import { getValidationMail } from "./verficationMail";
 import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
-import { User } from "@prisma/client";
-
+import { DrizzleAdapter } from "./drizzleAdapater";
 export const authOption: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma as any),
+  adapter: DrizzleAdapter(),
   pages: { signIn: "/register-or-login", error: "/register-or-login/error" },
   session: { strategy: "jwt" },
   providers: [
@@ -78,8 +75,7 @@ export const authOption: NextAuthOptions = {
     },
     jwt: ({ token, user }) => {
       //user only will be present when we first Login
-      const User = user as User | undefined;
-
+      const User = user as { Role: "PROUSER" | "USER" | "ADMIN"; id: string };
       if (User) {
         return { ...token, role: User.Role, id: User.id };
       }

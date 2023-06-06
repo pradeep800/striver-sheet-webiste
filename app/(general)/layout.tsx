@@ -3,6 +3,7 @@ import NavBar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
+import { db } from "@/lib/db";
 
 export default async function RootLayout({
   children,

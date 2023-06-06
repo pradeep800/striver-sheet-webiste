@@ -10,6 +10,6 @@ export default async function Home() {
     parsedStriverSheetData = {}; // or any other appropriate fallback value
   }
   const keys = Object.keys(parsedStriverSheetData);
-  console.log(keys);
+
   return <div></div>;
 }

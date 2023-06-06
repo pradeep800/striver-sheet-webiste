@@ -1,4 +1,4 @@
-import { NavBarItems } from "@/lib/types/navBarTypes";
+import { NavBarItems } from "@/types/navBarTypes";
 
 export const NAVBARITEMS: { name: string; url: NavBarItems }[] = [
   { name: "Home", url: "/" },

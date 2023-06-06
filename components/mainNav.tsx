@@ -1,4 +1,4 @@
-import { NavBarItems } from "@/lib/types/navBarTypes";
+import { NavBarItems } from "@/types/navBarTypes";
 import { NAVBARITEMS } from "@/static/navBarItems";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
