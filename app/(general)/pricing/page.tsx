@@ -12,9 +12,24 @@ import { BellRing, Check, IndianRupee } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { BuyProSubscription } from "@/server-action/buyProSubscription";
+import { users } from "@/lib/db/schema";
+import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
+import { eq } from "drizzle-orm";
 export default async function Price() {
   const session = await getServerSession(authOption);
   const user = session?.user;
+
+  if (user) {
+    const [{ role }] = await db
+      .select({ role: users.role })
+      .from(users)
+      .where(eq(users.id, user.id));
+
+    if (role == "PROUSER") {
+      redirect("/billing");
+    }
+  }
 
   return (
     <div className="min-h-[80vh] flex flex-wrap  justify-center items-center gap-5  pt-3">

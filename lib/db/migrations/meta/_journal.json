@@ -15,6 +15,13 @@
       "when": 1686113636505,
       "tag": "0001_steady_night_thrasher",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1686133485599,
+      "tag": "0002_spicy_grim_reaper",
+      "breakpoints": true
     }
   ]
 }

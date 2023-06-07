@@ -17,3 +17,14 @@ export function formatDate(input: string | number): string {
 export function absoluteUrl(path: string) {
   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
+export function ConsoleLogUnableToStatusUpdate(
+  errorMessage: string,
+  subscriptionId: string
+) {
+  console.log(
+    "Unable to Update Status. Error Message :- ",
+    errorMessage,
+    " subscriptionId:-",
+    subscriptionId
+  );
+}

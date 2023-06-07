@@ -24,7 +24,7 @@ export default function ContactPage() {
   }
   return (
     <div className="pt-3 min-h-[80vh] flex justify-center items-center">
-      <Card className="w-[700px]">
+      <Card className="w-[700px] ">
         <CardHeader>
           <CardTitle>Feedback And Feature Request</CardTitle>
           <CardDescription>

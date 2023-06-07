@@ -7,6 +7,9 @@ import { getValidationMail } from "./verficationMail";
 import { MailOptions } from "nodemailer/lib/json-transport";
 import nodemailer from "nodemailer";
 import { DrizzleAdapter } from "./drizzleAdapater";
+import { db } from "./db";
+import { users } from "./db/schema";
+import { eq } from "drizzle-orm";
 
 export const authOption: NextAuthOptions = {
   adapter: DrizzleAdapter(),
@@ -76,8 +79,18 @@ export const authOption: NextAuthOptions = {
         },
       };
     },
-    jwt: ({ token, user }) => {
-      //user only will be present when we first Login
+    //user only will be present when we first Login
+    jwt: async ({ token, user, trigger }) => {
+      //when you trigger update it will check role and then update the token accordingly
+      if (trigger === "update") {
+        const [{ role }] = await db
+          .select({ role: users.role })
+          .from(users)
+          .where(eq(users.id, user.id));
+
+        token.role = role;
+        return token;
+      }
       const User = user as { role: "PROUSER" | "USER" | "ADMIN"; id: string };
       if (User) {
         return { ...token, role: User.role, id: User.id };

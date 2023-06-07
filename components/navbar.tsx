@@ -4,14 +4,15 @@ import Hamburger from "./svg/hamburger";
 import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
 import { usePathname } from "next/navigation";
-import { User } from "next-auth";
 import LogIn from "./loginButton";
 import UserAvatar from "./userAvatar";
 import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
+import { SessionUser } from "@/types/next-auth";
 interface UserProps {
-  user?: Pick<User, "email" | "image" | "name">;
+  user?: SessionUser;
 }
+
 export default function NavBar({ user }: UserProps) {
   const pathName = usePathname();
   const [activeNavLink, setActiveNavLink] = useState<string>(pathName);
@@ -22,7 +23,6 @@ export default function NavBar({ user }: UserProps) {
       pathName === "/dashboard" ? "/" : `/${pathName.split("/")[1]}`
     );
   }, [pathName]);
-  console.log(user);
   return (
     <nav
       className="flex  items-center relative z-[2] "
@@ -40,10 +40,11 @@ export default function NavBar({ user }: UserProps) {
       >
         SS
       </Link>
-      <MainNav activeNavLink={activeNavLink} />
+      <MainNav activeNavLink={activeNavLink} user={user} />
       <MobileNav
         activeNavLink={activeNavLink}
         oneTimeClickToHamburger={oneTimeClickToHamburger}
+        user={user}
       />
       {!user ? <LogIn /> : <UserAvatar user={user} />}
 

@@ -1,1 +1,6 @@
-export type NavBarItems = "/feedback" | "/about" | "/pricing" | "/";
+export type NavBarItems =
+  | "/feedback"
+  | "/about"
+  | "/pricing"
+  | "/"
+  | "/billing";

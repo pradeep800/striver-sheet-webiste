@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
 import { db } from "@/lib/db";
-
+import { Provider } from "@/components/sessionProvider";
 export default async function RootLayout({
   children,
 }: {
@@ -14,7 +14,7 @@ export default async function RootLayout({
   const user = session?.user;
 
   return (
-    <>
+    <Provider>
       <div>
         <NavBar user={user} />
       </div>
@@ -22,6 +22,6 @@ export default async function RootLayout({
       <div className="pt-3">
         <Footer />
       </div>
-    </>
+    </Provider>
   );
 }

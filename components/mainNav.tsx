@@ -1,11 +1,15 @@
-import { NavBarItems } from "@/types/navBarTypes";
 import { NAVBARITEMS } from "@/static/navBarItems";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { SessionUser } from "@/types/next-auth";
 type bigScreenProps = {
   activeNavLink: string;
+  user?: SessionUser;
 };
-export default function MainNav({ activeNavLink }: bigScreenProps) {
+export default function MainNav({ activeNavLink, user }: bigScreenProps) {
+  if (user && user.role == "PROUSER") {
+    NAVBARITEMS[1].url = "/billing";
+    NAVBARITEMS[1].name = "Billing";
+  }
   return (
     <div className="font-medium text-xl hidden md:flex gap-6  ">
       {NAVBARITEMS.map((navItem, i) => {
