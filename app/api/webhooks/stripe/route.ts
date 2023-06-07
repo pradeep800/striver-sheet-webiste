@@ -20,6 +20,7 @@ type WebhookHandlers = {
 because checkout.session.complete have metadata and metadata have userId property which we can use for identifying user
 there is no email or metadata.userId in invoice.payment_succeeded
 */
+//
 
 const webhookHandlers: WebhookHandlers = {
   "checkout.session.completed": async (sessionObject) => {
