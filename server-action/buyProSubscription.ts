@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { absoluteUrl } from "@/lib/utils";
 import { stripe } from "@/lib/stripe";
 import { env } from "@/env.mjs";
-import { metadata } from "@/app/layout";
 
 export async function BuyProSubscription() {
   const BillingURL = absoluteUrl("/billing");
@@ -19,6 +18,8 @@ export async function BuyProSubscription() {
   if (session.user.role === "PROUSER") {
     redirect("/billing");
   }
+  console.log(BillingURL);
+  console.log(PricingURL);
 
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: BillingURL,

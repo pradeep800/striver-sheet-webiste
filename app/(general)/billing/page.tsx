@@ -17,7 +17,6 @@ export default async function Billing() {
     .select({ role: users.role })
     .from(users)
     .where(eq(users.id, session?.user.id));
-  console.log({ ...session, role });
   if (role === "USER") {
     redirect("/pricing");
   } else if (role == "PROUSER" && session.user.role == "USER") {
