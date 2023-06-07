@@ -78,9 +78,9 @@ export const authOption: NextAuthOptions = {
     },
     jwt: ({ token, user }) => {
       //user only will be present when we first Login
-      const User = user as { Role: "PROUSER" | "USER" | "ADMIN"; id: string };
+      const User = user as { role: "PROUSER" | "USER" | "ADMIN"; id: string };
       if (User) {
-        return { ...token, role: User.Role, id: User.id };
+        return { ...token, role: User.role, id: User.id };
       }
       return token;
     },

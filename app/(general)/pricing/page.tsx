@@ -11,9 +11,11 @@ import { authOption } from "@/lib/auth";
 import { BellRing, Check, IndianRupee } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { BuyProSubscription } from "@/server-action/buyProSubscription";
 export default async function Price() {
   const session = await getServerSession(authOption);
   const user = session?.user;
+
   return (
     <div className="min-h-[80vh] flex flex-wrap  justify-center items-center gap-5  pt-3">
       {!user && (
@@ -42,28 +44,31 @@ export default async function Price() {
           </CardFooter>
         </Card>
       )}
-
-      <Card className="min-h-[500px]  flex flex-col justify-center basis-[400px] ">
-        <CardHeader>
-          <CardTitle>ProUser Plan</CardTitle>
-          <CardTitle>
-            <Rupee amount={300} />
-          </CardTitle>
-          <CardDescription>For Unlimited Feature</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div>
-            <ListItem data={"All Feature Of Free Tier"} />
-            <ListItem data={"No Words Limit In Notes"} />
-            <ListItem data={"Email Reminder For Question Revision"} />
-            <ListItem data={"More Priority For Feature Request"} />
-            <ListItem data={"Pro Badge On Your Profile"} />
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button className="bg-red-500 hover:bg-red-400">Buy Now</Button>
-        </CardFooter>
-      </Card>
+      <form action={BuyProSubscription}>
+        <Card className="min-h-[500px]  flex flex-col justify-center basis-[400px] ">
+          <CardHeader>
+            <CardTitle>ProUser Plan</CardTitle>
+            <CardTitle>
+              <Rupee amount={300} />
+            </CardTitle>
+            <CardDescription>For Unlimited Feature</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div>
+              <ListItem data={"All Feature Of Free Tier"} />
+              <ListItem data={"No Words Limit In Notes"} />
+              <ListItem data={"Email Reminder For Question Revision"} />
+              <ListItem data={"More Priority For Feature Request"} />
+              <ListItem data={"Pro Badge On Your Profile"} />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button className="bg-red-500 hover:bg-red-400" type="submit">
+              Buy Now
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
     </div>
   );
 }
@@ -80,6 +85,7 @@ function Rupee({ amount }: { amount: number }) {
     <div className="flex text-2xl items-center">
       {amount}
       <IndianRupee />
+      /month
     </div>
   );
 }

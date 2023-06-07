@@ -22,7 +22,7 @@ export default function NavBar({ user }: UserProps) {
       pathName === "/dashboard" ? "/" : `/${pathName.split("/")[1]}`
     );
   }, [pathName]);
-
+  console.log(user);
   return (
     <nav
       className="flex  items-center relative z-[2] "

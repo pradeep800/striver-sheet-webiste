@@ -13,9 +13,12 @@ export const env = createEnv({
     GMAIL: z.string().min(1),
     GENERATED_PASSWORD: z.string().min(1),
     STRIPE_SECRET: z.string().min(1),
+    STRIVER_PRO_SUB_ID: z.string().min(1),
+    STRIPE_WEBHOOK_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_STRIPE_SECRET: z.string().min(1),
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
   },
 
   runtimeEnv: {
@@ -31,5 +34,8 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     STRIPE_SECRET: process.env.STRIPE_SECRET,
     NEXT_PUBLIC_STRIPE_SECRET: process.env.NEXT_PUBLIC_STRIPE_SECRET,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    STRIVER_PRO_SUB_ID: process.env.STRIVER_PRO_SUB_ID,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
   },
 });

@@ -13,7 +13,6 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/mysql-core";
-import { type AdapterAccount } from "next-auth/adapters";
 
 const role_enum = mysqlEnum("role", ["USER", "PROUSER", "ADMIN"]);
 const problem_state_enum = mysqlEnum("problem_status", [
@@ -24,18 +23,18 @@ const problem_state_enum = mysqlEnum("problem_status", [
 export const accounts = mysqlTable(
   "accounts",
   {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    userId: varchar("userId", { length: 191 }).notNull(),
-    type: varchar("type", { length: 191 }).notNull(),
-    provider: varchar("provider", { length: 191 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 191 }).notNull(),
+    id: varchar("id", { length: 255 }).primaryKey().notNull(),
+    userId: varchar("userId", { length: 255 }).notNull(),
+    type: varchar("type", { length: 255 }).notNull(),
+    provider: varchar("provider", { length: 255 }).notNull(),
+    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
     access_token: text("access_token"),
     expires_in: int("expires_in"),
     id_token: text("id_token"),
     refresh_token: text("refresh_token"),
     refresh_token_expires_in: int("refresh_token_expires_in"),
-    scope: varchar("scope", { length: 191 }),
-    token_type: varchar("token_type", { length: 191 }),
+    scope: varchar("scope", { length: 255 }),
+    token_type: varchar("token_type", { length: 255 }),
     createdAt: timestamp("createdAt").defaultNow().onUpdateNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   },
@@ -50,9 +49,9 @@ export const accounts = mysqlTable(
 export const sessions = mysqlTable(
   "sessions",
   {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    sessionToken: varchar("sessionToken", { length: 191 }).notNull(),
-    userId: varchar("userId", { length: 191 }).notNull(),
+    id: varchar("id", { length: 255 }).primaryKey().notNull(),
+    sessionToken: varchar("sessionToken", { length: 255 }).notNull(),
+    userId: varchar("userId", { length: 255 }).notNull(),
     expires: datetime("expires").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
@@ -68,12 +67,18 @@ export const sessions = mysqlTable(
 export const users = mysqlTable(
   "users",
   {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    name: varchar("name", { length: 191 }),
-    email: varchar("email", { length: 191 }).notNull(),
+    id: varchar("id", { length: 255 }).primaryKey().notNull(),
+    name: varchar("name", { length: 255 }),
+    email: varchar("email", { length: 255 }).notNull(),
     emailVerified: timestamp("emailVerified"),
-    image: varchar("image", { length: 191 }),
+    image: varchar("image", { length: 255 }),
     role: role_enum.default("USER"),
+
+    stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
+    stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
+    stripe_price_id: varchar("stripe_price_id", { length: 255 }),
+    pro_subscription_end: datetime("pro_subscription_end"),
+
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
@@ -85,8 +90,8 @@ export const users = mysqlTable(
 export const verificationTokens = mysqlTable(
   "verification_tokens",
   {
-    identifier: varchar("identifier", { length: 191 }).primaryKey().notNull(),
-    token: varchar("token", { length: 191 }).notNull(),
+    identifier: varchar("identifier", { length: 255 }).primaryKey().notNull(),
+    token: varchar("token", { length: 255 }).notNull(),
     expires: datetime("expires").notNull(),
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),

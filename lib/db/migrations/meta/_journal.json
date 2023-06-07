@@ -8,6 +8,13 @@
       "when": 1686042807656,
       "tag": "0000_soft_ender_wiggin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1686113636505,
+      "tag": "0001_steady_night_thrasher",
+      "breakpoints": true
     }
   ]
 }

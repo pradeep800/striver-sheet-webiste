@@ -1,3 +1,4 @@
+import { env } from "@/env.mjs";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -11,4 +12,8 @@ export function formatDate(input: string | number): string {
     day: "numeric",
     year: "numeric",
   });
+}
+
+export function absoluteUrl(path: string) {
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
