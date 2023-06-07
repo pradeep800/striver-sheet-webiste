@@ -30,6 +30,7 @@ const webhookHandlers: WebhookHandlers = {
       await db
         .update(users)
         .set({
+          role: "PROUSER",
           stripe_subscription_id: subscription.id,
           stripe_customer_id: subscription.customer as string,
           stripe_price_id: subscription.items.data[0].price.id as string,

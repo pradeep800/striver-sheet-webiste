@@ -86,7 +86,7 @@ export const authOption: NextAuthOptions = {
         const [{ role }] = await db
           .select({ role: users.role })
           .from(users)
-          .where(eq(users.id, user.id));
+          .where(eq(users.id, token.id));
 
         token.role = role;
         return token;

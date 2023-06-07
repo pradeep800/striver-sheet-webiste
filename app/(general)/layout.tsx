@@ -1,9 +1,7 @@
-import { Asap } from "next/font/google";
 import NavBar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
-import { db } from "@/lib/db";
 import { Provider } from "@/components/sessionProvider";
 export default async function RootLayout({
   children,
