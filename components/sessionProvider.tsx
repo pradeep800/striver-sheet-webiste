@@ -6,5 +6,9 @@ type Props = {
   children: React.ReactNode;
 };
 export const Provider = ({ children }: Props) => {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider refetchInterval={5 * 60} refetchOnWindowFocus={true}>
+      {children}
+    </SessionProvider>
+  );
 };

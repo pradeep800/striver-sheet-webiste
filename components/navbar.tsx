@@ -9,12 +9,14 @@ import UserAvatar from "./userAvatar";
 import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
 import { SessionUser } from "@/types/next-auth";
+import useUpdateRole from "@/lib/useUpdateRole";
 interface UserProps {
   user?: SessionUser;
 }
 
 export default function NavBar({ user }: UserProps) {
   const pathName = usePathname();
+  useUpdateRole({ user });
   const [activeNavLink, setActiveNavLink] = useState<string>(pathName);
   const { hamburgerOn, setHamburgerOn } = useHamburger();
   const [oneTimeClickToHamburger, setOneTimeClickToHamburger] = useState(false);
@@ -23,6 +25,7 @@ export default function NavBar({ user }: UserProps) {
       pathName === "/dashboard" ? "/" : `/${pathName.split("/")[1]}`
     );
   }, [pathName]);
+
   return (
     <nav
       className="flex  items-center relative z-[2] "

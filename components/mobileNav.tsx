@@ -23,7 +23,7 @@ export default function MobileNav({
       timer = setTimeout(() => {
         nav.current?.classList.add("hidden");
         nav.current?.classList.remove("flex");
-      }, 700);
+    }, 700);
     } else {
       nav.current?.classList?.add("flex");
       nav.current?.classList?.remove("hidden");
@@ -36,6 +36,12 @@ export default function MobileNav({
   if (user && user.role == "PROUSER") {
     NAVBARITEMS[1].url = "/billing";
     NAVBARITEMS[1].name = "Billing";
+  }
+  //it is important because it we refresh token it will become user and it will unable to to goPro
+  //using this will change it to pricing again
+  if (user && user.role == "USER") {
+    NAVBARITEMS[1].url = "/pricing";
+    NAVBARITEMS[1].name = "GoPro";
   }
   return (
     <div

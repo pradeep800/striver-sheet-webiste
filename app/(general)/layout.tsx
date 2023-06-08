@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
 import { Provider } from "@/components/sessionProvider";
+import ToastRedirect from "@/components/toastRedirect";
 export default async function RootLayout({
   children,
 }: {
@@ -20,6 +21,7 @@ export default async function RootLayout({
       <div className="pt-3">
         <Footer />
       </div>
+      <ToastRedirect />
     </Provider>
   );
 }

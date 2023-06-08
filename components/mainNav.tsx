@@ -1,3 +1,4 @@
+"use client";
 import { NAVBARITEMS } from "@/static/navBarItems";
 import Link from "next/link";
 import { SessionUser } from "@/types/next-auth";
@@ -9,6 +10,10 @@ export default function MainNav({ activeNavLink, user }: bigScreenProps) {
   if (user && user.role == "PROUSER") {
     NAVBARITEMS[1].url = "/billing";
     NAVBARITEMS[1].name = "Billing";
+  }
+  if (user && user.role == "USER") {
+    NAVBARITEMS[1].url = "/pricing";
+    NAVBARITEMS[1].name = "GoPro";
   }
   return (
     <div className="font-medium text-xl hidden md:flex gap-6  ">

@@ -2,6 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { Asap } from "next/font/google";
 import { Metadata } from "next";
+import UpdateRole from "@/lib/useUpdateRole";
+import { Provider } from "@radix-ui/react-toast";
 
 const asap = Asap({ subsets: ["latin"] });
 

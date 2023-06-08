@@ -14,12 +14,9 @@ export async function BuyProSubscription() {
   if (!session || !session?.user || !session.user?.email) {
     redirect("register-or-login?callback=%2Fpricing");
   }
-  console.log(session.user.role);
   if (session.user.role === "PROUSER") {
     redirect("/billing");
   }
-  console.log(BillingURL);
-  console.log(PricingURL);
 
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: BillingURL,
@@ -34,6 +31,5 @@ export async function BuyProSubscription() {
   });
 
   const url = stripeSession.url;
-  console.log("stripe session", url);
   redirect(stripeSession.url as string);
 }
