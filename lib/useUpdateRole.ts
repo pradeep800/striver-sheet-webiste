@@ -4,9 +4,11 @@ import { SessionUser } from "@/types/next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import useWindowSize from "./useWindowSize";
 
 export default function useUpdateRole({ user }: { user?: SessionUser }) {
   //update will start working when you are authenticated
+  const { height, width, setActive } = useWindowSize();
   const { update, status } = useSession();
   const router = useRouter();
   const [firstTime, setFirstTime] = useState(false);

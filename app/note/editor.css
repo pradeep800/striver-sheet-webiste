@@ -1,0 +1,35 @@
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  /* Add any other styles specific to h1 */
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  /* Add any other styles specific to h2 */
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  /* Add any other styles specific to h3 */
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+  /* Add any other styles specific to h4 */
+}
+
+h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+  /* Add any other styles specific to h5 */
+}
+
+h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+  /* Add any other styles specific to h6 */
+}

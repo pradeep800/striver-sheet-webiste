@@ -138,10 +138,12 @@ html {
   /* Official styles (Firefox) */
   scrollbar-color: var(--gray-300) var(--background);
   scrollbar-width: thin;
+  scrollbar-height: thin;
 }
 
 ::-webkit-scrollbar {
   width: 3px;
+  height: 3px;
   background-color: var(--background);
 }
 ::-webkit-scrollbar-thumb {

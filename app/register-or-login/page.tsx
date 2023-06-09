@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 const AuthenticatedRoutes = ["feedback", "dashboard"];
 export default function RegisterPage() {
-  const [animation, setAnimation] = useState(false);
   const search = useSearchParams();
 
   const shouldUseCallback = useMemo(() => {
@@ -31,18 +30,7 @@ export default function RegisterPage() {
         className="absolute left-[30px] top-[20px] font-semibold"
         href={shouldUseCallback ? callbackQuery : "/"}
       >
-        <div
-          onMouseEnter={() => {
-            setAnimation(true);
-          }}
-          onMouseLeave={() => {
-            setAnimation(false);
-          }}
-          className="flex items-center gap-1"
-        >
-          <Back animation={animation} />
-          Back
-        </div>
+        <Back />
       </Link>
 
       <Form />

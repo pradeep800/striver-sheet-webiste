@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "645374e7-b81b-4f60-98ab-3feca74d9877",
-  "prevId": "01be1351-bc2b-4011-bc2d-a1ed80662546",
+  "id": "76aae93b-6adb-4626-8000-c495e032e63b",
+  "prevId": "38332901-126c-4253-8773-ba04d4ac73b4",
   "tables": {
     "accounts": {
       "name": "accounts",
@@ -130,8 +130,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "note": {
-      "name": "note",
+    "notes": {
+      "name": "notes",
       "columns": {
         "note_id": {
           "name": "note_id",
@@ -170,20 +170,28 @@
           "autoincrement": false,
           "onUpdate": true
         },
-        "userId": {
-          "name": "userId",
+        "user_id": {
+          "name": "user_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "author_id_idx": {
+          "name": "author_id_idx",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "question": {
-      "name": "question",
+    "questions": {
+      "name": "questions",
       "columns": {
         "question_id": {
           "name": "question_id",
@@ -214,20 +222,28 @@
           "notNull": true,
           "autoincrement": false
         },
-        "sheet_id": {
-          "name": "sheet_id",
-          "type": "int",
+        "id": {
+          "name": "id",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "sheet_id_idx": {
+          "name": "sheet_id_idx",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "reminder": {
-      "name": "reminder",
+    "reminders": {
+      "name": "reminders",
       "columns": {
         "reminder_id": {
           "name": "reminder_id",
@@ -259,15 +275,23 @@
           "autoincrement": false,
           "default": false
         },
-        "userId": {
-          "name": "userId",
+        "user_id": {
+          "name": "user_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "reminder_creator_id_index": {
+          "name": "reminder_creator_id_index",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
@@ -340,35 +364,13 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "striverSheet": {
-      "name": "striverSheet",
-      "columns": {
-        "sheet_id": {
-          "name": "sheet_id",
-          "type": "int",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {}
-    },
     "users": {
       "name": "users",
       "columns": {
         "id": {
           "name": "id",
           "type": "varchar(255)",
-          "primaryKey": true,
+          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
@@ -404,7 +406,7 @@
           "name": "role",
           "type": "enum('USER','PROUSER','ADMIN')",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": "'USER'"
         },
@@ -526,7 +528,11 @@
   "schemas": {},
   "_meta": {
     "schemas": {},
-    "tables": {},
+    "tables": {
+      "\"note\"": "\"notes\"",
+      "\"question\"": "\"questions\"",
+      "\"reminder\"": "\"reminders\""
+    },
     "columns": {}
   }
 }

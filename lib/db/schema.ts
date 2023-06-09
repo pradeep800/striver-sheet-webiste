@@ -79,6 +79,8 @@ export const users = mysqlTable(
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
     pro_subscription_end: datetime("pro_subscription_end"),
 
+    striver_sheet_id_30_days: varchar("id", { length: 255 }).notNull(),
+
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
@@ -102,30 +104,47 @@ export const verificationTokens = mysqlTable(
     ),
   })
 );
-export const striverSheet = mysqlTable("striverSheet", {
-  sheet_id: int("sheet_id").notNull().autoincrement().primaryKey(),
-  user_id: varchar("user_id", { length: 255 }).notNull(),
-});
-export const question = mysqlTable("question", {
-  question_id: int("question_id").notNull().autoincrement().primaryKey(),
-  solved: problem_state_enum.notNull().default("UNATTEMPTED"),
-  question_no: int("question_no").notNull(),
-  question_name: varchar("question_name", { length: 300 }).notNull(),
-  sheet_id: int("sheet_id").notNull(),
-});
-export const note = mysqlTable("note", {
-  note_id: int("note_id").autoincrement().notNull().primaryKey(),
-  title: varchar("title", { length: 300 }).notNull(), //question_name
-  content: json("content"),
-  created_at: timestamp("created_at").defaultNow(),
-  updated_at: timestamp("updated_at").onUpdateNow(),
-  author_id: varchar("userId", { length: 255 }).notNull(),
-});
 
-export const reminder = mysqlTable("reminder", {
-  reminder_id: int("reminder_id").notNull().autoincrement().primaryKey(),
-  created_at: timestamp("created_at").defaultNow(),
-  reminder_due_date: datetime("reminder_due_time").notNull(),
-  mail_sended: boolean("mail_sended").default(false),
-  reminder_creator_id: varchar("userId", { length: 255 }).notNull(),
-});
+export const questions = mysqlTable(
+  "questions",
+  {
+    question_id: int("question_id").notNull().autoincrement().primaryKey(),
+    solved: problem_state_enum.notNull().default("UNATTEMPTED"),
+    question_no: int("question_no").notNull(),
+    question_name: varchar("question_name", { length: 300 }).notNull(),
+    sheet_id: varchar("id", { length: 255 }).notNull(),
+  },
+  (question) => ({
+    sheetIdIndex: index("sheet_id_idx").on(question.sheet_id),
+  })
+);
+export const notes = mysqlTable(
+  "notes",
+  {
+    note_id: int("note_id").autoincrement().notNull().primaryKey(),
+    title: varchar("title", { length: 300 }).notNull(), //question_name
+    content: json("content"),
+    created_at: timestamp("created_at").defaultNow(),
+    updated_at: timestamp("updated_at").onUpdateNow(),
+    author_id: varchar("user_id", { length: 255 }).notNull(),
+  },
+  (note) => ({
+    authorIdIndex: index("author_id_idx").on(note.author_id),
+  })
+);
+
+export const reminders = mysqlTable(
+  "reminders",
+  {
+    reminder_id: int("reminder_id").notNull().autoincrement().primaryKey(),
+    created_at: timestamp("created_at").defaultNow(),
+    reminder_due_date: datetime("reminder_due_time").notNull(),
+    mail_sended: boolean("mail_sended").default(false),
+    reminder_creator_id: varchar("user_id", { length: 255 }).notNull(),
+  },
+  (reminder) => ({
+    ReminderCreatorIdIndex: index("reminder_creator_id_index").on(
+      reminder.reminder_creator_id
+    ),
+  })
+);

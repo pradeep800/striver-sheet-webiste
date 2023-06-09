@@ -13,6 +13,7 @@ export function DrizzleAdapter(): Adapter {
         emailVerified: userData.emailVerified,
         name: userData.name,
         image: userData.image,
+        striver_sheet_id_30_days: crypto.randomUUID(),
       });
       const rows = await db
         .select()

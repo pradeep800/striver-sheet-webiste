@@ -4,6 +4,9 @@ import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
 import { Provider } from "@/components/sessionProvider";
 import ToastRedirect from "@/components/toastRedirect";
+import ReactCanvasConfetti from "react-canvas-confetti";
+
+let animationInstance;
 export default async function RootLayout({
   children,
 }: {
