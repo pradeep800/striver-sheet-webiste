@@ -3,9 +3,7 @@ import {
   timestamp,
   mysqlTable,
   varchar,
-  primaryKey,
   mysqlEnum,
-  serial,
   json,
   datetime,
   boolean,
@@ -79,7 +77,9 @@ export const users = mysqlTable(
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
     pro_subscription_end: datetime("pro_subscription_end"),
 
-    striver_sheet_id_30_days: varchar("id", { length: 255 }).notNull(),
+    striver_sheet_id_30_days: varchar("striver_sheet_id_30_days", {
+      length: 255,
+    }).notNull(),
 
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
@@ -126,10 +126,10 @@ export const notes = mysqlTable(
     content: json("content"),
     created_at: timestamp("created_at").defaultNow(),
     updated_at: timestamp("updated_at").onUpdateNow(),
-    author_id: varchar("user_id", { length: 255 }).notNull(),
+    question_id: int("question_id").notNull(),
   },
   (note) => ({
-    authorIdIndex: index("author_id_idx").on(note.author_id),
+    authorIdIndex: index("question_id_idx").on(note.question_id),
   })
 );
 
@@ -140,7 +140,9 @@ export const reminders = mysqlTable(
     created_at: timestamp("created_at").defaultNow(),
     reminder_due_date: datetime("reminder_due_time").notNull(),
     mail_sended: boolean("mail_sended").default(false),
-    reminder_creator_id: varchar("user_id", { length: 255 }).notNull(),
+    reminder_creator_id: varchar("reminder_creator_id", {
+      length: 255,
+    }).notNull(),
   },
   (reminder) => ({
     ReminderCreatorIdIndex: index("reminder_creator_id_index").on(

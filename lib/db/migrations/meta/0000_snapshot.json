@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "38332901-126c-4253-8773-ba04d4ac73b4",
+  "id": "03d0c22a-4ca5-4c2b-b051-7d5c22287c91",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "accounts": {
@@ -130,8 +130,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "note": {
-      "name": "note",
+    "notes": {
+      "name": "notes",
       "columns": {
         "note_id": {
           "name": "note_id",
@@ -170,19 +170,19 @@
           "autoincrement": false,
           "onUpdate": true
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "varchar(255)",
+        "question_id": {
+          "name": "question_id",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "author_id_idx": {
-          "name": "author_id_idx",
+        "question_id_idx": {
+          "name": "question_id_idx",
           "columns": [
-            "user_id"
+            "question_id"
           ],
           "isUnique": false
         }
@@ -190,8 +190,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "question": {
-      "name": "question",
+    "questions": {
+      "name": "questions",
       "columns": {
         "question_id": {
           "name": "question_id",
@@ -242,8 +242,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "reminder": {
-      "name": "reminder",
+    "reminders": {
+      "name": "reminders",
       "columns": {
         "reminder_id": {
           "name": "reminder_id",
@@ -275,8 +275,8 @@
           "autoincrement": false,
           "default": false
         },
-        "user_id": {
-          "name": "user_id",
+        "reminder_creator_id": {
+          "name": "reminder_creator_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
@@ -287,7 +287,7 @@
         "reminder_creator_id_index": {
           "name": "reminder_creator_id_index",
           "columns": [
-            "user_id"
+            "reminder_creator_id"
           ],
           "isUnique": false
         }
@@ -370,7 +370,7 @@
         "id": {
           "name": "id",
           "type": "varchar(255)",
-          "primaryKey": false,
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
@@ -436,6 +436,13 @@
           "type": "datetime",
           "primaryKey": false,
           "notNull": false,
+          "autoincrement": false
+        },
+        "striver_sheet_id_30_days": {
+          "name": "striver_sheet_id_30_days",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
           "autoincrement": false
         },
         "created_at": {

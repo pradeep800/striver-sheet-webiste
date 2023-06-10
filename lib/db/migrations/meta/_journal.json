@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1686244804742,
-      "tag": "0000_public_demogoblin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1686244870336,
-      "tag": "0001_shocking_squadron_sinister",
+      "when": 1686372506316,
+      "tag": "0000_high_rictor",
       "breakpoints": true
     }
   ]
