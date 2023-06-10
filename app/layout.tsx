@@ -26,6 +26,7 @@ export default async function RootLayout({
       </head>
       <body className={`${asap.className} scrollbar`}>
         <main className="h-[100%] p-3">{children}</main> <Toaster />
+        <canvas id="confetti" />
       </body>
     </html>
   );
