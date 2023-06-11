@@ -39,5 +39,3 @@ stripe.exe
 
 #Only want for development
 app/api/rs/
-app/api/check-auth/
-app/api/ab/
