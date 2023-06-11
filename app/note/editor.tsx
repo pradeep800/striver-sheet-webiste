@@ -37,7 +37,6 @@ export default function Editor({ data, isEditModeOn }: Props) {
 
       onChange: async (e) => {
         const data = await ref.current?.save();
-        console.log(data);
         if (data && data?.blocks.length < 1) {
           ref.current?.blocks.insert("paragraph", {
             text: "<a></a>",

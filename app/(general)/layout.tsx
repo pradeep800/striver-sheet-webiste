@@ -6,7 +6,6 @@ import { Provider } from "@/components/sessionProvider";
 import ToastRedirect from "@/components/toastRedirect";
 import ReactCanvasConfetti from "react-canvas-confetti";
 
-let animationInstance;
 export default async function RootLayout({
   children,
 }: {
@@ -24,6 +23,7 @@ export default async function RootLayout({
       <div className="pt-3">
         <Footer />
       </div>
+
       <ToastRedirect />
     </Provider>
   );

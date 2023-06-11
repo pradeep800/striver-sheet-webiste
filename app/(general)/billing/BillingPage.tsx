@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import ManageSubscription from "./ManagingSubscription";
 import { SessionUser } from "@/types/next-auth";
+import Confetti from "@/components/confetti";
 
 export default function BillingPage() {
   return (
@@ -9,6 +10,7 @@ export default function BillingPage() {
         <h1>Billing</h1>
         <Button type="submit">Manage Subscription</Button>
       </form>
+      <Confetti />
     </div>
   );
 }

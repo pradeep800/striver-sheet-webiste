@@ -22,20 +22,21 @@ export default function UserAvatar({ user }: UserProps) {
       <div className="w-[20px] h-[100%]"></div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          {user.image ? (
-            <Image
-              className="rounded-full  border-red-500 border-2 cursor-pointer relative z-[2]"
-              src={user.image}
-              alt="Profile Photo"
-              width={30}
-              height={30}
-            />
-          ) : (
-            <div className="w-[30px] h-[30px] border-2 border-red-500 rounded-full flex justify-center items-center">
-              <span className="sr-only">{user.name}</span>
-              <User className="w-[100%] text-red-500" />
-            </div>
-          )}
+          <div className="border-2 cursor-pointer relative z-[2] border-red-500 rounded-full">
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt="Profile Photo"
+                width={30}
+                height={30}
+              />
+            ) : (
+              <div className="w-[30px] h-[30px] flex justify-center items-center">
+                <span className="sr-only">{user.name}</span>
+                <User className="w-[100%] text-red-500" />
+              </div>
+            )}
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mx-4 md:mr-3">
           <div className="flex flex-col space-y-1 leading-none">

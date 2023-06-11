@@ -5,11 +5,12 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useWindowSize from "./useWindowSize";
+import { useConfetti } from "./useConfatti";
 
 export default function useUpdateRole({ user }: { user?: SessionUser }) {
   //update will start working when you are authenticated
-  const { height, width, setActive } = useWindowSize();
   const { update, status } = useSession();
+  const setConfettiOn = useConfetti((state) => state.setConfettiOn);
   const router = useRouter();
   const [firstTime, setFirstTime] = useState(false);
 
@@ -26,6 +27,9 @@ export default function useUpdateRole({ user }: { user?: SessionUser }) {
 
     if (session.user.role !== user.role) {
       router.refresh();
+    }
+    if (session.user.role === "PROUSER" && user.role == "USER") {
+      setConfettiOn(true);
     }
   }
   useEffect(() => {

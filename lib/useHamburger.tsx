@@ -1,4 +1,3 @@
-import Hamburger from "@/components/svg/hamburger";
 import { create } from "zustand";
 type Hamburger = {
   hamburgerOn: boolean;
