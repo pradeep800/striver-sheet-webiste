@@ -10,7 +10,6 @@ export default function ToastRedirect() {
   const router = useRouter();
   useEffect(() => {
     const error = query.get("error");
-    console.log(error);
 
     if (error) {
       console.log(error);
@@ -18,5 +17,5 @@ export default function ToastRedirect() {
       router.push(path);
     }
   }, [query]);
-  return null;
+  return <div></div>;
 }

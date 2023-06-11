@@ -108,11 +108,12 @@ export const verificationTokens = mysqlTable(
 export const questions = mysqlTable(
   "questions",
   {
-    question_id: int("question_id").notNull().autoincrement().primaryKey(),
+    id: int("id").notNull().autoincrement().primaryKey(),
+    solved_date: datetime("solved_date").notNull(),
     solved: problem_state_enum.notNull().default("UNATTEMPTED"),
     question_no: int("question_no").notNull(),
     question_name: varchar("question_name", { length: 300 }).notNull(),
-    sheet_id: varchar("id", { length: 255 }).notNull(),
+    sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
   },
   (question) => ({
     sheetIdIndex: index("sheet_id_idx").on(question.sheet_id),
@@ -121,7 +122,7 @@ export const questions = mysqlTable(
 export const notes = mysqlTable(
   "notes",
   {
-    note_id: int("note_id").autoincrement().notNull().primaryKey(),
+    id: int("id").autoincrement().notNull().primaryKey(),
     title: varchar("title", { length: 300 }).notNull(), //question_name
     content: json("content"),
     created_at: timestamp("created_at").defaultNow(),
@@ -129,24 +130,24 @@ export const notes = mysqlTable(
     question_id: int("question_id").notNull(),
   },
   (note) => ({
-    authorIdIndex: index("question_id_idx").on(note.question_id),
+    questionIdIndex: index("question_id_idx").on(note.question_id),
   })
 );
 
 export const reminders = mysqlTable(
   "reminders",
   {
-    reminder_id: int("reminder_id").notNull().autoincrement().primaryKey(),
+    id: int("id").notNull().autoincrement().primaryKey(),
     created_at: timestamp("created_at").defaultNow(),
-    reminder_due_date: datetime("reminder_due_time").notNull(),
+    due_date: datetime("due_time").notNull(),
     mail_sended: boolean("mail_sended").default(false),
-    reminder_creator_id: varchar("reminder_creator_id", {
+    creator_id: varchar("creator_id", {
       length: 255,
     }).notNull(),
   },
   (reminder) => ({
     ReminderCreatorIdIndex: index("reminder_creator_id_index").on(
-      reminder.reminder_creator_id
+      reminder.creator_id
     ),
   })
 );

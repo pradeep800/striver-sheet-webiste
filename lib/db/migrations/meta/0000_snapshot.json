@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "03d0c22a-4ca5-4c2b-b051-7d5c22287c91",
+  "id": "05c7980a-b2cd-4d73-9639-5f9ae2b6c280",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "accounts": {
@@ -133,8 +133,8 @@
     "notes": {
       "name": "notes",
       "columns": {
-        "note_id": {
-          "name": "note_id",
+        "id": {
+          "name": "id",
           "type": "int",
           "primaryKey": true,
           "notNull": true,
@@ -193,12 +193,19 @@
     "questions": {
       "name": "questions",
       "columns": {
-        "question_id": {
-          "name": "question_id",
+        "id": {
+          "name": "id",
           "type": "int",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": true
+        },
+        "solved_date": {
+          "name": "solved_date",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         },
         "problem_status": {
           "name": "problem_status",
@@ -222,8 +229,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "id": {
-          "name": "id",
+        "sheet_id": {
+          "name": "sheet_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
@@ -234,7 +241,7 @@
         "sheet_id_idx": {
           "name": "sheet_id_idx",
           "columns": [
-            "id"
+            "sheet_id"
           ],
           "isUnique": false
         }
@@ -245,8 +252,8 @@
     "reminders": {
       "name": "reminders",
       "columns": {
-        "reminder_id": {
-          "name": "reminder_id",
+        "id": {
+          "name": "id",
           "type": "int",
           "primaryKey": true,
           "notNull": true,
@@ -260,8 +267,8 @@
           "autoincrement": false,
           "default": "(now())"
         },
-        "reminder_due_time": {
-          "name": "reminder_due_time",
+        "due_time": {
+          "name": "due_time",
           "type": "datetime",
           "primaryKey": false,
           "notNull": true,
@@ -275,8 +282,8 @@
           "autoincrement": false,
           "default": false
         },
-        "reminder_creator_id": {
-          "name": "reminder_creator_id",
+        "creator_id": {
+          "name": "creator_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
@@ -287,7 +294,7 @@
         "reminder_creator_id_index": {
           "name": "reminder_creator_id_index",
           "columns": [
-            "reminder_creator_id"
+            "creator_id"
           ],
           "isUnique": false
         }

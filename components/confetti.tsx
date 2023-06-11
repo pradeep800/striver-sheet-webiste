@@ -52,6 +52,6 @@ export default function Confetti() {
       startVelocity: 45,
     });
     setConfettiOn(false);
-  }, []);
-  return <canvas id={id} />;
+  }, [confettiOn]);
+  return <canvas style={{ width: "0px" }} id={id} />;
 }

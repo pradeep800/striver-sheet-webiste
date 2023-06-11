@@ -22,7 +22,7 @@ export default function UserAvatar({ user }: UserProps) {
       <div className="w-[20px] h-[100%]"></div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="border-2 cursor-pointer relative z-[2] border-red-500 rounded-full">
+          <div className="border-2 cursor-pointer relative z-[2] border-red-500 rounded-full overflow-hidden">
             {user.image ? (
               <Image
                 src={user.image}

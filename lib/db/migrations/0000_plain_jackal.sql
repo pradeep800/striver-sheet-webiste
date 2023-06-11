@@ -15,7 +15,7 @@ CREATE TABLE `accounts` (
 	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP);
 --> statement-breakpoint
 CREATE TABLE `notes` (
-	`note_id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`title` varchar(300) NOT NULL,
 	`content` json,
 	`created_at` timestamp DEFAULT (now()),
@@ -23,18 +23,19 @@ CREATE TABLE `notes` (
 	`question_id` int NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `questions` (
-	`question_id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`solved_date` datetime NOT NULL,
 	`problem_status` enum('UNATTEMPTED','REMINDER','SOLVE') NOT NULL DEFAULT 'UNATTEMPTED',
 	`question_no` int NOT NULL,
 	`question_name` varchar(300) NOT NULL,
-	`id` varchar(255) NOT NULL);
+	`sheet_id` varchar(255) NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `reminders` (
-	`reminder_id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`created_at` timestamp DEFAULT (now()),
-	`reminder_due_time` datetime NOT NULL,
+	`due_time` datetime NOT NULL,
 	`mail_sended` boolean DEFAULT false,
-	`reminder_creator_id` varchar(255) NOT NULL);
+	`creator_id` varchar(255) NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `sessions` (
 	`id` varchar(255) PRIMARY KEY NOT NULL,
@@ -69,8 +70,8 @@ CREATE TABLE `verification_tokens` (
 CREATE UNIQUE INDEX `accounts__provider__providerAccountId__idx` ON `accounts` (`provider`,`providerAccountId`);--> statement-breakpoint
 CREATE INDEX `accounts__userId__idx` ON `accounts` (`userId`);--> statement-breakpoint
 CREATE INDEX `question_id_idx` ON `notes` (`question_id`);--> statement-breakpoint
-CREATE INDEX `sheet_id_idx` ON `questions` (`id`);--> statement-breakpoint
-CREATE INDEX `reminder_creator_id_index` ON `reminders` (`reminder_creator_id`);--> statement-breakpoint
+CREATE INDEX `sheet_id_idx` ON `questions` (`sheet_id`);--> statement-breakpoint
+CREATE INDEX `reminder_creator_id_index` ON `reminders` (`creator_id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `sessions__sessionToken__idx` ON `sessions` (`sessionToken`);--> statement-breakpoint
 CREATE INDEX `sessions__userId__idx` ON `sessions` (`userId`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users__email__idx` ON `users` (`email`);--> statement-breakpoint

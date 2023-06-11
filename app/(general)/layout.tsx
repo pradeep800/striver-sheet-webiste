@@ -4,7 +4,7 @@ import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
 import { Provider } from "@/components/sessionProvider";
 import ToastRedirect from "@/components/toastRedirect";
-import ReactCanvasConfetti from "react-canvas-confetti";
+import Confetti from "@/components/confetti";
 
 export default async function RootLayout({
   children,
@@ -19,12 +19,12 @@ export default async function RootLayout({
       <div>
         <NavBar user={user} />
       </div>
+      <ToastRedirect />
       <main className="min-h-[calc(100%-90px)]">{children}</main>
       <div className="pt-3">
         <Footer />
       </div>
-
-      <ToastRedirect />
+      <Confetti />
     </Provider>
   );
 }

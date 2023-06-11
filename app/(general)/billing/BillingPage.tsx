@@ -10,7 +10,6 @@ export default function BillingPage() {
         <h1>Billing</h1>
         <Button type="submit">Manage Subscription</Button>
       </form>
-      <Confetti />
     </div>
   );
 }
