@@ -6,21 +6,34 @@ import { debounce, throttling } from "@/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 export default function Mode({ className }: { className?: string }) {
-  const [localStorageTheme, setLocalStorageTheme] = useState(() =>
-    localStorage.getItem("localStorageTheme")
-  );
-
+  const [localStorageTheme, setLocalStorageTheme] = useState(() => {
+    const lTheme = localStorage.getItem("localStorageTheme");
+    if (lTheme) {
+      return lTheme;
+    }
+    const isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    console.log("theme", isLight);
+    return isLight ? "light" : "dark";
+  });
+  console.log(localStorageTheme);
   const { setTheme, theme } = useTheme();
   const Click = useCallback(
     debounce(() => {
       setTheme(localStorageTheme === "light" ? "dark" : "light");
     }, 400),
-    [localStorageTheme, setTheme]
+    [theme, setTheme]
   );
 
   useEffect(() => {
+    let isLight!: boolean;
+    if (theme === "system") {
+      isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      setLocalStorageTheme(isLight ? "light" : "dark");
+      return;
+    }
+
     setLocalStorageTheme(theme as string);
-  }, [theme]);
+  }, [theme, setTheme]);
 
   return (
     <div
