@@ -12,14 +12,12 @@ export default function Mode({ className }: { className?: string }) {
       return lTheme;
     }
     const isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    console.log("theme", isLight);
     return isLight ? "light" : "dark";
   });
-  console.log(localStorageTheme);
   const { setTheme, theme } = useTheme();
   const Click = useCallback(
     debounce(() => {
-      setTheme(localStorageTheme === "light" ? "dark" : "light");
+      setTheme(theme === "light" ? "dark" : "light");
     }, 400),
     [theme, setTheme]
   );
