@@ -28,3 +28,30 @@ export function ConsoleLogUnableToStatusUpdate(
     subscriptionId
   );
 }
+export const debounce = <T extends (...args: any[]) => void>(
+  func: T,
+  delay: number
+): ((...args: Parameters<T>) => void) => {
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
+    const context = this;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+export const throttling = <T extends (...args: any[]) => void>(
+  func: T,
+  delay: number
+): ((...args: Parameters<T>) => void) => {
+  let prev = -delay;
+
+  return (...args: Parameters<T>): void => {
+    let now = new Date().getTime();
+
+    if (now - prev > delay) {
+      prev = now;
+      func(...args);
+    }
+  };
+};

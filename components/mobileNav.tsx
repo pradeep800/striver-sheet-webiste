@@ -1,9 +1,10 @@
 "use client";
 import { NAVBARITEMS } from "@/static/navBarItems";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
 import { SessionUser } from "@/types/next-auth";
+import Mode from "./mode";
 type SmallScreenProps = {
   activeNavLink: string;
   oneTimeClickToHamburger: boolean;
@@ -15,6 +16,7 @@ export default function MobileNav({
   user,
 }: SmallScreenProps) {
   const nav = useRef<HTMLDivElement>(null);
+  const [themeChanged, setThemeChanged] = useState(false);
   const hamburgerOn = useHamburger((state) => state.hamburgerOn);
   useEffect(() => {
     let timer: any;
@@ -32,13 +34,12 @@ export default function MobileNav({
       clearTimeout(timer);
     };
   });
-
+  //one condition for if user become user and one for if user became pro user
   if (user && user.role == "PROUSER") {
     NAVBARITEMS[1].url = "/billing";
     NAVBARITEMS[1].name = "Billing";
   }
-  //it is important because it we refresh token it will become user and it will unable to to goPro
-  //using this will change it to pricing again
+
   if (user && user.role == "USER") {
     NAVBARITEMS[1].url = "/pricing";
     NAVBARITEMS[1].name = "Pricing";
@@ -63,7 +64,7 @@ export default function MobileNav({
             <Link
               className={`${
                 navItem.url !== activeNavLink
-                  ? "relative  hover:text-red-500 after:contain-[''] after:scale-x-0 after:origin-bottom-left after:bg-red-500 after:absolute after:transition-transform  after:bottom-0 after:left-0 after:h-[3px] after:w-[100%] hover:after:scale-x-[1] origin-bottom-right after:duration-500"
+                  ? "relative hover:text-red-500 after:contain-[''] after:scale-x-0 after:origin-bottom-left after:bg-red-500 after:absolute after:transition-transform  after:bottom-0 after:left-0 after:h-[3px] after:w-[100%] hover:after:scale-x-[1] origin-bottom-right after:duration-500"
                   : " relative after:content-[''] after:bg-red-500 after:absolute  text-red-500 after:h-[3px] after:w-[100%] after:bottom-0 after:left-0 "
               }`}
               href={navItem.url}
@@ -73,10 +74,19 @@ export default function MobileNav({
           </div>
         );
       })}
+      <Mode
+        className={`fixed left-[50%] translate-x-[-70%]  ${
+          hamburgerOn ? "top-[-20px]" : "top-[15px]"
+        } ${
+          hamburgerOn || themeChanged
+            ? "animate-top-to-down"
+            : "animate-down-to-out-of-view"
+        }`}
+      />
     </div>
   );
 }
-//dynamic classes not works tailwind css
+//#https://tailwindcss.com/docs/content-configuration#class-detection-in-depth
 /*
   `animate-${i}`
   we can't do that 

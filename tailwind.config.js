@@ -56,6 +56,16 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "top-to-down": {
+          to: {
+            top: "15px",
+          },
+        },
+        "down-to-out-of-view": {
+          to: {
+            top: "-20px",
+          },
+        },
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -117,6 +127,9 @@ module.exports = {
         },
       },
       animation: {
+        "top-to-down": "top-to-down 500ms ease-in-out forwards",
+        "down-to-out-of-view":
+          "down-to-out-of-view 100ms 600ms ease-in-out forwards",
         spin: "spin 1s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

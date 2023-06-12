@@ -10,6 +10,7 @@ import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
 import { SessionUser } from "@/types/next-auth";
 import useUpdateRole from "@/lib/useUpdateRole";
+import Mode from "./mode";
 interface UserProps {
   user?: SessionUser;
 }
@@ -50,7 +51,6 @@ export default function NavBar({ user }: UserProps) {
         user={user}
       />
       {!user ? <LogIn /> : <UserAvatar user={user} />}
-
       <div className=" md:hidden isolate z-[1]">
         <Hamburger
           oneTimeClickToHamburger={oneTimeClickToHamburger}

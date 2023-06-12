@@ -12,14 +12,14 @@ import {
 } from "./ui/dropdown-menu";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Mode from "./mode";
 
 interface UserProps {
   user: Pick<user, "email" | "image" | "name">;
 }
 export default function UserAvatar({ user }: UserProps) {
   return (
-    <div className="flex mr-3 md:mr-0">
-      <div className="w-[20px] h-[100%]"></div>
+    <div className="flex md:mr-0 mr-3">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div className="border-2 cursor-pointer relative z-[2] border-red-500 rounded-full overflow-hidden">
@@ -48,9 +48,8 @@ export default function UserAvatar({ user }: UserProps) {
             )}
           </div>
           <DropdownMenuSeparator />
-
           <DropdownMenuItem
-            className="hover:bg-red-500"
+            className="hover:bg-red-500 border-3 border-red-500"
             onClick={() => signOut()}
           >
             Sign Out

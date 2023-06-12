@@ -4,7 +4,6 @@ import { SessionUser } from "@/types/next-auth";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import useWindowSize from "./useWindowSize";
 import { useConfetti } from "./useConfatti";
 
 export default function useUpdateRole({ user }: { user?: SessionUser }) {
@@ -30,7 +29,9 @@ export default function useUpdateRole({ user }: { user?: SessionUser }) {
       router.refresh();
     }
     if (session.user.role === "PROUSER" && user.role == "USER") {
-      setConfettiOn(true);
+      setTimeout(() => {
+        setConfettiOn(true);
+      }, 1000);
     }
   }
   useEffect(() => {

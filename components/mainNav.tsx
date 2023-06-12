@@ -2,11 +2,14 @@
 import { NAVBARITEMS } from "@/static/navBarItems";
 import Link from "next/link";
 import { SessionUser } from "@/types/next-auth";
+import Mode from "./mode";
+import { useTheme } from "next-themes";
 type bigScreenProps = {
   activeNavLink: string;
   user?: SessionUser;
 };
 export default function MainNav({ activeNavLink, user }: bigScreenProps) {
+  const { theme } = useTheme();
   if (user && user.role == "PROUSER") {
     NAVBARITEMS[1].url = "/billing";
     NAVBARITEMS[1].name = "Billing";
@@ -16,7 +19,7 @@ export default function MainNav({ activeNavLink, user }: bigScreenProps) {
     NAVBARITEMS[1].name = "Pricing";
   }
   return (
-    <div className="font-medium text-xl hidden md:flex gap-6  ">
+    <div className="font-medium text-xl hidden md:flex gap-6  mr-auto  items-center">
       {NAVBARITEMS.map((navItem, i) => {
         return (
           <Link
@@ -32,6 +35,7 @@ export default function MainNav({ activeNavLink, user }: bigScreenProps) {
           </Link>
         );
       })}
+      <Mode className="mr-auto " />
     </div>
   );
 }

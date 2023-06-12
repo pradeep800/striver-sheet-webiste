@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { Asap } from "next/font/google";
 import { Metadata } from "next";
-import Confetti from "@/components/confetti";
+import { NextThemeProvider } from "@/components/theme-provider";
 const asap = Asap({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,12 +18,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className={`${asap.className} scrollbar`}>
-        <main className="h-[100%] p-3">{children}</main> <Toaster />
+        <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <main className="h-[100%] p-3 dark:bg-black">{children}</main>
+        </NextThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
