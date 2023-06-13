@@ -109,10 +109,11 @@ export const questions = mysqlTable(
   "questions",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
-    solved_date: datetime("solved_date").notNull(),
+    answer_on: datetime("answer_on"),
     solved: problem_state_enum.notNull().default("UNATTEMPTED"),
-    question_no: int("question_no").notNull(),
-    question_name: varchar("question_name", { length: 300 }).notNull(),
+    number: int("number").notNull(),
+    name: varchar("name", { length: 300 }).notNull(),
+    question_day_in_sheet: int("question_day_in_sheet").notNull(),
     sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
   },
   (question) => ({
