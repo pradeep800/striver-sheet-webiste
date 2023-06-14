@@ -14,11 +14,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  model,
+  modal,
 }: {
   children: React.ReactNode;
-  model: React.ReactNode;
+  modal: React.ReactNode;
 }) {
+  console.log("top", modal);
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -28,7 +29,7 @@ export default async function RootLayout({
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="h-[100%] p-3 dark:bg-black">
             {children}
-            {model}
+            {modal}
           </main>
         </NextThemeProvider>
         <Toaster />
