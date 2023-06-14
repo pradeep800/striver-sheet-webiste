@@ -19,7 +19,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  console.log("top", modal);
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -27,12 +26,10 @@ export default async function RootLayout({
       </head>
       <body className={`${asap.className} scrollbar`}>
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="h-[100%] p-3 dark:bg-black">
-            {children}
-            {modal}
-          </main>
+          <main className="h-[100%] p-3 dark:bg-black">{children}</main>
         </NextThemeProvider>
         <Toaster />
+        {modal}
       </body>
     </html>
   );

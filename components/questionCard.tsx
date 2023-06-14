@@ -35,14 +35,14 @@ export default function QuestionCard({ questionInfo }: Props) {
   }
   return (
     <Card
-      className="mt-3 "
+      className={`mt-3 ${questionInfo.youTubeLink && "cursor-pointer"} `}
       onClick={(e) => {
         if (questionInfo.youTubeLink) {
           router.push(absoluteUrl(`/${path}/${questionInfo.questionNumber}`));
         }
       }}
     >
-      <CardTitle className="flex justify-between items-center p-2 flex-col sm:flex-row gap-4 ">
+      <div className="flex justify-between items-center p-2 flex-col sm:flex-row gap-4 ">
         <div className="w-[300px] text-center sm:text-left">
           {questionInfo.questionTitle}
         </div>
@@ -86,14 +86,14 @@ export default function QuestionCard({ questionInfo }: Props) {
             <SelectTrigger className="w-[150px]">
               <SelectValue placeholder="UNATTEMPTED" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="z-[1000]">
               <SelectItem value="UNATTEMPTED">UNATTEMPTED</SelectItem>
               <SelectItem value="SOLVED">SOLVED</SelectItem>
               <SelectItem value="REMINDER">REMINDER</SelectItem>
             </SelectContent>
           </Select>
         </div>
-      </CardTitle>
+      </div>
     </Card>
   );
 }

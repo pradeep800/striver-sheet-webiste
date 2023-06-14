@@ -1,0 +1,29 @@
+.editor h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.editor h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.editor h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.editor h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.editor h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}

@@ -26,6 +26,7 @@ export default function Editor({ data, isEditModeOn }: Props) {
 
     const editor = new EditorJS({
       holder: "editor",
+      autofocus: true,
 
       placeholder: "You can type your notes here...",
 

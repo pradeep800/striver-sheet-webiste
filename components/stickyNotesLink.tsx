@@ -7,7 +7,7 @@ export default function StickyNotesLink() {
   const path = usePathname();
 
   return (
-    <Link className="hover:text-red-400 text-red-500" href={`${path}/notes`}>
+    <Link className="hover:text-red-400 text-red-500" href={`/notes`}>
       <StickyNote className="w-[30px] h-[30px]" />
     </Link>
   );

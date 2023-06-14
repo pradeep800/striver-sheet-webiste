@@ -8,14 +8,11 @@ import Confetti from "@/components/confetti";
 
 export default async function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   const session = await getServerSession(authOption);
   const user = session?.user;
-  console.log("less then top", modal);
   return (
     <Provider>
       <div>
@@ -26,7 +23,6 @@ export default async function RootLayout({
       <div className="pt-3">
         <Footer />
       </div>
-      {modal}
       <Confetti />
     </Provider>
   );
