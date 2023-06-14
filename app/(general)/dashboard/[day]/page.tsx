@@ -3,6 +3,7 @@ import QuestionCard from "@/components/questionCard";
 import { db } from "@/lib/db";
 import { questions } from "@/lib/db/schema";
 import { ssRelation, striverSheetData } from "@/static/striverSheet";
+import axios from "axios";
 import { asc, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 

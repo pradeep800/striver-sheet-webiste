@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  model,
 }: {
   children: React.ReactNode;
+  model: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -24,7 +26,10 @@ export default async function RootLayout({
       </head>
       <body className={`${asap.className} scrollbar`}>
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="h-[100%] p-3 dark:bg-black">{children}</main>
+          <main className="h-[100%] p-3 dark:bg-black">
+            {children}
+            {model}
+          </main>
         </NextThemeProvider>
         <Toaster />
       </body>

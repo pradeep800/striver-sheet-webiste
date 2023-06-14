@@ -4,9 +4,7 @@ export const striverSheetData = {
       checkbox: "ques_1",
       problem: "Set Matrix Zeroes",
       leetCode: "https://leetcode.com/problems/set-matrix-zeroes/",
-
-      videoSolution:
-        "https://www.youtube.com/watch?v=N0MgLvceX7M&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=28",
+      videoSolution: "https://youtube.com/embed/N0MgLvceX7M",
       codingNinja:
         "https://www.codingninjas.com/codestudio/problems/set-matrix-zeros_3846774?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website",
     },
@@ -14,32 +12,28 @@ export const striverSheetData = {
       checkbox: "ques_2",
       problem: "Pascal's Triangle",
       leetCode: "https://leetcode.com/problems/pascals-triangle/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=bR7mQgwQ_o8&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=32",
+      videoSolution: "https://youtube.com/embed/bR7mQgwQ_o8",
       codingNinja: "https://bit.ly/3rhv153",
     },
     {
       checkbox: "ques_3",
       problem: "Next Permutation",
       leetCode: "https://leetcode.com/problems/next-permutation/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=JDOXKqF60RQ&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=25",
+      videoSolution: "https://youtube.com/embed/JDOXKqF60RQ",
       codingNinja: "https://bit.ly/3qoj5iQ",
     },
     {
       checkbox: "ques_4",
       problem: "Kadane's Algorithm",
       leetCode: "https://leetcode.com/problems/maximum-subarray/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=AHZpyENo7k4&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=22",
+      videoSolution: "https://youtube.com/embed/AHZpyENo7k4",
       codingNinja: "https://bit.ly/3HZltTa",
     },
     {
       checkbox: "ques_5",
       problem: "Sort an array of 0’s 1’s 2’s",
       leetCode: "https://leetcode.com/problems/sort-colors/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=tp8JIuCXBaU&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=20",
+      videoSolution: "https://youtube.com/embed/tp8JIuCXBaU",
       codingNinja: "https://bit.ly/3tlM60B",
     },
     {
@@ -47,8 +41,7 @@ export const striverSheetData = {
       problem: "Stock buy and Sell",
       leetCode:
         "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=excAOvwF_Wk&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=23",
+      videoSolution: "https://youtube.com/embed/excAOvwF_Wk",
       codingNinja: "https://bit.ly/3GsANaD",
     },
   ],
@@ -57,32 +50,28 @@ export const striverSheetData = {
       checkbox: "ques_7",
       problem: "Rotate Matrix",
       leetCode: "https://leetcode.com/problems/rotate-image/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Z0R2u6gd3GU&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=29",
+      videoSolution: "https://youtube.com/embed/Z0R2u6gd3GU",
       codingNinja: "https://bit.ly/3rhVUWx",
     },
     {
       checkbox: "ques_8",
       problem: "Merge Overlapping Subintervals",
       leetCode: "https://leetcode.com/problems/merge-intervals/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=IexN60k62jo&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=37",
+      videoSolution: "https://youtube.com/embed/IexN60k62jo",
       codingNinja: "https://bit.ly/3rj9LvO",
     },
     {
       checkbox: "ques_9",
       problem: "Merge two sorted Arrays without extra space",
       leetCode: "https://leetcode.com/problems/merge-sorted-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=n7uwj04E0I4&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=38",
+      videoSolution: "https://youtube.com/embed/n7uwj04E0I4",
       codingNinja: "https://bit.ly/33umm7e",
     },
     {
       checkbox: "ques_10",
       problem: "Find the duplicate in an array of N+1 integers",
       leetCode: "https://leetcode.com/problems/find-the-duplicate-number/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=32Ll35mhWg0&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=1",
+      videoSolution: "https://youtube.com/embed/32Ll35mhWg0",
       codingNinja: "https://bit.ly/3GtKDJb",
     },
     {
@@ -90,7 +79,7 @@ export const striverSheetData = {
       problem: "Repeat and Missing Number",
       leetCode:
         "https://www.interviewbit.com/problems/repeat-and-missing-number-array/",
-      videoSolution: "https://youtu.be/2D0D8HE6uak",
+      videoSolution: "https://youtube.com/embed/2D0D8HE6uak}",
       codingNinja: "https://bit.ly/3Gs6wZu",
     },
     {
@@ -98,8 +87,7 @@ export const striverSheetData = {
       problem: "Inversion of Array (Pre-req: Merge Sort)",
       leetCode:
         "https://www.codingninjas.com/codestudio/problems/count-inversions_615",
-      videoSolution:
-        "https://www.youtube.com/watch?v=AseUmwVNaoY&ab_channel=takeUforward",
+      videoSolution: "https://youtube.com/embed/AseUmwVNaoY",
       codingNinja: "https://bit.ly/339fFb7",
     },
   ],
@@ -108,46 +96,42 @@ export const striverSheetData = {
       checkbox: "ques_13",
       problem: "Search in a 2d Matrix",
       leetCode: "https://leetcode.com/problems/search-a-2d-matrix/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=ZYpYur0znng&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=14",
+      videoSolution: "https://youtube.com/embed/ZYpYur0znng",
       codingNinja: "https://bit.ly/3GD7NNa",
     },
     {
       checkbox: "ques_14",
       problem: "Pow(X,n)",
       leetCode: "https://leetcode.com/problems/powx-n/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=l0YC3876qxg&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=15",
+      videoSolution: "https://youtube.com/embed/l0YC3876qxg",
       codingNinja: "https://bit.ly/3Gtjwhl",
     },
     {
       checkbox: "ques_15",
       problem: "Majority Element (>N/2 times)",
       leetCode: "https://leetcode.com/problems/majority-element/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=nP_ns3uSh80&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=21",
+      videoSolution: "https://youtube.com/embed/nP_ns3uSh80",
       codingNinja: "https://bit.ly/3FpfpBQ",
     },
     {
       checkbox: "ques_16",
       problem: "Majority Element (>N/3 times)",
       leetCode: "https://leetcode.com/problems/majority-element-ii/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=vwZj1K0e9U8&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=33",
+      videoSolution: "https://youtube.com/embed/vwZj1K0e9U8",
       codingNinja: "https://bit.ly/3foYLYp",
     },
     {
       checkbox: "ques_17",
       problem: "Grid Unique Paths",
       leetCode: "https://leetcode.com/problems/unique-paths/",
-      videoSolution: "https://youtu.be/t_f0nwwdg5o",
+      videoSolution: "https://youtube.com/embed/t_f0nwwdg5o}",
       codingNinja: "https://bit.ly/3fm1dyN",
     },
     {
       checkbox: "ques_18",
       problem: "Reverse Pairs (Leetcode)",
       leetCode: "https://leetcode.com/problems/reverse-pairs/",
-      videoSolution: "https://youtu.be/0e4bZaP3MDI",
+      videoSolution: "https://youtube.com/embed/0e4bZaP3MDI}",
       codingNinja: "https://bit.ly/3tm5PgF",
     },
   ],
@@ -156,24 +140,21 @@ export const striverSheetData = {
       checkbox: "ques_19",
       problem: "2-Sum-Problem",
       leetCode: "https://leetcode.com/problems/two-sum/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=UXDSeD9mN-k&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=19",
+      videoSolution: "https://youtube.com/embed/UXDSeD9mN-k",
       codingNinja: "https://bit.ly/3riXBmz",
     },
     {
       checkbox: "ques_20",
       problem: "4-sum-Problem",
       leetCode: "https://leetcode.com/problems/4sum/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=eD95WRfh81c&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=35",
+      videoSolution: "https://youtube.com/embed/eD95WRfh81c",
       codingNinja: "https://bit.ly/3qpfEsj",
     },
     {
       checkbox: "ques_21",
       problem: "Longest Consecutive Sequence",
       leetCode: "https://leetcode.com/problems/longest-consecutive-sequence/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=oO5uLE7EUlM&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=28",
+      videoSolution: "https://youtube.com/embed/oO5uLE7EUlM",
       codingNinja: "https://bit.ly/34EoAS0",
     },
     {
@@ -181,7 +162,7 @@ export const striverSheetData = {
       problem: "Largest Subarray with K sum",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1",
-      videoSolution: "https://youtu.be/frf7qxiN2qU",
+      videoSolution: "https://youtube.com/embed/frf7qxiN2qU}",
       codingNinja: "https://bit.ly/31UHoeM",
     },
     {
@@ -189,8 +170,7 @@ export const striverSheetData = {
       problem: "Count number of subarrays with given Xor K",
       leetCode:
         "https://www.interviewbit.com/problems/subarray-with-given-xor/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=eZr-6p0B7ME&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=36",
+      videoSolution: "https://youtube.com/embed/eZr-6p0B7ME",
       codingNinja: "https://bit.ly/3fp24yN",
     },
     {
@@ -198,8 +178,7 @@ export const striverSheetData = {
       problem: "Longest Substring without repeat",
       leetCode:
         "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=qtVh-XEpsJo&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=26",
+      videoSolution: "https://youtube.com/embed/qtVh-XEpsJo",
       codingNinja: "https://bit.ly/3no44fb",
     },
   ],
@@ -208,24 +187,21 @@ export const striverSheetData = {
       checkbox: "ques_25",
       problem: "Reverse a LinkedList",
       leetCode: "https://leetcode.com/problems/reverse-linked-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=iRtLEoL-r-g&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=27",
+      videoSolution: "https://youtube.com/embed/iRtLEoL-r-g",
       codingNinja: "https://bit.ly/3qoE6K6",
     },
     {
       checkbox: "ques_26",
       problem: "Find the middle of LinkedList",
       leetCode: "https://leetcode.com/problems/middle-of-the-linked-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=sGdwSH8RK-o&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=28",
+      videoSolution: "https://youtube.com/embed/sGdwSH8RK-o",
       codingNinja: "https://bit.ly/3KcRxoG",
     },
     {
       checkbox: "ques_27",
       problem: "Merge two sorted Linked List (use method used in mergeSort)",
       leetCode: "https://leetcode.com/problems/merge-two-sorted-lists/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Xb4slcp1U38&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=29",
+      videoSolution: "https://youtube.com/embed/Xb4slcp1U38",
       codingNinja: "https://bit.ly/3qnbSj8",
     },
     {
@@ -233,24 +209,21 @@ export const striverSheetData = {
       problem: "Remove N-th node from back of LinkedList",
       leetCode:
         "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Lhu3MsXZy-Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=30",
+      videoSolution: "https://youtube.com/embed/Lhu3MsXZy-Q",
       codingNinja: "https://bit.ly/3riZ4JB",
     },
     {
       checkbox: "ques_29",
       problem: "Add two numbers as LinkedList",
       leetCode: "https://leetcode.com/problems/add-two-numbers/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=LBVsXSMOIk4&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=32",
+      videoSolution: "https://youtube.com/embed/LBVsXSMOIk4",
       codingNinja: "https://bit.ly/3qqbgcq",
     },
     {
       checkbox: "ques_30",
       problem: "Delete a given Node when a node is given.(0(1) solution)",
       leetCode: "https://leetcode.com/problems/delete-node-in-a-linked-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=icnp4FJdZ_c&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=31",
+      videoSolution: "https://youtube.com/embed/icnp4FJdZ_c",
       codingNinja: "https://bit.ly/3GqW4kN",
     },
   ],
@@ -260,40 +233,35 @@ export const striverSheetData = {
       problem: "Find intersection point of Y LinkedList",
       leetCode:
         "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=u4FWXfgS8jw&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=33",
+      videoSolution: "https://youtube.com/embed/u4FWXfgS8jw",
       codingNinja: "https://bit.ly/3fiMQeG",
     },
     {
       checkbox: "ques_32",
       problem: "Detect a cycle in Linked List",
       leetCode: "https://leetcode.com/problems/linked-list-cycle/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=354J83hX7RI&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=34",
+      videoSolution: "https://youtube.com/embed/354J83hX7RI",
       codingNinja: "https://bit.ly/3I2fmxh",
     },
     {
       checkbox: "ques_33",
       problem: "Reverse a LinkedList in groups of size k.",
       leetCode: "https://leetcode.com/problems/reverse-nodes-in-k-group/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Of0HPkk3JgI&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=34",
+      videoSolution: "https://youtube.com/embed/Of0HPkk3JgI",
       codingNinja: "https://bit.ly/3Gsfk1u",
     },
     {
       checkbox: "ques_34",
       problem: "Check if a LinkedList is palindrome or not.",
       leetCode: "https://leetcode.com/problems/palindrome-linked-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=-DtNInqFUXs&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=36",
+      videoSolution: "https://youtube.com/embed/-DtNInqFUXs",
       codingNinja: "https://bit.ly/3GqRMKv",
     },
     {
       checkbox: "ques_35",
       problem: "Find the starting point of the Loop of LinkedList",
       leetCode: "https://leetcode.com/problems/linked-list-cycle-ii/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=QfbOhn0WZ88&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=37",
+      videoSolution: "https://youtube.com/embed/QfbOhn0WZ88",
       codingNinja: "https://bit.ly/3K32lpf",
     },
     {
@@ -301,8 +269,7 @@ export const striverSheetData = {
       problem: "Flattening of a LinkedList",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=ysytSSXpAI0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=38",
+      videoSolution: "https://youtube.com/embed/ysytSSXpAI0",
       codingNinja: "https://bit.ly/3nqtEA1",
     },
   ],
@@ -311,31 +278,28 @@ export const striverSheetData = {
       checkbox: "ques_37",
       problem: "Rotate a LinkedList",
       leetCode: "https://leetcode.com/problems/rotate-list/description/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=9VPm6nEbVPA&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=39",
+      videoSolution: "https://youtube.com/embed/9VPm6nEbVPA",
       codingNinja: "https://bit.ly/33bNQPo",
     },
     {
       checkbox: "ques_38",
       problem: "Clone a Linked List with random and next pointer",
       leetCode: "https://leetcode.com/problems/copy-list-with-random-pointer/",
-      videoSolution: "https://www.youtube.com/watch?v=VNf6VynfpdM",
+      videoSolution: "https://youtube.com/embed/VNf6VynfpdM",
       codingNinja: "https://bit.ly/3qnFoFg",
     },
     {
       checkbox: "ques_39",
       problem: "3 sum",
       leetCode: "https://leetcode.com/problems/3sum/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=onLoX6Nhvmg&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=41",
+      videoSolution: "https://youtube.com/embed/onLoX6Nhvmg",
       codingNinja: "https://bit.ly/33wlWxk",
     },
     {
       checkbox: "ques_40",
       problem: "Trapping rainwater",
       leetCode: "https://leetcode.com/problems/trapping-rain-water/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=m18Hntz4go8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=42",
+      videoSolution: "https://youtube.com/embed/m18Hntz4go8",
       codingNinja: "https://bit.ly/3KcxExJ",
     },
     {
@@ -343,16 +307,14 @@ export const striverSheetData = {
       problem: "Remove Duplicate from Sorted array",
       leetCode:
         "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Fm_p9lJ4Z_8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=43",
+      videoSolution: "https://youtube.com/embed/Fm_p9lJ4Z_8",
       codingNinja: "https://bit.ly/31Usllh",
     },
     {
       checkbox: "ques_42",
       problem: "Max consecutive ones",
       leetCode: "https://leetcode.com/problems/max-consecutive-ones/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Mo33MjjMlyA&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=44",
+      videoSolution: "https://youtube.com/embed/Mo33MjjMlyA",
       codingNinja: "https://leetcode.com/problems/max-consecutive-ones/",
     },
   ],
@@ -362,8 +324,7 @@ export const striverSheetData = {
       problem: "N meetings in one room",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=II6ziNnub1Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=45",
+      videoSolution: "https://youtube.com/embed/II6ziNnub1Q",
       codingNinja: "https://bit.ly/3zXdqn5",
     },
     {
@@ -371,8 +332,7 @@ export const striverSheetData = {
       problem: "Minimum number of platforms required for a railway",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1#",
-      videoSolution:
-        "https://www.youtube.com/watch?v=dxVcMDI7vyI&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=46",
+      videoSolution: "https://youtube.com/embed/dxVcMDI7vyI",
       codingNinja: "https://bit.ly/3npx0mW",
     },
     {
@@ -380,8 +340,7 @@ export const striverSheetData = {
       problem: "Job sequencing Problem",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#",
-      videoSolution:
-        "https://www.youtube.com/watch?v=LjPx4wQaRIs&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=47",
+      videoSolution: "https://youtube.com/embed/LjPx4wQaRIs",
       codingNinja: "https://bit.ly/3K9XZfV",
     },
     {
@@ -389,8 +348,7 @@ export const striverSheetData = {
       problem: "Fractional Knapsack Problem",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=F_DDzYnxO14&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=49",
+      videoSolution: "https://youtube.com/embed/F_DDzYnxO14",
       codingNinja: "https://bit.ly/3I7fNXn",
     },
     {
@@ -398,8 +356,7 @@ export const striverSheetData = {
       problem: "Greedy algorithm to find minimum number of coins",
       leetCode:
         "https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=mVg9CfJvayM&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=48",
+      videoSolution: "https://youtube.com/embed/mVg9CfJvayM",
       codingNinja: "https://bit.ly/3nquVHj",
     },
     {
@@ -407,8 +364,7 @@ export const striverSheetData = {
       problem: "Activity Selection (it is the same as N meeting in one room)",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=II6ziNnub1Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=45",
+      videoSolution: "https://youtube.com/embed/II6ziNnub1Q",
       codingNinja: "https://bit.ly/3I2iPvN",
     },
   ],
@@ -417,8 +373,7 @@ export const striverSheetData = {
       checkbox: "ques_49",
       problem: "Subset Sums",
       leetCode: "https://practice.geeksforgeeks.org/problems/subset-sums2234/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=rYkfBRtMJr8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=52",
+      videoSolution: "https://youtube.com/embed/rYkfBRtMJr8",
       codingNinja:
         "https://www.codingninjas.com/codestudio/problems/subset-sum_3843086?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website",
     },
@@ -426,40 +381,35 @@ export const striverSheetData = {
       checkbox: "ques_50",
       problem: "Subset-II",
       leetCode: "https://leetcode.com/problems/subsets-ii/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=RIn3gOkbhQE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=53",
+      videoSolution: "https://youtube.com/embed/RIn3gOkbhQE",
       codingNinja: "https://bit.ly/3qnaLjq",
     },
     {
       checkbox: "ques_51",
       problem: "Combination sum-1",
       leetCode: "https://leetcode.com/problems/combination-sum/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=OyZFFqQtu98&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=49",
+      videoSolution: "https://youtube.com/embed/OyZFFqQtu98",
       codingNinja: "https://bit.ly/3qpmDS1",
     },
     {
       checkbox: "ques_52",
       problem: "Combination sum-2",
       leetCode: "https://leetcode.com/problems/combination-sum-ii/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=G1fRTGRxXU8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=50",
+      videoSolution: "https://youtube.com/embed/G1fRTGRxXU8",
       codingNinja: "https://bit.ly/3tkbtjk",
     },
     {
       checkbox: "ques_53",
       problem: "Palindrome Partitioning",
       leetCode: "https://leetcode.com/problems/palindrome-partitioning/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=WBgsABoClE0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51",
+      videoSolution: "https://youtube.com/embed/WBgsABoClE0",
       codingNinja: "https://bit.ly/3HZPNgs",
     },
     {
       checkbox: "ques_54",
       problem: "K-th permutation Sequence",
       leetCode: "https://leetcode.com/problems/permutation-sequence/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=wT7gcXLYoao&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=55",
+      videoSolution: "https://youtube.com/embed/wT7gcXLYoao",
       codingNinja: "https://bit.ly/3KcCP0D",
     },
   ],
@@ -468,24 +418,21 @@ export const striverSheetData = {
       checkbox: "ques_55",
       problem: "Print all permutations of a string/array",
       leetCode: "https://leetcode.com/problems/permutations/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=f2ic2Rsc9pU&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=52",
+      videoSolution: "https://youtube.com/embed/f2ic2Rsc9pU",
       codingNinja: "https://bit.ly/3fmwxNV",
     },
     {
       checkbox: "ques_56",
       problem: "N queens Problem",
       leetCode: "https://leetcode.com/problems/n-queens/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=i05Ju7AftcM&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=57",
+      videoSolution: "https://youtube.com/embed/i05Ju7AftcM",
       codingNinja: "https://bit.ly/3zSZavC",
     },
     {
       checkbox: "ques_57",
       problem: "Sudoku Solver",
       leetCode: "https://leetcode.com/problems/sudoku-solver/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=FWAIf_EVUKE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=58",
+      videoSolution: "https://youtube.com/embed/FWAIf_EVUKE",
       codingNinja: "https://bit.ly/31Z5Iwe",
     },
     {
@@ -493,8 +440,7 @@ export const striverSheetData = {
       problem: "M coloring Problem",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1#",
-      videoSolution:
-        "https://www.youtube.com/watch?v=wuVwUK25Rfc&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=59",
+      videoSolution: "https://youtube.com/embed/wuVwUK25Rfc",
       codingNinja: "https://bit.ly/3I48oI6",
     },
     {
@@ -502,8 +448,7 @@ export const striverSheetData = {
       problem: "Rat in a Maze",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=bLGZhJlt4y0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=60",
+      videoSolution: "https://youtube.com/embed/bLGZhJlt4y0",
       codingNinja: "https://bit.ly/3fmwP7t",
     },
     {
@@ -516,16 +461,14 @@ export const striverSheetData = {
     {
       checkbox: "ques_61",
       problem: "The N-th root of an integer",
-      videoSolution:
-        "https://www.youtube.com/watch?v=WjpswYrS2nY&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=62",
+      videoSolution: "https://youtube.com/embed/WjpswYrS2nY",
       codingNinja: "https://bit.ly/3rj7Ib1",
     },
     {
       checkbox: "ques_62",
       problem: "Matrix Median",
       leetCode: "https://www.interviewbit.com/problems/matrix-median/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=63fPPOdIr2c&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=62",
+      videoSolution: "https://youtube.com/embed/63fPPOdIr2c",
       codingNinja: "https://bit.ly/33AHZTz",
     },
     {
@@ -534,8 +477,7 @@ export const striverSheetData = {
         "Find the element that appears once in a sorted array, and the rest element appears twice (Binary search)",
       leetCode:
         "https://leetcode.com/problems/single-element-in-a-sorted-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=PzszoiY5XMQ&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=64",
+      videoSolution: "https://youtube.com/embed/PzszoiY5XMQ",
       codingNinja: "https://bit.ly/3rng2qC",
     },
     {
@@ -543,16 +485,14 @@ export const striverSheetData = {
       problem:
         "Search element in a sorted and rotated array/ find pivot where it is rotated",
       leetCode: "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=r3pMQ8-Ad5s&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=64",
+      videoSolution: "https://youtube.com/embed/r3pMQ8-Ad5s",
       codingNinja: "https://bit.ly/3nnxGcm",
     },
     {
       checkbox: "ques_65",
       problem: "Median of 2 sorted arrays",
       leetCode: "https://leetcode.com/problems/median-of-two-sorted-arrays/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=NTop3VTjmxk&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=65",
+      videoSolution: "https://youtube.com/embed/NTop3VTjmxk",
       codingNinja: "https://bit.ly/3Ka3jQr",
     },
     {
@@ -560,24 +500,21 @@ export const striverSheetData = {
       problem: "K-th element of two sorted arrays",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=nv7F4PiLUzo&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=66",
+      videoSolution: "https://youtube.com/embed/nv7F4PiLUzo",
       codingNinja: "https://bit.ly/3qm0cgu",
     },
     {
       checkbox: "ques_67",
       problem: "Allocate Minimum Number of Pages",
       leetCode: "https://www.interviewbit.com/problems/allocate-books/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=gYmWHvRHu-s&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=69",
+      videoSolution: "https://youtube.com/embed/gYmWHvRHu-s",
       codingNinja: "https://bit.ly/3FrKxk7",
     },
     {
       checkbox: "ques_68",
       problem: "Aggressive Cows",
       leetCode: "https://www.spoj.com/problems/AGGRCOW/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=wSOfYesTBRk&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=70",
+      videoSolution: "https://youtube.com/embed/wSOfYesTBRk",
       codingNinja: "https://bit.ly/3zV52ob",
     },
   ],
@@ -631,40 +568,35 @@ export const striverSheetData = {
     {
       checkbox: "ques_75",
       problem: "Implement Stack Using Arrays",
-      videoSolution:
-        "https://www.youtube.com/watch?v=GYptUgnIM_I&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=68",
+      videoSolution: "https://youtube.com/embed/GYptUgnIM_I",
       codingNinja:
         "https://www.codingninjas.com/codestudio/problems/stack-implementation-using-array_3210209",
     },
     {
       checkbox: "ques_76",
       problem: "Implement Queue Using Arrays",
-      videoSolution:
-        "https://www.youtube.com/watch?v=M6GnoUDpqEE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=72",
+      videoSolution: "https://youtube.com/embed/M6GnoUDpqEE",
       codingNinja: "https://bit.ly/3KbIjIW",
     },
     {
       checkbox: "ques_77",
       problem: "Implement Stack using Queue (using single queue)",
       leetCode: "https://leetcode.com/problems/implement-stack-using-queues/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=jDZQKzEtbYQ&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=74",
+      videoSolution: "https://youtube.com/embed/jDZQKzEtbYQ",
       codingNinja: "https://bit.ly/3reLgQs",
     },
     {
       checkbox: "ques_78",
       problem: "Implement Queue using Stack (0(1) amortized method)",
       leetCode: "https://leetcode.com/problems/implement-queue-using-stacks/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=3Et9MrMc02A&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=75",
+      videoSolution: "https://youtube.com/embed/3Et9MrMc02A",
       codingNinja: "https://bit.ly/3reLeIk",
     },
     {
       checkbox: "ques_79",
       problem: "Check for balanced parentheses",
       leetCode: "https://leetcode.com/problems/valid-parentheses/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=wkDfsKijrZ8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=74",
+      videoSolution: "https://youtube.com/embed/wkDfsKijrZ8",
       codingNinja: "https://bit.ly/3nr1RiO",
     },
     {
@@ -672,8 +604,7 @@ export const striverSheetData = {
       problem: "Next Greater Element",
       leetCode:
         "https://leetcode.com/problems/next-greater-element-ii/description/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Du881K7Jtk8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=75",
+      videoSolution: "https://youtube.com/embed/Du881K7Jtk8",
       codingNinja: "https://bit.ly/3qyCjCF",
     },
     {
@@ -694,39 +625,35 @@ export const striverSheetData = {
       checkbox: "ques_83",
       problem: "LRU cache (IMPORTANT)",
       leetCode: "https://leetcode.com/problems/lru-cache/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=xDEuM5qa0zg&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=77",
+      videoSolution: "https://youtube.com/embed/xDEuM5qa0zg",
       codingNinja: "https://bit.ly/3K7Cs7I",
     },
     {
       checkbox: "ques_84",
       problem: "LFU Cache",
       leetCode: "https://leetcode.com/problems/lfu-cache/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=0PSB9y8ehbk&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=79",
+      videoSolution: "https://youtube.com/embed/0PSB9y8ehbk",
       codingNinja: "https://bit.ly/3noxuK0",
     },
     {
       checkbox: "ques_85",
       problem: "Largest rectangle in a histogram",
       leetCode: "https://leetcode.com/problems/largest-rectangle-in-histogram/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=X0X6G-eWgQ8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=81",
+      videoSolution: "https://youtube.com/embed/X0X6G-eWgQ8",
       codingNinja: "https://bit.ly/3qpxbR9",
     },
     {
       checkbox: "ques_86",
       problem: "Sliding Window maximum",
       leetCode: "https://leetcode.com/problems/sliding-window-maximum/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=CZQGRp93K4k&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=83",
+      videoSolution: "https://youtube.com/embed/CZQGRp93K4k",
       codingNinja: "https://bit.ly/3GmTkoC",
     },
     {
       checkbox: "ques_87",
       problem: "Implement Min Stack",
       leetCode: "https://leetcode.com/problems/min-stack/",
-      videoSolution: "https://youtu.be/V09NfaGf2ao",
+      videoSolution: "https://youtube.com/embed/V09NfaGf2ao}",
       codingNinja:
         "https://www.codingninjas.com/codestudio/problems/min-stack_3843991?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website",
     },
@@ -734,7 +661,7 @@ export const striverSheetData = {
       checkbox: "ques_88",
       problem: "Rotten Orange (Using BFS)",
       leetCode: "https://leetcode.com/problems/rotting-oranges/",
-      videoSolution: "https://www.youtube.com/watch?v=yf3oUhkvqA0",
+      videoSolution: "https://youtube.com/embed/yf3oUhkvqA0",
       codingNinja: "https://bit.ly/33zH0TC",
     },
     {
@@ -840,41 +767,38 @@ export const striverSheetData = {
       checkbox: "ques_104",
       problem: "Inorder Traversal",
       leetCode: "https://leetcode.com/problems/binary-tree-inorder-traversal/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Z_NEgBgbRVI&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=7",
+      videoSolution: "https://youtube.com/embed/Z_NEgBgbRVI",
     },
     {
       checkbox: "ques_105",
       problem: "Preorder Traversal",
       leetCode: "https://leetcode.com/problems/binary-tree-preorder-traversal/",
-      videoSolution: "https://youtu.be/RlUu72JrOCQ",
+      videoSolution: "https://youtube.com/embed/RlUu72JrOCQ}",
     },
     {
       checkbox: "ques_106",
       problem: "Postorder Traversal",
       leetCode:
         "https://leetcode.com/problems/binary-tree-postorder-traversal/",
-      videoSolution: "https://youtu.be/COQOU6klsBg",
+      videoSolution: "https://youtube.com/embed/COQOU6klsBg}",
     },
     {
       checkbox: "ques_107",
       problem: "Morris Inorder Traversal",
       leetCode: "https://leetcode.com/problems/binary-tree-inorder-traversal/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=80Zug6D1_r4&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=38",
+      videoSolution: "https://youtube.com/embed/80Zug6D1_r4",
     },
     {
       checkbox: "ques_108",
       problem: "Morris Preorder Traversal",
-      videoSolution: "https://youtu.be/80Zug6D1_r4",
+      videoSolution: "https://youtube.com/embed/80Zug6D1_r4}",
     },
     {
       checkbox: "ques_109",
       problem: "LeftView Of Binary Tree",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=KV4mRzTjlAk&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=25",
+      videoSolution: "https://youtube.com/embed/KV4mRzTjlAk",
       codingNinja: "https://bit.ly/3GtxyQa",
     },
     {
@@ -882,8 +806,7 @@ export const striverSheetData = {
       problem: "Bottom View of Binary Tree",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=0FtVY6I4pB8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=24",
+      videoSolution: "https://youtube.com/embed/0FtVY6I4pB8",
       codingNinja: "https://bit.ly/3trqFLq",
     },
     {
@@ -891,14 +814,13 @@ export const striverSheetData = {
       problem: "Top View of Binary Tree",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Et9OCDNvJ78&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=23",
+      videoSolution: "https://youtube.com/embed/Et9OCDNvJ78",
       codingNinja: "https://bit.ly/3Gs76WV",
     },
     {
       checkbox: "ques_112",
       problem: "Preorder inorder postorder in a single traversal",
-      videoSolution: "https://youtu.be/ySp2epYvgTE",
+      videoSolution: "https://youtube.com/embed/ySp2epYvgTE}",
       codingNinja: "https://bit.ly/3rlXpTX",
     },
     {
@@ -906,20 +828,20 @@ export const striverSheetData = {
       problem: "Vertical order traversal",
       leetCode:
         "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/",
-      videoSolution: "https://youtu.be/q_a6lpbKJdw",
+      videoSolution: "https://youtube.com/embed/q_a6lpbKJdw}",
       codingNinja: "https://bit.ly/3KaM41v",
     },
     {
       checkbox: "ques_114",
       problem: "Root to node path in a Binary Tree",
       leetCode: "https://www.interviewbit.com/problems/path-to-given-node/",
-      videoSolution: "https://youtu.be/fmflMqVOC7k",
+      videoSolution: "https://youtube.com/embed/fmflMqVOC7k}",
     },
     {
       checkbox: "ques_115",
       problem: "Max width of a Binary Tree",
       leetCode: "https://leetcode.com/problems/maximum-width-of-binary-tree/",
-      videoSolution: "https://youtu.be/ZbybYvcVLks",
+      videoSolution: "https://youtube.com/embed/ZbybYvcVLks}",
       codingNinja: "https://bit.ly/3rm014d",
     },
   ],
@@ -929,28 +851,28 @@ export const striverSheetData = {
       problem: "Level order Traversal / Level order traversal in spiral form",
       leetCode:
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-      videoSolution: "https://youtu.be/EoAsWbO7sqg",
+      videoSolution: "https://youtube.com/embed/EoAsWbO7sqg}",
       codingNinja: "https://bit.ly/3zVtSnX",
     },
     {
       checkbox: "ques_117",
       problem: "Height of a Binary Tree",
       leetCode: "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
-      videoSolution: "https://youtu.be/eD3tmO66aBA",
+      videoSolution: "https://youtube.com/embed/eD3tmO66aBA}",
       codingNinja: "https://bit.ly/3qoOEco",
     },
     {
       checkbox: "ques_118",
       problem: "Diameter of Binary Tree",
       leetCode: "https://leetcode.com/problems/diameter-of-binary-tree/",
-      videoSolution: "https://youtu.be/Rezetez59Nk",
+      videoSolution: "https://youtube.com/embed/Rezetez59Nk}",
       codingNinja: "https://bit.ly/3I3O1uD",
     },
     {
       checkbox: "ques_119",
       problem: "Check if the Binary tree is height-balanced or not",
       leetCode: "https://leetcode.com/problems/balanced-binary-tree/",
-      videoSolution: "https://youtu.be/Yt50Jfbd8Po",
+      videoSolution: "https://youtube.com/embed/Yt50Jfbd8Po}",
       codingNinja: "https://bit.ly/3fqsvnA",
     },
     {
@@ -958,14 +880,14 @@ export const striverSheetData = {
       problem: "LCA in Binary Tree",
       leetCode:
         "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
-      videoSolution: "https://youtu.be/_-QHfMDde90",
+      videoSolution: "https://youtube.com/embed/_-QHfMDde90}",
       codingNinja: "https://bit.ly/3tqcRko",
     },
     {
       checkbox: "ques_121",
       problem: "Check if two trees are identical or not",
       leetCode: "https://leetcode.com/problems/same-tree/",
-      videoSolution: "https://youtu.be/BhuvF_-PWS0",
+      videoSolution: "https://youtube.com/embed/BhuvF_-PWS0}",
       codingNinja: "https://bit.ly/3GuQYnE",
     },
     {
@@ -973,14 +895,14 @@ export const striverSheetData = {
       problem: "Zig Zag Traversal of Binary Tree",
       leetCode:
         "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
-      videoSolution: "https://youtu.be/3OXWEdlIGl4",
+      videoSolution: "https://youtube.com/embed/3OXWEdlIGl4}",
       codingNinja: "https://bit.ly/3GrS3g7",
     },
     {
       checkbox: "ques_123",
       problem: "Boundary Traversal of Binary Tree",
       leetCode: "https://leetcode.com/problems/boundary-of-binary-tree/#",
-      videoSolution: "https://youtu.be/0ca1nvR0be4",
+      videoSolution: "https://youtube.com/embed/0ca1nvR0be4}",
       codingNinja: "https://bit.ly/3GxQ6yH",
     },
   ],
@@ -989,7 +911,7 @@ export const striverSheetData = {
       checkbox: "ques_124",
       problem: "Maximum path sum",
       leetCode: "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
-      videoSolution: "https://youtu.be/WszrfSwMz58",
+      videoSolution: "https://youtube.com/embed/WszrfSwMz58}",
       codingNinja: "https://bit.ly/3rkQUR4",
     },
     {
@@ -997,7 +919,7 @@ export const striverSheetData = {
       problem: "Construct Binary Tree from inorder and preorder",
       leetCode:
         "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
-      videoSolution: "https://youtu.be/aZNaLrVebKQ",
+      videoSolution: "https://youtube.com/embed/aZNaLrVebKQ}",
       codingNinja: "https://bit.ly/3fqOif3",
     },
     {
@@ -1005,14 +927,14 @@ export const striverSheetData = {
       problem: "Construct Binary Tree from Inorder and Postorder",
       leetCode:
         "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
-      videoSolution: "https://youtu.be/LgLRTaEMRVc",
+      videoSolution: "https://youtube.com/embed/LgLRTaEMRVc}",
       codingNinja: "https://bit.ly/3qrzumM",
     },
     {
       checkbox: "ques_127",
       problem: "Symmetric Binary Tree",
       leetCode: "https://leetcode.com/problems/symmetric-tree/",
-      videoSolution: "https://youtu.be/nKggNAiEpBE",
+      videoSolution: "https://youtube.com/embed/nKggNAiEpBE}",
       codingNinja: "https://bit.ly/3GItN9P",
     },
     {
@@ -1020,7 +942,7 @@ export const striverSheetData = {
       problem: "Flatten Binary Tree to LinkedList",
       leetCode:
         "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/",
-      videoSolution: "https://youtu.be/sWf7k1x9XR4",
+      videoSolution: "https://youtube.com/embed/sWf7k1x9XR4}",
       codingNinja: "https://bit.ly/3qA9uWt",
     },
     {
@@ -1032,7 +954,7 @@ export const striverSheetData = {
     {
       checkbox: "ques_130",
       problem: "Check for Children Sum Property",
-      videoSolution: "https://youtu.be/fnmisPM6cVo",
+      videoSolution: "https://youtube.com/embed/fnmisPM6cVo}",
       codingNinja: "https://bit.ly/33yExIQ",
     },
   ],
@@ -1048,7 +970,7 @@ export const striverSheetData = {
       checkbox: "ques_132",
       problem: "Search given Key in BST",
       leetCode: "https://leetcode.com/problems/search-in-a-binary-search-tree/",
-      videoSolution: "https://youtu.be/KcNt6v_56cc",
+      videoSolution: "https://youtube.com/embed/KcNt6v_56cc}",
       codingNinja: "https://bit.ly/3Ft26jR",
     },
     {
@@ -1063,14 +985,14 @@ export const striverSheetData = {
       problem: "Construct BST from preorder traversal",
       leetCode:
         "https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/",
-      videoSolution: "https://youtu.be/UmJT3j26t1I",
+      videoSolution: "https://youtube.com/embed/UmJT3j26t1I}",
       codingNinja: "https://bit.ly/3Fr7GTQ",
     },
     {
       checkbox: "ques_135",
       problem: "Check is a BT is BST or not",
       leetCode: "https://leetcode.com/problems/validate-binary-search-tree/",
-      videoSolution: "https://youtu.be/f-sj7I5oXEI",
+      videoSolution: "https://youtube.com/embed/f-sj7I5oXEI}",
       codingNinja: "https://bit.ly/3nmKek7",
     },
     {
@@ -1078,7 +1000,7 @@ export const striverSheetData = {
       problem: "Find LCA of two nodes in BST",
       leetCode:
         "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
-      videoSolution: "https://youtu.be/cX_kPV_foZc",
+      videoSolution: "https://youtube.com/embed/cX_kPV_foZc}",
       codingNinja: "https://bit.ly/3qqoaXM",
     },
     {
@@ -1086,7 +1008,7 @@ export const striverSheetData = {
       problem: "Find the inorder predecessor/successor of a given Key in BST.",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/predecessor-and-successor/1",
-      videoSolution: "https://youtu.be/SXKAD2svfmI",
+      videoSolution: "https://youtube.com/embed/SXKAD2svfmI}",
       codingNinja: "https://bit.ly/3A0hm6l",
     },
   ],
@@ -1096,8 +1018,7 @@ export const striverSheetData = {
       problem: "Floor in a BST",
       leetCode:
         "https://www.codingninjas.com/codestudio/problems/floor-from-bst_920457?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos",
-      videoSolution:
-        "https://www.youtube.com/watch?v=xm_W1ub-K-w&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=43",
+      videoSolution: "https://youtube.com/embed/xm_W1ub-K-w",
       codingNinja: "https://bit.ly/3nsqdbY",
     },
     {
@@ -1105,15 +1026,14 @@ export const striverSheetData = {
       problem: "Ceil in a BST",
       leetCode:
         "https://www.codingninjas.com/codestudio/problems/ceil-from-bst_920464?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos",
-      videoSolution:
-        "https://www.youtube.com/watch?v=KSsk8AhdOZA&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=42",
+      videoSolution: "https://youtube.com/embed/KSsk8AhdOZA",
       codingNinja: "https://bit.ly/33b9enW",
     },
     {
       checkbox: "ques_140",
       problem: "Find K-th smallest element in BST",
       leetCode: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
-      videoSolution: "https://youtu.be/9TJYWh0adfk",
+      videoSolution: "https://youtube.com/embed/9TJYWh0adfk}",
       codingNinja: "https://bit.ly/3rf0HrP",
     },
     {
@@ -1121,28 +1041,28 @@ export const striverSheetData = {
       problem: "Find K-th largest element in BST",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1",
-      videoSolution: "https://youtu.be/9TJYWh0adfk",
+      videoSolution: "https://youtube.com/embed/9TJYWh0adfk}",
       codingNinja: "https://bit.ly/31Yjtet",
     },
     {
       checkbox: "ques_142",
       problem: "Find a pair with a given sum in BST",
       leetCode: "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/",
-      videoSolution: "https://youtu.be/ssL3sHwPeb4",
+      videoSolution: "https://youtube.com/embed/ssL3sHwPeb4}",
       codingNinja: "https://bit.ly/3FvDAOO",
     },
     {
       checkbox: "ques_143",
       problem: "BST iterator",
       leetCode: "https://leetcode.com/problems/binary-search-tree-iterator/",
-      videoSolution: "https://youtu.be/D2jMcmxU4bs",
+      videoSolution: "https://youtube.com/embed/D2jMcmxU4bs}",
       codingNinja: "https://bit.ly/3FsH5FC",
     },
     {
       checkbox: "ques_144",
       problem: "Size of the largest BST in a Binary Tree",
       leetCode: "https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/",
-      videoSolution: "https://youtu.be/X0oXMdtUDwo",
+      videoSolution: "https://youtube.com/embed/X0oXMdtUDwo}",
       codingNinja: "https://bit.ly/3fn6h5V",
     },
     {
@@ -1150,8 +1070,7 @@ export const striverSheetData = {
       problem: "Serialize and deserialize Binary Tree",
       leetCode:
         "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=-YbXySKJsX8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=37",
+      videoSolution: "https://youtube.com/embed/-YbXySKJsX8",
       codingNinja: "https://bit.ly/3qr6pYD",
     },
   ],
@@ -1161,8 +1080,7 @@ export const striverSheetData = {
       problem: "Binary Tree to Double Linked List",
       leetCode:
         "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=sWf7k1x9XR4&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=39",
+      videoSolution: "https://youtube.com/embed/sWf7k1x9XR4",
       codingNinja: "https://bit.ly/3HVnGz0",
     },
     {
@@ -1212,7 +1130,7 @@ export const striverSheetData = {
       problem: "DFS",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
-      videoSolution: "https://youtu.be/Qzf1a--rhp8",
+      videoSolution: "https://youtube.com/embed/Qzf1a--rhp8}",
       codingNinja: "https://bit.ly/33BcXeg",
     },
     {
@@ -1220,37 +1138,35 @@ export const striverSheetData = {
       problem: "BFS",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
-      videoSolution: "https://youtu.be/-tgVpUgsQ5k",
+      videoSolution: "https://youtube.com/embed/-tgVpUgsQ5k}",
       codingNinja: "https://bit.ly/3rgb26U",
     },
     {
       checkbox: "ques_155",
       problem: "Detect A cycle in Undirected Graph using BFS",
       leetCode: "https://leetcode.com/problems/course-schedule/",
-      videoSolution: "https://youtu.be/BPlrALf1LDU",
+      videoSolution: "https://youtube.com/embed/BPlrALf1LDU}",
       codingNinja: "https://bit.ly/3npFdrn",
     },
     {
       checkbox: "ques_156",
       problem: "Detect A cycle in Undirected Graph using DFS",
       leetCode: "https://leetcode.com/problems/course-schedule/",
-      videoSolution: "https://youtu.be/zQ3zgFypzX4",
+      videoSolution: "https://youtube.com/embed/zQ3zgFypzX4}",
       codingNinja: "https://bit.ly/3npFdrn",
     },
     {
       checkbox: "ques_157",
       problem: "Detect A cycle in a Directed Graph using DFS",
       leetCode: "https://leetcode.com/problems/course-schedule/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=uzVUw90ZFIg&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=12",
+      videoSolution: "https://youtube.com/embed/uzVUw90ZFIg",
       codingNinja: "https://bit.ly/3FrzaZp",
     },
     {
       checkbox: "ques_158",
       problem: "Detect A cycle in a Directed Graph using BFS",
       leetCode: "https://leetcode.com/problems/course-schedule/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=iTBaI90lpDQ&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=23",
+      videoSolution: "https://youtube.com/embed/iTBaI90lpDQ",
       codingNinja: "https://bit.ly/3FrzaZp",
     },
     {
@@ -1258,8 +1174,7 @@ export const striverSheetData = {
       problem: "Topological Sort BFS",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/topological-sort/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=73sneFXuTEg&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=22",
+      videoSolution: "https://youtube.com/embed/73sneFXuTEg",
       codingNinja: "https://bit.ly/33bapUo",
     },
     {
@@ -1267,32 +1182,28 @@ export const striverSheetData = {
       problem: "Topological Sort DFS",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/topological-sort/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=5lZ0iJMrUMk&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=22",
+      videoSolution: "https://youtube.com/embed/5lZ0iJMrUMk",
       codingNinja: "https://bit.ly/33bapUo",
     },
     {
       checkbox: "ques_161",
       problem: "Number of islands(Do in Grid and Graph Both)",
       leetCode: "https://leetcode.com/problems/number-of-islands/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=muncqlKJrH0&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=8",
+      videoSolution: "https://youtube.com/embed/muncqlKJrH0",
       codingNinja: "https://bit.ly/3KaSCND",
     },
     {
       checkbox: "ques_162",
       problem: "Bipartite Check using BFS",
       leetCode: "https://leetcode.com/problems/is-graph-bipartite/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=-vu34sct1g8&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=17",
+      videoSolution: "https://youtube.com/embed/-vu34sct1g8",
       codingNinja: "https://bit.ly/3tps98W",
     },
     {
       checkbox: "ques_163",
       problem: "Bipartite Check using DFS",
       leetCode: "https://leetcode.com/problems/is-graph-bipartite/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=KG5YFfR0j8A&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=18",
+      videoSolution: "https://youtube.com/embed/KG5YFfR0j8A",
       codingNinja: "https://bit.ly/3tps98W",
     },
   ],
@@ -1302,8 +1213,7 @@ export const striverSheetData = {
       problem: "Strongly Connected Component(using KosaRaju’s algo)",
       leetCode:
         "https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/discuss/766485/kosaraju-algorithm-on",
-      videoSolution:
-        "https://www.youtube.com/watch?v=V8qIqJxCioo&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=27",
+      videoSolution: "https://youtube.com/embed/V8qIqJxCioo",
       codingNinja: "https://bit.ly/3twUKJP",
     },
     {
@@ -1311,8 +1221,7 @@ export const striverSheetData = {
       problem: "Dijkstra’s Algorithm",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=rp1SMw7HSO8&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=35",
+      videoSolution: "https://youtube.com/embed/rp1SMw7HSO8",
       codingNinja: "https://bit.ly/3qrEHLm",
     },
     {
@@ -1320,8 +1229,7 @@ export const striverSheetData = {
       problem: "Bellman-Ford Algo",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/0/?fbclid=IwAR2_lL0T84DnciLyzMTQuVTMBOi82nTWNLuXjUgahnrtBgkphKiYk6xcyJU",
-      videoSolution:
-        "https://www.youtube.com/watch?v=0vVofAhAYjc&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=41",
+      videoSolution: "https://youtube.com/embed/0vVofAhAYjc",
       codingNinja: "https://bit.ly/3GwAf3A",
     },
     {
@@ -1329,8 +1237,7 @@ export const striverSheetData = {
       problem: "Floyd Warshall Algorithm",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=YbY8cVwWAvw&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=42",
+      videoSolution: "https://youtube.com/embed/YbY8cVwWAvw",
       codingNinja: "https://bit.ly/3Kb41Ny",
     },
     {
@@ -1338,8 +1245,7 @@ export const striverSheetData = {
       problem: "MST using Prim’s Algo",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=mJcZjjKzeqk&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=44",
+      videoSolution: "https://youtube.com/embed/mJcZjjKzeqk",
       codingNinja: "https://bit.ly/3I5Ktbi",
     },
     {
@@ -1347,8 +1253,7 @@ export const striverSheetData = {
       problem: "MST using Kruskal’s Algo",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1",
-      videoSolution:
-        "https://www.youtube.com/watch?v=1KRmCzBl_mQ&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=24",
+      videoSolution: "https://youtube.com/embed/1KRmCzBl_mQ",
       codingNinja: "https://bit.ly/3I1VqL9",
     },
   ],
@@ -1363,14 +1268,14 @@ export const striverSheetData = {
       checkbox: "ques_171",
       problem: "Longest Increasing Subsequence",
       leetCode: "https://leetcode.com/problems/longest-increasing-subsequence/",
-      videoSolution: "https://youtu.be/ekcwMsSIzVc",
+      videoSolution: "https://youtube.com/embed/ekcwMsSIzVc}",
       codingNinja: "https://bit.ly/3GuWGpA",
     },
     {
       checkbox: "ques_172",
       problem: "Longest Common Subsequence",
       leetCode: "https://leetcode.com/problems/longest-common-subsequence/",
-      videoSolution: "https://youtu.be/NPZn9jBrX8U",
+      videoSolution: "https://youtube.com/embed/NPZn9jBrX8U}",
       codingNinja: "https://bit.ly/3raZbqM",
     },
     {
@@ -1378,14 +1283,14 @@ export const striverSheetData = {
       problem: "0-1 Knapsack",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1",
-      videoSolution: "https://youtu.be/GqOmJHQZivw",
+      videoSolution: "https://youtube.com/embed/GqOmJHQZivw}",
       codingNinja: "https://bit.ly/3FvHbMO",
     },
     {
       checkbox: "ques_174",
       problem: "Edit Distance",
       leetCode: "https://leetcode.com/problems/edit-distance/",
-      videoSolution: "https://youtu.be/fJaKO8FbDdo",
+      videoSolution: "https://youtube.com/embed/fJaKO8FbDdo}",
       codingNinja: "https://bit.ly/3qpUHgE",
     },
     {
@@ -1400,7 +1305,7 @@ export const striverSheetData = {
       problem: "Matrix Chain Multiplication",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1",
-      videoSolution: "https://youtu.be/vRVfmbCFW7Y",
+      videoSolution: "https://youtube.com/embed/vRVfmbCFW7Y}",
       codingNinja: "https://bit.ly/3qqX56T",
     },
   ],
@@ -1410,28 +1315,28 @@ export const striverSheetData = {
       problem:
         "Minimum sum path in the matrix, (count paths and similar type do, also backtrack to find the Minimum path)",
       leetCode: "https://leetcode.com/problems/minimum-path-sum/",
-      videoSolution: "https://youtu.be/_rgTlyky1uQ",
+      videoSolution: "https://youtube.com/embed/_rgTlyky1uQ}",
       codingNinja: "https://bit.ly/3zWJEin",
     },
     {
       checkbox: "ques_178",
       problem: "Coin change",
       leetCode: "https://leetcode.com/problems/coin-change/",
-      videoSolution: "https://youtu.be/HgyouUi11zk",
+      videoSolution: "https://youtube.com/embed/HgyouUi11zk}",
       codingNinja: "https://bit.ly/3GwBrnA",
     },
     {
       checkbox: "ques_179",
       problem: "Subset Sum",
       leetCode: "https://leetcode.com/problems/partition-equal-subset-sum/",
-      videoSolution: "https://www.youtube.com/watch?v=fWX9xDmIzRI",
+      videoSolution: "https://youtube.com/embed/fWX9xDmIzRI",
       codingNinja: "https://bit.ly/3rjUdb7",
     },
     {
       checkbox: "ques_180",
       problem: "Rod Cutting",
       leetCode: "https://leetcode.com/problems/minimum-cost-to-cut-a-stick/",
-      videoSolution: "https://youtu.be/mO8XpGoJwuo",
+      videoSolution: "https://youtube.com/embed/mO8XpGoJwuo}",
       codingNinja: "https://bit.ly/3GuIsoS",
     },
     {
@@ -1452,7 +1357,7 @@ export const striverSheetData = {
       problem: "Palindrome Partitioning (MCM Variation)",
       leetCode:
         "https://practice.geeksforgeeks.org/problems/palindromic-patitioning4845/1",
-      videoSolution: "https://youtu.be/_H8V5hJUGd0",
+      videoSolution: "https://youtube.com/embed/_H8V5hJUGd0}",
       codingNinja: "https://bit.ly/3tq9MRn",
     },
     {
@@ -1468,40 +1373,35 @@ export const striverSheetData = {
       checkbox: "ques_185",
       problem: "Implement Trie (Prefix Tree)",
       leetCode: "https://leetcode.com/problems/implement-trie-prefix-tree/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=dBGUmUQhjaM&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp",
+      videoSolution: "https://youtube.com/embed/dBGUmUQhjaM",
       codingNinja: "https://bit.ly/33wIn5x",
     },
     {
       checkbox: "ques_186",
       problem: "Implement Trie – 2 (Prefix Tree)",
       leetCode: "https://bit.ly/3qwT4OL",
-      videoSolution:
-        "https://www.youtube.com/watch?v=K5pcpkEMCN0&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=2",
+      videoSolution: "https://youtube.com/embed/K5pcpkEMCN0",
       codingNinja: "https://bit.ly/3I8Q9l7",
     },
     {
       checkbox: "ques_187",
       problem: "Longest String with All Prefixes",
       leetCode: "https://bit.ly/3n3kedU",
-      videoSolution:
-        "https://www.youtube.com/watch?v=AWnBa91lThI&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=3",
+      videoSolution: "https://youtube.com/embed/AWnBa91lThI",
       codingNinja: "https://bit.ly/3qrU6vb",
     },
     {
       checkbox: "ques_188",
       problem: "Number of Distinct Substrings in a String",
       leetCode: "https://bit.ly/3ocRQW0",
-      videoSolution:
-        "https://www.youtube.com/watch?v=RV0QeTyHZxo&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=4",
+      videoSolution: "https://youtube.com/embed/RV0QeTyHZxo",
       codingNinja: "https://bit.ly/3zVV1XD",
     },
     {
       checkbox: "ques_189",
       problem: "Power Set (this is very important)",
       leetCode: "https://practice.geeksforgeeks.org/problems/power-set4302/1#",
-      videoSolution:
-        "https://www.youtube.com/watch?v=b7AYbpM5YrE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=67",
+      videoSolution: "https://youtube.com/embed/b7AYbpM5YrE",
       codingNinja: "https://bit.ly/3fmd28k",
     },
     {
@@ -1509,8 +1409,7 @@ export const striverSheetData = {
       problem: "Maximum XOR of two numbers in an array",
       leetCode:
         "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=EIhAwfHubE8&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=6",
+      videoSolution: "https://youtube.com/embed/EIhAwfHubE8",
       codingNinja: "https://bit.ly/3rjEYis",
     },
     {
@@ -1518,8 +1417,7 @@ export const striverSheetData = {
       problem: "Maximum XOR With an Element From Array",
       leetCode:
         "https://leetcode.com/problems/maximum-xor-with-an-element-from-array/",
-      videoSolution:
-        "https://www.youtube.com/watch?v=Q8LhG9Pi5KM&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp&index=7",
+      videoSolution: "https://youtube.com/embed/Q8LhG9Pi5KM",
       codingNinja: "https://bit.ly/3KbHhN4",
     },
   ],
