@@ -84,7 +84,7 @@ export default function Modal({ children }: Props) {
               <AlertDialogHeader>
                 <AlertDialogTitle>Save Page</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Don't forget to save your page.
+                  {"Don't forget to save your page."}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
