@@ -127,7 +127,7 @@ export const notes = mysqlTable(
     title: varchar("title", { length: 300 }).notNull(), //question_name
     content: json("content"),
     created_at: timestamp("created_at").defaultNow(),
-    updated_at: timestamp("updated_at").onUpdateNow(),
+    updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
     question_id: int("question_id").notNull(),
   },
   (note) => ({
@@ -152,3 +152,10 @@ export const reminders = mysqlTable(
     ),
   })
 );
+
+export const trackingQuestions = mysqlTable("trackingQuestion", {
+  id: int("id").notNull().autoincrement().primaryKey(),
+  createdAt: timestamp("createdAt").defaultNow(),
+  questionNumber: int("questionNumber").notNull(),
+  userId: int("userId").notNull(),
+});

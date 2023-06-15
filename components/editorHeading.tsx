@@ -14,8 +14,8 @@ export default function EditorHeading({
   isEditModeOn,
 }: Props) {
   return (
-    <div className="flex justify-between flex-wrap gap-3 mb-4 ">
-      <h1 className="md:text-3xl text-2xl font-bold tracking-wide text-red-500 mr-5">
+    <div className="flex justify-between flex-wrap gap-3 mb-2 flex-col items-center  ">
+      <h1 className="text-2xl font-bold tracking-wide text-red-500 mr-5 text-center">
         {question}
       </h1>
       <div

@@ -93,5 +93,5 @@ export default function Editor({ data, isEditModeOn }: Props) {
     }
   }, [isMounted, initializeEditor]);
 
-  return <div id="editor" className="min-h-[600px] "></div>;
+  return <div id="editor" className=""></div>;
 }

@@ -22,6 +22,20 @@
       "when": 1686660592804,
       "tag": "0002_giant_squirrel_girl",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1686831717215,
+      "tag": "0003_ordinary_firedrake",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1686832440637,
+      "tag": "0004_many_lockjaw",
+      "breakpoints": true
     }
   ]
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Asap } from "next/font/google";
 import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 const asap = Asap({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default async function RootLayout({
           <main className="h-[100%] p-3 dark:bg-black">{children}</main>
         </NextThemeProvider>
         <Toaster />
+        <VercelAnalytics />
         {modal}
       </body>
     </html>
