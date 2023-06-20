@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "75d32fe8-2524-4127-953d-56d8cc2791da",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "8cf647be-4123-4cc2-b4dd-dcb758aedeab",
+  "prevId": "75d32fe8-2524-4127-953d-56d8cc2791da",
   "tables": {
     "accounts": {
       "name": "accounts",
@@ -379,8 +379,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
-    "tracking_question": {
-      "name": "tracking_question",
+    "tracking_questions": {
+      "name": "tracking_questions",
       "columns": {
         "id": {
           "name": "id",
@@ -587,7 +587,9 @@
   "schemas": {},
   "_meta": {
     "schemas": {},
-    "tables": {},
+    "tables": {
+      "\"tracking_question\"": "\"tracking_questions\""
+    },
     "columns": {}
   }
 }

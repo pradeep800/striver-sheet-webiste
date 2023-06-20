@@ -153,9 +153,9 @@ export const reminders = mysqlTable(
   })
 );
 
-export const trackingQuestions = mysqlTable("tracking_question", {
+export const trackingQuestions = mysqlTable("tracking_questions", {
   id: int("id").notNull().autoincrement().primaryKey(),
   createdAt: timestamp("createdAt").defaultNow(),
   questionNumber: int("questionNumber").notNull(),
-  userId: varchar("id", { length: 255 }).primaryKey().notNull(),
+  userId: varchar("userId", { length: 255 }).notNull(),
 });

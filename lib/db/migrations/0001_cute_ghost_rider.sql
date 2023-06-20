@@ -1,0 +1,1 @@
+RENAME TABLE `tracking_question` TO `tracking_questions`;

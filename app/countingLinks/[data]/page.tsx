@@ -38,6 +38,7 @@ export default async function CountingLinkPage({ params }: Props) {
         eq(trackingQuestions.userId, session.user.id)
       )
     );
+  console.log(questions);
   if (questions.length === 0) {
     await db.insert(trackingQuestions).values({
       questionNumber: questionNumber,

@@ -47,9 +47,10 @@ CREATE TABLE `sessions` (
 	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP);
 --> statement-breakpoint
 CREATE TABLE `tracking_question` (
-	`id` varchar(255) PRIMARY KEY NOT NULL,
+	`id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`createdAt` timestamp DEFAULT (now()),
-	`questionNumber` int NOT NULL);
+	`questionNumber` int NOT NULL,
+	`userId` varchar(255) NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `users` (
 	`id` varchar(255) PRIMARY KEY NOT NULL,
