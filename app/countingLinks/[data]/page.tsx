@@ -11,20 +11,18 @@ type Props = {
 export default async function CountingLinkPage({ params }: Props) {
   const { data } = params;
   const questionInfo = data.match(/(\d+)-(\d+)/);
+  console.log(questionInfo);
   if (!questionInfo || !questionInfo[1] || !questionInfo[2]) {
     redirect("/");
   }
-
   const questionNumber = parseInt(questionInfo[1]);
   if (questionNumber > 191 || questionNumber <= 0 || isNaN(questionNumber)) {
     redirect("/");
   }
-
   const questionSerial = parseInt(questionInfo[2]);
-  if (questionNumber > 2 || questionNumber <= 0 || isNaN(questionNumber)) {
+  if (questionSerial > 2 || questionSerial <= 0 || isNaN(questionSerial)) {
     redirect("/");
   }
-
   const session = await getServerSession(authOption);
   if (!session || !session.user || !session.user.id) {
     redirect("/");
@@ -38,7 +36,6 @@ export default async function CountingLinkPage({ params }: Props) {
         eq(trackingQuestions.userId, session.user.id)
       )
     );
-  console.log(questions);
   if (questions.length === 0) {
     await db.insert(trackingQuestions).values({
       questionNumber: questionNumber,
