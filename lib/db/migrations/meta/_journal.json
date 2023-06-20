@@ -36,6 +36,13 @@
       "when": 1686832440637,
       "tag": "0004_many_lockjaw",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1687260297860,
+      "tag": "0005_pink_speed_demon",
+      "breakpoints": true
     }
   ]
 }

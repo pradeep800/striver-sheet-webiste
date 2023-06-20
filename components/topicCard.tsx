@@ -1,27 +1,32 @@
 "use client";
 import { Progress } from "./ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { ssQuestions, ssTopics } from "@/static/striverSheet";
 type Props = {
-  data: Record<string, number>;
+  topicTitle: string;
   className?: string;
 };
-export default function TopicCard({ data, className }: Props) {
+export default function TopicCard({ topicTitle, className }: Props) {
   const [progress, setProgress] = useState(0);
-  const Title = useRef(Object.keys(data)[0]);
-  const Day = useRef(data[Object.keys(data)[0]]);
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
   });
+
+  const TitleNumber = ssTopics.indexOf(topicTitle);
+  if (TitleNumber === -1) {
+    throw Error("unable to find index of title");
+  }
+
   return (
-    <Link href={`/dashboard/day-${Day.current}`}>
-      <Card className={`${className}`}>
+    <Link href={`/dashboard/day-${TitleNumber + 1}`}>
+      <Card className={`${className} `}>
         <CardHeader>
           <CardTitle className="">
-            Day {Day.current} {Title.current}
+            Day {TitleNumber + 1} {topicTitle}
           </CardTitle>
         </CardHeader>
         <CardContent>

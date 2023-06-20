@@ -16,7 +16,7 @@ const role_enum = mysqlEnum("role", ["USER", "PROUSER", "ADMIN"]);
 const problem_state_enum = mysqlEnum("problem_status", [
   "UNATTEMPTED",
   "REMINDER",
-  "SOLVE",
+  "SOLVED",
 ]);
 export const accounts = mysqlTable(
   "accounts",

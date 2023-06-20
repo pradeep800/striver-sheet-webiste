@@ -3,7 +3,7 @@ import TopicCard from "@/components/topicCard";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
-import { striverSheetData, ssRelation } from "@/static/striverSheet";
+import { ssTopics } from "@/static/striverSheet";
 import { eq, sql } from "drizzle-orm";
 import { Session, getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -36,8 +36,8 @@ export default async function Home() {
   return (
     <div className="max-w-[800px] mx-auto">
       <MainCard title="Striver Sheet" total={80} />
-      {ssRelation.map((data, i) => {
-        return <TopicCard key={i} data={data} className="mt-3" />;
+      {ssTopics.map((title, i) => {
+        return <TopicCard key={i} topicTitle={title} className="mt-3" />;
       })}
     </div>
   );

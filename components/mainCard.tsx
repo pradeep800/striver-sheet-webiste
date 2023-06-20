@@ -18,7 +18,9 @@ export default function MainCard({ title, total, className }: Props) {
   return (
     <Card className={`${className} border-0 shadow-none`}>
       <CardHeader>
-        <CardTitle className="text-center">{title}</CardTitle>
+        <CardTitle className="text-center font-bold text-2xl">
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <Progress value={progress} />
