@@ -5,43 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1686484399225,
-      "tag": "0000_plain_jackal",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1686636241235,
-      "tag": "0001_workable_sleepwalker",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1686660592804,
-      "tag": "0002_giant_squirrel_girl",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1686831717215,
-      "tag": "0003_ordinary_firedrake",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1686832440637,
-      "tag": "0004_many_lockjaw",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1687260297860,
-      "tag": "0005_pink_speed_demon",
+      "when": 1687273211010,
+      "tag": "0000_peaceful_captain_flint",
       "breakpoints": true
     }
   ]

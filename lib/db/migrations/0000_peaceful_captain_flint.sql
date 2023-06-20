@@ -19,15 +19,16 @@ CREATE TABLE `notes` (
 	`title` varchar(300) NOT NULL,
 	`content` json,
 	`created_at` timestamp DEFAULT (now()),
-	`updated_at` timestamp ON UPDATE CURRENT_TIMESTAMP,
+	`updated_at` timestamp DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
 	`question_id` int NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `questions` (
 	`id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	`solved_date` datetime NOT NULL,
-	`problem_status` enum('UNATTEMPTED','REMINDER','SOLVE') NOT NULL DEFAULT 'UNATTEMPTED',
-	`question_no` int NOT NULL,
-	`question_name` varchar(300) NOT NULL,
+	`answer_on` datetime,
+	`problem_status` enum('UNATTEMPTED','REMINDER','SOLVED') NOT NULL DEFAULT 'UNATTEMPTED',
+	`number` int NOT NULL,
+	`name` varchar(300) NOT NULL,
+	`question_day_in_sheet` int NOT NULL,
 	`sheet_id` varchar(255) NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `reminders` (
@@ -44,6 +45,11 @@ CREATE TABLE `sessions` (
 	`expires` datetime NOT NULL,
 	`created_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
 	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP);
+--> statement-breakpoint
+CREATE TABLE `tracking_question` (
+	`id` varchar(255) PRIMARY KEY NOT NULL,
+	`createdAt` timestamp DEFAULT (now()),
+	`questionNumber` int NOT NULL);
 --> statement-breakpoint
 CREATE TABLE `users` (
 	`id` varchar(255) PRIMARY KEY NOT NULL,

@@ -10,7 +10,6 @@ import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
 import { SessionUser } from "@/types/next-auth";
 import useUpdateRole from "@/lib/useUpdateRole";
-import Mode from "./mode";
 interface UserProps {
   user?: SessionUser;
 }

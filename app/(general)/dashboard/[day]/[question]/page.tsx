@@ -1,15 +1,33 @@
 import QuestionLinks from "@/components/questionLinks";
 
-import { ssQuestions } from "@/static/striverSheet";
+import { ssQuestions, ssTopics } from "@/static/striverSheet";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: { [key: string]: string };
 };
 export default async function QuestionPage({ params }: Props) {
-  const { question: questionIndex } = params;
+  const { question: questionIndex, day } = params;
+  const matches = day.match(/day-(\d+)/);
+  if (!matches || !matches[1]) {
+    throw Error("Unable to find topic Number");
+  }
+  const topicNumber = parseInt(matches[1]) - 1; //i am using 1 base indexing in urls
+  if (isNaN(topicNumber) || topicNumber > 27) {
+    throw Error("Unable To find the topic");
+  }
+
   const questionIndexInNumber = parseInt(questionIndex);
   const question = ssQuestions[parseInt(questionIndex) - 1];
-  if (questionIndexInNumber > 191 || isNaN(questionIndexInNumber)) {
+
+  if (question.topicNo !== topicNumber) {
+    throw Error("Unable To find Page");
+  }
+  if (
+    questionIndexInNumber > 191 ||
+    questionIndexInNumber <= 0 ||
+    isNaN(questionIndexInNumber)
+  ) {
     throw Error("Unable to find question");
   }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import EditorJS from "@editorjs/editorjs";
+import { Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 type Props = {
   data: any;
@@ -92,6 +93,8 @@ export default function Editor({ data, isEditModeOn }: Props) {
       };
     }
   }, [isMounted, initializeEditor]);
-
+  if (!isMounted) {
+    return <Loader2 className="animate-spin flex justify-center w-[100%]" />;
+  }
   return <div id="editor" className=""></div>;
 }

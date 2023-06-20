@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "05c7980a-b2cd-4d73-9639-5f9ae2b6c280",
+  "id": "0a5e8747-17f4-4f89-bdc9-850c47ebbdfa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "accounts": {
@@ -168,7 +168,8 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "onUpdate": true
+          "onUpdate": true,
+          "default": "(now())"
         },
         "question_id": {
           "name": "question_id",
@@ -200,31 +201,38 @@
           "notNull": true,
           "autoincrement": true
         },
-        "solved_date": {
-          "name": "solved_date",
+        "answer_on": {
+          "name": "answer_on",
           "type": "datetime",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "problem_status": {
           "name": "problem_status",
-          "type": "enum('UNATTEMPTED','REMINDER','SOLVE')",
+          "type": "enum('UNATTEMPTED','REMINDER','SOLVED')",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
           "default": "'UNATTEMPTED'"
         },
-        "question_no": {
-          "name": "question_no",
+        "number": {
+          "name": "number",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "question_name": {
-          "name": "question_name",
+        "name": {
+          "name": "name",
           "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "question_day_in_sheet": {
+          "name": "question_day_in_sheet",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -368,6 +376,36 @@
           "isUnique": false
         }
       },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "tracking_question": {
+      "name": "tracking_question",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(255)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "questionNumber": {
+          "name": "questionNumber",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     },

@@ -1197,7 +1197,7 @@ export const ssQuestions = [
     leetCode:
       "https://www.interviewbit.com/problems/distinct-numbers-in-window/",
     codingNinja:
-      "https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/bit.ly/3zYWpcb",
+      "https://www.codingninjas.com/codestudio/problems/920336?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website",
     topicNo: 21,
   },
   {

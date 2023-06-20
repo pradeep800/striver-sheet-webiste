@@ -1,1 +1,0 @@
-ALTER TABLE `questions` MODIFY COLUMN `answer_on` datetime;

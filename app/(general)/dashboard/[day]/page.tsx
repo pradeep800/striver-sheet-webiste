@@ -18,7 +18,6 @@ export type questionInfoType = {
   youTubeLink: string | undefined;
   codingNinja: string;
 };
-
 export default async function DayPage({ params }: Props) {
   const { day } = params;
 

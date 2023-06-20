@@ -13,6 +13,7 @@ import CodingNinjaSvg from "./svg/codingNinja";
 import { Youtube } from "lucide-react";
 import { MouseEvent } from "react";
 import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
+import { absoluteUrl } from "@/lib/utils";
 
 type Props = {
   questionInfo: questionInfoType;
@@ -39,7 +40,9 @@ export default function QuestionLinks({
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
-            href={questionInfo.codingNinja}
+            href={absoluteUrl(
+              `/countingLinks/${questionInfo.questionNumber}-1`
+            )}
           >
             <CodingNinjaSvg className="w-[30px] h-[30px]" />
           </Link>
@@ -49,7 +52,9 @@ export default function QuestionLinks({
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
-            href={questionInfo.leetCodeLink}
+            href={absoluteUrl(
+              `/countingLinks/${questionInfo.questionNumber}-2`
+            )}
           >
             <LeetCode className="w-[30px] h-[30px]" />
           </Link>
