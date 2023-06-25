@@ -45,7 +45,7 @@ export default async function CountingLinkPage({ params }: Props) {
 
   redirect(
     questionSerial === 1
-      ? ssQuestions[questionNumber].codingNinja
-      : ssQuestions[questionNumber].leetCode
+      ? ssQuestions[questionNumber - 1].codingNinja
+      : ssQuestions[questionNumber - 1].leetCode
   );
 }
