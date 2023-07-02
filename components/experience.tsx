@@ -44,8 +44,9 @@ export default function Experience() {
                   (Math.random() - 0.5) * 8,
                 ]}
                 scale={0.1 + Math.random() * 0.1}
+                key={i}
               >
-                <Text3D key={i} font="/font/asap.json" material={material}>
+                <Text3D font="/font/asap.json" material={material}>
                   {topic}
                 </Text3D>
               </mesh>
