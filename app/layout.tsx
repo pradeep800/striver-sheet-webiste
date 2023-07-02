@@ -27,7 +27,7 @@ export default async function RootLayout({
       </head>
       <body className={`${asap.className} scrollbar`}>
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="h-[100%] p-3 dark:bg-black">{children}</main>
+          <main className="min-h-[100%] p-3 dark:bg-black">{children}</main>
         </NextThemeProvider>
         <Toaster />
         <VercelAnalytics />

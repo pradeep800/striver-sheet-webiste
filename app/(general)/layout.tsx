@@ -19,7 +19,7 @@ export default async function RootLayout({
         <NavBar user={user} />
       </div>
       <ToastRedirect />
-      <main className="min-h-[calc(100%-90px)]">{children}</main>
+      <main className="min-h-[85vh]">{children}</main>
       <div className="pt-3">
         <Footer />
       </div>

@@ -93,6 +93,7 @@ export default function Editor({ data, isEditModeOn }: Props) {
       };
     }
   }, [isMounted, initializeEditor]);
+
   if (!isMounted) {
     return <Loader2 className="animate-spin flex justify-center w-[100%]" />;
   }

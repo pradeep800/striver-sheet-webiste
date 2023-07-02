@@ -2,7 +2,7 @@ import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { trackingQuestions } from "@/lib/db/schema";
 import { ssQuestions } from "@/static/striverSheet";
-import { and, eq, notExists } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 type Props = {

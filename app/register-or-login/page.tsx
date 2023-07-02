@@ -23,12 +23,15 @@ export default function RegisterPage() {
   }, [search]);
 
   const callbackQuery = decodeURIComponent(search.get("callback") || "");
+  console.log("hello");
 
   return (
-    <div className="w-[100%] h-[100%] flex justify-center items-center">
+    <div className="w-[100%] h-[100vh] flex justify-center items-center">
       <Link
         className="absolute left-[30px] top-[20px] font-semibold"
-        href={shouldUseCallback ? callbackQuery : "/"}
+        href={
+          shouldUseCallback ? (callbackQuery === "" ? "/" : callbackQuery) : "/"
+        }
       >
         <Back />
       </Link>
