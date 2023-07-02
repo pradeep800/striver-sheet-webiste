@@ -15,6 +15,27 @@
       "when": 1687280054214,
       "tag": "0001_cute_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1688285587381,
+      "tag": "0002_chilly_young_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1688294009302,
+      "tag": "0003_windy_hydra",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1688294060985,
+      "tag": "0004_glamorous_blue_shield",
+      "breakpoints": true
     }
   ]
 }

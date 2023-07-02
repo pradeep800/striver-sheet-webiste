@@ -5,19 +5,14 @@ import Modal from "./modal";
 import EditorHeading from "./editorHeading";
 import { Button } from "./ui/button";
 import { Router, X } from "lucide-react";
-import { useRouter } from "next/navigation";
 import SaveAlert from "./saveAlert";
-
-export default function NotesModal() {
+type Props = {
+  title: string;
+  notesContent: unknown;
+};
+export default function NotesModal({ notesContent, title }: Props) {
   const [isEditModeOn, setIsEditModeOn] = useState(true);
-  const [data, setData] = useState([
-    {
-      type: "paragraph",
-      data: {
-        text: "<a></a>",
-      },
-    },
-  ]);
+
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {
@@ -43,16 +38,12 @@ export default function NotesModal() {
           <div className="mt-2">
             <EditorHeading
               isEditModeOn={isEditModeOn}
-              question={"hello there how are you"}
+              question={title}
               setIsEditModeOn={setIsEditModeOn}
             />
 
             <div className="editor overflow-scroll h-[600px]">
-              <Editor
-                data={data}
-                setData={setData}
-                isEditModeOn={isEditModeOn}
-              />
+              <Editor notesContent={notesContent} isEditModeOn={isEditModeOn} />
             </div>
           </div>
         </div>

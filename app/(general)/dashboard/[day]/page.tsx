@@ -1,9 +1,11 @@
 import MainCard from "@/components/mainCard";
 import QuestionCard from "@/components/questionCard";
+import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { questions } from "@/lib/db/schema";
+import { questions, users } from "@/lib/db/schema";
 import { ssQuestions, ssTopics } from "@/static/striverSheet";
-import { asc, eq } from "drizzle-orm";
+import { and, asc, eq } from "drizzle-orm";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -17,32 +19,44 @@ export type questionInfoType = {
   leetCodeLink: string;
   youTubeLink: string | undefined;
   codingNinja: string;
+  questionDay: number;
 };
 export default async function DayPage({ params }: Props) {
   const { day } = params;
+  const session = await getServerSession(authOption);
+  if (!session || !session.user || !session.user.id) {
+    redirect("/");
+  }
 
   const matches = day.match(/day-(\d+)/);
   if (!matches || !matches[1]) {
     redirect("/");
   }
-  const topicNumber = parseInt(matches[1]) - 1; //i am using 1 base indexing in urls
+  const topicNumber = parseInt(matches[1]); //i am using 1 base indexing in urls
   if (isNaN(topicNumber) || topicNumber > 27) {
     redirect("/");
   }
-  const topicTitle = ssTopics[topicNumber];
+  const [user] = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session.user.id));
+  const topicTitle = ssTopics[topicNumber - 1];
   const databaseQuestionSet = await db
     .select()
     .from(questions)
-    .where(eq(questions.question_day_in_sheet, topicNumber)) //using 0 base indexing
+    .where(
+      and(
+        eq(questions.sheet_id, user.striver_sheet_id_30_days),
+        eq(questions.question_day_in_sheet, topicNumber)
+      )
+    )
     .orderBy(asc(questions.number));
-
   const questionsOfThisTopic = ssQuestions.filter(
-    (questions) => questions.topicNo == topicNumber
+    (questions) => questions.topicNo == topicNumber - 1
   );
   let databaseIndex = 0;
   let reminderCount = 0;
   let solvedCount = 0;
-
   const questionSet = questionsOfThisTopic.map<questionInfoType>(
     (staticQuestionInfo) => {
       const staticIndex = staticQuestionInfo.checkbox.match(/ques_(\d+)/)?.[1];
@@ -50,8 +64,13 @@ export default async function DayPage({ params }: Props) {
         throw Error("Data Inconsistency");
       }
       let databaseQuestionInfo = {};
-      if (databaseIndex === parseInt(staticIndex)) {
-        const questionTitle = databaseQuestionSet[databaseIndex]["name"];
+
+      if (
+        databaseQuestionSet.length &&
+        databaseIndex < databaseQuestionSet.length &&
+        databaseQuestionSet[databaseIndex]["number"] === parseInt(staticIndex)
+      ) {
+        const questionTitle = databaseQuestionSet[databaseIndex]["title"];
         const solved = databaseQuestionSet[databaseIndex]["solved"];
 
         if (solved === "REMINDER") {
@@ -68,7 +87,6 @@ export default async function DayPage({ params }: Props) {
           questionTitle: questionTitle,
         };
       }
-
       const ques_number = staticQuestionInfo.checkbox.match(/ques_(\d+)/)?.[1];
       if (!ques_number) {
         redirect("/");
@@ -80,6 +98,7 @@ export default async function DayPage({ params }: Props) {
         youTubeLink: staticQuestionInfo.videoSolution,
         codingNinja: staticQuestionInfo.codingNinja,
         questionNumber: parseInt(ques_number),
+        questionDay: topicNumber,
         ...databaseQuestionInfo,
       };
     }

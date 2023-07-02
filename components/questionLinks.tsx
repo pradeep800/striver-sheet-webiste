@@ -11,9 +11,10 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Youtube } from "lucide-react";
-import { MouseEvent } from "react";
-import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
+import { MouseEvent, startTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
+import { QuestionStateChange } from "@/server-action/questionStateChange";
+import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
 
 type Props = {
   questionInfo: questionInfoType;
@@ -30,10 +31,11 @@ export default function QuestionLinks({
   ) {
     e.stopPropagation();
   }
+  console.log(questionInfo.solved);
 
   return (
     <>
-      <div className="flex gap-3 ">
+      <div className="flex gap-3 " onClick={(e) => {}}>
         <StickyNotesLink id={questionInfo.questionNumber} />
         {questionInfo.codingNinja && (
           <Link
@@ -71,8 +73,22 @@ export default function QuestionLinks({
           </Link>
         )}
       </div>
-      <div onClick={(e) => e.stopPropagation()}>
-        <Select onValueChange={async (e) => {}}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <Select
+          value={questionInfo.solved}
+          onValueChange={async (e) => {
+            await QuestionStateChange({
+              name: questionInfo.questionTitle,
+              questionNumber: questionInfo.questionNumber,
+              questionDay: questionInfo.questionDay,
+              solved: e.valueOf() as typeof questionInfo.solved,
+            });
+          }}
+        >
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="UNATTEMPTED" />
           </SelectTrigger>

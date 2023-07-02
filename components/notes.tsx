@@ -9,19 +9,16 @@ import EditorHeading from "@/components/editorHeading";
 
 import { useRouter } from "next/navigation";
 import SaveAlert from "./saveAlert";
-const question = "Largest Sum Contiguous Subarray";
-export default function Notes() {
+
+type Props = {
+  title: string;
+  notesContent: unknown;
+};
+export default function Notes({ title, notesContent }: Props) {
   const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [data, setData] = useState([
-    {
-      type: "paragraph",
-      data: {
-        text: "<a></a>",
-      },
-    },
-  ]);
+
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {
       event.returnValue = "There are unsaved changes. Leave now?";
@@ -50,12 +47,12 @@ export default function Notes() {
         <div className="mt-8">
           <EditorHeading
             isEditModeOn={isEditModeOn}
-            question={question}
+            question={title}
             setIsEditModeOn={setIsEditModeOn}
           />
 
           <div className="editor">
-            <Editor data={data} setData={setData} isEditModeOn={isEditModeOn} />
+            <Editor notesContent={notesContent} isEditModeOn={isEditModeOn} />
           </div>
         </div>
       </div>

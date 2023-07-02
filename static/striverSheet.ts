@@ -1,3 +1,11 @@
+/*
+checkbox: "ques_57",//one base
+    problem: "Sudoku Solver",
+    leetCode: "https://leetcode.com/problems/sudoku-solver/",
+    videoSolution: "https://youtube.com/embed/FWAIf_EVUKE",
+    codingNinja: "https://bit.ly/31Z5Iwe",
+    topicNo: 9,/// zero base
+*/
 export const ssQuestions = [
   {
     checkbox: "ques_1",

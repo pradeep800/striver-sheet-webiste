@@ -2,6 +2,10 @@
 import { usePathname, useRouter } from "next/navigation";
 import { absoluteUrl } from "@/lib/utils";
 import QuestionLinks from "./questionLinks";
+import {
+  experimental_useOptimistic as useOptimistic,
+  useTransition,
+} from "react";
 import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
 type Props = {
   questionInfo: questionInfoType;
@@ -9,7 +13,11 @@ type Props = {
 export default function QuestionCard({ questionInfo }: Props) {
   const path = usePathname();
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
+  // const [optimisticmessage,setOptimisticMessage]=useOptimistic(questionInfo,(state,newMessage)=>{
+
+  // })
   return (
     <div
       className={`mt-3 border shadow-sm rounded-md ${

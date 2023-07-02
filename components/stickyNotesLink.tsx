@@ -8,7 +8,13 @@ export default function StickyNotesLink({ id }: { id: number }) {
   const path = usePathname();
   console.log(absoluteUrl(`/notes/${id}`));
   return (
-    <Link className="hover:text-red-400 text-red-500" href={`/notes/${id}`}>
+    <Link
+      className="hover:text-red-400 text-red-500"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      href={`/notes/${id}`}
+    >
       <StickyNote className="w-[30px] h-[30px]" />
     </Link>
   );

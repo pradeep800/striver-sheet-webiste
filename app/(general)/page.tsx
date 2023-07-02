@@ -1,9 +1,8 @@
 import StartToday from "@/components/startToday";
 import Danger from "@/components/dangerDoingSheet";
 import Pricing from "@/components/pricing";
-import { AlertTriangle, Cpu, Gem } from "lucide-react";
+import { Cpu, Gem } from "lucide-react";
 import Technology from "@/components/technologyUsed";
-import { Suspense } from "react";
 
 export default function Page() {
   return (

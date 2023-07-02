@@ -109,29 +109,17 @@ export const questions = mysqlTable(
   "questions",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
-    answer_on: datetime("answer_on"),
-    solved: problem_state_enum.notNull().default("UNATTEMPTED"),
-    number: int("number").notNull(),
-    name: varchar("name", { length: 300 }).notNull(),
-    question_day_in_sheet: int("question_day_in_sheet").notNull(),
     sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
+    number: int("number").notNull(),
+    title: varchar("name", { length: 300 }).notNull(),
+    notes_content: json("content"),
+    solved: problem_state_enum.notNull().default("UNATTEMPTED"),
+    question_day_in_sheet: int("question_day_in_sheet").notNull(),
+    created_at: timestamp("created_at").defaultNow(),
+    updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
   },
   (question) => ({
     sheetIdIndex: index("sheet_id_idx").on(question.sheet_id),
-  })
-);
-export const notes = mysqlTable(
-  "notes",
-  {
-    id: int("id").autoincrement().notNull().primaryKey(),
-    title: varchar("title", { length: 300 }).notNull(), //question_name
-    content: json("content"),
-    created_at: timestamp("created_at").defaultNow(),
-    updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
-    question_id: int("question_id").notNull(),
-  },
-  (note) => ({
-    questionIdIndex: index("question_id_idx").on(note.question_id),
   })
 );
 

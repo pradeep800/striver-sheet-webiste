@@ -1,6 +1,12 @@
 import QuestionLinks from "@/components/questionLinks";
+import { authOption } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { questions, users } from "@/lib/db/schema";
 
 import { ssQuestions, ssTopics } from "@/static/striverSheet";
+import { and, eq } from "drizzle-orm";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: { [key: string]: string };
@@ -11,17 +17,18 @@ export default async function QuestionPage({ params }: Props) {
   if (!matches || !matches[1]) {
     throw Error("Unable to find topic Number");
   }
-  const topicNumber = parseInt(matches[1]) - 1; //i am using 1 base indexing in urls
+  const topicNumber = parseInt(matches[1]); //i am using 1 base indexing in urls
   if (isNaN(topicNumber) || topicNumber > 27) {
     throw Error("Unable To find the topic");
   }
 
   const questionIndexInNumber = parseInt(questionIndex);
-  const question = ssQuestions[parseInt(questionIndex) - 1];
+  const question = ssQuestions[questionIndexInNumber - 1];
 
-  if (question.topicNo !== topicNumber) {
+  if (question.topicNo + 1 !== topicNumber) {
     throw Error("Unable To find Page");
   }
+
   if (
     questionIndexInNumber > 191 ||
     questionIndexInNumber <= 0 ||
@@ -29,6 +36,23 @@ export default async function QuestionPage({ params }: Props) {
   ) {
     throw Error("Unable to find question");
   }
+  const session = await getServerSession(authOption);
+  if (!session || !session.user || !session.user.id) {
+    redirect("/");
+  }
+  const [userInfo] = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session.user.id));
+  const [questionInfo] = await db
+    .select()
+    .from(questions)
+    .where(
+      and(
+        eq(questions.sheet_id, userInfo.striver_sheet_id_30_days),
+        eq(questions.number, questionIndexInNumber)
+      )
+    );
 
   return (
     <div className="max-w-[800px] mx-auto mt-3 flex items-center h-[70vh] sm:h-[80vh]">
@@ -50,8 +74,9 @@ export default async function QuestionPage({ params }: Props) {
               leetCodeLink: question.leetCode,
               questionNumber: questionIndexInNumber,
               questionTitle: question.problem,
-              solved: "UNATTEMPTED",
+              solved: questionInfo?.solved ?? "UNATTEMPTED",
               youTubeLink: question?.videoSolution,
+              questionDay: questionIndexInNumber,
             }}
             onYoutube={false}
           />
