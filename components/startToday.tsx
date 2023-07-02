@@ -9,10 +9,10 @@ import { Skeleton } from "./ui/skeleton";
 export default function StartToday() {
   return (
     <div className=" flex justify-center items-center flex-col h-[90vh] max-w-[800px] mx-auto">
-      <div className="h-[30vh] md:h-[50vh] w-full ">
+      <div className="sm:h-[30vh] md:h-[50vh] w-full ">
         <Suspense fallback={<Fallback />}>
           <Canvas
-            className="w-[100%]"
+            className="w-[100%] hidden sm:block"
             camera={{
               fov: 45,
               near: 0.1,
@@ -23,6 +23,22 @@ export default function StartToday() {
             <Experience />
           </Canvas>
         </Suspense>
+        <div className="sm:hidden ">
+          <video
+            className=" dark:hidden "
+            autoPlay
+            loop
+            muted
+            src="/video/ss-light.mp4"
+          />
+          <video
+            className="dark:block hidden sm:hidden"
+            autoPlay
+            loop
+            muted
+            src="/video/ss-dark.mp4"
+          />
+        </div>
       </div>
 
       <div className="">
