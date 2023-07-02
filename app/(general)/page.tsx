@@ -3,11 +3,13 @@ import Danger from "@/components/dangerDoingSheet";
 import Pricing from "@/components/pricing";
 import { AlertTriangle, Cpu, Gem } from "lucide-react";
 import Technology from "@/components/technologyUsed";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
     <div>
       <StartToday />
+
       <hr className="mt-3" />
       <div className="flex justify-center items-center gap-2 text-red-500 pt-3 ">
         <Gem />

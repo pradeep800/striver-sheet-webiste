@@ -3,25 +3,29 @@ import Experience from "@/components/experience";
 import { Button } from "@/components/ui/button";
 import { Canvas } from "@react-three/fiber";
 import Link from "next/link";
+import { Suspense } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 export default function StartToday() {
   return (
-    <div className=" w-[100%] flex justify-center items-center flex-col h-[90vh]">
-      <div className="h-[30vh] md:h-[50vh] w-[100%] ">
-        <Canvas
-          className="w-[100%]"
-          camera={{
-            fov: 45,
-            near: 0.1,
-            far: 200,
-            position: [4, -2, 6],
-          }}
-        >
-          <Experience />
-        </Canvas>
+    <div className=" flex justify-center items-center flex-col h-[90vh] max-w-[800px] mx-auto">
+      <div className="h-[30vh] md:h-[50vh] w-full ">
+        <Suspense fallback={<Fallback />}>
+          <Canvas
+            className="w-[100%]"
+            camera={{
+              fov: 45,
+              near: 0.1,
+              far: 200,
+              position: [4, -2, 6],
+            }}
+          >
+            <Experience />
+          </Canvas>
+        </Suspense>
       </div>
 
-      <div className="max-w-[800px] mx-auto ">
+      <div className="">
         <div className="text-xl font-bold text-center mt-3">
           Level up your interview skills in 27 days with 190 frequently asked
           questions with videos, curated for DSA interviews.
@@ -36,4 +40,7 @@ export default function StartToday() {
       </div>
     </div>
   );
+}
+function Fallback() {
+  return <Skeleton className="w-full h-full animate-pulse" />;
 }

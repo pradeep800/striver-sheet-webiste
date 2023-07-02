@@ -8,12 +8,11 @@ import {
   Text3D,
   useMatcapTexture,
 } from "@react-three/drei";
-import { useControls } from "leva";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 export default function Experience() {
   const [matcap] = useMatcapTexture("75322B_96463F_51201A_3D1814", 256);
   const [material, setMaterial] = useState<any>();
-
+  useEffect(() => {});
   return (
     <>
       <Float rotationIntensity={0.4}>

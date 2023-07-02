@@ -5,6 +5,7 @@ export default function NextJs() {
       viewBox="0 0 256 256"
       version="1.1"
       preserveAspectRatio="xMidYMid"
+      className="bg-white rounded-full"
     >
       <g>
         <path
