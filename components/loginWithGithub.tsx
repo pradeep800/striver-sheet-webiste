@@ -44,7 +44,7 @@ export default function LogInWithGithubButton({
         }
       }}
       disabled={isLoading}
-      className="bg-slate-300 hover:bg-slate-200 text-black-300 "
+      className="bg-slate-300 hover:bg-slate-200 sm:text-black text-black-300 "
     >
       {type === "github" && isLoading ? <Loading /> : <Github />}
 

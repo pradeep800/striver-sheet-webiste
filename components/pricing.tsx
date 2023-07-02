@@ -55,7 +55,9 @@ export default async function Pricing() {
           </CardContent>
           <CardFooter>
             <Link href="/register-or-login?callback=%2Fpricing">
-              <Button className="bg-red-500 hover:bg-red-400">SignIn</Button>
+              <Button className="bg-red-500 hover:bg-red-400 dark:text-white">
+                SignIn
+              </Button>
             </Link>
           </CardFooter>
         </Card>
@@ -80,7 +82,10 @@ export default async function Pricing() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="bg-red-500 hover:bg-red-400" type="submit">
+            <Button
+              className="bg-red-500 hover:bg-red-400 dark:text-white"
+              type="submit"
+            >
               Buy Now
             </Button>
           </CardFooter>

@@ -23,6 +23,7 @@ export default async function RootLayout({
       <div className="pt-3">
         <Footer />
       </div>
+
       <Confetti />
     </Provider>
   );

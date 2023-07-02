@@ -46,7 +46,7 @@ export default function LogInWithGoogleButton({
           setType(undefined);
         }
       }}
-      className="bg-slate-300 hover:bg-slate-200 text-black-300 "
+      className="bg-slate-300 hover:bg-slate-200 dark:text-black text-black-300 "
     >
       {type === "google" && isLoading ? <Loading /> : <Google />}
       <p className="ml-2">Google</p>
