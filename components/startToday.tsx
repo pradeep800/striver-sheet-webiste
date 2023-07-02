@@ -9,7 +9,7 @@ import { Skeleton } from "./ui/skeleton";
 export default function StartToday() {
   return (
     <div className=" flex justify-center items-center flex-col h-[90vh] max-w-[800px] mx-auto">
-      <div className="h-[30vh] md:h-[50vh] w-full ">
+      <div className="sm:h-[30vh] md:h-[50vh] w-full ">
         <Suspense fallback={<Fallback />}>
           <Canvas
             className="w-[100%] hidden sm:block"
