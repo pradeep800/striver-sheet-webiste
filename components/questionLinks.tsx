@@ -85,7 +85,7 @@ export default function QuestionLinks({
         )}
       </div>
       <div
-        className="w-[150px] justify-center flex h-[40px]"
+        className="w-[150px] justify-center items-center flex h-[40px]"
         onClick={(e) => {
           e.stopPropagation();
         }}
