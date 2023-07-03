@@ -67,8 +67,7 @@ export default async function Home() {
     const count = parseInt(solved.count as string);
     return total + count;
   }, 0);
-  let reminderIndex = 0;
-  let solvedIndex = 0;
+
   return (
     <div className="max-w-[800px] mx-auto">
       <MainCard
@@ -79,30 +78,20 @@ export default async function Home() {
       />
       {ssTopics.map((title, i) => {
         const day = i + 1;
-
-        let totalSolveDay!: CountType;
-        if (
-          solvedQuestionsCount.length > day &&
-          day === solvedQuestionsCount[solvedIndex]["day"]
-        ) {
-          totalSolveDay = solvedQuestionsCount[solvedIndex];
-          solvedIndex++;
-        }
-
-        let totalReminderDay!: CountType;
-        if (
-          reminderQuestionsCount.length > day &&
-          day === reminderQuestionsCount[reminderIndex]["day"]
-        ) {
-          totalReminderDay = reminderQuestionsCount[reminderIndex];
-          reminderIndex++;
-        }
+        const totalReminders = parseInt(
+          reminderQuestionsCount.find((reminder) => reminder.day == day)
+            ?.count as string
+        );
+        const totalSolved = parseInt(
+          solvedQuestionsCount.find((solved) => solved.day == day)
+            ?.count as string
+        );
         return (
           <TopicCard
-            totalReminderDay={totalReminderDay}
-            totalSolveDay={totalSolveDay}
+            totalReminder={totalReminders}
+            totalSolved={totalSolved}
             topicDay={day}
-            topicTitle={ssTopics[i]}
+            topicTitle={title}
             key={i}
             totalCount={ssCount[i]}
             className="mt-3"

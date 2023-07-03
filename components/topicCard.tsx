@@ -8,8 +8,8 @@ import { CountType } from "@/app/(general)/dashboard/page";
 type Props = {
   topicTitle: string;
   className?: string;
-  totalSolveDay: CountType | undefined;
-  totalReminderDay: CountType | undefined;
+  totalSolved: number | undefined;
+  totalReminder: number | undefined;
   totalCount: number;
   topicDay: number;
 };
@@ -17,21 +17,19 @@ export default function TopicCard({
   topicTitle,
   className,
   totalCount,
-  totalReminderDay,
-  totalSolveDay,
+  totalReminder,
+  totalSolved,
   topicDay,
 }: Props) {
   const [reminderProgress, setReminderProgress] = useState(0);
   const [solvedProgress, setSolvedProgress] = useState(0);
-
+  console.log(totalReminder);
+  console.log(totalSolved);
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (totalReminderDay) {
+      if (totalReminder) {
         const solvedPer = parseInt(
-          (
-            (parseInt(totalReminderDay.count as string) / totalCount) *
-            100
-          ).toFixed(2)
+          ((totalReminder / totalCount) * 100).toFixed(2)
         );
         setReminderProgress(solvedPer);
       }
@@ -40,12 +38,9 @@ export default function TopicCard({
   }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (totalSolveDay) {
+      if (totalSolved) {
         const solvedPer = parseInt(
-          (
-            (parseInt(totalSolveDay.count as string) / totalCount) *
-            100
-          ).toFixed(2)
+          ((totalSolved / totalCount) * 100).toFixed(2)
         );
         setSolvedProgress(solvedPer);
       }
@@ -70,7 +65,7 @@ export default function TopicCard({
               </div>
               <div className="flex justify-between">
                 <p>
-                  {(totalSolveDay?.count as number) ?? 0}/{totalCount}
+                  {isNaN(totalSolved ?? 0) ? 0 : totalSolved}/{totalCount}
                 </p>
                 <p>{solvedProgress}%</p>
               </div>
@@ -82,7 +77,7 @@ export default function TopicCard({
               </div>
               <div className="flex justify-between">
                 <p>
-                  {(totalReminderDay?.count as number) ?? 0}/{totalCount}
+                  {isNaN(totalReminder ?? 0) ? 0 : totalReminder}/{totalCount}
                 </p>
                 <p>{reminderProgress}%</p>
               </div>
