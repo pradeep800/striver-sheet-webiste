@@ -98,44 +98,46 @@ export default function QuestionLinks({
             }}
             value={optimisticQuestion.solved}
             onValueChange={async (e) => {
-              const solved = e.valueOf() as solved;
-              setLoading(true);
+              setTimeout(async () => {
+                const solved = e.valueOf() as solved;
+                setLoading(true);
 
-              try {
-                await saveQuestionInfo({
-                  name: optimisticQuestion.questionTitle,
-                  questionNumber: optimisticQuestion.questionNumber,
-                  questionDay: optimisticQuestion.questionDay,
-                  solved: solved,
-                });
-                if (setSolvedCount) {
-                  if (
-                    optimisticQuestion.solved === "SOLVED" &&
-                    solved !== "SOLVED"
-                  ) {
-                    setSolvedCount((c) => c - 1);
+                try {
+                  await saveQuestionInfo({
+                    name: optimisticQuestion.questionTitle,
+                    questionNumber: optimisticQuestion.questionNumber,
+                    questionDay: optimisticQuestion.questionDay,
+                    solved: solved,
+                  });
+                  if (setSolvedCount) {
+                    if (
+                      optimisticQuestion.solved === "SOLVED" &&
+                      solved !== "SOLVED"
+                    ) {
+                      setSolvedCount((c) => c - 1);
+                    }
+                    if (
+                      optimisticQuestion.solved !== "SOLVED" &&
+                      solved === "SOLVED"
+                    ) {
+                      setSolvedCount((c) => c + 1);
+                    }
                   }
-                  if (
-                    optimisticQuestion.solved !== "SOLVED" &&
-                    solved === "SOLVED"
-                  ) {
-                    setSolvedCount((c) => c + 1);
-                  }
+                  setOptimisticQuestion(solved);
+                } catch (err) {
+                  const error = err as Error;
+                  toast({
+                    title: "Unable To Update",
+                    description:
+                      "After again trying if it doesn't work please report.",
+                    variant: "destructive",
+                  });
+
+                  console.log(error.message);
+                } finally {
+                  setLoading(false);
                 }
-                setOptimisticQuestion(solved);
-              } catch (err) {
-                const error = err as Error;
-                toast({
-                  title: "Unable To Update",
-                  description:
-                    "After again trying if it doesn't work please report.",
-                  variant: "destructive",
-                });
-
-                console.log(error.message);
-              } finally {
-                setLoading(false);
-              }
+              }, 100);
             }}
           >
             <SelectTrigger className="">
