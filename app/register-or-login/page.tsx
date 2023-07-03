@@ -25,7 +25,7 @@ export default function RegisterPage() {
   const callbackQuery = decodeURIComponent(search.get("callback") || "");
 
   return (
-    <div className="w-[100%] sm:h-[100vh] h-[80vh] flex justify-center items-center">
+    <div className="w-[100%] sm:h-[100vh] h-[80vh] flex justify-center items-center ">
       <Link
         className="absolute left-[30px] top-[20px] font-semibold"
         href={
@@ -34,8 +34,9 @@ export default function RegisterPage() {
       >
         <Back />
       </Link>
-
-      <Form />
+      <div className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
+        <Form />
+      </div>
     </div>
   );
 }
