@@ -14,6 +14,7 @@ export function DrizzleAdapter(): Adapter {
         name: userData.name,
         image: userData.image,
         striver_sheet_id_30_days: crypto.randomUUID(),
+        userName: crypto.randomUUID(),
       });
       const rows = await db
         .select()

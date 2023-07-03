@@ -71,6 +71,7 @@ export const users = mysqlTable(
     emailVerified: timestamp("emailVerified"),
     image: varchar("image", { length: 255 }),
     role: role_enum.default("USER").notNull(),
+    userName: varchar("user_name", { length: 30 }),
 
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),

@@ -46,7 +46,7 @@
     "canvas-confetti": "^1.6.0",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
-    "drizzle-orm": "^0.26.5",
+    "drizzle-orm": "^0.27.0",
     "editorjs-html": "^3.4.2",
     "esbuild-register": "^3.4.2",
     "eslint": "8.41.0",
