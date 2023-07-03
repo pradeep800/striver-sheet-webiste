@@ -1590,3 +1590,7 @@ export const ssTopics = [
   "Dynamic Programming Part-II",
   "Trie",
 ] as string[];
+export const ssCount = [
+  6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 6, 7, 10, 6, 6, 12, 8, 7, 7, 8, 6, 12, 6, 7,
+  8, 7,
+] as number[];

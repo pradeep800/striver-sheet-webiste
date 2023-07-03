@@ -3,11 +3,14 @@ import TopicCard from "@/components/topicCard";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
-import { ssTopics } from "@/static/striverSheet";
+import { ssCount, ssTopics } from "@/static/striverSheet";
 import { and, asc, eq, sql } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-
+export type CountType = {
+  count: unknown;
+  day: number;
+};
 export default async function Home() {
   const session = await getServerSession(authOption);
   if (!session) {
@@ -64,7 +67,8 @@ export default async function Home() {
     const count = parseInt(solved.count as string);
     return total + count;
   }, 0);
-
+  let reminderIndex = 0;
+  let solvedIndex = 0;
   return (
     <div className="max-w-[800px] mx-auto">
       <MainCard
@@ -74,7 +78,36 @@ export default async function Home() {
         reminderCount={countReminder}
       />
       {ssTopics.map((title, i) => {
-        return <TopicCard key={i} topicTitle={title} className="mt-3" />;
+        const day = i + 1;
+
+        let totalSolveDay!: CountType;
+        if (
+          solvedQuestionsCount.length > day &&
+          day === solvedQuestionsCount[solvedIndex]["day"]
+        ) {
+          totalSolveDay = solvedQuestionsCount[solvedIndex];
+          solvedIndex++;
+        }
+
+        let totalReminderDay!: CountType;
+        if (
+          reminderQuestionsCount.length > day &&
+          day === reminderQuestionsCount[reminderIndex]["day"]
+        ) {
+          totalReminderDay = reminderQuestionsCount[reminderIndex];
+          reminderIndex++;
+        }
+        return (
+          <TopicCard
+            totalReminderDay={totalReminderDay}
+            totalSolveDay={totalSolveDay}
+            topicDay={day}
+            topicTitle={ssTopics[i]}
+            key={i}
+            totalCount={ssCount[i]}
+            className="mt-3"
+          />
+        );
       })}
     </div>
   );
