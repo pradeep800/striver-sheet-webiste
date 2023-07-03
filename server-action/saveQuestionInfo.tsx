@@ -72,9 +72,4 @@ export const saveQuestionInfo = zact(
       console.log(err);
     }
   }
-
-  revalidatePath(`/notes/${questionNumber}`);
-  revalidatePath("/dashboard");
-  revalidatePath(`/dashboard/day-${questionDay}`);
-  revalidatePath(`/dashboard/day-${questionDay}/${questionNumber}`);
 });

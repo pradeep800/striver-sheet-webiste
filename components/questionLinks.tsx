@@ -11,13 +11,19 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Loader, Youtube } from "lucide-react";
-import { MouseEvent, SetStateAction, startTransition, useState } from "react";
+import {
+  MouseEvent,
+  SetStateAction,
+  startTransition,
+  useState,
+  useTransition,
+} from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
 import { solved } from "@/types/general";
 import { toast } from "./ui/use-toast";
-
+import { useRouter } from "next/navigation";
 type Props = {
   onYoutube?: boolean;
   className?: string;
@@ -37,7 +43,9 @@ export default function QuestionLinks({
   optimisticQuestion,
 }: Props) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
   function stopPropagation(
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) {
@@ -124,6 +132,9 @@ export default function QuestionLinks({
                     }
                   }
                   setOptimisticQuestion(solved);
+                  startTransition(() => {
+                    router.refresh();
+                  });
                 } catch (err) {
                   const error = err as Error;
                   toast({
