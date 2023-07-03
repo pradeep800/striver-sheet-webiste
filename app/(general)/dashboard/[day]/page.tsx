@@ -103,6 +103,7 @@ export default async function DayPage({ params }: Props) {
       };
     }
   );
+
   return (
     <div className="max-w-[800px] mx-auto ">
       <MainCard title={topicTitle} total={80} className="" />

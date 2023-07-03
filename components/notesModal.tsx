@@ -4,16 +4,29 @@ import Editor from "./editor";
 import Modal from "./modal";
 import EditorHeading from "./editorHeading";
 import { Button } from "./ui/button";
-import { Router, X } from "lucide-react";
-import SaveAlert from "./saveAlert";
-type Props = {
-  title: string;
-  notesContent: unknown;
-};
-export default function NotesModal({ notesContent, title }: Props) {
-  const [isEditModeOn, setIsEditModeOn] = useState(true);
+import { X } from "lucide-react";
 
+import SaveAlert from "./saveAlert";
+import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
+import { questionInfo } from "./mainNotes";
+import SaveNotes from "./saveNotesButton";
+type Props = {
+  questionInfo: questionInfo;
+};
+export default function NotesModal({ questionInfo }: Props) {
+  const [isEditModeOn, setIsEditModeOn] = useState(true);
+  const [data, setData] = useState<any>(
+    questionInfo?.notes_content ?? [
+      {
+        type: "paragraph",
+        data: {
+          text: "<a></a>",
+        },
+      },
+    ]
+  );
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {
       event.returnValue = "There are unsaved changes. Leave now?";
@@ -23,6 +36,8 @@ export default function NotesModal({ notesContent, title }: Props) {
       window.onbeforeunload = null;
     };
   }, []);
+
+  const title = questionInfo.title;
   return (
     <Modal>
       <div className="max-w-[800px] mx-auto p-3 bg-white  rounded-md   ">
@@ -32,7 +47,7 @@ export default function NotesModal({ notesContent, title }: Props) {
               setOpen(true);
             }}
           />
-          <Button className="hover:bg-red-400 bg-red-500">Save</Button>
+          <SaveNotes questionInfo={questionInfo} data={data} />
         </div>
         <div>
           <div className="mt-2">
@@ -43,7 +58,11 @@ export default function NotesModal({ notesContent, title }: Props) {
             />
 
             <div className="editor overflow-scroll h-[600px]">
-              <Editor notesContent={notesContent} isEditModeOn={isEditModeOn} />
+              <Editor
+                setData={setData}
+                data={data}
+                isEditModeOn={isEditModeOn}
+              />
             </div>
           </div>
         </div>

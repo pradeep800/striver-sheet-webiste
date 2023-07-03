@@ -13,7 +13,7 @@ import CodingNinjaSvg from "./svg/codingNinja";
 import { Youtube } from "lucide-react";
 import { MouseEvent, startTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
-import { QuestionStateChange } from "@/server-action/questionStateChange";
+import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
 
 type Props = {
@@ -31,7 +31,6 @@ export default function QuestionLinks({
   ) {
     e.stopPropagation();
   }
-  console.log(questionInfo.solved);
 
   return (
     <>
@@ -81,7 +80,7 @@ export default function QuestionLinks({
         <Select
           value={questionInfo.solved}
           onValueChange={async (e) => {
-            await QuestionStateChange({
+            await saveQuestionInfo({
               name: questionInfo.questionTitle,
               questionNumber: questionInfo.questionNumber,
               questionDay: questionInfo.questionDay,

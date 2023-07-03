@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import ManageSubscription from "./ManagingSubscription";
-import { SessionUser } from "@/types/next-auth";
-import Confetti from "@/components/confetti";
+import ManageSubscription from "@/server-action/ManagingSubscription";
 
 export default function BillingPage() {
   return (

@@ -23,7 +23,6 @@ export default async function Home() {
     redirect("/");
   }
   const [user] = uUser;
-  console.log(user);
   const solvedQuestion = await db
     .select({
       count: sql`count(${questions.id})`,

@@ -4,21 +4,13 @@ import EditorJS from "@editorjs/editorjs";
 import { Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 type Props = {
-  notesContent: unknown;
+  data: any;
+  setData: React.Dispatch<any>;
   isEditModeOn: boolean;
 };
-export default function Editor({ notesContent, isEditModeOn }: Props) {
+export default function Editor({ data, setData, isEditModeOn }: Props) {
   const ref = useRef<EditorJS>();
-  const [data, setData] = useState<any>(
-    notesContent ?? [
-      {
-        type: "paragraph",
-        data: {
-          text: "<a></a>",
-        },
-      },
-    ]
-  );
+
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const initializeEditor = useCallback(async () => {
@@ -53,6 +45,7 @@ export default function Editor({ notesContent, isEditModeOn }: Props) {
             text: "<a></a>",
           });
         }
+        setData(data?.blocks);
       },
 
       data: {

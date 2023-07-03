@@ -23,7 +23,6 @@ export default function RegisterPage() {
   }, [search]);
 
   const callbackQuery = decodeURIComponent(search.get("callback") || "");
-  console.log("hello");
 
   return (
     <div className="w-[100%] h-[100vh] flex justify-center items-center">
