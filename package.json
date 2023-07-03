@@ -7,9 +7,10 @@
     "start": "next start",
     "build": "next build",
     "lint": "next lint",
-    "migrations:generate": "drizzle-kit generate:mysql",
-    "migrations:push": "node -r esbuild-register lib/db/migrate.ts",
-    "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts"
+    "drizzle:generate": "drizzle-kit generate:mysql",
+    "drizzle:push": "node -r esbuild-register lib/db/migrate.ts",
+    "drizzle:drop": "drizzle-kit drop --config=drizzle.config.ts",
+    "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@editorjs/checklist": "^1.5.0",

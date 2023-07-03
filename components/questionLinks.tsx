@@ -11,7 +11,7 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Youtube } from "lucide-react";
-import { MouseEvent, SetStateAction, startTransition } from "react";
+import { MouseEvent, SetStateAction, startTransition, useState } from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
@@ -35,6 +35,7 @@ export default function QuestionLinks({
   setReminderCount,
   optimisticQuestion,
 }: Props) {
+  const [open, setOpen] = useState(false);
   function stopPropagation(
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) {
@@ -87,6 +88,10 @@ export default function QuestionLinks({
         }}
       >
         <Select
+          open={open}
+          onOpenChange={() => {
+            setTimeout(() => setOpen(!open), 100);
+          }}
           value={optimisticQuestion.solved}
           onValueChange={async (e) => {
             const solved = e.valueOf() as solved;
