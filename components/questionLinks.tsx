@@ -11,20 +11,29 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Youtube } from "lucide-react";
-import { MouseEvent, startTransition } from "react";
+import { MouseEvent, SetStateAction, startTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
-import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
+import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
+import { solved } from "@/types/general";
 
 type Props = {
-  questionInfo: questionInfoType;
   onYoutube?: boolean;
   className?: string;
+  setOptimisticQuestion: (action: solved) => void;
+
+  setSolvedCount?: React.Dispatch<SetStateAction<number>>;
+  setReminderCount?: React.Dispatch<SetStateAction<number>>;
+  optimisticQuestion: questionInfoForDay;
 };
 
 export default function QuestionLinks({
-  questionInfo,
   onYoutube = true,
+  setOptimisticQuestion,
+  //not for full page question only for day page
+  setSolvedCount,
+  setReminderCount,
+  optimisticQuestion,
 }: Props) {
   function stopPropagation(
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
@@ -35,38 +44,38 @@ export default function QuestionLinks({
   return (
     <>
       <div className="flex gap-3 " onClick={(e) => {}}>
-        <StickyNotesLink id={questionInfo.questionNumber} />
-        {questionInfo.codingNinja && (
+        <StickyNotesLink id={optimisticQuestion.questionNumber} />
+        {optimisticQuestion.codingNinja && (
           <Link
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
             href={absoluteUrl(
-              `/countingLinks/${questionInfo.questionNumber}-1`
+              `/countingLinks/${optimisticQuestion.questionNumber}-1`
             )}
           >
             <CodingNinjaSvg className="w-[30px] h-[30px]" />
           </Link>
         )}
-        {questionInfo.leetCodeLink && (
+        {optimisticQuestion.leetCodeLink && (
           <Link
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
             href={absoluteUrl(
-              `/countingLinks/${questionInfo.questionNumber}-2`
+              `/countingLinks/${optimisticQuestion.questionNumber}-2`
             )}
           >
             <LeetCode className="w-[30px] h-[30px]" />
           </Link>
         )}
 
-        {questionInfo.youTubeLink && onYoutube && (
+        {optimisticQuestion.youTubeLink && onYoutube && (
           <Link
             className={"hover:text-red-400 text-red-500"}
             onClick={stopPropagation}
             target="_blank"
-            href={questionInfo.youTubeLink}
+            href={optimisticQuestion.youTubeLink}
           >
             <Youtube className="w-[30px] h-[30px]" />
           </Link>
@@ -78,13 +87,29 @@ export default function QuestionLinks({
         }}
       >
         <Select
-          value={questionInfo.solved}
+          value={optimisticQuestion.solved}
           onValueChange={async (e) => {
+            const solved = e.valueOf() as solved;
+            setOptimisticQuestion(solved);
+            if (setSolvedCount) {
+              if (
+                optimisticQuestion.solved === "SOLVED" &&
+                solved !== "SOLVED"
+              ) {
+                setSolvedCount((c) => c - 1);
+              }
+              if (
+                optimisticQuestion.solved !== "SOLVED" &&
+                solved === "SOLVED"
+              ) {
+                setSolvedCount((c) => c + 1);
+              }
+            }
             await saveQuestionInfo({
-              name: questionInfo.questionTitle,
-              questionNumber: questionInfo.questionNumber,
-              questionDay: questionInfo.questionDay,
-              solved: e.valueOf() as typeof questionInfo.solved,
+              name: optimisticQuestion.questionTitle,
+              questionNumber: optimisticQuestion.questionNumber,
+              questionDay: optimisticQuestion.questionDay,
+              solved: solved,
             });
           }}
         >

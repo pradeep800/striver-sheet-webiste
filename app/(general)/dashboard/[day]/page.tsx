@@ -1,4 +1,5 @@
 import MainCard from "@/components/mainCard";
+import MainDay from "@/components/mainDay";
 import QuestionCard from "@/components/questionCard";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -12,7 +13,7 @@ type Props = {
   params: { [key: string]: string };
 };
 
-export type questionInfoType = {
+export type questionInfoForDay = {
   questionNumber: number;
   solved: "SOLVED" | "UNATTEMPTED" | "REMINDER";
   questionTitle: string;
@@ -54,10 +55,11 @@ export default async function DayPage({ params }: Props) {
   const questionsOfThisTopic = ssQuestions.filter(
     (questions) => questions.topicNo == topicNumber - 1
   );
+  const total = questionsOfThisTopic.length;
   let databaseIndex = 0;
   let reminderCount = 0;
   let solvedCount = 0;
-  const questionSet = questionsOfThisTopic.map<questionInfoType>(
+  const questionSet = questionsOfThisTopic.map<questionInfoForDay>(
     (staticQuestionInfo) => {
       const staticIndex = staticQuestionInfo.checkbox.match(/ques_(\d+)/)?.[1];
       if (!staticIndex) {
@@ -105,13 +107,12 @@ export default async function DayPage({ params }: Props) {
   );
 
   return (
-    <div className="max-w-[800px] mx-auto ">
-      <MainCard title={topicTitle} total={80} className="" />
-      <div>
-        {questionSet.map((question, index) => {
-          return <QuestionCard key={index} questionInfo={question} />;
-        })}
-      </div>
-    </div>
+    <MainDay
+      questionSet={questionSet}
+      topicTitle={topicTitle}
+      total={total}
+      reminderCount={reminderCount}
+      solvedCount={solvedCount}
+    />
   );
 }

@@ -74,7 +74,7 @@ export const saveQuestionInfo = zact(
   }
 
   revalidatePath(`/notes/${questionNumber}`);
-
+  revalidatePath("/dashboard");
   revalidatePath(`/dashboard/day-${questionDay}`);
   revalidatePath(`/dashboard/day-${questionDay}/${questionNumber}`);
 });

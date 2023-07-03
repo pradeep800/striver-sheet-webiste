@@ -60,7 +60,7 @@ export default async function MainNotes({ params, type }: Props) {
   } else {
     questionInfo = databaseQuestionInfo;
   }
-  console.log("question Info", questionInfo);
+
   return (
     <div>
       {type === "modal" ? (

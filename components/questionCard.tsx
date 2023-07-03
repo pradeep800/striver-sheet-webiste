@@ -2,22 +2,36 @@
 import { usePathname, useRouter } from "next/navigation";
 import { absoluteUrl } from "@/lib/utils";
 import QuestionLinks from "./questionLinks";
-import {
+import React, {
+  SetStateAction,
   experimental_useOptimistic as useOptimistic,
-  useTransition,
 } from "react";
-import { questionInfoType } from "@/app/(general)/dashboard/[day]/page";
+import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
+import { solved } from "@/types/general";
 type Props = {
-  questionInfo: questionInfoType;
+  questionInfo: questionInfoForDay;
+  setSolvedCount: React.Dispatch<SetStateAction<number>>;
+  setReminderCount: React.Dispatch<SetStateAction<number>>;
+  solvedCount: number;
+  reminderCount: number;
 };
-export default function QuestionCard({ questionInfo }: Props) {
+
+export default function QuestionCard({
+  questionInfo,
+  setReminderCount,
+  setSolvedCount,
+  reminderCount,
+  solvedCount,
+}: Props) {
   const path = usePathname();
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
 
-  // const [optimisticmessage,setOptimisticMessage]=useOptimistic(questionInfo,(state,newMessage)=>{
-
-  // })
+  const [optimisticQuestion, setOptimisticQuestion] = useOptimistic(
+    questionInfo,
+    (state, solved: solved) => {
+      return { ...state, solved };
+    }
+  );
   return (
     <div
       className={`mt-3 border shadow-sm rounded-md ${
@@ -33,7 +47,12 @@ export default function QuestionCard({ questionInfo }: Props) {
         <div className="w-[300px] text-center sm:text-left  font-semibold">
           {questionInfo.questionTitle}
         </div>
-        <QuestionLinks questionInfo={questionInfo} />
+        <QuestionLinks
+          setOptimisticQuestion={setOptimisticQuestion}
+          optimisticQuestion={optimisticQuestion}
+          setReminderCount={setReminderCount}
+          setSolvedCount={setSolvedCount}
+        />
       </div>
     </div>
   );

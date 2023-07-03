@@ -3,18 +3,15 @@ import { useEffect, useState } from "react";
 import Editor from "./editor";
 import Modal from "./modal";
 import EditorHeading from "./editorHeading";
-import { Button } from "./ui/button";
 import { X } from "lucide-react";
 
 import SaveAlert from "./saveAlert";
-import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
 type Props = {
   questionInfo: questionInfo;
 };
 export default function NotesModal({ questionInfo }: Props) {
-  const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [data, setData] = useState<any>(
     questionInfo?.notes_content ?? [
       {
@@ -25,6 +22,7 @@ export default function NotesModal({ questionInfo }: Props) {
       },
     ]
   );
+  const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
