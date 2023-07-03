@@ -10,7 +10,6 @@ import {
 } from "@react-three/drei";
 import { use, useEffect, useState } from "react";
 export default function Experience() {
-  const [matcap] = useMatcapTexture("75322B_96463F_51201A_3D1814", 256);
   const [material, setMaterial] = useState<any>();
   useEffect(() => {});
   return (
@@ -24,7 +23,7 @@ export default function Experience() {
           polar={[-Math.PI / 2, Math.PI / 2]} //for vertical dragging
           azimuth={[-Math.PI / 1.4, Math.PI / 2]} //for horizontal dragging
         >
-          <meshMatcapMaterial matcap={matcap} ref={setMaterial} />
+          <meshNormalMaterial ref={setMaterial} />
 
           <mesh>
             <Center>
