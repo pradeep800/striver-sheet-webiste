@@ -61,33 +61,36 @@ export default function Form() {
   }
 
   return (
-    <div className="max-w-[400px] w-[400px] flex flex-col m-2 gap-2">
-      <Input
-        disabled={isLoading}
-        placeholder="example@gmail.com"
-        onChange={onChange}
-      />
+    <div className="w-[100vw] sm:w-[100%]">
+      <div className="flex sm:w-[400px] w-[95%] flex-col m-2 gap-2">
+        <Input
+          className="w-[100%]"
+          disabled={isLoading}
+          placeholder="example@gmail.com"
+          onChange={onChange}
+        />
 
-      <Button
-        className="bg-red-500 hover:bg-red-400"
-        disabled={isLoading}
-        onClick={SignIn}
-      >
-        {type === "gmail" && isLoading ? <Loading /> : null}
-        <p className="pl-2"> SignIn /LogIn</p>
-      </Button>
-      <LogInWithGoogleButton
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        type={type}
-        setType={setType}
-      />
-      <LogInWithGithubButton
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        type={type}
-        setType={setType}
-      />
+        <Button
+          className="bg-red-500 hover:bg-red-400 w-[100%]"
+          disabled={isLoading}
+          onClick={SignIn}
+        >
+          {type === "gmail" && isLoading ? <Loading /> : null}
+          <p className="pl-2"> SignIn /LogIn</p>
+        </Button>
+        <LogInWithGoogleButton
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          type={type}
+          setType={setType}
+        />
+        <LogInWithGithubButton
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          type={type}
+          setType={setType}
+        />
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function RegisterPage() {
       >
         <Back />
       </Link>
-      <div className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <div className="fixed  left-[50%] top-[50%]  translate-x-[-50%]  translate-y-[-50%]">
         <Form />
       </div>
     </div>
