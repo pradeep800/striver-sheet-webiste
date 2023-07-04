@@ -64,6 +64,13 @@
       "when": 1688444093740,
       "tag": "0008_stale_echo",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1688445961455,
+      "tag": "0009_soft_carnage",
+      "breakpoints": true
     }
   ]
 }

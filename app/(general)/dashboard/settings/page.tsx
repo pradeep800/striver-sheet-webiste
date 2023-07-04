@@ -1,26 +1,19 @@
-"use client";
+import MainSetting from "@/components/mainSettings";
+import { authOption } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-// You need to import our styles for the button to look right. Best to import in the root /layout.tsx but this is fine
-import "@uploadthing/react/styles.css";
-
-import { UploadButton } from "@/lib/uploadthing";
-import { UploadDropzone, Uploader } from "@uploadthing/react";
-import { OurFileRouter } from "@/app/api/uploadthing/core";
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <UploadDropzone<OurFileRouter>
-        endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
-          // Do something with the response
-          console.log("Files: ", res);
-          alert("Upload Completed");
-        }}
-        onUploadError={(error: Error) => {
-          alert(`ERROR! ${error.message}`);
-        }}
-      />
-    </main>
-  );
+export default async function Home() {
+  const session = await getServerSession(authOption);
+  if (!session || !session.user) {
+    redirect("/");
+  }
+  const [user] = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session.user.id));
+  return <MainSetting user={user} />;
 }

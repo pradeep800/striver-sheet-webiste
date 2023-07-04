@@ -1,4 +1,4 @@
-import UpgradingAccount from "@/lib/upgradingAccount";
+import UpgradingAccount from "@/components/upgradingAccount";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";

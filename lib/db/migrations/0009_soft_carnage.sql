@@ -1,0 +1,1 @@
+ALTER TABLE `users` RENAME COLUMN `count_of_profile_changes` TO `left_profile_changes`;
