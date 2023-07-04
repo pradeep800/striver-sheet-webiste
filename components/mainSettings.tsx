@@ -45,26 +45,30 @@ export default function MainSetting({ user }: Props) {
           You have {user.leftProfileChanges} profile change left
         </AlertDescription>
       </Alert>
-      <div>
-        <h2 className="text-2xl font-semibold text-center mt-4">Profile</h2>
-        <div className="max-w-[200px] mx-auto mt-5">
-          <h2 className="text-center">Upload Profile Photo</h2>
-          <UploadDropzone<OurFileRouter>
-            endpoint="imageUploader"
-            onClientUploadComplete={async (res) => {
-              setClicked(true);
+      <h2 className="text-2xl font-semibold text-center mt-4">Profile</h2>
+      <div className="flex mx-auto gap-4">
+        <div className="max-w-[200px] mx-auto mt-5 ">
+          <h2 className="text-center font-semibold">Upload Profile Photo</h2>
+          <div className="dark:border-white dark:border border-dashed dark:bg-background">
+            <UploadDropzone<OurFileRouter>
+              endpoint="imageUploader"
+              onClientUploadComplete={async (res) => {
+                setClicked(true);
 
-              toast({ title: "Photo Uploaded" });
-            }}
-            onUploadError={(error: Error) => {
-              toast({ title: error.message, variant: "destructive" });
-            }}
+                toast({ title: "Photo Uploaded" });
+              }}
+              onUploadError={(error: Error) => {
+                toast({ title: error.message, variant: "destructive" });
+              }}
+            />
+          </div>
+        </div>
+        <div className="dark:bg-background">
+          <UDFrom
+            userName={user.userName as string}
+            description={user.description}
           />
         </div>
-        <UDFrom
-          userName={user.userName as string}
-          description={user.description}
-        />
       </div>
     </main>
   );

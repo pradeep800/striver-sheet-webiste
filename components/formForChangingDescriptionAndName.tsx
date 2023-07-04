@@ -80,7 +80,7 @@ export default function UDFrom({ description, userName }: Props) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 max-w-[400px] mx-auto border p-4 mt-3 rounded"
+        className="space-y-8  xs:w-[400px]  border p-4 mt-3 rounded"
       >
         <FormField
           control={form.control}
