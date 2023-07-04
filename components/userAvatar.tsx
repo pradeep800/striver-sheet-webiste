@@ -27,11 +27,12 @@ export default function UserAvatar({ user }: UserProps) {
               <Image
                 src={user.image}
                 alt="Profile Photo"
+                className="w-[30px] h-[30px] object-cover"
                 width={30}
                 height={30}
               />
             ) : (
-              <div className="w-[30px] h-[30px] flex justify-center items-center">
+              <div className="w-[30px] h-[30px] flex justify-center items-center ">
                 <span className="sr-only">{user.name}</span>
                 <User className="w-[100%] text-red-500" />
               </div>

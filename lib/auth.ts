@@ -83,11 +83,12 @@ export const authOption: NextAuthOptions = {
     jwt: async ({ token, user, trigger }) => {
       //when you trigger update it will check role and then update the token accordingly
       if (trigger === "update") {
-        const [{ role }] = await db
-          .select({ role: users.role })
+        const [{ role, name, image }] = await db
+          .select({ role: users.role, image: users.image, name: users.name })
           .from(users)
           .where(eq(users.id, token.id));
-
+        token.picture = image;
+        token.name = name;
         token.role = role;
         return token;
       }

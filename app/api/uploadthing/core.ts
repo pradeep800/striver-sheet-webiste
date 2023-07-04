@@ -1,4 +1,7 @@
 import { authOption } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
@@ -7,18 +10,26 @@ const f = createUploadthing();
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "1MB" } })
     .middleware(async ({ req }) => {
-      // This code runs on your server before upload
       const user = (await getServerSession(authOption))?.user;
-      // If you throw, the user will not be able to upload
+
       if (!user) throw new Error("Unauthorized");
 
+      const [userInfo] = await db
+        .select({ leftProfileChanges: users.leftProfileChanges })
+        .from(users)
+        .where(eq(users.id, user.id));
+      if (!userInfo.leftProfileChanges) {
+        throw new Error("profile Change Count Is 0");
+      }
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.id };
+      return { userId: user.id, count: userInfo.leftProfileChanges };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-
-      console.log("Upload complete for userId:", metadata.userId);
+      await db
+        .update(users)
+        .set({ leftProfileChanges: metadata.count - 1, image: file.url })
+        .where(eq(users.id, metadata.userId));
 
       console.log("file url", file.url);
     }),

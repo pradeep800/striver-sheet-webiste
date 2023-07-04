@@ -1,7 +1,7 @@
 "use client";
 import { UploadButton, UploadDropzone } from "@uploadthing/react";
 import { DbUser } from "@/lib/db/types";
-import { useId, useState } from "react";
+import { FormEvent, useEffect, useId, useState, useTransition } from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
@@ -11,14 +11,33 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { toast } from "./ui/use-toast";
+import UDFrom from "./formForChangingDescriptionAndName";
 type Props = {
   user: DbUser;
 };
 export default function MainSetting({ user }: Props) {
   const [userName, setUserName] = useState();
+  const [pending, startTransition] = useTransition();
+  const [clicked, setClicked] = useState(false);
   const router = useRouter();
   const id = useId();
-  console.log(user);
+  const { update, data } = useSession();
+  useEffect(() => {
+    (async () => {
+      if (clicked) {
+        await update();
+        startTransition(() => {
+          router.refresh();
+        });
+        setClicked(false);
+      }
+    })();
+  }, [clicked, update]);
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
   return (
     <main className="max-w-[800px] mx-auto">
       <Alert className="mt-3">
@@ -34,30 +53,20 @@ export default function MainSetting({ user }: Props) {
           <h2 className="text-center">Upload Profile Photo</h2>
           <UploadDropzone<OurFileRouter>
             endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              // Do something with the response
-              router.refresh();
+            onClientUploadComplete={async (res) => {
+              setClicked(true);
 
-              alert("Upload Completed");
+              toast({ title: "Photo Uploaded" });
             }}
             onUploadError={(error: Error) => {
-              // Do something with the error.
-              alert(`ERROR! ${error.message}`);
+              toast({ title: error.message, variant: "destructive" });
             }}
           />
         </div>
-        <form className="max-w-[400px] mx-auto flex flex-col gap-3">
-          <div>
-            <Label htmlFor={`${id}-1`}>UserName</Label>
-            <Input id={`${id}-1`} />
-          </div>
-          <div>
-            <Label htmlFor={`${id}-2`}>Description</Label>
-            <Textarea id={`${id}-2`} />
-          </div>
-
-          <Button>Save Changes</Button>
-        </form>
+        <UDFrom
+          userName={user.userName as string}
+          description={user.description}
+        />
       </div>
     </main>
   );
