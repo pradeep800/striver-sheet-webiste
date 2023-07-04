@@ -35,9 +35,7 @@ export default function MainSetting({ user }: Props) {
       }
     })();
   }, [clicked, update]);
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-  }
+
   return (
     <main className="max-w-[800px] mx-auto">
       <Alert className="mt-3">

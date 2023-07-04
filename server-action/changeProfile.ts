@@ -28,6 +28,7 @@ export const ChangeProfile = zact(
     .select({
       leftProfileChanges: users.leftProfileChanges,
       userName: users.userName,
+      description: users.description,
     })
     .from(users)
     .where(eq(users.id, session.user.id));
@@ -35,7 +36,7 @@ export const ChangeProfile = zact(
   if (!userInfo.leftProfileChanges) {
     throw new Error("Profile Change Count Is 0");
   }
-  if (userInfo.userName === userName) {
+  if (userInfo.userName === userName && userInfo.description === description) {
     throw new Error("Same Name");
   }
   await db.update(users).set({
