@@ -50,6 +50,7 @@ export default async function Pricing() {
               <ListItem
                 data={"Notification For Question Revision (in website)"}
               />
+              <ListItem data={"Profile Can Be Change 2 Times"} />
               <ListItem data={"Feature Request"} />
             </div>
           </CardContent>
@@ -78,6 +79,7 @@ export default async function Pricing() {
                 data={"Notes which includes table,heading and many more"}
               />
               <ListItem data={"Email Reminder For Question Revision"} />
+              <ListItem data={"Get +3 Profile Changes"} />
               <ListItem data={"More Priority For Feature Request"} />
             </div>
           </CardContent>
@@ -97,7 +99,9 @@ export default async function Pricing() {
 function ListItem({ data }: { data: string }) {
   return (
     <div className="flex gap-3">
-      <Check />
+      <div className="min-w-[20px] h-[20px]">
+        <Check className="w-[100%] h-[100%]" />
+      </div>
       <p>{data}</p>
     </div>
   );

@@ -41,6 +41,7 @@ const webhookHandlers: WebhookHandlers = {
           pro_subscription_end: new Date(
             subscription.current_period_end * 1000
           ),
+          countOfProfileChanges: users.countOfProfileChanges + 3,
         })
         .where(eq(users.id, sessionObject.metadata?.userId as string));
     } catch (err) {

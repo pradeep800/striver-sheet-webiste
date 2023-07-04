@@ -20,6 +20,7 @@ export default function Notes({ questionInfo }: Props) {
   const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [didSomethingChange, setDidSomethingChange] = useState(false);
   const [data, setData] = useState<any>(
     questionInfo?.notes_content ?? [
       {

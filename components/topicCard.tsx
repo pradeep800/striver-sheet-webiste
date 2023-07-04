@@ -23,8 +23,7 @@ export default function TopicCard({
 }: Props) {
   const [reminderProgress, setReminderProgress] = useState(0);
   const [solvedProgress, setSolvedProgress] = useState(0);
-  console.log(totalReminder);
-  console.log(totalSolved);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (totalReminder) {
@@ -35,7 +34,7 @@ export default function TopicCard({
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [totalReminder, totalCount]);
   useEffect(() => {
     const timer = setTimeout(() => {
       if (totalSolved) {
@@ -46,7 +45,7 @@ export default function TopicCard({
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [totalSolved, totalCount]);
 
   return (
     <Link href={`/dashboard/day-${topicDay}`}>

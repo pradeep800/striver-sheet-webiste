@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `count_of_profile_changes` int DEFAULT 3;

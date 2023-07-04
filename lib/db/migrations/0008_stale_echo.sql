@@ -1,0 +1,1 @@
+ALTER TABLE `users` MODIFY COLUMN `count_of_profile_changes` int NOT NULL DEFAULT 2;

@@ -71,7 +71,8 @@ export const users = mysqlTable(
     emailVerified: timestamp("emailVerified"),
     image: varchar("image", { length: 255 }),
     role: role_enum.default("USER").notNull(),
-    userName: varchar("user_name", { length: 30 }),
+    userName: varchar("user_name", { length: 255 }),
+    countOfProfileChanges: int("count_of_profile_changes").notNull().default(2),
 
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
@@ -81,7 +82,6 @@ export const users = mysqlTable(
     striver_sheet_id_30_days: varchar("striver_sheet_id_30_days", {
       length: 255,
     }).notNull(),
-
     created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
     updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
