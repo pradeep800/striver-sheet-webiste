@@ -18,7 +18,6 @@ type Props = {
   user: DbUser;
 };
 export default function MainSetting({ user }: Props) {
-  const [userName, setUserName] = useState();
   const [pending, startTransition] = useTransition();
   const [clicked, setClicked] = useState(false);
   const router = useRouter();
@@ -35,18 +34,25 @@ export default function MainSetting({ user }: Props) {
       }
     })();
   }, [clicked, update]);
-
   return (
     <main className="max-w-[800px] mx-auto">
-      <Alert className="mt-3">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle className="p">Profile Change</AlertTitle>
-        <AlertDescription>
-          You have {user.leftProfileChanges} profile change left
-        </AlertDescription>
+      <Alert className="mt-3 text-red-500 border-red-500">
+        <AlertCircle className="h-8 w-8  stroke-red-500" />
+        <div className="ml-3">
+          <AlertTitle className="">Profile Change</AlertTitle>
+          <AlertDescription>
+            You have {user.leftProfileChanges} profile change left
+          </AlertDescription>
+        </div>
       </Alert>
-      <h2 className="text-2xl font-semibold text-center mt-4">Profile</h2>
+      <h2 className="text-3xl font-semibold text-center mt-4 my-5">Profile</h2>
       <div className="flex mx-auto gap-4">
+        <div className="dark:bg-background">
+          <UDFrom
+            userName={user.userName as string}
+            description={user.description}
+          />
+        </div>
         <div className="max-w-[200px] mx-auto mt-5 ">
           <h2 className="text-center font-semibold">Upload Profile Photo</h2>
           <div className="dark:border-white dark:border border-dashed dark:bg-background">
@@ -62,12 +68,6 @@ export default function MainSetting({ user }: Props) {
               }}
             />
           </div>
-        </div>
-        <div className="dark:bg-background">
-          <UDFrom
-            userName={user.userName as string}
-            description={user.description}
-          />
         </div>
       </div>
     </main>

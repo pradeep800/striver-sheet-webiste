@@ -92,7 +92,6 @@ export default function UDFrom({ description, userName }: Props) {
                 <Input placeholder="pradeep" {...field} />
               </FormControl>
 
-              <FormDescription>This is your user name</FormDescription>
               {isPresentInDb ? (
                 <div className="text-sm text-red-800">
                   User name is already taken
@@ -111,7 +110,6 @@ export default function UDFrom({ description, userName }: Props) {
               <FormControl>
                 <Textarea placeholder="write your description" {...field} />
               </FormControl>
-              <FormDescription>This is your description</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -119,7 +117,7 @@ export default function UDFrom({ description, userName }: Props) {
 
         <Button
           type="submit"
-          className="w-[100px] disabled:bg-red-400 hover:bg-red-400 bg-red-500"
+          className="w-full disabled:bg-red-400 hover:bg-red-400 bg-red-500"
           disabled={loading || isPresentInDb}
         >
           {loading ? <Loader className="animate-spin" /> : "Save"}

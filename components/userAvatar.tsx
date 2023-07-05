@@ -51,7 +51,9 @@ export default function UserAvatar({ user }: UserProps) {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="hover:bg-red-500 border-3 border-red-500"
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+            }}
           >
             Sign Out
           </DropdownMenuItem>

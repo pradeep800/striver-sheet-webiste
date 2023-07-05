@@ -39,9 +39,12 @@ export const ChangeProfile = zact(
   if (userInfo.userName === userName && userInfo.description === description) {
     throw new Error("Same Name");
   }
-  await db.update(users).set({
-    userName,
-    description,
-    leftProfileChanges: userInfo.leftProfileChanges - 1,
-  });
+  await db
+    .update(users)
+    .set({
+      userName,
+      description,
+      leftProfileChanges: userInfo.leftProfileChanges - 1,
+    })
+    .where(eq(users.id, session.user.id));
 });
