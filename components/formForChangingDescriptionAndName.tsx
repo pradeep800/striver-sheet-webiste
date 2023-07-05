@@ -80,7 +80,7 @@ export default function UDFrom({ description, userName }: Props) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8  xs:w-[400px]  border p-4 mt-3 rounded"
+        className="space-y-8  xs:w-[400px]  border p-4 mt-3 mx-auto rounded"
       >
         <FormField
           control={form.control}
@@ -89,7 +89,7 @@ export default function UDFrom({ description, userName }: Props) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="pradeep" {...field} />
+                <Input placeholder="Name" {...field} />
               </FormControl>
 
               {isPresentInDb ? (

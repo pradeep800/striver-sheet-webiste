@@ -31,14 +31,14 @@ export default function ContactPage() {
             {`If you want to give feedback, report bug or feature request you can
             send me those with this portal (use google drive links to send photo or video)`}
           </CardDescription>
-          <CardContent>
+          <CardContent className="-ml-6">
             <form className="flex flex-col gap-2" onSubmit={onSubmit}>
               <Label htmlFor="type">Type</Label>
               <Select>
                 <SelectTrigger>
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
-                <SelectContent id="type">
+                <SelectContent className="">
                   <SelectItem value="Bug">Report Bug</SelectItem>
                   <SelectItem value="feedback">Feedback</SelectItem>
                   <SelectItem value="Feature">Feature Request</SelectItem>
@@ -46,7 +46,9 @@ export default function ContactPage() {
               </Select>
               <Label htmlFor="type-description">{`Description`}</Label>
               <Textarea id="type-description" />
-              <Button className=" bg-red-500 hover:bg-red-400">Submit</Button>
+              <Button className=" bg-red-500 hover:bg-red-400 dark:text-white">
+                Submit
+              </Button>
             </form>
           </CardContent>
         </CardHeader>

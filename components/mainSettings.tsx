@@ -46,7 +46,7 @@ export default function MainSetting({ user }: Props) {
         </div>
       </Alert>
       <h2 className="text-3xl font-semibold text-center mt-4 my-5">Profile</h2>
-      <div className="flex mx-auto gap-4">
+      <div className="flex mx-auto gap-4 sm:flex-row flex-col justify-center ">
         <div className="dark:bg-background">
           <UDFrom
             userName={user.userName as string}

@@ -5,7 +5,11 @@ import { Canvas } from "@react-three/fiber";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Skeleton } from "./ui/skeleton";
-
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  weight: ["600", "700", "800", "900"],
+  subsets: ["latin"],
+});
 export default function StartToday() {
   return (
     <div className=" flex justify-center items-center flex-col h-[90vh] max-w-[800px] mx-auto">
@@ -42,13 +46,15 @@ export default function StartToday() {
       </div>
 
       <div className="">
-        <div className="text-xl font-bold text-center mt-3">
-          Level up your interview skills in 27 days with 190 frequently asked
+        <div
+          className={`text-lg font-bold text-center mt-3 ${poppins.className} tracking-wider`}
+        >
+          Level up your interview skills in 27 days with 191 frequently asked
           questions with videos, curated for DSA interviews.
         </div>
         <div className="flex justify-center pt-4 w-[100%]">
           <Link href="/register-or-login">
-            <Button className=" p-3 text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-slate-300">
+            <Button className=" p-3 text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-slate-300 dark:hover:text-slate-400 dark:text-white">
               Start Today
             </Button>
           </Link>

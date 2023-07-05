@@ -121,6 +121,7 @@ export const questions = mysqlTable(
     updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
   },
   (question) => ({
+    questionIndex: index("update_at_idx").on(question.updated_at),
     sheetIdIndex: index("sheet_id_idx").on(question.sheet_id),
   })
 );

@@ -9,18 +9,22 @@ export default function Page() {
     <div>
       <StartToday />
 
-      <hr className="mt-3" />
-      <div className="flex justify-center items-center gap-2 text-red-500 pt-3 ">
+      <hr />
+      <div className="flex justify-center items-center gap-2 text-red-500 my-8 sm:mt-8 ">
         <Gem />
-        <h1 className="text-2xl font-bold text-center ">Pricing</h1>
+        <h1 className="text-3xl font-bold text-center tracking-wide ">
+          Pricing
+        </h1>
       </div>
       <Pricing />
-      <hr className="mt-3" />
+      <hr />
       <Danger />
-      <hr className="mt-3" />
-      <div className="flex justify-center items-center gap-2 text-red-500 pb-3 pt-3">
+      <hr />
+      <div className="flex justify-center items-center sm:gap-2 gap-5  text-red-500 pb-3  my-8">
         <Cpu />
-        <h1 className="text-2xl font-bold text-center ">Technology Used</h1>
+        <h1 className="text-3xl font-bold text-center tracking-wide">
+          Technology Used
+        </h1>
       </div>
       <Technology />
     </div>

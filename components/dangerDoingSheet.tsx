@@ -1,20 +1,24 @@
 import { AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
-
-export default function Danger() {
+type Props = {
+  className?: string;
+};
+export default function Danger({ className }: Props) {
   return (
-    <div className="py-3 max-w-[800px] mx-auto">
-      <div className="flex justify-center items-center gap-2 text-red-500 pb-3">
+    <div className={`py-3 max-w-[800px] mx-auto  ${className}`}>
+      <div className="flex justify-center items-center gap-2 text-red-500 my-8">
         <AlertTriangle />
-        <h1 className="text-2xl font-bold text-center ">Alerts</h1>
+        <h1 className="font-bold text-center text-3xl tracking-wide">Alerts</h1>
       </div>
-      <div className="flex gap-4 justify-center flex-col md:flex-row items-center md:items-stretch ">
+      <div className="flex gap-4 justify-center flex-col md:flex-row items-center md:items-stretch mb-8 ">
         <Card className="max-w-[400px] ">
           <CardHeader>
-            <CardTitle>This Project Is Working On Test Mode</CardTitle>
+            <CardTitle className="">
+              This Project Is Working On Test Mode
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className={`  text-base`}>
             This mean that you can get ProUser Plan excess with{" "}
             <Link
               className="text-red-500 hover:text-red-400 hover:underline  hover:decoration-red-500  "

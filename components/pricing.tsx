@@ -55,8 +55,11 @@ export default async function Pricing() {
             </div>
           </CardContent>
           <CardFooter>
-            <Link href="/register-or-login?callback=%2Fpricing">
-              <Button className="bg-red-500 hover:bg-red-400 dark:text-white">
+            <Link
+              href="/register-or-login?callback=%2Fpricing"
+              className="w-[100%]"
+            >
+              <Button className="bg-red-500 hover:bg-red-400 dark:text-white w-[100%] ">
                 SignIn
               </Button>
             </Link>
@@ -85,7 +88,7 @@ export default async function Pricing() {
           </CardContent>
           <CardFooter>
             <Button
-              className="bg-red-500 hover:bg-red-400 dark:text-white"
+              className="bg-red-500 hover:bg-red-400 dark:text-white w-[100%]"
               type="submit"
             >
               Buy Now
@@ -96,21 +99,24 @@ export default async function Pricing() {
     </div>
   );
 }
+
 function ListItem({ data }: { data: string }) {
   return (
     <div className="flex gap-3">
       <div className="min-w-[20px] h-[20px]">
-        <Check className="w-[100%] h-[100%]" />
+        <Check className="w-[100%] h-[100%] text-green-700" />
       </div>
-      <p>{data}</p>
+      <p className="">{data}</p>
     </div>
   );
 }
 function Rupee({ amount }: { amount: number }) {
   return (
-    <div className="flex text-2xl items-center">
-      {amount}
-      <IndianRupee />
+    <div className="flex text-2xl  items-baseline">
+      <div className="text-5xl flex items-baseline ">
+        {amount}
+        <IndianRupee />
+      </div>
       /month
     </div>
   );
