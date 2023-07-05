@@ -16,13 +16,17 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
         return false; //because there is already an Error
       }
 
+      const [userInfo] = await db
+        .select({ name: users.userName })
+        .from(users)
+        .where(eq(users.id, session.user.id));
+
       const data = await db
         .select({ name: users.userName })
         .from(users)
         .where(eq(users.userName, userName));
-
       if (data.length) {
-        if (data[0].name == userName) {
+        if (userInfo.name == userName) {
           return false;
         }
         return true;
