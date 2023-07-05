@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
 import { solved } from "@/types/general";
+import clsx from "clsx";
 type Props = {
   questionInfo: questionInfoForDay;
   setSolvedCount: React.Dispatch<SetStateAction<number>>;
@@ -34,16 +35,25 @@ export default function QuestionCard({
   );
   return (
     <div
-      className={`mt-3 border shadow-sm rounded-md ${
-        questionInfo.youTubeLink && "cursor-pointer"
-      } `}
+      className={clsx([
+        "mt-3 border shadow-sm rounded-md hover:bg-slate-100 dark:hover:bg-black",
+        questionInfo.youTubeLink ? "cursor-pointer" : "cursor-not-allowed",
+        optimisticQuestion.solved == "SOLVED" &&
+          "bg-green-200 hover:bg-green-100 dark:text-black dark:hover:bg-green-100 border-green-500 border-2",
+        optimisticQuestion.solved === "REMINDER" &&
+          "bg-red-200 hover:bg-red-100 dark:text-black dark:hover:bg-red-100 border-red-500 border-2",
+      ])}
       onClick={(e) => {
         if (questionInfo.youTubeLink) {
           router.push(absoluteUrl(`/${path}/${questionInfo.questionNumber}`));
         }
       }}
     >
-      <div className="flex justify-between items-center p-2 flex-col sm:flex-row gap-4 ">
+      <div
+        className={clsx([
+          "flex justify-between items-center p-2 flex-col sm:flex-row gap-4 ",
+        ])}
+      >
         <div className="w-[300px] text-center sm:text-left  font-semibold">
           {questionInfo.questionTitle}
         </div>

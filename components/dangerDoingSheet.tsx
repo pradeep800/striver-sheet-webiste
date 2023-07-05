@@ -12,6 +12,16 @@ export default function Danger({ className }: Props) {
         <h1 className="font-bold text-center text-3xl tracking-wide">Alerts</h1>
       </div>
       <div className="flex gap-4 justify-center flex-col md:flex-row items-center md:items-stretch mb-8 ">
+        <Card className="max-w-[400px]">
+          <CardHeader>
+            <CardTitle>Only For Project Purpose</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {
+              "I thought of this idea when striver sheet store data in localStorage but now striver sheet have database and everything so you might want to choose real striver sheet"
+            }
+          </CardContent>
+        </Card>
         <Card className="max-w-[400px] ">
           <CardHeader>
             <CardTitle className="">
@@ -27,16 +37,6 @@ export default function Danger({ className }: Props) {
             >
               test card
             </Link>
-          </CardContent>
-        </Card>
-        <Card className="max-w-[400px]">
-          <CardHeader>
-            <CardTitle>Only For Project Purpose</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {
-              "I thought of this idea when striver sheet store data in localStorage but now striver sheet have database and everything so you might want to choose real striver sheet"
-            }
           </CardContent>
         </Card>
       </div>

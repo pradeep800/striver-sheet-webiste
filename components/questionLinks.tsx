@@ -11,13 +11,7 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Loader, Youtube } from "lucide-react";
-import {
-  MouseEvent,
-  SetStateAction,
-  startTransition,
-  useState,
-  useTransition,
-} from "react";
+import { MouseEvent, SetStateAction, useState, useTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
@@ -93,7 +87,7 @@ export default function QuestionLinks({
         )}
       </div>
       <div
-        className="w-[150px] justify-center items-center flex h-[40px]"
+        className="w-[150px] justify-center items-center flex h-[40px] "
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -151,7 +145,7 @@ export default function QuestionLinks({
               }, 100);
             }}
           >
-            <SelectTrigger className="">
+            <SelectTrigger className="border-2 border-slate-300">
               <SelectValue placeholder="UNATTEMPTED" />
             </SelectTrigger>
             <SelectContent className="">

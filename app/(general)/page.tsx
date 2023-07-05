@@ -17,7 +17,7 @@ export default function Page() {
         </h1>
       </div>
       <Pricing />
-      <hr />
+      <hr className="mt-8" />
       <Danger />
       <hr />
       <div className="flex justify-center items-center sm:gap-2 gap-5  text-red-500 pb-3  my-8">

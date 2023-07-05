@@ -28,7 +28,7 @@ type Props = {
 export const formSchema = z.object({
   userName: z
     .string()
-    .regex(/^[a-zA-Z0-9]+$/, "Only character you can use is 0-9 a-z and A-Z")
+    .regex(/^[a-z0-9]+$/, "Only character you can use is 0-9 and a-z")
     .min(3, { message: "Username must be at least 3 character" })
     .max(40, { message: "Username should not be more then 40 words" }),
   description: z
@@ -108,7 +108,11 @@ export default function UDFrom({ description, userName }: Props) {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="write your description" {...field} />
+                <Textarea
+                  className="min-h-[200px]"
+                  placeholder="write your description"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

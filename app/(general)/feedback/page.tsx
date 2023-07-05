@@ -45,7 +45,7 @@ export default function ContactPage() {
                 </SelectContent>
               </Select>
               <Label htmlFor="type-description">{`Description`}</Label>
-              <Textarea id="type-description" />
+              <Textarea className="min-h-[150px]" id="type-description" />
               <Button className=" bg-red-500 hover:bg-red-400 dark:text-white">
                 Submit
               </Button>

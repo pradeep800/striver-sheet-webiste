@@ -7,8 +7,6 @@ import { Label } from "./ui/label";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import "@uploadthing/react/styles.css";
 import { useRouter } from "next/navigation";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -37,8 +35,8 @@ export default function MainSetting({ user }: Props) {
   return (
     <main className="max-w-[800px] mx-auto">
       <Alert className="mt-3 text-red-500 border-red-500">
-        <AlertCircle className="h-8 w-8  stroke-red-500" />
-        <div className="ml-3">
+        <AlertCircle className="h-8 w-8  stroke-red-500 " />
+        <div className="pl-3">
           <AlertTitle className="">Profile Change</AlertTitle>
           <AlertDescription>
             You have {user.leftProfileChanges} profile change left
@@ -53,7 +51,7 @@ export default function MainSetting({ user }: Props) {
             description={user.description}
           />
         </div>
-        <div className="max-w-[200px] mx-auto mt-5 ">
+        <div className="max-w-[200px] mx-auto my-8 ">
           <h2 className="text-center font-semibold">Upload Profile Photo</h2>
           <div className="dark:border-white dark:border border-dashed dark:bg-background">
             <UploadDropzone<OurFileRouter>
