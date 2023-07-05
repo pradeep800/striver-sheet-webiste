@@ -80,7 +80,7 @@ export default function MainProfile({
       <div className="overflow-auto dark:bg-background border shadow-sm rounded-lg">
         <div className=" w-[800px] mx-auto">
           <HeatMap
-            value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}
+            value={heatMapData[heatMapYears.indexOf(year)] ?? []}
             className="w-[700px] mx-auto"
             style={{ color: "#ad001d" }}
             startDate={new Date(`${year}/01/01`)}
