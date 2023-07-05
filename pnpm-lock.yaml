@@ -95,6 +95,9 @@ dependencies:
   '@uiw/react-heat-map':
     specifier: ^2.0.5
     version: 2.0.5(@babel/runtime@7.22.3)(react-dom@18.2.0)(react@18.2.0)
+  '@uiw/react-tooltip':
+    specifier: ^4.21.28
+    version: 4.21.28(react-dom@18.2.0)(react@18.2.0)
   '@uploadthing/react':
     specifier: ^5.1.0
     version: 5.1.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@5.1.0)(zod@3.21.4)
@@ -2188,6 +2191,63 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@uiw/react-overlay-trigger@4.21.28(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OcPZZwJmU0Aa0elVinePpRgDxdNeTBsL3YsgBXInppSQUTzJkzIXDIPGrhPw3tLGX8ocxlOvoIY5nkqoFeVbpQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@uiw/react-overlay': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/utils': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-overlay@4.21.28(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-mUqGiSqDay+fVlx07EXZ4P+pm5sf/lDAlnzXjzhdp6citFaNQDkhPUxuoLGJ9FqRXSxez3iIM5C7cSclTDcweg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@uiw/react-portal': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/utils': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
+  /@uiw/react-portal@4.21.28(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-nOPtUS0faxNynQywSu/nsDKnY4JtsFfRqLzYW0pI7HIgKitlunEp1Nu2BD1Rou8LCGuNJ9umUO8liHT6D3lKyQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-tooltip@4.21.28(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-/IwxB2AkzCKSy6YG3X5mzql+zauiZglnja0ahYmXmStOZ2W4Y5F1JEt03tKogjZ62tgldpIADNlC7amoktTiHg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@uiw/react-overlay-trigger': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/utils': 4.21.28(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/utils@4.21.28(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-BQzTyidC7Ht75/WjsMZkbMXTgHXthVUYk1vQoMxLIYQr46ssmnexoDg4NIkyK02432UsGP7EAqynpwJnuRzryw==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@uploadthing/mime-types@0.2.0:
     resolution: {integrity: sha512-nRcdyM622+GYT9SdaJIVLknqoc8i7krItinfuBPtvmPc+UNGDJ+pMkr4AatYp88cEc4iYtPlN8flJvZ3dNtgrg==}
     dev: false
@@ -2858,6 +2918,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       esutils: 2.0.3
+    dev: false
+
+  /dom-helpers@5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.22.3
+      csstype: 3.1.2
     dev: false
 
   /dom-serializer@2.0.0:
@@ -5286,6 +5353,20 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.5.3
+    dev: false
+
+  /react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    dependencies:
+      '@babel/runtime': 7.22.3
+      dom-helpers: 5.2.1
+      loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-use-measure@2.1.1(react-dom@18.2.0)(react@18.2.0):

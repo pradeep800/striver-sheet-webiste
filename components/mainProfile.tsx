@@ -9,6 +9,7 @@ import {
 } from "./ui/select";
 import darkModeProfile from "@/public/bg-profile-dark.jpg";
 import lightModeProfile from "@/public/bg-profile-light.jpg";
+import Tooltip from "@uiw/react-tooltip";
 import HeatMap from "@uiw/react-heat-map";
 import { useEffect, useState } from "react";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
@@ -48,6 +49,7 @@ export default function MainProfile({
     }, 500);
     return () => clearTimeout(timer);
   }, []);
+  console.log(heatMapData, totalSolvedQuestion);
   console.log(totalSolvedQuestion);
   return (
     <div className="max-w-[800px] mx-auto mt-5 ">
@@ -80,7 +82,15 @@ export default function MainProfile({
       <div className="overflow-auto dark:bg-background border shadow-sm rounded-lg">
         <div className=" w-[800px] mx-auto">
           <HeatMap
-            value={heatMapData[heatMapYears.indexOf(year)] ?? []}
+            value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}
+            rectRender={(props, data) => {
+              if (!data.count) return <rect {...props} />;
+              return (
+                <Tooltip key={props.key} placement="top" content={data.content}>
+                  <rect {...props} />
+                </Tooltip>
+              );
+            }}
             className="w-[700px] mx-auto"
             style={{ color: "#ad001d" }}
             startDate={new Date(`${year}/01/01`)}

@@ -8,6 +8,7 @@ type DayType = { solvedQuestions: string; month: number; day: number };
 export type HeatMapDataForYear = {
   date: string;
   count: number;
+  content: string;
 }[];
 export type HeatMapData = HeatMapDataForYear[];
 
@@ -61,6 +62,7 @@ export default async function ProfilePage({ params }: Props) {
       return {
         date: `${year}/${day.month}/${day.day}`,
         count: parseInt(day.solvedQuestions),
+        content: `${day.solvedQuestions} questions solved`,
       };
     });
     if (data.length > 0) {

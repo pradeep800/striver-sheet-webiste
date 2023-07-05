@@ -43,6 +43,7 @@
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
     "@uiw/react-heat-map": "^2.0.5",
+    "@uiw/react-tooltip": "^4.21.28",
     "@uploadthing/react": "^5.1.0",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
