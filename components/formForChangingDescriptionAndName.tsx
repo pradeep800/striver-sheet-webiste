@@ -16,19 +16,27 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { ChangeProfile } from "@/server-action/changeProfile";
 import { toast } from "./ui/use-toast";
-import { useCallback, useEffect, useState } from "react";
-import { Loader } from "lucide-react";
+import React, {
+  startTransition,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { Loader, Router } from "lucide-react";
 import { debounce } from "@/lib/utils";
 import { checkUserNameExists } from "@/server-action/checkUserNameExists";
+import { useRouter } from "next/navigation";
 type Props = {
   userName: string;
   description: string | null;
+  setCopyUrl: React.Dispatch<boolean>;
+  setProfileUrl: React.Dispatch<string>;
 };
 
 export const formSchema = z.object({
   userName: z
     .string()
-    .regex(/^[a-z0-9]+$/, "Only character you can use is 0-9 and a-z")
+    .regex(/^[a-z0-9\-]+$/, "Only character you can use is 0-9 a-z and -")
     .min(3, { message: "Username must be at least 3 character" })
     .max(40, { message: "Username should not be more then 40 words" }),
   description: z
@@ -36,11 +44,17 @@ export const formSchema = z.object({
     .max(200, { message: "Description should not be more then 200 words" }),
 });
 
-export default function UDFrom({ description, userName }: Props) {
+export default function UDFrom({
+  description,
+  userName,
+  setCopyUrl,
+  setProfileUrl,
+}: Props) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { userName, description: description ?? "" },
   });
+  const router = useRouter();
   const [isPresentInDb, setIsPresentInDb] = useState(false);
   const [loading, setLoading] = useState(false);
   const [firstTime, setFirstTime] = useState(true);
@@ -64,6 +78,11 @@ export default function UDFrom({ description, userName }: Props) {
       await ChangeProfile({
         description: value.description,
         userName: value.userName,
+      });
+      setProfileUrl(`https://dsa27.vercel.app/${value.userName}`);
+      setCopyUrl(false);
+      startTransition(() => {
+        router.refresh();
       });
       toast({ title: "Your Information Is updated" });
     } catch (err) {

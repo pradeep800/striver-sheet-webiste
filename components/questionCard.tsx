@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, cn } from "@/lib/utils";
 import QuestionLinks from "./questionLinks";
 import React, {
   SetStateAction,
@@ -35,13 +35,13 @@ export default function QuestionCard({
   );
   return (
     <div
-      className={clsx([
-        "mt-3 border shadow-sm rounded-md hover:bg-slate-100 dark:hover:bg-black",
+      className={cn([
+        "mt-3 border shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-500 dark:hover:bg-gray-400",
         questionInfo.youTubeLink ? "cursor-pointer" : "cursor-not-allowed",
         optimisticQuestion.solved == "SOLVED" &&
-          "bg-green-200 hover:bg-green-100 dark:text-black dark:hover:bg-green-100 border-green-500 border-2",
+          "bg-green-200 dark:bg-green-200 hover:bg-green-100 dark:text-black dark:hover:bg-green-100 border-green-500 border-2",
         optimisticQuestion.solved === "REMINDER" &&
-          "bg-red-200 hover:bg-red-100 dark:text-black dark:hover:bg-red-100 border-red-500 border-2",
+          "bg-red-200 dark:bg-red-200 hover:bg-red-100 dark:text-black dark:hover:bg-red-100 border-red-500 border-2",
       ])}
       onClick={(e) => {
         if (questionInfo.youTubeLink) {

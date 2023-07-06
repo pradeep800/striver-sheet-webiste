@@ -49,8 +49,6 @@ export default function MainProfile({
     }, 500);
     return () => clearTimeout(timer);
   }, []);
-  console.log(heatMapData, totalSolvedQuestion);
-  console.log(totalSolvedQuestion);
   return (
     <div className="max-w-[800px] mx-auto mt-5 ">
       <BackgroundStripe />
@@ -64,8 +62,8 @@ export default function MainProfile({
           {user.description}
         </p>
       </div>
-      <Card className="mb-5">
-        <CardHeader>
+      <Card className="mb-5 ">
+        <CardHeader className="text-center">
           <CardTitle>Total Number Of Question In Striver Sheet</CardTitle>
         </CardHeader>
         <CardContent>
@@ -76,10 +74,11 @@ export default function MainProfile({
           </div>
         </CardContent>
       </Card>
-      <div className="max-w-[200px] mx-auto mb-2">
-        <SelectYear heatMapYears={heatMapYears} setYear={setYear} />
-      </div>
+
       <div className="overflow-auto dark:bg-background border shadow-sm rounded-lg">
+        <div className="max-w-[200px] m-2 mx-auto">
+          <SelectYear heatMapYears={heatMapYears} setYear={setYear} />
+        </div>
         <div className=" w-[800px] mx-auto">
           <HeatMap
             value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}

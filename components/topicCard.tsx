@@ -48,8 +48,10 @@ export default function TopicCard({
   }, [totalSolved, totalCount]);
 
   return (
-    <Link href={`/dashboard/day-${topicDay}`}>
-      <Card className={`${className} `}>
+    <Link className="" href={`/dashboard/day-${topicDay}`}>
+      <Card
+        className={`${className} hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400`}
+      >
         <CardHeader>
           <CardTitle className="">
             Day {topicDay} {topicTitle}
