@@ -1,5 +1,5 @@
 "use client";
-import { UploadButton, UploadDropzone } from "@uploadthing/react";
+import { UploadButton, UploadDropzone, Uploader } from "@uploadthing/react";
 import { DbUser } from "@/lib/db/types";
 import { FormEvent, useEffect, useId, useState, useTransition } from "react";
 import { Input } from "./ui/input";
@@ -44,13 +44,12 @@ export default function MainSetting({ user }: Props) {
   return (
     <main className="max-w-[800px] mx-auto">
       <Alert className="mt-3 text-red-500 border-red-500">
-        <AlertCircle className="h-8 w-8  stroke-red-500 " />
-        <div className="pl-3">
-          <AlertTitle className="">Profile Change</AlertTitle>
-          <AlertDescription>
-            You have {user.leftProfileChanges} profile change left
-          </AlertDescription>
-        </div>
+        <AlertCircle className="h-8 w-8 stroke-red-500 " />
+
+        <AlertTitle className="ml-4">Profile Change</AlertTitle>
+        <AlertDescription className="ml-4">
+          You have {user.leftProfileChanges} profile change left
+        </AlertDescription>
       </Alert>
       <div className="my-3">
         <Card className="">
@@ -58,18 +57,27 @@ export default function MainSetting({ user }: Props) {
             <CardTitle className="mx-auto">Share Your Profile</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className=" flex gap-2 justify-center text-red-500 hover:text-red-400 hover:underline ">
-              <Link href={profileUrl} target="_blank" className="">
-                <div>{profileUrl}</div>
+            <div className=" flex gap-2 justify-center   ">
+              <Link
+                href={profileUrl}
+                target="_blank"
+                className="hover:underline text-red-500 hover:text-red-400"
+              >
+                <div className="break-all">{profileUrl}</div>
               </Link>
               <div
+                className="w-[30px] h-[30px] xs:h-[20px] text-red-500 hover:text-red-400"
                 onClick={() => {
                   navigator.clipboard.writeText(profileUrl);
                   setCopyUrl(true);
                   toast({ title: "URL is copied" });
                 }}
               >
-                {copyUrl ? <CopyCheck /> : <Copy />}
+                {copyUrl ? (
+                  <CopyCheck className="w-[100%] h-[100%]" />
+                ) : (
+                  <Copy className="w-[100%] h-[100%]" />
+                )}
               </div>
             </div>
           </CardContent>
