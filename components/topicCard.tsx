@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ssQuestions, ssTopics } from "@/static/striverSheet";
-import { CountType } from "@/app/(general)/dashboard/page";
+import { CountType } from "@/app/(general)/sheet/page";
 type Props = {
   topicTitle: string;
   className?: string;
@@ -48,7 +48,7 @@ export default function TopicCard({
   }, [totalSolved, totalCount]);
 
   return (
-    <Link className="" href={`/dashboard/day-${topicDay}`}>
+    <Link className="" href={`/sheet/day-${topicDay}`}>
       <Card
         className={`${className} hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400`}
       >

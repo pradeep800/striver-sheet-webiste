@@ -1,5 +1,5 @@
 "use client";
-import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
+import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import { solved } from "@/types/general";
 import React, {
   SetStateAction,

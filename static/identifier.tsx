@@ -1,4 +1,4 @@
-export const identifier = [
+export const identifiers = [
   "dashboard",
   "example",
   "notes",

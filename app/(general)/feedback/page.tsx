@@ -15,12 +15,40 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@radix-ui/react-label";
-import { FormEvent } from "react";
-
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { feedBackSchema } from "@/server-action/zodType/feedbackSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { sendFeedback } from "@/server-action/sendFeedback";
+import { toast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import Loading from "@/components/svg/loading";
+type formSchema = z.infer<typeof feedBackSchema>;
 export default function ContactPage() {
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const form = useForm<formSchema>({
+    resolver: zodResolver(feedBackSchema),
+  });
+  const [loading, setLoading] = useState(false);
+  async function onSubmit(data: formSchema) {
+    setLoading(true);
+    try {
+      await sendFeedback(data);
+      toast({ title: "Your Query Is Submitted Successfully" });
+      form.reset({ content: "", type: data.type });
+    } catch (err) {
+      const error = err as Error;
+      toast({ title: error.message, variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <div className="pt-3 min-h-[80vh] flex justify-center items-center">
@@ -32,24 +60,69 @@ export default function ContactPage() {
             send me those with this portal (use google drive links to send photo or video)`}
           </CardDescription>
           <CardContent className="-ml-6">
-            <form className="flex flex-col gap-2" onSubmit={onSubmit}>
-              <Label htmlFor="type">Type</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Type" />
-                </SelectTrigger>
-                <SelectContent className="">
-                  <SelectItem value="Bug">Report Bug</SelectItem>
-                  <SelectItem value="feedback">Feedback</SelectItem>
-                  <SelectItem value="Feature">Feature Request</SelectItem>
-                </SelectContent>
-              </Select>
-              <Label htmlFor="type-description">{`Description`}</Label>
-              <Textarea className="min-h-[150px]" id="type-description" />
-              <Button className=" bg-red-500 hover:bg-red-400 dark:text-white">
-                Submit
-              </Button>
-            </form>
+            <Form {...form}>
+              <form
+                className="flex flex-col gap-2"
+                onSubmit={form.handleSubmit(onSubmit)}
+              >
+                <FormField
+                  name="type"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Type</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={(e) => {
+                            const value = e.valueOf() as formSchema["type"];
+                            field.onChange(value);
+                          }}
+                          defaultValue={field.value}
+                          value={field.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Type" />
+                          </SelectTrigger>
+                          <SelectContent className="">
+                            <SelectItem value="BUG">Report Bug</SelectItem>
+                            <SelectItem value="FEEDBACK">Feedback</SelectItem>
+                            <SelectItem value="REQUEST">
+                              Feature Request
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="content"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="min-h-[150px]"
+                          id="type-description"
+                          {...field}
+                          value={field.value}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className=" bg-red-500 hover:bg-red-400 dark:text-white"
+                >
+                  {loading ? <Loading /> : "Submit"}
+                </Button>
+              </form>
+            </Form>
           </CardContent>
         </CardHeader>
       </Card>

@@ -108,7 +108,7 @@ export default function MainProfile({
 
 function BackgroundStripe() {
   return (
-    <div className="w-[100%] h-[20vh] overflow-hidden ">
+    <div className="w-[100%] h-[20vh] overflow-hidden  rounded-md ">
       <Image
         className="dark:block hidden h-[100%] w-[100%] object-none"
         src={darkModeProfile}

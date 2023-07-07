@@ -4,13 +4,19 @@ import Back from "@/components/svg/back";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
-const AuthenticatedRoutes = ["feedback", "dashboard"];
+//if they are coming from these route in
+//register-or-login they will not able
+//leave this route because it will try to
+// transport to authenticated route but they can't
+// go to auth route and will not able escape this route
+
+const AuthenticatedRoutes = ["feedback", "sheet", "notes"];
 export default function RegisterPage() {
   const search = useSearchParams();
 
   const shouldUseCallback = useMemo(() => {
     const callbackQuery = decodeURIComponent(search.get("callback") || "");
-    if (callbackQuery) {
+    if (callbackQuery !== "") {
       const data = decodeURIComponent(callbackQuery);
       const paths = data.split("/");
       for (let i = 0; i < paths.length; i++) {
@@ -18,19 +24,18 @@ export default function RegisterPage() {
           return false;
         }
       }
+    } else {
+      return false;
     }
     return true;
   }, [search]);
 
   const callbackQuery = decodeURIComponent(search.get("callback") || "");
-
   return (
     <div className="w-[100%] sm:h-[100vh] h-[80vh] flex justify-center items-center ">
       <Link
-        className="absolute left-[30px] top-[20px] font-semibold"
-        href={
-          shouldUseCallback ? (callbackQuery === "" ? "/" : callbackQuery) : "/"
-        }
+        className="absolute left-[30px] top-[20px] font-semibold cursor-pointer"
+        href={shouldUseCallback ? callbackQuery : "/"}
       >
         <Back />
       </Link>

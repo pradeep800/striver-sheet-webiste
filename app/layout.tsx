@@ -4,6 +4,7 @@ import { Asap } from "next/font/google";
 import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import NextTopLoader from "nextjs-toploader";
 const asap = Asap({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default async function RootLayout({
       </head>
       <body className={`${asap.className} scrollbar`}>
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextTopLoader />
           <main className="min-h-[100%] p-3 dark:bg-background">
             {children}
           </main>

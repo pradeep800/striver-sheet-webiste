@@ -1,6 +1,6 @@
 "use client";
 
-import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
+import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import MainCard from "./mainCard";
 import QuestionCard from "./questionCard";
 import { useState } from "react";
@@ -33,7 +33,7 @@ export default function MainDay({
         {questionSet.map((question, index) => {
           return (
             <QuestionCard
-              key={index}
+              key={question.questionNumber}
               questionInfo={question}
               solvedCount={solvedC}
               reminderCount={reminderCount}

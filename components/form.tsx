@@ -45,7 +45,7 @@ export default function Form() {
       await signIn("email", {
         redirect: false,
         email: email,
-        callbackUrl: searchParams.get("callback") || "/dashboard",
+        callbackUrl: searchParams.get("callback") || "/sheet",
       });
       router.push("/register-or-login/verify-request");
     } catch (err) {
@@ -64,7 +64,7 @@ export default function Form() {
     <div className="w-[100vw] sm:w-[100%]">
       <div className="flex sm:w-[400px] w-[95%] flex-col m-2 gap-2">
         <Input
-          className="w-[100%]"
+          className="w-[100%] dark:border-gray-500"
           disabled={isLoading}
           placeholder="example@gmail.com"
           onChange={onChange}

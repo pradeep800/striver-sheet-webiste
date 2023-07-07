@@ -9,7 +9,7 @@ export default withAuth(
     const isAuthPage = req.nextUrl.pathname.startsWith("/register-or-login");
     if (isAuthPage) {
       if (isAuth) {
-        return NextResponse.redirect(new URL("/dashboard", req.url));
+        return NextResponse.redirect(new URL("/sheet", req.url));
       }
 
       return null;
@@ -17,7 +17,7 @@ export default withAuth(
 
     if (isAuth) {
       if (req.nextUrl.pathname === "/") {
-        return NextResponse.redirect(new URL("/dashboard", req.url));
+        return NextResponse.redirect(new URL("/sheet", req.url));
       }
     }
 
@@ -46,5 +46,11 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/dashboard/:path*", "/register-or-login/:path*", "/", "/feedback"],
+  matcher: [
+    "/sheet/:path*",
+    "/register-or-login/:path*",
+    "/",
+    "/feedback",
+    "/notes/:path*",
+  ],
 };

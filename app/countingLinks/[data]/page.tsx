@@ -11,7 +11,6 @@ type Props = {
 export default async function CountingLinkPage({ params }: Props) {
   const { data } = params;
   const questionInfo = data.match(/(\d+)-(\d+)/);
-  console.log(questionInfo);
   if (!questionInfo || !questionInfo[1] || !questionInfo[2]) {
     redirect("/");
   }

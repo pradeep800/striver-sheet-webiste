@@ -75,6 +75,7 @@ export const users = mysqlTable(
     leftProfileChanges: int("left_profile_changes").notNull().default(2),
     description: varchar("description", { length: 205 }),
 
+    email_reminders: boolean("email_reminders").default(true),
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
@@ -132,6 +133,7 @@ export const reminders = mysqlTable(
     id: int("id").notNull().autoincrement().primaryKey(),
     created_at: timestamp("created_at").defaultNow(),
     due_date: datetime("due_time").notNull(),
+    should_send_mail: boolean("should_send_mail"),
     mail_sended: boolean("mail_sended").default(false),
     creator_id: varchar("creator_id", {
       length: 255,
@@ -144,9 +146,32 @@ export const reminders = mysqlTable(
   })
 );
 
-export const trackingQuestions = mysqlTable("tracking_questions", {
-  id: int("id").notNull().autoincrement().primaryKey(),
-  createdAt: timestamp("createdAt").defaultNow(),
-  questionNumber: int("questionNumber").notNull(),
-  userId: varchar("userId", { length: 255 }).notNull(),
-});
+export const trackingQuestions = mysqlTable(
+  "tracking_questions",
+  {
+    id: int("id").notNull().autoincrement().primaryKey(),
+    createdAt: timestamp("createdAt").defaultNow(),
+    questionNumber: int("questionNumber").notNull(),
+    userId: varchar("userId", { length: 255 }).notNull(),
+  },
+  (trackingQuestions) => ({
+    UserIdIndex: index("user_id_idx").on(trackingQuestions.userId),
+  })
+);
+const feedback_type = mysqlEnum("feedback_type", [
+  "BUG",
+  "FEEDBACK",
+  "REQUEST",
+]);
+export const feedbacks = mysqlTable(
+  "feedbacks",
+  {
+    id: int("id").notNull().autoincrement().primaryKey(),
+    createdAt: timestamp("createdAt").defaultNow(),
+    type: feedback_type.notNull(),
+    userId: varchar("userId", { length: 255 }).notNull(),
+    userRole: role_enum.notNull(),
+    content: varchar("content", { length: 1000 }),
+  },
+  (feedback) => ({ UserIdIndex: index("userIdIndex").on(feedback.userId) })
+);

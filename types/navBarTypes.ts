@@ -3,4 +3,5 @@ export type NavBarItems =
   | "/about"
   | "/pricing"
   | "/"
-  | "/billing";
+  | "/billing"
+  | "/sheet";

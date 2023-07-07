@@ -28,7 +28,7 @@ export default function LogInWithGithubButton({
         setIsLoading(true);
         try {
           await signIn("github", {
-            callbackUrl: searchParams.get("callback") || "/dashboard",
+            callbackUrl: searchParams.get("callback") || "/sheet",
           });
         } catch (err) {
           const error = err as Error;

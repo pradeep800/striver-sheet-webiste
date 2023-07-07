@@ -32,6 +32,7 @@ export default async function ProfilePage({ params }: Props) {
   }
 
   const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
   const options = { timeZone: "Asia/Kolkata" };
   const indianDate = currentDate.toLocaleDateString("en-US", options);
   const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));

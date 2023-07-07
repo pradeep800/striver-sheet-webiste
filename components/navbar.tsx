@@ -22,11 +22,7 @@ export default function NavBar({ user }: UserProps) {
   const [oneTimeClickToHamburger, setOneTimeClickToHamburger] = useState(false);
   useEffect(() => {
     console.log(activeNavLink);
-    setActiveNavLink(
-      pathName.split("/")[1] === "dashboard"
-        ? "/"
-        : `/${pathName.split("/")[1]}`
-    );
+    setActiveNavLink(`/${pathName.split("/")[1]}`);
   }, [pathName]);
 
   return (

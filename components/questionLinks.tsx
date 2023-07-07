@@ -14,10 +14,11 @@ import { Loader, Youtube } from "lucide-react";
 import { MouseEvent, SetStateAction, useState, useTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
-import { questionInfoForDay } from "@/app/(general)/dashboard/[day]/page";
+import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import { solved } from "@/types/general";
 import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
+import ReminderDialog from "./reminderDialog";
 type Props = {
   onYoutube?: boolean;
   className?: string;
@@ -38,6 +39,7 @@ export default function QuestionLinks({
 }: Props) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [reminderClicked, setReminderClicked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
   function stopPropagation(
@@ -45,6 +47,7 @@ export default function QuestionLinks({
   ) {
     e.stopPropagation();
   }
+  console.log("questoin", reminderClicked);
 
   return (
     <>
@@ -102,6 +105,14 @@ export default function QuestionLinks({
             onValueChange={async (e) => {
               setTimeout(async () => {
                 const solved = e.valueOf() as solved;
+                if (optimisticQuestion.solved === "REMINDER") {
+                  //remove reminder
+                }
+                if (solved === "REMINDER") {
+                  setReminderClicked(true);
+                  return;
+                }
+                setReminderClicked(false);
                 setLoading(true);
 
                 try {
@@ -157,6 +168,13 @@ export default function QuestionLinks({
         ) : (
           <Loader className="animate-spin" />
         )}
+        {/* Dialog for reminder*/}
+        <ReminderDialog
+          reminderClicked={reminderClicked}
+          question={optimisticQuestion}
+          setValue={setOptimisticQuestion}
+          setReminderClicked={setReminderClicked}
+        />
       </div>
     </>
   );

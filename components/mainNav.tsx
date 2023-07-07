@@ -13,10 +13,17 @@ export default function MainNav({ activeNavLink, user }: bigScreenProps) {
   if (user && user.role == "PROUSER") {
     NAVBARITEMS[1].url = "/billing";
     NAVBARITEMS[1].name = "Billing";
-  }
-  if (user && user.role == "USER") {
+  } else {
     NAVBARITEMS[1].url = "/pricing";
     NAVBARITEMS[1].name = "Pricing";
+  }
+  if (user) {
+    NAVBARITEMS[0].name = "Sheet";
+    NAVBARITEMS[0].url = "/sheet";
+  } else {
+    //when we logout it will change it home again
+    NAVBARITEMS[0].name = "Home";
+    NAVBARITEMS[0].url = "/";
   }
   return (
     <div className="font-medium text-xl hidden md:flex gap-6  mr-auto  items-center">

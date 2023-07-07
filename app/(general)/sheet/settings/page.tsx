@@ -15,7 +15,6 @@ export default async function Home() {
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
-  console.log(user);
 
   return <MainSetting user={user} />;
 }

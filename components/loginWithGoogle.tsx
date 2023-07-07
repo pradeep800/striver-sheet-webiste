@@ -31,7 +31,7 @@ export default function LogInWithGoogleButton({
         setIsLoading(true);
         try {
           await signIn("google", {
-            callbackUrl: searchParams.get("callback") || "/dashboard",
+            callbackUrl: searchParams.get("callback") || "/sheet",
           });
         } catch (err) {
           const error = err as Error;

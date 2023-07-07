@@ -26,6 +26,7 @@ import { Loader, Router } from "lucide-react";
 import { debounce } from "@/lib/utils";
 import { checkUserNameExists } from "@/server-action/checkUserNameExists";
 import { useRouter } from "next/navigation";
+import { ChangeProfileType } from "@/server-action/zodType/changeProfileSchema";
 type Props = {
   userName: string;
   description: string | null;
@@ -33,16 +34,7 @@ type Props = {
   setProfileUrl: React.Dispatch<string>;
 };
 
-export const formSchema = z.object({
-  userName: z
-    .string()
-    .regex(/^[a-z0-9\-]+$/, "Only character you can use is 0-9 a-z and -")
-    .min(3, { message: "Username must be at least 3 character" })
-    .max(40, { message: "Username should not be more then 40 words" }),
-  description: z
-    .string()
-    .max(200, { message: "Description should not be more then 200 words" }),
-});
+export const formSchema = ChangeProfileType;
 
 export default function UDFrom({
   description,
@@ -57,16 +49,15 @@ export default function UDFrom({
   const router = useRouter();
   const [isPresentInDb, setIsPresentInDb] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [firstTime, setFirstTime] = useState(true);
+  const [checking, setChecking] = useState(true);
+  const [firstTime, setFirstTime] = useState(false);
   const checkName = useCallback(
     debounce(async (userName: string) => {
-      if (!firstTime) {
-        setIsPresentInDb(await checkUserNameExists({ userName }));
-      } else {
-        setFirstTime(false);
-      }
+      setChecking(true);
+      setIsPresentInDb(await checkUserNameExists({ userName }));
+      setChecking(false);
     }, 300),
-    [setIsPresentInDb, firstTime, setFirstTime]
+    [setIsPresentInDb]
   );
 
   useEffect(() => {
@@ -84,10 +75,11 @@ export default function UDFrom({
       startTransition(() => {
         router.refresh();
       });
-      toast({ title: "Your Information Is updated" });
+      toast({ title: "Your Information Is Updated" });
     } catch (err) {
+      const error = err as Error;
       toast({
-        title: "Unable To Update Your Information",
+        title: error.message,
         variant: "destructive",
       });
     } finally {
@@ -110,7 +102,7 @@ export default function UDFrom({
               <FormControl>
                 <Input placeholder="Name" {...field} />
               </FormControl>
-
+              <FormDescription>You can only use a-z 0-9 and -</FormDescription>
               {isPresentInDb ? (
                 <div className="text-sm text-red-800">
                   User name is already taken
@@ -141,7 +133,7 @@ export default function UDFrom({
         <Button
           type="submit"
           className="w-full disabled:bg-red-400 hover:bg-red-400 bg-red-500"
-          disabled={loading || isPresentInDb}
+          disabled={loading || isPresentInDb || checking}
         >
           {loading ? <Loader className="animate-spin" /> : "Save"}
         </Button>
