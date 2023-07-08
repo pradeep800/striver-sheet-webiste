@@ -10,7 +10,7 @@ type setType = React.Dispatch<
 >;
 type setIsLoading = React.Dispatch<React.SetStateAction<boolean>>;
 
-export default function LogInWithGoogleButton({
+export default function LoginWithGoogleButton({
   isLoading,
   setIsLoading,
   type,

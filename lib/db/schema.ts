@@ -71,7 +71,7 @@ export const users = mysqlTable(
     emailVerified: timestamp("emailVerified"),
     image: varchar("image", { length: 255 }),
     role: role_enum.default("USER").notNull(),
-    userName: varchar("user_name", { length: 40 }),
+    userName: varchar("user_name", { length: 15 }).notNull(),
     leftProfileChanges: int("left_profile_changes").notNull().default(2),
     description: varchar("description", { length: 205 }),
 
@@ -114,7 +114,7 @@ export const questions = mysqlTable(
     id: int("id").notNull().autoincrement().primaryKey(),
     sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
     number: int("number").notNull(),
-    title: varchar("name", { length: 300 }).notNull(),
+    title: varchar("name", { length: 301 }).notNull(),
     notes_content: json("content"),
     solved: problem_state_enum.notNull().default("UNATTEMPTED"),
     question_day_in_sheet: int("question_day_in_sheet").notNull(),
@@ -171,7 +171,7 @@ export const feedbacks = mysqlTable(
     type: feedback_type.notNull(),
     userId: varchar("userId", { length: 255 }).notNull(),
     userRole: role_enum.notNull(),
-    content: varchar("content", { length: 1000 }),
+    content: varchar("content", { length: 1001 }),
   },
   (feedback) => ({ UserIdIndex: index("userIdIndex").on(feedback.userId) })
 );

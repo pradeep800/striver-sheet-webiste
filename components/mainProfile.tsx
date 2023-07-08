@@ -135,7 +135,7 @@ function ProfilePhoto({ photo }: { photo: string | null }) {
           height={100}
         />
       ) : (
-        <User className=" bg-white w-[100px] h-[100px] border-4 border-red-500 rounded-full text-red-500" />
+        <User className=" bg-white w-[100px] h-[100px] border-4 border-red-500 rounded-full text-red-500 dark:bg-background" />
       )}
     </div>
   );

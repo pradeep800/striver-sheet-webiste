@@ -13,11 +13,15 @@ import {
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Mode from "./mode";
+import { SessionUser } from "@/types/next-auth";
+import Link from "next/link";
+import { absoluteUrl } from "@/lib/utils";
 
 interface UserProps {
-  user: Pick<user, "email" | "image" | "name">;
+  user: SessionUser;
 }
 export default function UserAvatar({ user }: UserProps) {
+  console.log(user.userName);
   return (
     <div className="flex md:mr-0 mr-3">
       <DropdownMenu>
@@ -42,6 +46,11 @@ export default function UserAvatar({ user }: UserProps) {
         <DropdownMenuContent className="mx-4 md:mr-3">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
+            {
+              <p className="text-sm text-muted-foreground">
+                {"@" + user.userName}
+              </p>
+            }
             {user.email && (
               <p className="w-[200px] truncate text-sm text-muted-foreground">
                 {user.email}
@@ -49,13 +58,27 @@ export default function UserAvatar({ user }: UserProps) {
             )}
           </div>
           <DropdownMenuSeparator />
+          <Link href={"/sheet/settings"}>
+            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
+              Settings
+            </DropdownMenuItem>
+          </Link>
+
+          <Link href={user.userName}>
+            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500  ">
+              Profile
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem
-            className="hover:bg-red-500 border-3 border-red-500"
+            className="hover:bg-red-500 border-3 border-red-500 p-0 "
             onClick={() => {
               signOut();
             }}
           >
-            Sign Out
+            <div className=" hover:bg-red-500 w-full h-full rounded-sm p-1 pl-2">
+              {" "}
+              Logout
+            </div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

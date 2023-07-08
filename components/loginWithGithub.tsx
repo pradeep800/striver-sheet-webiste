@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 type setType = React.Dispatch<
   React.SetStateAction<"gmail" | "github" | "google" | undefined>
 >;
-export default function LogInWithGithubButton({
+export default function LoginWithGithubButton({
   isLoading,
   setIsLoading,
   setType,
@@ -48,7 +48,7 @@ export default function LogInWithGithubButton({
     >
       {type === "github" && isLoading ? <Loading /> : <Github />}
 
-      <p className="ml-2">Github</p>
+      <p className="ml-2 text-red-500">Github</p>
     </Button>
   );
 }

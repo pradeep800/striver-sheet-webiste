@@ -127,6 +127,34 @@
       "when": 1688725597060,
       "tag": "0017_slim_lady_bullseye",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "5",
+      "when": 1688802799536,
+      "tag": "0018_overjoyed_siren",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "5",
+      "when": 1688806369254,
+      "tag": "0019_special_firestar",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "5",
+      "when": 1688806785970,
+      "tag": "0020_superb_night_thrasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "5",
+      "when": 1688809119924,
+      "tag": "0021_solid_loki",
+      "breakpoints": true
     }
   ]
 }

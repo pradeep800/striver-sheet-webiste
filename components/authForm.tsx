@@ -5,14 +5,14 @@ import { Button } from "./ui/button";
 import { signIn } from "next-auth/react";
 import { useToast } from "./ui/use-toast";
 
-import LogInWithGithubButton from "./loginWithGithub";
-import LogInWithGoogleButton from "./loginWithGoogle";
+import LoginWithGithubButton from "./loginWithGithub";
+import LoginWithGoogleButton from "./loginWithGoogle";
 
 import { z } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
 import Loading from "./svg/loading";
 
-export default function Form() {
+export default function AuthForm() {
   const [email, setEmail] = useState("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +47,7 @@ export default function Form() {
         email: email,
         callbackUrl: searchParams.get("callback") || "/sheet",
       });
-      router.push("/register-or-login/verify-request");
+      router.push("/login/verify");
     } catch (err) {
       const error = err as Error;
       console.log(error.message);
@@ -62,7 +62,10 @@ export default function Form() {
 
   return (
     <div className="w-[100vw] sm:w-[100%]">
-      <div className="flex sm:w-[400px] w-[95%] flex-col m-2 gap-2">
+      <div className="flex sm:w-[400px] w-[95%] flex-col m-auto gap-2">
+        <h1 className="text-center font-bold text-2xl mb-6 text-red-500">
+          Welcome To Striver Sheet
+        </h1>
         <Input
           className="w-[100%] dark:border-gray-500"
           disabled={isLoading}
@@ -78,13 +81,13 @@ export default function Form() {
           {type === "gmail" && isLoading ? <Loading /> : null}
           <p className="pl-2">Send Verification Mail</p>
         </Button>
-        <LogInWithGoogleButton
+        <LoginWithGoogleButton
           isLoading={isLoading}
           setIsLoading={setIsLoading}
           type={type}
           setType={setType}
         />
-        <LogInWithGithubButton
+        <LoginWithGithubButton
           isLoading={isLoading}
           setIsLoading={setIsLoading}
           type={type}

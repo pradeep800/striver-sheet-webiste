@@ -12,7 +12,7 @@ export async function BuyProSubscription() {
   const session = await getServerSession(authOption);
 
   if (!session || !session?.user || !session.user?.email) {
-    redirect("register-or-login?callback=%2Fpricing");
+    redirect("login?callback=%2Fpricing");
   }
   if (session.user.role === "PROUSER") {
     redirect("/billing");

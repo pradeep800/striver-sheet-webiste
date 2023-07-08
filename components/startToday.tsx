@@ -53,7 +53,7 @@ export default function StartToday() {
           questions with videos, curated for DSA interviews.
         </div>
         <div className="flex justify-center pt-4 w-[100%]">
-          <Link href="/register-or-login">
+          <Link href="/login">
             <Button className=" p-3 text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-slate-300 dark:hover:text-slate-400 dark:text-white">
               Start Today
             </Button>

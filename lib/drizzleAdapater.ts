@@ -4,9 +4,46 @@ import { type MySql2Database } from "drizzle-orm/mysql2";
 
 import { accounts, sessions, users, verificationTokens } from "@/lib/db/schema";
 import { db } from "@/lib/db/index";
+function generateRandomString(length: number) {
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789-";
+  let randomString = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomString += characters[randomIndex];
+  }
+
+  return randomString;
+}
+
+async function generateUniqueUsername(length: number) {
+  let username = generateRandomString(length);
+  let alreadyThere = (
+    await db
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.userName, username))
+      .limit(1)
+  ).length;
+  while (alreadyThere >= 1) {
+    username = generateRandomString(length);
+    alreadyThere = (
+      await db
+        .select({ id: users.id })
+        .from(users)
+        .where(eq(users.userName, username))
+        .limit(1)
+    ).length;
+  }
+
+  return username;
+}
+
 export function DrizzleAdapter(): Adapter {
   return {
     async createUser(userData) {
+      const userName = await generateUniqueUsername(15);
+      console.log(userName);
       await db.insert(users).values({
         id: crypto.randomUUID(),
         email: userData.email,
@@ -14,7 +51,7 @@ export function DrizzleAdapter(): Adapter {
         name: userData.name,
         image: userData.image,
         striver_sheet_id_30_days: crypto.randomUUID(),
-        userName: crypto.randomUUID(),
+        userName: userName,
       });
       const rows = await db
         .select()

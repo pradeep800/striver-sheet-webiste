@@ -27,6 +27,7 @@ import { debounce } from "@/lib/utils";
 import { checkUserNameExists } from "@/server-action/checkUserNameExists";
 import { useRouter } from "next/navigation";
 import { ChangeProfileType } from "@/server-action/zodType/changeProfileSchema";
+import { useSession } from "next-auth/react";
 type Props = {
   userName: string;
   description: string | null;
@@ -50,7 +51,7 @@ export default function UDFrom({
   const [isPresentInDb, setIsPresentInDb] = useState(false);
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
-  const [firstTime, setFirstTime] = useState(false);
+  const { update } = useSession();
   const checkName = useCallback(
     debounce(async (userName: string) => {
       setChecking(true);
@@ -72,6 +73,8 @@ export default function UDFrom({
       });
       setProfileUrl(`https://dsa27.vercel.app/${value.userName}`);
       setCopyUrl(false);
+
+      await update();
       startTransition(() => {
         router.refresh();
       });

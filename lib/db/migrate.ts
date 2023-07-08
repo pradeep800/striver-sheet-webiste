@@ -14,6 +14,7 @@ const runMigrate = async () => {
 
   const connection = connect({
     url: process.env.DATABASE_URL,
+    
     fetch,
   });
 

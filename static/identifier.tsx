@@ -7,7 +7,7 @@ export const identifiers = [
   "billing",
   "about",
   "feedback",
-  "register-or-login",
+  "login",
   "countinglinks",
   "sheet",
 ];

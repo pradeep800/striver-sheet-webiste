@@ -4,7 +4,7 @@ import Hamburger from "./svg/hamburger";
 import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
 import { usePathname } from "next/navigation";
-import LogIn from "./loginButton";
+import Login from "./loginButton";
 import UserAvatar from "./userAvatar";
 import MobileNav from "./mobileNav";
 import MainNav from "./mainNav";
@@ -48,7 +48,7 @@ export default function NavBar({ user }: UserProps) {
         oneTimeClickToHamburger={oneTimeClickToHamburger}
         user={user}
       />
-      {!user ? <LogIn /> : <UserAvatar user={user} />}
+      {!user ? <Login /> : <UserAvatar user={user} />}
       <div className=" md:hidden isolate z-[1]">
         <Hamburger
           oneTimeClickToHamburger={oneTimeClickToHamburger}

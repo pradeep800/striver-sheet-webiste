@@ -13,7 +13,7 @@ import { eq } from "drizzle-orm";
 
 export const authOption: NextAuthOptions = {
   adapter: DrizzleAdapter(),
-  pages: { signIn: "/register-or-login", error: "/register-or-login/error" },
+  pages: { signIn: "/login", error: "/login/error" },
   session: { strategy: "jwt" },
   providers: [
     GithubProvider({
@@ -76,25 +76,41 @@ export const authOption: NextAuthOptions = {
           ...session.user,
           role: token.role,
           id: token.id,
+          userName: token.userName,
         },
       };
     },
-    //user only will be present when we first Login
+    //user only will be present when we first login
     jwt: async ({ token, user, trigger }) => {
       //when you trigger update it will check role and then update the token accordingly
       if (trigger === "update") {
-        const [{ role, name, image }] = await db
-          .select({ role: users.role, image: users.image, name: users.name })
+        const [{ role, name, image, userName }] = await db
+          .select({
+            role: users.role,
+            image: users.image,
+            name: users.name,
+            userName: users.userName,
+          })
           .from(users)
           .where(eq(users.id, token.id));
         token.picture = image;
         token.name = name;
         token.role = role;
+        token.userName = userName;
         return token;
       }
-      const User = user as { role: "PROUSER" | "USER" | "ADMIN"; id: string };
+      const User = user as {
+        role: "PROUSER" | "USER" | "ADMIN";
+        id: string;
+        userName: string;
+      };
       if (User) {
-        return { ...token, role: User.role, id: User.id };
+        return {
+          ...token,
+          role: User.role,
+          id: User.id,
+          userName: User.userName,
+        };
       }
       return token;
     },

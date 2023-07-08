@@ -6,7 +6,7 @@ export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req });
     const isAuth = !!token;
-    const isAuthPage = req.nextUrl.pathname.startsWith("/register-or-login");
+    const isAuthPage = req.nextUrl.pathname.startsWith("/login");
     if (isAuthPage) {
       if (isAuth) {
         return NextResponse.redirect(new URL("/sheet", req.url));
@@ -28,10 +28,7 @@ export default withAuth(
       }
       if (callback !== "/") {
         return NextResponse.redirect(
-          new URL(
-            `/register-or-login?callback=${encodeURIComponent(callback)}`,
-            req.url
-          )
+          new URL(`/login?callback=${encodeURIComponent(callback)}`, req.url)
         );
       }
     }
@@ -46,11 +43,5 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: [
-    "/sheet/:path*",
-    "/register-or-login/:path*",
-    "/",
-    "/feedback",
-    "/notes/:path*",
-  ],
+  matcher: ["/sheet/:path*", "/", "/feedback", "/notes/:path*"],
 };

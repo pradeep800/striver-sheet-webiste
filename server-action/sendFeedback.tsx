@@ -9,7 +9,7 @@ import { feedbacks } from "@/lib/db/schema";
 export const sendFeedback = zact(feedBackSchema)(async (input) => {
   const session = await getServerSession(authOption);
   if (!session || !session.user) {
-    throw new Error("Please Login");
+    throw new Error("Please login");
   }
   try {
     await db.insert(feedbacks).values({
