@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/removeProSubscription",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

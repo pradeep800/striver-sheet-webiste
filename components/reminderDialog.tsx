@@ -106,6 +106,7 @@ export default function ReminderDialog({
                         <FormLabel className="">Send Email Reminder</FormLabel>
                         <FormControl>
                           <Switch
+                            className=""
                             checked={field.value}
                             onCheckedChange={field.onChange}
                             aria-readonly
@@ -124,7 +125,12 @@ export default function ReminderDialog({
                   >
                     Cancel
                   </AlertDialogCancel>
-                  <AlertDialogAction type="submit">Save</AlertDialogAction>
+                  <AlertDialogAction
+                    className="bg-red-500 hover:bg-red-400"
+                    type="submit"
+                  >
+                    Save
+                  </AlertDialogAction>
                 </div>
               </form>
             </Form>

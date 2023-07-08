@@ -47,7 +47,6 @@ export default function QuestionLinks({
   ) {
     e.stopPropagation();
   }
-  console.log("questoin", reminderClicked);
 
   return (
     <>

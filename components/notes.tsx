@@ -17,7 +17,6 @@ type Props = {
 };
 
 export default function Notes({ questionInfo }: Props) {
-  const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [didSomethingChange, setDidSomethingChange] = useState(false);
@@ -31,6 +30,8 @@ export default function Notes({ questionInfo }: Props) {
       },
     ]
   );
+  const [isEditModeOn, setIsEditModeOn] = useState(false);
+
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {
       event.returnValue = "There are unsaved changes. Leave now?";

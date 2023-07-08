@@ -76,7 +76,7 @@ export default function Form() {
           onClick={SignIn}
         >
           {type === "gmail" && isLoading ? <Loading /> : null}
-          <p className="pl-2"> SignIn /LogIn</p>
+          <p className="pl-2">Send Verification Mail</p>
         </Button>
         <LogInWithGoogleButton
           isLoading={isLoading}

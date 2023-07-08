@@ -31,7 +31,6 @@ export default function Editor({ data, setData, isEditModeOn }: Props) {
       autofocus: true,
 
       placeholder: "You can type your notes here...",
-
       onReady() {
         ref.current = editor;
       },

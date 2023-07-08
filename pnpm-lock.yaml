@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.8.0
     version: 2.8.0
   '@editorjs/editorjs':
-    specifier: ^2.27.0
-    version: 2.27.0
+    specifier: ^2.27.2
+    version: 2.27.2
   '@editorjs/header':
     specifier: ^2.7.0
     version: 2.7.0
@@ -289,8 +289,8 @@ packages:
       '@codexteam/icons': 0.0.5
     dev: false
 
-  /@editorjs/editorjs@2.27.0:
-    resolution: {integrity: sha512-XyPnvu61Ynk4k7R/1gVYUJjrtuf9Tf0A+CZuvp2suW4z5TNHqNjBa9vRdr3ngHzhNSoZvgstrOO3zCVqVTezPg==}
+  /@editorjs/editorjs@2.27.2:
+    resolution: {integrity: sha512-k4LavGJijAP0F1wATQ0fTo10xtBSny9z6yWaP3ANqqtyKr+pBMind5NQzckqYI0yPp31GObpcS/HsFGsFOGcug==}
     dev: false
 
   /@editorjs/header@2.7.0:
