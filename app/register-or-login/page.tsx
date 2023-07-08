@@ -32,9 +32,9 @@ export default function RegisterPage() {
 
   const callbackQuery = decodeURIComponent(search.get("callback") || "");
   return (
-    <div className="w-[100%] sm:h-[100vh] h-[80vh] flex justify-center items-center ">
+    <div className="">
       <Link
-        className="absolute left-[30px] top-[20px] font-semibold cursor-pointer"
+        className="fixed left-4 top-4 font-semibold cursor-pointer"
         href={shouldUseCallback ? callbackQuery : "/"}
       >
         <Back />
