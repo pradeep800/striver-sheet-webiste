@@ -1,3 +1,4 @@
+import { signOutAction } from "@/app/example/seraction";
 import MainSetting from "@/components/mainSettings";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -16,8 +17,9 @@ export default async function Home() {
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
+
   if (!user) {
-    await signOut();
+    await signOutAction();
     redirect("/login");
   }
   return <MainSetting user={user} />;

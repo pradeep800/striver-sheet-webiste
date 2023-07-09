@@ -18,6 +18,7 @@ type Props = {
 };
 export default async function ProfilePage({ params }: Props) {
   const { username } = params;
+
   const user = await db
     .select({
       sheet_id: users.striver_sheet_id_30_days,
@@ -28,8 +29,8 @@ export default async function ProfilePage({ params }: Props) {
     .from(users)
     .where(eq(users.userName, username));
 
-  if (user.length == 0) {
-    redirect("/");
+  if (user.length === 0) {
+    throw new Error("Unable to find user");
   }
 
   const currentDate = new Date();

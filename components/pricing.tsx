@@ -17,6 +17,7 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { signOut } from "next-auth/react";
+import { signOutAction } from "@/app/example/seraction";
 export default async function Pricing() {
   const session = await getServerSession(authOption);
   const user = session?.user;
@@ -27,7 +28,7 @@ export default async function Pricing() {
       .from(users)
       .where(eq(users.id, user.id));
     if (!role) {
-      await signOut();
+      await signOutAction();
       redirect("/login");
     }
     if (role == "PROUSER") {

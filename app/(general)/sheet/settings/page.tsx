@@ -1,3 +1,4 @@
+import { signOutAction } from "@/app/example/seraction";
 import DeleteAccount from "@/components/deleteAccount";
 import Billing from "@/components/manageBilling";
 import ShouldSendEmailSetting from "@/components/shouldSendEmailSetting";
@@ -19,7 +20,7 @@ export default async function SettingPage() {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!userInfo) {
-    await signOut();
+    await signOutAction();
     redirect("/login");
   }
   const user = session.user;

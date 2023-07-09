@@ -30,6 +30,7 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
         .select({ name: users.userName })
         .from(users)
         .where(eq(users.userName, userName));
+
       if (data.length) {
         if (userInfo.name == userName) {
           return false;

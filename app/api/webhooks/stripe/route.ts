@@ -35,7 +35,9 @@ const webhookHandlers: WebhookHandlers = {
         .select({ countOfProfileChange: users.leftProfileChanges })
         .from(users)
         .where(eq(users.id, sessionObject.metadata?.userId as string));
-
+      if (!user) {
+        throw new Error("unable to find user inside webhook");
+      }
       await db
         .update(users)
         .set({

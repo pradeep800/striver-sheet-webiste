@@ -9,7 +9,7 @@ import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { questionInfoForDay } from "../page";
-import { signOut } from "next-auth/react";
+import { signOutAction } from "@/app/example/seraction";
 
 type Props = {
   params: { [key: string]: string };
@@ -48,7 +48,7 @@ export default async function QuestionPage({ params }: Props) {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!userInfo) {
-    await signOut();
+    await signOutAction();
     redirect("/login");
   }
   const [questionInfo] = await db

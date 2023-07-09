@@ -9,6 +9,7 @@ import { ssQuestions } from "@/static/striverSheet";
 import Notes from "@/components/notes";
 import NotesModal from "./notesModal";
 import { signOut } from "next-auth/react";
+import { signOutAction } from "@/app/example/seraction";
 type Props = {
   params: Record<string, string>;
   type: "modal" | "real";
@@ -32,10 +33,12 @@ export default async function MainNotes({ params, type }: Props) {
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
+
   if (!userInfo) {
-    await signOut();
+    await signOutAction();
     redirect("/login");
   }
+
   const [databaseQuestionInfo] = await db
     .select({
       number: questions.number,

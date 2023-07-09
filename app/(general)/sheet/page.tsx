@@ -1,3 +1,4 @@
+import { signOutAction } from "@/app/example/seraction";
 import MainCard from "@/components/mainCard";
 import TopicCard from "@/components/topicCard";
 import { authOption } from "@/lib/auth";
@@ -6,7 +7,6 @@ import { questions, users } from "@/lib/db/schema";
 import { ssCount, ssTopics } from "@/static/striverSheet";
 import { and, asc, eq, sql } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 export type CountType = {
   count: unknown;
@@ -22,11 +22,12 @@ export default async function Home() {
     .select({ striver_sheet_id_30_days: users.striver_sheet_id_30_days })
     .from(users)
     .where(eq(users.id, session.user.id));
-  if (!uUser) {
-    await signOut();
+
+  const [user] = uUser;
+  if (!user) {
+    await signOutAction();
     redirect("/login");
   }
-  const [user] = uUser;
   const solvedQuestionsCount = await db
     .select({
       count: sql`count(${questions.id})`,

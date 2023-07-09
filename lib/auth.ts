@@ -93,6 +93,7 @@ export const authOption: NextAuthOptions = {
           })
           .from(users)
           .where(eq(users.id, token.id));
+
         token.picture = image;
         token.name = name;
         token.role = role;

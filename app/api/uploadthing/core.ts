@@ -19,6 +19,9 @@ export const ourFileRouter = {
         .from(users)
         .where(eq(users.id, user.id));
 
+      if (!userInfo) {
+        throw new Error("unable to find user");
+      }
       if (!userInfo.leftProfileChanges) {
         throw new Error("profile Change Count Is 0");
       }
