@@ -1,4 +1,3 @@
-import { signOutAction } from "@/app/example/seraction";
 import MainCard from "@/components/mainCard";
 import TopicCard from "@/components/topicCard";
 import { authOption } from "@/lib/auth";
@@ -25,8 +24,7 @@ export default async function Home() {
 
   const [user] = uUser;
   if (!user) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
   const solvedQuestionsCount = await db
     .select({

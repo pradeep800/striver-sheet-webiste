@@ -1,4 +1,3 @@
-import { signOutAction } from "@/app/example/seraction";
 import DeleteAccount from "@/components/deleteAccount";
 import Billing from "@/components/manageBilling";
 import ShouldSendEmailSetting from "@/components/shouldSendEmailSetting";
@@ -20,8 +19,7 @@ export default async function SettingPage() {
     .where(eq(users.id, session.user.id));
 
   if (!userInfo) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
 
   const user = session.user;

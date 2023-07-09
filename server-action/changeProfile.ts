@@ -9,7 +9,6 @@ import { zact } from "zact/server";
 import { z } from "zod";
 import { ChangeProfileType } from "./zodType/changeProfileSchema";
 import { isIdentifier } from "@/lib/isIdentifier";
-import { signOutAction } from "@/app/example/seraction";
 import { redirect } from "next/navigation";
 
 export const ChangeProfile = zact(ChangeProfileType)(
@@ -34,8 +33,7 @@ export const ChangeProfile = zact(ChangeProfileType)(
       .from(users)
       .where(eq(users.id, session.user.id));
     if (!userInfo) {
-      signOutAction();
-      redirect("/login");
+      throw new Error("account deleted");
     }
     if (!userInfo.leftProfileChanges) {
       throw new Error("Profile Change Count Is 0");

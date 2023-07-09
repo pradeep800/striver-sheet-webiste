@@ -1,5 +1,4 @@
 "use server";
-import { signOutAction } from "@/app/example/seraction";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
@@ -30,8 +29,7 @@ export const saveQuestionInfo = zact(
     .where(eq(users.id, session.user.id));
 
   if (!user) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
 
   const question = await db

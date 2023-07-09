@@ -1,6 +1,4 @@
 "use server";
-import { signOutAction } from "@/app/example/seraction";
-///server action
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
@@ -23,8 +21,7 @@ export default async function ManageSubscription() {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!user) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
   if (user.role === "USER" || !user.customerId) {
     redirect(

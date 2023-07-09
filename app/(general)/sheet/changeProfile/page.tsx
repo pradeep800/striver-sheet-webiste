@@ -1,4 +1,3 @@
-import { signOutAction } from "@/app/example/seraction";
 import MainSetting from "@/components/mainSettings";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -18,8 +17,7 @@ export default async function Home() {
     .where(eq(users.id, session.user.id));
 
   if (!user) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
   return <MainSetting user={user} />;
 }

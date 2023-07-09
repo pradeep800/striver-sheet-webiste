@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import ManageSubscription from "@/server-action/ManagingSubscription";
-import { SessionUser } from "@/types/next-auth";
 
 export default async function Billing() {
   return (

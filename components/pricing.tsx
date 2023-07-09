@@ -16,7 +16,6 @@ import { users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
-import { signOutAction } from "@/app/example/seraction";
 export default async function Pricing() {
   const session = await getServerSession(authOption);
   const sessionUser = session?.user;
@@ -27,8 +26,7 @@ export default async function Pricing() {
       .from(users)
       .where(eq(users.id, sessionUser.id));
     if (!user.role) {
-      await signOutAction();
-      redirect("/login");
+      throw new Error("account deleted");
     }
     if (user.role == "PROUSER") {
       redirect("/sheet");

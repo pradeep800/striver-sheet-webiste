@@ -9,7 +9,6 @@ import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { questionInfoForDay } from "../page";
-import { signOutAction } from "@/app/example/seraction";
 
 type Props = {
   params: { [key: string]: string };
@@ -48,8 +47,7 @@ export default async function QuestionPage({ params }: Props) {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!userInfo) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
   const [questionInfo] = await db
     .select()

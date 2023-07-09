@@ -1,4 +1,3 @@
-import { signOutAction } from "@/app/example/seraction";
 import MainCard from "@/components/mainCard";
 import MainDay from "@/components/mainDay";
 import QuestionCard from "@/components/questionCard";
@@ -43,8 +42,7 @@ export default async function DayPage({ params }: Props) {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!user) {
-    await signOutAction();
-    redirect("/login");
+    throw new Error("account deleted");
   }
   const topicTitle = ssTopics[topicNumber - 1];
   const databaseQuestionSet = await db
