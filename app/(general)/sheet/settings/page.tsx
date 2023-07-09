@@ -7,7 +7,6 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 export default async function SettingPage() {
@@ -19,10 +18,12 @@ export default async function SettingPage() {
     .select({ emailReminder: users.email_reminders })
     .from(users)
     .where(eq(users.id, session.user.id));
+
   if (!userInfo) {
     await signOutAction();
     redirect("/login");
   }
+
   const user = session.user;
   return (
     <div className="max-w-[800px] mx-auto">

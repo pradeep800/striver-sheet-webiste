@@ -16,7 +16,6 @@ import { users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
-import { signOut } from "next-auth/react";
 import { signOutAction } from "@/app/example/seraction";
 export default async function Pricing() {
   const session = await getServerSession(authOption);

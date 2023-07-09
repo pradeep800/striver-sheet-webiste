@@ -8,7 +8,6 @@ import { and, eq } from "drizzle-orm";
 import { ssQuestions } from "@/static/striverSheet";
 import Notes from "@/components/notes";
 import NotesModal from "./notesModal";
-import { signOut } from "next-auth/react";
 import { signOutAction } from "@/app/example/seraction";
 type Props = {
   params: Record<string, string>;
