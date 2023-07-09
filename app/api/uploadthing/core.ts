@@ -18,6 +18,7 @@ export const ourFileRouter = {
         .select({ leftProfileChanges: users.leftProfileChanges })
         .from(users)
         .where(eq(users.id, user.id));
+
       if (!userInfo.leftProfileChanges) {
         throw new Error("profile Change Count Is 0");
       }

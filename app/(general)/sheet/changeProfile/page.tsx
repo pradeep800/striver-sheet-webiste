@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
@@ -15,6 +16,9 @@ export default async function Home() {
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
-
+  if (!user) {
+    await signOut();
+    redirect("/login");
+  }
   return <MainSetting user={user} />;
 }

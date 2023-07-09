@@ -6,6 +6,7 @@ import { questions, users } from "@/lib/db/schema";
 import { ssCount, ssTopics } from "@/static/striverSheet";
 import { and, asc, eq, sql } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 export type CountType = {
   count: unknown;
@@ -18,12 +19,12 @@ export default async function Home() {
     redirect("/");
   }
   const uUser = await db
-    .select()
+    .select({ striver_sheet_id_30_days: users.striver_sheet_id_30_days })
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!uUser) {
-    //not going to happen but for typescript
-    redirect("/");
+    await signOut();
+    redirect("/login");
   }
   const [user] = uUser;
   const solvedQuestionsCount = await db

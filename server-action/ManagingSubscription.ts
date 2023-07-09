@@ -7,6 +7,7 @@ import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
 
@@ -21,6 +22,10 @@ export default async function ManageSubscription() {
     .select({ role: users.role, customerId: users.stripe_customer_id })
     .from(users)
     .where(eq(users.id, session.user.id));
+  if (!user) {
+    await signOut();
+    redirect("/login");
+  }
   if (user.role === "USER" || !user.customerId) {
     redirect(
       "/sheet/settings?error=Please first buy subscription after you can manage it"

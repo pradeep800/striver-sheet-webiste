@@ -5,6 +5,7 @@ import { questions, users } from "@/lib/db/schema";
 import { ssQuestions } from "@/static/striverSheet";
 import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { zact } from "zact/server";
@@ -27,6 +28,10 @@ export const saveQuestionInfo = zact(
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
+  if (!user) {
+    await signOut();
+    redirect("/login");
+  }
   const question = await db
     .select()
     .from(questions)

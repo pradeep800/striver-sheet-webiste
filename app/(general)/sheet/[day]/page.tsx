@@ -7,6 +7,7 @@ import { questions, users } from "@/lib/db/schema";
 import { ssQuestions, ssTopics } from "@/static/striverSheet";
 import { and, asc, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -41,6 +42,10 @@ export default async function DayPage({ params }: Props) {
     .select()
     .from(users)
     .where(eq(users.id, session.user.id));
+  if (!user) {
+    await signOut();
+    redirect("/login");
+  }
   const topicTitle = ssTopics[topicNumber - 1];
   const databaseQuestionSet = await db
     .select()

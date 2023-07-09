@@ -74,6 +74,7 @@ export const users = mysqlTable(
     userName: varchar("user_name", { length: 15 }).notNull(),
     leftProfileChanges: int("left_profile_changes").notNull().default(2),
     description: varchar("description", { length: 205 }),
+    isBan: boolean("ban_user").default(false),
 
     email_reminders: boolean("email_reminders").default(true),
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),

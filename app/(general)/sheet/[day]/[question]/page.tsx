@@ -9,6 +9,7 @@ import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { questionInfoForDay } from "../page";
+import { signOut } from "next-auth/react";
 
 type Props = {
   params: { [key: string]: string };
@@ -43,9 +44,13 @@ export default async function QuestionPage({ params }: Props) {
     redirect("/");
   }
   const [userInfo] = await db
-    .select()
+    .select({ striver_sheet_id_30_days: users.striver_sheet_id_30_days })
     .from(users)
     .where(eq(users.id, session.user.id));
+  if (!userInfo) {
+    await signOut();
+    redirect("/login");
+  }
   const [questionInfo] = await db
     .select()
     .from(questions)

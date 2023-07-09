@@ -35,9 +35,8 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
           return false;
         } //User is Sending Request for His Name
         return true;
-      } else {
-        return false;
       }
+      return false;
     }
   }
 );
