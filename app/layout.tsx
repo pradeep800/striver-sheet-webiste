@@ -6,11 +6,21 @@ import { NextThemeProvider } from "@/components/theme-provider";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
 const asap = Asap({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Striver's Sheet",
   icons: {
     icon: "/ss.png",
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://striversheet.pradeepbisht.com/opengraph-image.jpeg",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [`https://striversheet.pradeepbisht.com/opengraph-image.jpeg`],
+    creator: "@sadmann7",
   },
 };
 

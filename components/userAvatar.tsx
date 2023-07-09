@@ -57,9 +57,9 @@ export default function UserAvatar({ user }: UserProps) {
             )}
           </div>
           <DropdownMenuSeparator />
-          <Link href={"/sheet/settings"}>
-            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
-              settings
+          <Link href={`/${user.userName}`}>
+            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500  ">
+              Profile
             </DropdownMenuItem>
           </Link>
           <Link href={"/sheet/changeProfile"}>
@@ -67,12 +67,12 @@ export default function UserAvatar({ user }: UserProps) {
               change profile
             </DropdownMenuItem>
           </Link>
-
-          <Link href={`/${user.userName}`}>
-            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500  ">
-              Profile
+          <Link href={"/sheet/settings"}>
+            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
+              settings
             </DropdownMenuItem>
           </Link>
+
           <DropdownMenuItem
             className="hover:bg-red-500 border-3 border-red-500 p-0 "
             onClick={() => {

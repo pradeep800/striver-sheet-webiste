@@ -14,7 +14,7 @@ export default function Experience() {
   useEffect(() => {});
   return (
     <>
-      <Float rotationIntensity={0.4}>
+      <Float rotationIntensity={0.6}>
         <PresentationControls
           global
           config={{ mass: 2, tension: 500 }}
@@ -37,9 +37,9 @@ export default function Experience() {
             return (
               <mesh
                 position={[
-                  (Math.random() - 0.5) * 8,
-                  (Math.random() - 0.5) * 8,
-                  (Math.random() - 0.5) * 8,
+                  (Math.random() - 0.5) * 10,
+                  (Math.random() - 0.5) * 10,
+                  (Math.random() - 0.5) * 10,
                 ]}
                 scale={0.1 + Math.random() * 0.1}
                 key={i}

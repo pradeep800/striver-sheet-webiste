@@ -36,7 +36,7 @@ export default function QuestionCard({
   return (
     <div
       className={cn([
-        "mt-3  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-500 dark:hover:bg-gray-400 border-2 border-slate-500 ",
+        "mt-3  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-500 dark:hover:bg-gray-400 border-2 border-slate-500 dark:border-slate-600 ",
         questionInfo.youTubeLink ? "cursor-pointer" : "cursor-not-allowed",
         optimisticQuestion.solved == "SOLVED" &&
           "bg-green-200 dark:bg-green-200 hover:bg-green-100 dark:text-black dark:hover:bg-green-100 border-green-500 border-2",
