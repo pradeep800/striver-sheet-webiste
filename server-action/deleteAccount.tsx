@@ -24,7 +24,6 @@ export const deleteAccount = zact()(async () => {
       .where(eq(schema.users.id, userId))
       .limit(1);
     const sheetId = userInfo.sheeId as string;
-    console.log(sheetId);
     await db.transaction(async (tx) => {
       try {
         //delete all users

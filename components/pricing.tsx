@@ -20,25 +20,25 @@ import { signOut } from "next-auth/react";
 import { signOutAction } from "@/app/example/seraction";
 export default async function Pricing() {
   const session = await getServerSession(authOption);
-  const user = session?.user;
+  const sessionUser = session?.user;
 
-  if (user) {
-    const [{ role }] = await db
+  if (sessionUser) {
+    const [user] = await db
       .select({ role: users.role })
       .from(users)
-      .where(eq(users.id, user.id));
-    if (!role) {
+      .where(eq(users.id, sessionUser.id));
+    if (!user.role) {
       await signOutAction();
       redirect("/login");
     }
-    if (role == "PROUSER") {
-      redirect("/settings");
+    if (user.role == "PROUSER") {
+      redirect("/sheet");
     }
   }
 
   return (
     <div className="min-h-[80vh] flex flex-wrap   justify-center items-center gap-5  pt-3">
-      {!user && (
+      {!sessionUser && (
         <Card className="min-h-[500px]  xs:w-[400px] flex flex-col justify-center basis-[400px]  ">
           <CardHeader>
             <CardTitle>Free Plan</CardTitle>
