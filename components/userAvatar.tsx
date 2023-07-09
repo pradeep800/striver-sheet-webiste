@@ -21,7 +21,6 @@ interface UserProps {
   user: SessionUser;
 }
 export default function UserAvatar({ user }: UserProps) {
-  console.log(user.userName);
   return (
     <div className="flex md:mr-0 mr-3">
       <DropdownMenu>
@@ -60,7 +59,12 @@ export default function UserAvatar({ user }: UserProps) {
           <DropdownMenuSeparator />
           <Link href={"/sheet/settings"}>
             <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
-              Settings
+              settings
+            </DropdownMenuItem>
+          </Link>
+          <Link href={"/sheet/changeProfile"}>
+            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
+              change profile
             </DropdownMenuItem>
           </Link>
 

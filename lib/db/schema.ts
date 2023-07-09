@@ -131,17 +131,18 @@ export const reminders = mysqlTable(
   "reminders",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
+
     created_at: timestamp("created_at").defaultNow(),
     due_date: datetime("due_time").notNull(),
     should_send_mail: boolean("should_send_mail"),
     mail_sended: boolean("mail_sended").default(false),
-    creator_id: varchar("creator_id", {
+    user_id: varchar("user_id", {
       length: 255,
     }).notNull(),
   },
   (reminder) => ({
     ReminderCreatorIdIndex: index("reminder_creator_id_index").on(
-      reminder.creator_id
+      reminder.user_id
     ),
   })
 );

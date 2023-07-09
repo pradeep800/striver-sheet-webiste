@@ -63,7 +63,7 @@ export default function AuthForm() {
   return (
     <div className="w-[100vw] sm:w-[100%]">
       <div className="flex sm:w-[400px] w-[95%] flex-col m-auto gap-2">
-        <h1 className="text-center font-bold text-2xl mb-6 text-red-500">
+        <h1 className="text-center font-bold text-2xl mb-4 text-red-500">
           Welcome To Striver Sheet
         </h1>
         <Input
@@ -79,7 +79,7 @@ export default function AuthForm() {
           onClick={SignIn}
         >
           {type === "gmail" && isLoading ? <Loading /> : null}
-          <p className="pl-2">Send Verification Mail</p>
+          <p className="pl-2 text-white">Send Verification Mail</p>
         </Button>
         <LoginWithGoogleButton
           isLoading={isLoading}

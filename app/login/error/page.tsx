@@ -23,7 +23,7 @@ export default function VerifyRequest() {
               email
             </CardDescription>
           </div>
-          <Button className="bg-red-500 hover:bg-red-400">
+          <Button className="bg-red-500 hover:bg-red-400 text-white">
             <Link href={"/"}>Go To Home</Link>
           </Button>
         </CardContent>

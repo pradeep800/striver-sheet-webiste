@@ -19,7 +19,6 @@ type Props = {
 export default function Notes({ questionInfo }: Props) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [didSomethingChange, setDidSomethingChange] = useState(false);
   const [data, setData] = useState<any>(
     questionInfo?.notes_content ?? [
       {
@@ -30,7 +29,7 @@ export default function Notes({ questionInfo }: Props) {
       },
     ]
   );
-  const [isEditModeOn, setIsEditModeOn] = useState(false);
+  const [isEditModeOn, setIsEditModeOn] = useState(true);
 
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {

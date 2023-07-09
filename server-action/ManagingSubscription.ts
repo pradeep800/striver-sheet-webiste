@@ -12,7 +12,7 @@ import Stripe from "stripe";
 
 export default async function ManageSubscription() {
   const session = await getServerSession(authOption);
-  const BillingURL = absoluteUrl("/billing");
+  const settingUrl = absoluteUrl("/sheet/settings");
   if (!session) {
     redirect("/?error=please login");
   }
@@ -23,19 +23,19 @@ export default async function ManageSubscription() {
     .where(eq(users.id, session.user.id));
   if (user.role === "USER" || !user.customerId) {
     redirect(
-      "/pricing?error=Please first buy subscription after you can manage it"
+      "/sheet/settings?error=Please first buy subscription after you can manage it"
     );
   }
   let stripeSession!: Stripe.Response<Stripe.BillingPortal.Session>;
   try {
     stripeSession = await stripe.billingPortal.sessions.create({
       customer: user.customerId,
-      return_url: BillingURL,
+      return_url: settingUrl,
     });
   } catch (err) {
     const error = err as Error;
     console.log(error.message);
-    redirect("/price?error=Server Error");
+    redirect("/sheet/settings?error=Server Error");
   }
 
   redirect(stripeSession.url);

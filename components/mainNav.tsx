@@ -11,8 +11,8 @@ type bigScreenProps = {
 export default function MainNav({ activeNavLink, user }: bigScreenProps) {
   const { theme } = useTheme();
   if (user && user.role == "PROUSER") {
-    NAVBARITEMS[1].url = "/billing";
-    NAVBARITEMS[1].name = "Billing";
+   NAVBARITEMS[1].url = "/reminders";
+   NAVBARITEMS[1].name = "Reminders";
   } else {
     NAVBARITEMS[1].url = "/pricing";
     NAVBARITEMS[1].name = "Pricing";

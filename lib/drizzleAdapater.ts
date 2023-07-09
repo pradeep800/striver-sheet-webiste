@@ -43,7 +43,6 @@ export function DrizzleAdapter(): Adapter {
   return {
     async createUser(userData) {
       const userName = await generateUniqueUsername(15);
-      console.log(userName);
       await db.insert(users).values({
         id: crypto.randomUUID(),
         email: userData.email,

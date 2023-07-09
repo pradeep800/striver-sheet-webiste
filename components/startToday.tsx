@@ -47,7 +47,7 @@ export default function StartToday() {
 
       <div className="">
         <div
-          className={`text-lg font-bold text-center mt-3 ${poppins.className} tracking-wider`}
+          className={` font-medium text-xl text-center mt-3 ${poppins.className} `}
         >
           Level up your interview skills in 27 days with 191 frequently asked
           questions with videos, curated for DSA interviews.

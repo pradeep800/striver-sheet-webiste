@@ -7,7 +7,7 @@ import { stripe } from "@/lib/stripe";
 import { env } from "@/env.mjs";
 
 export async function BuyProSubscription() {
-  const BillingURL = absoluteUrl("/billing");
+  const BillingURL = absoluteUrl("/sheet/settings");
   const PricingURL = absoluteUrl("/pricing");
   const session = await getServerSession(authOption);
 
@@ -15,7 +15,7 @@ export async function BuyProSubscription() {
     redirect("login?callback=%2Fpricing");
   }
   if (session.user.role === "PROUSER") {
-    redirect("/billing");
+    redirect("/sheet/settings");
   }
 
   const stripeSession = await stripe.checkout.sessions.create({

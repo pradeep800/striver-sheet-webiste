@@ -16,14 +16,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOption);
-  if (!session || !session.user) {
-    redirect("/login");
-  }
+  const user = session?.user;
 
   return (
     <Provider>
       <div>
-        <NavBar user={session.user} />
+        <NavBar user={user} />
       </div>
       <ToastRedirect />
       <main className="min-h-[85vh]">{children}</main>

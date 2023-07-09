@@ -27,7 +27,7 @@ export default async function Pricing() {
       .where(eq(users.id, user.id));
 
     if (role == "PROUSER") {
-      redirect("/billing");
+      redirect("/settings");
     }
   }
 

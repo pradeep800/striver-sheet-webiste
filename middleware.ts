@@ -43,5 +43,11 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/sheet/:path*", "/", "/feedback", "/notes/:path*"],
+  matcher: [
+    "/sheet/:path*",
+    "/login/:path*",
+    "/",
+    "/feedback",
+    "/notes/:path*",
+  ],
 };
