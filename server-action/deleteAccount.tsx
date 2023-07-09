@@ -16,11 +16,15 @@ export const deleteAccount = zact()(async () => {
 
   try {
     const [userInfo] = await db
-      .select({ sheeId: schema.users.id, email: schema.users.email })
+      .select({
+        sheeId: schema.users.striver_sheet_id_30_days,
+        email: schema.users.email,
+      })
       .from(schema.users)
       .where(eq(schema.users.id, userId))
       .limit(1);
     const sheetId = userInfo.sheeId as string;
+    console.log(sheetId);
     await db.transaction(async (tx) => {
       try {
         //delete all users

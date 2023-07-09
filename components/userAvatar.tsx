@@ -68,7 +68,7 @@ export default function UserAvatar({ user }: UserProps) {
             </DropdownMenuItem>
           </Link>
 
-          <Link href={user.userName}>
+          <Link href={`/${user.userName}`}>
             <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500  ">
               Profile
             </DropdownMenuItem>

@@ -45,7 +45,7 @@ export default async function Pricing() {
           </CardHeader>
           <CardContent>
             <div>
-              <ListItem data={"Create Upto 150 Words Note Per Question"} />
+              <ListItem data={"Basic primitives for notes"} />
               <ListItem data={"Share Profile Option"} />
               <ListItem
                 data={"Notification For Question Revision (in website)"}
