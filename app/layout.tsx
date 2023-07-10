@@ -20,13 +20,7 @@ export const metadata: Metadata = {
     siteName: "Striver Sheet",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
-    images: [
-      {
-        url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
-        width: 800,
-        height: 500,
-      },
-    ],
+    images: ["https://striversheet.pradeepbisht.com/opengraph-image.jpg"],
     url: "https://striversheet.pradeepbisht.com",
   },
   twitter: {
@@ -34,14 +28,9 @@ export const metadata: Metadata = {
     title: "Striver Sheet",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
-    images: [
-      {
-        url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
-        width: 800,
-        height: 500,
-      },
-    ],
-    creator: "@pradeep14880712",
+    images: ["https://striversheet.pradeepbisht.com/opengraph-image.jpg"],
+
+    creator: "@pradeep8b0",
   },
 };
 export default async function RootLayout({
