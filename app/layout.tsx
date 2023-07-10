@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       {
         url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
         width: 1200,
-        height: 518,
+        height: 600,
       },
     ],
     creator: "@pradeep14880712",
