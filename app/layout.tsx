@@ -18,12 +18,16 @@ export const metadata: Metadata = {
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
     url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
+    title: "Striver Sheet",
   },
   twitter: {
     card: "summary_large_image",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
+
     images: [`https://striversheet.pradeepbisht.com/opengraph-image.jpg`],
+    creator: "Pradeep Bisht",
+    title: "Striver Sheet",
   },
 };
 
