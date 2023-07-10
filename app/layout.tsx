@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
-        width: 1200,
-        height: 518,
+        width: 800,
+        height: 500,
       },
     ],
     url: "https://striversheet.pradeepbisht.com",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
-        width: 1200,
-        height: 600,
+        width: 800,
+        height: 500,
       },
     ],
     creator: "@pradeep14880712",
