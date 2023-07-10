@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     title: "Striver Sheet",
   },
   twitter: {
-    card: "summary_large_image",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
 
@@ -40,9 +39,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-      </head>
+      <head />
       <body className={`${asap.className} scrollbar`}>
         <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextTopLoader />
