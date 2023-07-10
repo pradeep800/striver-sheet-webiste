@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import Login from "./loginButton";
 import UserAvatar from "./userAvatar";
 import MobileNav from "./mobileNav";
-import MainNav from "./mainNav";
+import DesktopNav from "./desktopNav";
 import { SessionUser } from "@/types/next-auth";
 import useUpdateRole from "@/lib/useUpdateRole";
 interface UserProps {
@@ -42,7 +42,7 @@ export default function NavBar({ user }: UserProps) {
       >
         SS
       </Link>
-      <MainNav activeNavLink={activeNavLink} user={user} />
+      <DesktopNav activeNavLink={activeNavLink} user={user} />
       <MobileNav
         activeNavLink={activeNavLink}
         oneTimeClickToHamburger={oneTimeClickToHamburger}

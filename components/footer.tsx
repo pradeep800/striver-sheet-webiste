@@ -1,3 +1,4 @@
+"use client";
 import { MenuSquare } from "lucide-react";
 
 export default function Footer() {

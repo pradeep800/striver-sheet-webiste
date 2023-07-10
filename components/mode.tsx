@@ -2,49 +2,35 @@
 import Image from "next/image";
 import modeImg from "@/public/mode.png";
 import { useTheme } from "next-themes";
-import { debounce, throttling } from "@/lib/utils";
+import { cn, debounce, throttling } from "@/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import clsx from "clsx";
 export default function Mode({ className }: { className?: string }) {
-  const [localStorageTheme, setLocalStorageTheme] = useState(() => {
-    const lTheme = localStorage.getItem("localStorageTheme");
-    if (lTheme) {
-      return lTheme;
-    }
-    const isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    return isLight ? "light" : "dark";
-  });
   const { setTheme, theme } = useTheme();
-  const Click = useCallback(
-    debounce(() => {
-      setTheme(theme === "light" ? "dark" : "light");
-    }, 400),
-    [theme, setTheme]
-  );
-
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    let isLight!: boolean;
-    if (theme === "system") {
-      isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-      setLocalStorageTheme(isLight ? "light" : "dark");
-      return;
-    }
+    setMounted(true);
+  }, []);
 
-    setLocalStorageTheme(theme as string);
-  }, [theme, setTheme]);
+  const onClick = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
+  if (!mounted) {
+    return <div className="w-[60px] h-[10px]"></div>;
+  }
   return (
     <div
-      onClick={Click}
-      className={clsx(" w-[60px] overflow-hidden", className)}
+      onClick={onClick}
+      className={cn(" w-[60px] overflow-hidden", className)}
     >
       <div
         style={{
           transitionTimingFunction: "steps(10)",
         }}
-        className={`leading-none w-[660px] h-[100%]  block overflow-hidden transition-transform ${
-          localStorageTheme === "dark" ? "translate-x-[-93%] " : "translate-x-0"
-        } duration-100`}
+        className={cn(
+          `leading-none w-[660px] h-[100%]  block overflow-hidden transition-transform  duration-100`,
+          theme === "dark" ? "translate-x-[-93%] " : "translate-x-0"
+        )}
       >
         <Image
           className={"leading-[0] block  "}

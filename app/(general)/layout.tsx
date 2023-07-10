@@ -20,15 +20,12 @@ export default async function RootLayout({
 
   return (
     <Provider>
-      <div>
-        <NavBar user={user} />
-      </div>
+      <NavBar user={user} />
       <ToastRedirect />
       <main className="min-h-[85vh]">{children}</main>
       <div className="pt-3">
         <Footer />
       </div>
-
       <Confetti />
     </Provider>
   );
