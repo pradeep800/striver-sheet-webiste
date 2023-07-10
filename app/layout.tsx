@@ -20,7 +20,11 @@ export const metadata: Metadata = {
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
     images: [
-      { url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg" },
+      {
+        url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
+        width: 1200,
+        height: 518,
+      },
     ],
     url: "https://striversheet.pradeepbisht.com",
     title: "Striver Sheet",
@@ -30,7 +34,11 @@ export const metadata: Metadata = {
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
 
     images: [
-      { url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg" },
+      {
+        url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
+        width: 1200,
+        height: 518,
+      },
     ],
     creator: "Pradeep Bisht",
     title: "Striver Sheet",
