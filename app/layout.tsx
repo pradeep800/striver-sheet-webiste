@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     url: "https://striversheet.pradeepbisht.com",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Striver Sheet",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
