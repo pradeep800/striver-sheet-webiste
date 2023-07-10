@@ -1,4 +1,4 @@
-import MainSetting from "@/components/mainSettings";
+import MainProfileChange from "@/components/mainProfileChange";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
@@ -19,5 +19,5 @@ export default async function Home() {
   if (!user) {
     throw new Error("account deleted");
   }
-  return <MainSetting user={user} />;
+  return <MainProfileChange user={user} />;
 }

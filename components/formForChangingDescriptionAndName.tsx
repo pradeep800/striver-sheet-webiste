@@ -71,7 +71,7 @@ export default function UDFrom({
         description: value.description,
         userName: value.userName,
       });
-      setProfileUrl(`https://dsa27.vercel.app/${value.userName}`);
+      setProfileUrl(`https://striversheet.pradeepbisht.com/${value.userName}`);
       setCopyUrl(false);
 
       await update();

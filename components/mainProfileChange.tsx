@@ -17,9 +17,9 @@ import Link from "next/link";
 type Props = {
   user: DbUser;
 };
-export default function MainSetting({ user }: Props) {
+export default function MainProfileChange({ user }: Props) {
   const [profileUrl, setProfileUrl] = useState(
-    `https://dsa27.vercel.app/${user.userName}`
+    `https://striversheet.pradeepbisht.com/${user.userName}`
   );
   const [copyUrl, setCopyUrl] = useState(false);
   const [pending, startTransition] = useTransition();

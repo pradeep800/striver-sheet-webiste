@@ -8,7 +8,10 @@ import NextTopLoader from "nextjs-toploader";
 const asap = Asap({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://striversheet.pradeepbisht.com"),
-  title: "Striver's Sheet",
+  title: {
+    default: "Striver Sheet",
+    template: "%s | Striver Sheet",
+  },
   icons: {
     icon: "/ss.png",
   },
