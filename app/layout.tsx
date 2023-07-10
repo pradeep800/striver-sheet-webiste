@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
+    title: "Striver Sheet",
     type: "website",
     locale: "en_US",
     siteName: "Striver Sheet",
@@ -27,12 +28,11 @@ export const metadata: Metadata = {
       },
     ],
     url: "https://striversheet.pradeepbisht.com",
-    title: "Striver Sheet",
   },
   twitter: {
+    title: "Striver Sheet",
     description:
       "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
-
     images: [
       {
         url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
@@ -40,8 +40,7 @@ export const metadata: Metadata = {
         height: 518,
       },
     ],
-    creator: "Pradeep Bisht",
-    title: "Striver Sheet",
+    creator: "@pradeep14880712",
   },
 };
 export default async function RootLayout({
