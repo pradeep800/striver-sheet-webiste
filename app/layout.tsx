@@ -7,6 +7,7 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
 const asap = Asap({ subsets: ["latin"] });
 export const metadata: Metadata = {
+  metadataBase: new URL("https://striversheet.pradeepbisht.com"),
   title: "Striver's Sheet",
   icons: {
     icon: "/ss.png",
@@ -35,7 +36,6 @@ export const metadata: Metadata = {
     title: "Striver Sheet",
   },
 };
-
 export default async function RootLayout({
   children,
   modal,
