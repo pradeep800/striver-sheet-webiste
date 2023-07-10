@@ -14,7 +14,7 @@ export default function Experience() {
   useEffect(() => {});
   return (
     <>
-      <Float rotationIntensity={0.6}>
+      <Float rotationIntensity={0.4}>
         <PresentationControls
           global
           config={{ mass: 2, tension: 500 }}

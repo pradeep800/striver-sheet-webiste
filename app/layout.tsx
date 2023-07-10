@@ -15,12 +15,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://striversheet.pradeepbisht.com/opengraph-image.jpeg",
+    description:
+      "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
+    url: "https://striversheet.pradeepbisht.com/opengraph-image.jpg",
   },
   twitter: {
     card: "summary_large_image",
-    images: [`https://striversheet.pradeepbisht.com/opengraph-image.jpeg`],
-    creator: "@sadmann7",
+    description:
+      "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
+    images: [`https://striversheet.pradeepbisht.com/opengraph-image.jpg`],
   },
 };
 
