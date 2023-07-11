@@ -15,6 +15,7 @@ export async function GET(req: Request) {
     const username = urlSarchParams.get("username");
     const image = urlSarchParams.get("image");
     const description = urlSarchParams.get("description");
+    console.log(name, username, image, description);
     if (!username) {
       throw new Error("unable to create image");
     }
