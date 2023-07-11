@@ -70,12 +70,7 @@ export default async function Home() {
 
   return (
     <div className="max-w-[800px] mx-auto">
-      <MainCard
-        title="Striver Sheet"
-        total={80}
-        SolvedCount={solvedCount}
-        reminderCount={countReminder}
-      />
+      <MainCard title="Striver Sheet" total={80} solvedCount={solvedCount} />
       {ssTopics.map((title, i) => {
         const day = i + 1;
         const totalReminders = parseInt(
