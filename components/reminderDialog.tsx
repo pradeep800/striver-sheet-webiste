@@ -22,7 +22,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { solved } from "@/types/general";
-import React, { useEffect, useState } from "react";
+import React, {
+  SetStateAction,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import { z } from "zod";
 import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
@@ -30,11 +35,14 @@ import { reminderDialogSchema } from "@/server-action/zodType/reminderDialogsSch
 import { zodResolver } from "@hookform/resolvers/zod";
 import { maxReminderRange, minReminderRange } from "@/static/maxReminderRange";
 import { Switch } from "./ui/switch";
+import { toast } from "./ui/use-toast";
+import Loading from "./svg/loading";
+import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
+import { useRouter } from "next/navigation";
 type Props = {
-  setValue: (value: solved) => void;
+  setReminderClicked: React.Dispatch<SetStateAction<boolean>>;
   reminderClicked: boolean;
-  question: questionInfoForDay;
-  setReminderClicked: React.Dispatch<boolean>;
+  questionInfo: questionInfoForDay;
 };
 
 const currentDate = new Date();
@@ -47,24 +55,54 @@ minDate.setDate(currentDate.getDate() + minReminderRange);
 maxDate.setDate(currentDate.getDate() + maxReminderRange);
 
 export default function ReminderDialog({
-  setValue,
-  question,
+  questionInfo,
   reminderClicked,
   setReminderClicked,
 }: Props) {
+  const router = useRouter();
   const form = useForm<z.infer<typeof reminderDialogSchema>>({
     resolver: zodResolver(reminderDialogSchema),
     defaultValues: { dueDate: minDate, shouldSendMail: true },
   });
-  async function onSubmit(data: z.infer<typeof reminderDialogSchema>) {}
+  const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  async function onSubmit(data: z.infer<typeof reminderDialogSchema>) {
+    setLoading(true);
+    try {
+      await saveQuestionInfo({
+        name: questionInfo.questionTitle,
+        questionNumber: questionInfo.questionNumber,
+        questionDay: questionInfo.questionDay,
+        solved: "REMINDER",
+        reminderData: data,
+      });
+
+      setReminderClicked(false);
+      startTransition(() => {
+        router.refresh();
+      });
+
+      toast({
+        title: "Reminder is created",
+      });
+    } catch (err) {
+      toast({
+        title: "Unable to create this reminder",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
-    <AlertDialog open={reminderClicked} onOpenChange={(e) => {}}>
+    <AlertDialog open={reminderClicked}>
       <AlertDialogContent className="w-[350px]">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-center">
             Select Reminder Options
           </AlertDialogTitle>
-          <AlertDialogDescription className="flex justify-center">
+          <div className="flex justify-center">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="">
                 <FormField
@@ -119,6 +157,8 @@ export default function ReminderDialog({
                 />
                 <div className="flex justify-between w-[100%] mt-3">
                   <AlertDialogCancel
+                    className="dark:text-white"
+                    disabled={loading}
                     onClick={() => {
                       setReminderClicked(false);
                     }}
@@ -126,15 +166,17 @@ export default function ReminderDialog({
                     Cancel
                   </AlertDialogCancel>
                   <AlertDialogAction
-                    className="bg-red-500 hover:bg-red-400"
+                    className="bg-red-500 hover:bg-red-400 dark:text-white"
+                    disabled={loading}
                     type="submit"
                   >
-                    Save
+                    {(loading || isPending) && <Loading />}{" "}
+                    <p className="mx-2">Save</p>
                   </AlertDialogAction>
                 </div>
               </form>
             </Form>
-          </AlertDialogDescription>
+          </div>
         </AlertDialogHeader>
       </AlertDialogContent>
     </AlertDialog>

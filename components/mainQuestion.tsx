@@ -1,21 +1,19 @@
 "use client";
 import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
-import { solved } from "@/types/general";
 import React, {
-  SetStateAction,
+  useEffect,
   experimental_useOptimistic as useOptimistic,
+  useState,
 } from "react";
 import QuestionLinks from "./questionLinks";
 type Props = {
   questionInfo: questionInfoForDay;
 };
 export default function MainQuestion({ questionInfo }: Props) {
-  const [optimisticQuestion, setOptimisticQuestion] = useOptimistic(
-    questionInfo,
-    (state, solved: solved) => {
-      return { ...state, solved };
-    }
-  );
+  const [question, setQuestion] = useState(questionInfo);
+  useEffect(() => {
+    setQuestion(questionInfo);
+  }, [questionInfo]);
   return (
     <div className="max-w-[800px] mx-auto mt-3 flex items-center h-[70vh] sm:h-[80vh]">
       <div className="w-[100%] ">
@@ -30,11 +28,7 @@ export default function MainQuestion({ questionInfo }: Props) {
           />
         </div>
         <div className="flex gap-3 mt-3 w-[100%] justify-center">
-          <QuestionLinks
-            optimisticQuestion={optimisticQuestion}
-            setOptimisticQuestion={setOptimisticQuestion}
-            onYoutube={false}
-          />
+          <QuestionLinks questionInfo={question} onYoutube={false} />
         </div>
       </div>
     </div>

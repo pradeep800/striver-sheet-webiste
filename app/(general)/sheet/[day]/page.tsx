@@ -8,7 +8,6 @@ import { ssQuestions, ssTopics } from "@/static/striverSheet";
 import { and, asc, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-
 type Props = {
   params: { [key: string]: string };
 };
@@ -114,7 +113,6 @@ export default async function DayPage({ params }: Props) {
       questionSet={questionSet}
       topicTitle={topicTitle}
       total={total}
-      reminderCount={reminderCount}
       solvedCount={solvedCount}
     />
   );

@@ -1,0 +1,1 @@
+ALTER TABLE `reminders` ADD `question_no` int NOT NULL;

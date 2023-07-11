@@ -169,6 +169,13 @@
       "when": 1688883792096,
       "tag": "0023_steady_lenny_balinger",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1689049470550,
+      "tag": "0024_aspiring_strong_guy",
+      "breakpoints": true
     }
   ]
 }

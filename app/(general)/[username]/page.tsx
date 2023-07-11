@@ -19,7 +19,9 @@ type Props = {
   params: Record<string, string>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata | undefined> {
   const { username } = params;
   const [userInfo] = await db
     .select({
@@ -30,35 +32,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .from(users)
     .where(eq(users.userName, username))
     .limit(1);
+  if (userInfo) {
+    const url = new URL("api/og", `${env.NEXTAUTH_URL}`);
+    url.searchParams.set("name", userInfo?.name ?? "");
+    url.searchParams.set("username", username ?? "");
 
-  const { description, image, name } = userInfo;
-  const url = new URL("api/og", `${env.NEXTAUTH_URL}`);
-  url.searchParams.set("name", name ?? "");
-  url.searchParams.set("username", username ?? "");
-  url.searchParams.set("description", description ?? "");
-  url.searchParams.set("image", image ?? "");
-  const urlInString = url.toString();
+    url.searchParams.set("description", userInfo?.description ?? "");
+    url.searchParams.set("image", userInfo?.image ?? "");
+    const urlInString = url.toString();
 
-  return {
-    title: username,
-    openGraph: {
-      title: "Striver Sheet",
-      type: "website",
-      locale: "en_US",
-      siteName: "Striver Sheet",
-      description: description ?? "",
-      images: [urlInString],
-      url: "https://striversheet.pradeepbisht.com",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Striver Sheet",
-      description: description ?? "",
-      images: [urlInString],
+    return {
+      title: username,
+      openGraph: {
+        title: "Striver Sheet",
+        type: "website",
+        locale: "en_US",
+        siteName: "Striver Sheet",
+        description: userInfo?.description ?? "",
+        images: [urlInString],
+        url: "https://striversheet.pradeepbisht.com",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Striver Sheet",
+        description: userInfo?.description ?? "",
+        images: [urlInString],
 
-      creator: "@pradeep8b0",
-    },
-  };
+        creator: "@pradeep8b0",
+      },
+    };
+  }
 }
 
 export default async function ProfilePage({ params }: Props) {

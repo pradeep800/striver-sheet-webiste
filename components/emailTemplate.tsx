@@ -1,7 +1,6 @@
 import { Tailwind } from "@react-email/tailwind";
 
 export default function EmailTemplate({ name }: { name: string }) {
-  console.log("i am getting excicuted");
   return (
     <Tailwind>
       <div className="max-w-[800px] p-2 mx-auto bg-red-500">

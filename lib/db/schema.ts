@@ -140,6 +140,7 @@ export const reminders = mysqlTable(
     user_id: varchar("user_id", {
       length: 255,
     }).notNull(),
+    question_no: int("question_no").notNull(),
   },
   (reminder) => ({
     ReminderCreatorIdIndex: index("reminder_creator_id_index").on(

@@ -11,7 +11,13 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Loader, Youtube } from "lucide-react";
-import { MouseEvent, SetStateAction, useState, useTransition } from "react";
+import {
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
@@ -22,26 +28,19 @@ import ReminderDialog from "./reminderDialog";
 type Props = {
   onYoutube?: boolean;
   className?: string;
-  setOptimisticQuestion: (action: solved) => void;
-
-  setSolvedCount?: React.Dispatch<SetStateAction<number>>;
-  setReminderCount?: React.Dispatch<SetStateAction<number>>;
-  optimisticQuestion: questionInfoForDay;
+  questionInfo: questionInfoForDay;
 };
 
 export default function QuestionLinks({
   onYoutube = true,
-  setOptimisticQuestion,
-  //not for full page question only for day page
-  setSolvedCount,
-  setReminderCount,
-  optimisticQuestion,
+  questionInfo,
 }: Props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); //for work around of select /* radix ui select was not working */
   const router = useRouter();
   const [reminderClicked, setReminderClicked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
+
   function stopPropagation(
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) {
@@ -51,40 +50,43 @@ export default function QuestionLinks({
   return (
     <>
       <div className="flex gap-3 " onClick={(e) => {}}>
-        <StickyNotesLink id={optimisticQuestion.questionNumber} />
-        {optimisticQuestion.codingNinja && (
+        <StickyNotesLink id={questionInfo.questionNumber} />
+        {questionInfo.codingNinja && (
           <Link
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
             href={absoluteUrl(
-              `/countingLinks/${optimisticQuestion.questionNumber}-1`
+              `/countingLinks/${questionInfo.questionNumber}-1`
             )}
           >
             <CodingNinjaSvg className="w-[30px] h-[30px]" />
+            <div className="sr-only">coding ninja link</div>
           </Link>
         )}
-        {optimisticQuestion.leetCodeLink && (
+        {questionInfo.leetCodeLink && (
           <Link
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
             href={absoluteUrl(
-              `/countingLinks/${optimisticQuestion.questionNumber}-2`
+              `/countingLinks/${questionInfo.questionNumber}-2`
             )}
           >
             <LeetCode className="w-[30px] h-[30px]" />
+            <div className="sr-only">leetcode ninja link</div>
           </Link>
         )}
 
-        {optimisticQuestion.youTubeLink && onYoutube && (
+        {questionInfo.youTubeLink && onYoutube && (
           <Link
             className={"hover:text-red-400 text-red-500"}
             onClick={stopPropagation}
             target="_blank"
-            href={optimisticQuestion.youTubeLink}
+            href={questionInfo.youTubeLink}
           >
             <Youtube className="w-[30px] h-[30px]" />
+            <div className="sr-only">youtube ninja link</div>
           </Link>
         )}
       </div>
@@ -94,48 +96,30 @@ export default function QuestionLinks({
           e.stopPropagation();
         }}
       >
-        {!loading ? (
+        {!(loading || isPending) ? (
           <Select
             open={open}
             onOpenChange={() => {
               setTimeout(() => setOpen(!open), 100);
             }}
-            value={optimisticQuestion.solved}
+            value={questionInfo.solved}
             onValueChange={async (e) => {
               setTimeout(async () => {
                 const solved = e.valueOf() as solved;
-                if (optimisticQuestion.solved === "REMINDER") {
-                  //remove reminder
-                }
                 if (solved === "REMINDER") {
                   setReminderClicked(true);
                   return;
                 }
-                setReminderClicked(false);
-                setLoading(true);
 
+                setLoading(true);
                 try {
                   await saveQuestionInfo({
-                    name: optimisticQuestion.questionTitle,
-                    questionNumber: optimisticQuestion.questionNumber,
-                    questionDay: optimisticQuestion.questionDay,
+                    name: questionInfo.questionTitle,
+                    questionNumber: questionInfo.questionNumber,
+                    questionDay: questionInfo.questionDay,
                     solved: solved,
                   });
-                  if (setSolvedCount) {
-                    if (
-                      optimisticQuestion.solved === "SOLVED" &&
-                      solved !== "SOLVED"
-                    ) {
-                      setSolvedCount((c) => c - 1);
-                    }
-                    if (
-                      optimisticQuestion.solved !== "SOLVED" &&
-                      solved === "SOLVED"
-                    ) {
-                      setSolvedCount((c) => c + 1);
-                    }
-                  }
-                  setOptimisticQuestion(solved);
+
                   startTransition(() => {
                     router.refresh();
                   });
@@ -169,10 +153,9 @@ export default function QuestionLinks({
         )}
         {/* Dialog for reminder*/}
         <ReminderDialog
-          reminderClicked={reminderClicked}
-          question={optimisticQuestion}
-          setValue={setOptimisticQuestion}
           setReminderClicked={setReminderClicked}
+          reminderClicked={reminderClicked}
+          questionInfo={questionInfo}
         />
       </div>
     </>

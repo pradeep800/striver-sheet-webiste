@@ -54,7 +54,7 @@ export default function StartToday() {
         </div>
         <div className="flex justify-center pt-4 w-[100%]">
           <Link href="/login">
-            <Button className=" p-3 text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:text-slate-300 dark:hover:text-slate-400 dark:text-white">
+            <Button className=" p-3 text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-black hover:text-black dark:hover:text-gray-800 dark:text-gray-800">
               Start Today
             </Button>
           </Link>

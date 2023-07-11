@@ -21,7 +21,6 @@ export default function NavBar({ user }: UserProps) {
   const { hamburgerOn, setHamburgerOn } = useHamburger();
   const [oneTimeClickToHamburger, setOneTimeClickToHamburger] = useState(false);
   useEffect(() => {
-    console.log(activeNavLink);
     setActiveNavLink(`/${pathName.split("/")[1]}`);
   }, [pathName]);
 

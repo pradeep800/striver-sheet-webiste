@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 export default function StickyNotesLink({ id }: { id: number }) {
   const path = usePathname();
-  console.log(absoluteUrl(`/notes/${id}`));
   return (
     <Link
       className="hover:text-red-400 text-red-500"
@@ -16,6 +15,7 @@ export default function StickyNotesLink({ id }: { id: number }) {
       href={`/notes/${id}`}
     >
       <StickyNote className="w-[30px] h-[30px]" />
+      <div className="sr-only">notes for this question</div>
     </Link>
   );
 }
