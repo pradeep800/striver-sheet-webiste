@@ -1,11 +1,11 @@
 import MainProfile from "@/components/mainProfile";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
+import { absoluteUrl } from "@/lib/utils";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
 import { eq, sql } from "drizzle-orm";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { env } from "@/env.mjs";
 export const revalidate = 0;
 type DayType = { solvedQuestions: string; month: number; day: number };
 export type HeatMapDataForYear = {
@@ -33,7 +33,7 @@ export async function generateMetadata({
     .where(eq(users.userName, username))
     .limit(1);
   if (userInfo) {
-    const url = new URL("api/og", `${env.NEXTAUTH_URL}`);
+    const url = new URL("api/og", absoluteUrl(""));
     url.searchParams.set("name", userInfo?.name ?? "");
     url.searchParams.set("username", username ?? "");
 
