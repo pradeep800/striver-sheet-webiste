@@ -34,6 +34,9 @@ export async function GET(req: Request) {
             {image && (
               <div tw="w-full flex justify-center">
                 <img
+                  width={100}
+                  height={100}
+                  alt="user image"
                   src={image}
                   tw=" w-[100px] h-[100px] rounded-full border-2 border-red-500 "
                 />
