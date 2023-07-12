@@ -23,7 +23,7 @@ export default function EmailReminder({ questionsInfo }: Props) {
         <Body className="bg-white">
           <Container className="h-full flex flex-col justify-center items-center p-2">
             <Heading className="text-center text-red-500 dark">
-              Today's Question Reminders
+              {`Today's Question Reminders`}
             </Heading>
             {questionsInfo.map((question, i) => {
               return (

@@ -65,7 +65,7 @@ export async function GET(req: Request) {
       to: "pradeep8b0@gmail.com",
       subject: "Reminders",
       react: EmailReminder({
-        questionsInfo: [{ day: 1, questionNo: 1, title: "hello there" }],
+        questionsInfo: questionInfo,
       }),
     });
     resendIds.push(id.id);
