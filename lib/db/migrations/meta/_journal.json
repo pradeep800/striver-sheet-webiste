@@ -176,6 +176,20 @@
       "when": 1689049470550,
       "tag": "0024_aspiring_strong_guy",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1689132815399,
+      "tag": "0025_bitter_shaman",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "5",
+      "when": 1689133326481,
+      "tag": "0026_legal_shinko_yamashiro",
+      "breakpoints": true
     }
   ]
 }

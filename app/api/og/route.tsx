@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/server";
 
-export const revalidate = 0; //make it 60*60
+export const revalidate = 60 * 60;
 
 export const runtime = "edge";
 

@@ -134,7 +134,7 @@ export const reminders = mysqlTable(
     id: int("id").notNull().autoincrement().primaryKey(),
 
     created_at: timestamp("created_at").defaultNow(),
-    due_date: datetime("due_time").notNull(),
+    due_date: timestamp("due_time").notNull(),
     should_send_mail: boolean("should_send_mail"),
     mail_sended: boolean("mail_sended").default(false),
     user_id: varchar("user_id", {
@@ -178,3 +178,9 @@ export const feedbacks = mysqlTable(
   },
   (feedback) => ({ UserIdIndex: index("userIdIndex").on(feedback.userId) })
 );
+
+export const testing = mysqlTable("testing", {
+  id: int("id").notNull().autoincrement().primaryKey(),
+  dateTime: datetime("dateTime"),
+  timestamp: timestamp("timestamp"),
+});

@@ -42,4 +42,3 @@ app/api/rs/
 app/api/bare/
  
 #drizzle
-drizzle.config.ts

@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import {
   Body,
@@ -13,11 +14,10 @@ import {
 } from "@react-email/components";
 type Props = {
   questionsInfo: { title: string; day: number; questionNo: number }[];
-  haveMore: boolean;
 };
 
 const url = "https://striversheet.pradeepbisht.com";
-export default function EmailForReminders({ questionsInfo, haveMore }: Props) {
+export default function EmailForReminders({ questionsInfo }: Props) {
   return (
     <Tailwind>
       <Html>
@@ -50,7 +50,7 @@ export default function EmailForReminders({ questionsInfo, haveMore }: Props) {
               className="e bg-red-500 p-1 mt-2 rounded-md text-white   text-center text-lg w-full "
               href={`${url}/reminders`}
             >
-              more...
+              Reminder Page
             </Button>
           </Container>
         </Body>
@@ -58,13 +58,3 @@ export default function EmailForReminders({ questionsInfo, haveMore }: Props) {
     </Tailwind>
   );
 }
-// const questionInfo: Props["questionsInfo"] = [
-//   {
-//     title:
-//       "qustoin number one of striver sheet and some random things which i don't know about but you can know it if you want but whatever",
-//     day: 3,
-//     questionNo: 4,
-//   },
-//   { title: "question number 2 for striver sheet", day: 5, questionNo: 4 },
-//   { title: "question number 3 first question", day: 8, questionNo: 4 },
-// ];
