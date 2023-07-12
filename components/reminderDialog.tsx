@@ -29,31 +29,22 @@ import React, {
   useTransition,
 } from "react";
 import { z } from "zod";
-import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
 import { reminderDialogSchema } from "@/server-action/zodType/reminderDialogsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { maxReminderRange, minReminderRange } from "@/static/maxReminderRange";
 import { Switch } from "./ui/switch";
 import { toast } from "./ui/use-toast";
 import Loading from "./svg/loading";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { useRouter } from "next/navigation";
+import { getMinMaxReminderTime } from "@/lib/dateTimeFun";
 type Props = {
   setReminderClicked: React.Dispatch<SetStateAction<boolean>>;
   reminderClicked: boolean;
   questionInfo: questionInfoForDay;
 };
 
-const currentDate = new Date();
-const options = { timeZone: "Asia/Kolkata" };
-currentDate.setHours(0, 0, 0, 0);
-const indianDate = currentDate.toLocaleString("en-US", options);
-const minDate = new Date(indianDate);
-const maxDate = new Date(indianDate);
-minDate.setDate(currentDate.getDate() + minReminderRange);
-maxDate.setDate(currentDate.getDate() + maxReminderRange);
-
+const { maxDate, minDate } = getMinMaxReminderTime();
 export default function ReminderDialog({
   questionInfo,
   reminderClicked,

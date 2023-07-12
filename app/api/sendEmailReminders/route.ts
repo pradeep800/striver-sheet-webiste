@@ -6,8 +6,10 @@ import { eq, sql } from "drizzle-orm";
 import EmailReminder from "@/components/emailTemplate/emailReminder";
 
 import { ssQuestions } from "@/static/striverSheet";
+import { env } from "@/env.mjs";
+import { getIndianTime } from "@/lib/dateTimeFun";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 export async function GET(req: Request) {
   //get all admin
@@ -84,19 +86,4 @@ export async function GET(req: Request) {
   }
 
   return NextResponse.json({ ids: resendIds });
-}
-
-function getIndianTime(isostring: string) {
-  const currentDate = new Date(isostring);
-
-  const options = { timeZone: "Asia/Kolkata" };
-  const indianDate = currentDate.toLocaleDateString("en-US", options);
-  const monthDayYear = indianDate.match(/(\d+)\/(\d+)\/(\d+)/);
-  if (monthDayYear) {
-    const month = parseInt(monthDayYear[1] as string);
-    const day = parseInt(monthDayYear[2] as string);
-    const year = parseInt(monthDayYear[3] as string);
-    return { month, day, year };
-  }
-  return { month: -1, day: -1, year: -1 }; //not going to happen
 }
