@@ -45,6 +45,9 @@ type Props = {
 };
 
 const { maxDate, minDate } = getMinMaxReminderTime();
+minDate.setHours(minDate.getHours() + 5, minDate.getMinutes() + 30);
+
+console.log(minDate);
 export default function ReminderDialog({
   questionInfo,
   reminderClicked,
@@ -112,7 +115,7 @@ export default function ReminderDialog({
                             mode="single"
                             selected={field.value}
                             onSelect={(e) => {
-                              const date = new Date(e?.valueOf() ?? new Date());
+                              const date = new Date(e?.valueOf() ?? minDate);
                               field.onChange(date);
                             }}
                             disabled={(date) => {

@@ -5,18 +5,17 @@ import timezone from "dayjs/plugin/timezone";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-export function getMinMaxReminderTime() {
+export function getMinMaxReminderTime(): { minDate: Date; maxDate: Date } {
   const currentDate = new Date();
   const options = { timeZone: "Asia/Kolkata" };
   const indianDateAndTime = currentDate.toLocaleString("en-US", options);
   const indianDate = indianDateAndTime.substring(0, 9) as string;
-  console.log(indianDate);
+
   const date = dayjs.tz(indianDate, "Asia/Kolkata");
   const minDate = date.add(minReminderRange, "day").toISOString();
 
   const maxDate = date.add(maxReminderRange, "day").toISOString();
-
-  console.log(minDate, maxDate);
+  console.log(maxDate, minDate);
   return { minDate: new Date(minDate), maxDate: new Date(maxDate) };
 }
 
@@ -27,7 +26,11 @@ export function getIndianTime(isostring: string) {
   const indianDate = currentDate.toLocaleDateString("en-US", options);
   return getMDYFromIndianTime(indianDate);
 }
-function getMDYFromIndianTime(date: string) {
+function getMDYFromIndianTime(date: string): {
+  month: number;
+  day: number;
+  year: number;
+} {
   // string type 7/12/2023'
   const monthDayYear = date.match(/(\d+)\/(\d+)\/(\d+)/);
   if (monthDayYear) {
