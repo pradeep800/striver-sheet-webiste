@@ -1,17 +1,20 @@
 import { maxReminderRange, minReminderRange } from "@/static/maxReminderRange";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
 export function getMinMaxReminderTime() {
   const currentDate = new Date();
   const options = { timeZone: "Asia/Kolkata" };
   const indianDateAndTime = currentDate.toLocaleString("en-US", options);
   const indianDate = indianDateAndTime.substring(0, 9) as string;
-  const minDate = new Date(indianDate);
-  const maxDate = new Date(indianDate);
+  const date = dayjs.tz(indianDate, "Asia/Kolkata");
+  const minDate = date.add(minReminderRange, "day").toDate();
 
-  minDate.setDate(minDate.getDate() + minReminderRange);
-  maxDate.setDate(minDate.getDate() + maxReminderRange);
-  console.log(minDate.toISOString());
-  console.log(maxDate.toISOString());
+  const maxDate = date.add(maxReminderRange, "day").toDate();
+
   return { minDate, maxDate };
 }
 
