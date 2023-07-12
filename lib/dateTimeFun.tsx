@@ -14,7 +14,7 @@ export function getMinMaxReminderTime() {
   const minDate = date.add(minReminderRange, "day").toDate();
 
   const maxDate = date.add(maxReminderRange, "day").toDate();
-
+  console.log(maxDate, minDate);
   return { minDate, maxDate };
 }
 
@@ -32,6 +32,7 @@ function getMDYFromIndianTime(date: string) {
     const month = parseInt(monthDayYear[1] as string);
     const day = parseInt(monthDayYear[2] as string);
     const year = parseInt(monthDayYear[3] as string);
+
     return { month, day, year };
   }
   return { month: -1, day: -1, year: -1 }; //not going to happen
