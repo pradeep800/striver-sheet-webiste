@@ -10,13 +10,14 @@ export function getMinMaxReminderTime() {
   const options = { timeZone: "Asia/Kolkata" };
   const indianDateAndTime = currentDate.toLocaleString("en-US", options);
   const indianDate = indianDateAndTime.substring(0, 9) as string;
+  console.log(indianDate);
   const date = dayjs.tz(indianDate, "Asia/Kolkata");
-  const minDate = date.add(minReminderRange, "day").toDate();
+  const minDate = date.add(minReminderRange, "day").toISOString();
 
-  const maxDate = date.add(maxReminderRange, "day").toDate();
-  console.log("seconds");
-  console.log(maxDate.getTime(), minDate.getTime());
-  return { minDate, maxDate };
+  const maxDate = date.add(maxReminderRange, "day").toISOString();
+
+  console.log(minDate, maxDate);
+  return { minDate: new Date(minDate), maxDate: new Date(maxDate) };
 }
 
 export function getIndianTime(isostring: string) {
