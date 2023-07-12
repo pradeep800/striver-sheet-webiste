@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { ConsoleLogUnableToStatusUpdate } from "@/lib/utils";
+export const revalidate = 0;
 type WebhookHandlers = {
   "checkout.session.completed": (
     sessionObject: Stripe.Checkout.Session
