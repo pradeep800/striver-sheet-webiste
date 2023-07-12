@@ -59,6 +59,7 @@ export default function ReminderDialog({
   const [isPending, startTransition] = useTransition();
 
   async function onSubmit(data: z.infer<typeof reminderDialogSchema>) {
+    console.log(data.dueDate.toISOString());
     setLoading(true);
     try {
       await saveQuestionInfo({
