@@ -1,23 +1,19 @@
-"use client";
+import { Body } from "@react-email/body";
+import { Button } from "@react-email/button";
+import { Container } from "@react-email/container";
+import { Head } from "@react-email/head";
+import { Heading } from "@react-email/heading";
+import { Html } from "@react-email/html";
+import { Section } from "@react-email/section";
+import { Text } from "@react-email/text";
+import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Section,
-  Text,
-  Tailwind,
-  Link,
-} from "@react-email/components";
 type Props = {
   questionsInfo: { title: string; day: number; questionNo: number }[];
 };
 
 const url = "https://striversheet.pradeepbisht.com";
-export default function EmailForReminders({ questionsInfo }: Props) {
+export default function EmailReminder({ questionsInfo }: Props) {
   return (
     <Tailwind>
       <Html>

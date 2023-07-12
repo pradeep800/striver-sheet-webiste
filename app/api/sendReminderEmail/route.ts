@@ -3,12 +3,13 @@ import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { reminders, users } from "@/lib/db/schema";
 import { eq, sql } from "drizzle-orm";
-import EmailForReminders from "@/components/emailTemplate/reminders";
+import EmailReminder from "@/components/emailTemplate/emailReminder";
+
 import { ssQuestions } from "@/static/striverSheet";
 import { env } from "@/env.mjs";
 export const runtime = "edge";
 
-const resend = new Resend(env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY as string);
 
 export async function GET(req: Request) {
   //get all admin
@@ -65,7 +66,7 @@ export async function GET(req: Request) {
       from: "reminders@pradeepbisht.com",
       to: admin.email,
       subject: "Reminders",
-      react: EmailForReminders({ questionsInfo: questionInfo }),
+      react: EmailReminder({ questionsInfo: questionInfo }),
     });
     const markingReminderSended: any[] = [];
     //mark mail send
