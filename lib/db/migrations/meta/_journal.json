@@ -190,6 +190,20 @@
       "when": 1689133326481,
       "tag": "0026_legal_shinko_yamashiro",
       "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "5",
+      "when": 1689180491671,
+      "tag": "0027_quiet_joshua_kane",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "5",
+      "when": 1689180918116,
+      "tag": "0028_thankful_alex_wilder",
+      "breakpoints": true
     }
   ]
 }

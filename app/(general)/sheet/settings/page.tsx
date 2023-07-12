@@ -14,7 +14,7 @@ export default async function SettingPage() {
     redirect("/");
   }
   const [userInfo] = await db
-    .select({ emailReminder: users.email_reminders })
+    .select({ default_should_send_email: users.default_should_send_email })
     .from(users)
     .where(eq(users.id, session.user.id));
 
@@ -29,7 +29,9 @@ export default async function SettingPage() {
       {user.role === "PROUSER" ? (
         <ShouldSendEmailSetting
           user={user}
-          emailReminder={userInfo.emailReminder as boolean}
+          default_should_send_email={
+            userInfo.default_should_send_email as boolean
+          }
         />
       ) : null}
       <DeleteAccount user={user} />

@@ -74,13 +74,14 @@ export const users = mysqlTable(
     userName: varchar("user_name", { length: 15 }).notNull(),
     leftProfileChanges: int("left_profile_changes").notNull().default(2),
     description: varchar("description", { length: 205 }),
-    isBan: boolean("ban_user").default(false),
 
-    email_reminders: boolean("email_reminders").default(true),
+    default_should_send_email: boolean("default_should_send_email").default(
+      true
+    ),
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
-    pro_subscription_end: datetime("pro_subscription_end"),
+    pro_subscription_end: timestamp("pro_subscription_end"),
 
     striver_sheet_id_30_days: varchar("striver_sheet_id_30_days", {
       length: 255,

@@ -14,15 +14,12 @@ import { experimental_useOptimistic as useOptimistic } from "react";
 import { toast } from "./ui/use-toast";
 type Props = {
   user: SessionUser;
-  emailReminder: boolean;
+  default_should_send_email: boolean;
 };
-export default function ShouldSendEmailSetting({ user, emailReminder }: Props) {
-  const [optimisticShouldRemind, setOptimisticShouldRemind] = useOptimistic(
-    emailReminder,
-    (state, shouldRemind: boolean) => {
-      return shouldRemind;
-    }
-  );
+export default function ShouldSendEmailSetting({
+  user,
+  default_should_send_email,
+}: Props) {
   return (
     <Card className="my-6">
       <CardHeader>
@@ -35,13 +32,12 @@ export default function ShouldSendEmailSetting({ user, emailReminder }: Props) {
 
       <CardContent>
         <Switch
-          checked={optimisticShouldRemind}
+          checked={default_should_send_email}
           onCheckedChange={async (e) => {
             try {
-              setOptimisticShouldRemind(e.valueOf());
               await changeEmailPreferences({
                 id: user.id,
-                email_reminder: e.valueOf(),
+                default_should_send_email: e.valueOf(),
               });
             } catch (err) {
               const error = err as Error;
