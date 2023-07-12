@@ -7,11 +7,9 @@ export function getMinMaxReminderTime() {
   const indianDate = indianDateAndTime.substring(0, 9) as string;
   const minDate = new Date(indianDate);
   const maxDate = new Date(indianDate);
-  const startDMY = getMDYFromIndianTime(indianDate);
-  console.log(startDMY);
-  console.log(indianDate);
-  minDate.setDate(startDMY.day + minReminderRange);
-  maxDate.setDate(startDMY.day + maxReminderRange);
+
+  minDate.setDate(minDate.getDate() + minReminderRange);
+  maxDate.setDate(minDate.getDate() + maxReminderRange);
   console.log(minDate.toISOString());
   console.log(maxDate.toISOString());
   return { minDate, maxDate };
