@@ -14,7 +14,8 @@ export function getMinMaxReminderTime() {
   const minDate = date.add(minReminderRange, "day").toDate();
 
   const maxDate = date.add(maxReminderRange, "day").toDate();
-  console.log(maxDate.getSeconds(), minDate.getSeconds());
+  console.log("seconds");
+  console.log(maxDate.getTime(), minDate.getTime());
   return { minDate, maxDate };
 }
 
