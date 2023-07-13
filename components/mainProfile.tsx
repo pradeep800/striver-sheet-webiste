@@ -152,7 +152,7 @@ function SelectYear({
   const year = new Date().getFullYear();
   return (
     <Select
-      defaultValue={heatMapYears[0].toString() ?? year.toString()}
+      defaultValue={heatMapYears?.[0]?.toString() ?? year.toString()}
       onValueChange={(e) => {
         if (heatMapYears.length !== 0) {
           setYear(parseInt(e.valueOf()));
@@ -160,11 +160,11 @@ function SelectYear({
       }}
     >
       <SelectTrigger>
-        <SelectValue>{heatMapYears[0] ?? year}</SelectValue>
+        <SelectValue>{heatMapYears?.[0] ?? year}</SelectValue>
       </SelectTrigger>
       <SelectContent>
         {heatMapYears.length === 0 && (
-          <SelectItem value={year.toString()}>
+          <SelectItem value={year?.toString()}>
             {heatMapYears[0] ?? new Date().getFullYear()}
           </SelectItem>
         )}
