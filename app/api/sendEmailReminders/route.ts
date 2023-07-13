@@ -80,15 +80,15 @@ export async function GET(req: Request) {
 
     const markingReminderSended: any[] = [];
     //mark mail send
-    //   reminderWhichHaveTodayDate.map((reminder) => {
-    //     markingReminderSended.push(
-    //       db
-    //         .update(reminders)
-    //         .set({ mail_sended: true })
-    //         .where(eq(reminders.id, reminder.reminderId))
-    //     );
-    //   });
-    //   await Promise.all(markingReminderSended);
+    reminderWhichHaveTodayDate.map((reminder) => {
+      markingReminderSended.push(
+        db
+          .update(reminders)
+          .set({ mail_sended: true })
+          .where(eq(reminders.id, reminder.reminderId))
+      );
+    });
+    await Promise.all(markingReminderSended);
   }
 
   return NextResponse.json({

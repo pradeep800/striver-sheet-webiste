@@ -2,11 +2,11 @@
   "crons": [
     {
       "path": "/api/removeProSubscription",
-      "schedule": "30 19 * * *"
+      "schedule": "0 19 * * *"
     },
     {
       "path": "/api/sendEmailReminder",
-      "schedule": "30 19 * * *"
+      "schedule": "0 19 * * *"
     }
   ]
 }
