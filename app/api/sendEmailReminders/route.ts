@@ -8,6 +8,7 @@ import EmailReminder from "@/components/emailTemplate/emailReminder";
 import { ssQuestions } from "@/static/striverSheet";
 import { env } from "@/env.mjs";
 import { getIndianTime } from "@/lib/dateTimeFun";
+import { absoluteUrl } from "@/lib/utils";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -70,6 +71,10 @@ export async function GET(req: Request) {
       react: EmailReminder({
         questionsInfo: questionInfo,
       }),
+      headers: {
+        "X-Entity-Ref-ID": Date.now().toString(),
+        "List-Unsubscribe": absoluteUrl("/sheet/settings"),
+      },
     });
     resendIds.push(id.id);
 

@@ -84,21 +84,35 @@ export default function MainProfile({
           <HeatMap
             value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}
             rectRender={(props, data) => {
-              if (!data.count) return <rect {...props} />;
               return (
-                <Tooltip key={props.key} placement="top" content={data.content}>
-                  <rect {...props} />
+                <Tooltip
+                  key={props.key}
+                  placement="top"
+                  content={`count: ${data.count || 0}`}
+                >
+                  <rect className=" " {...props} />
                 </Tooltip>
               );
             }}
             className="w-[700px] mx-auto"
-            style={{ color: "#ad001d" }}
+            style={{
+              color: "red",
+              // @ts-ignore
+              "--rhm-rect": "#b9b9b9",
+              "--rhm-rect-active": "red",
+            }}
             startDate={new Date(`${year}/01/01`)}
+            /*
+            1-> 1st colro
+            2,3->2nd color
+            4,5->3rd color
+            6,192->4th color
+            */
             panelColors={{
-              1: "#e4b293",
-              2: "#d48462",
-              4: "#c2533a",
-              6: "#ad001d",
+              2: "#e4b293",
+              4: "#d48462",
+              6: "#b91c1c",
+              193: "#450a0a",
             }}
           />
         </div>
