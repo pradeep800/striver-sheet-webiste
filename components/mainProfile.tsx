@@ -19,6 +19,7 @@ import { User } from "lucide-react";
 import { Poppins } from "next/font/google";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
+import { toast } from "./ui/use-toast";
 const poppins = Poppins({ weight: "300", subsets: ["latin"] });
 type User = {
   name: string;
@@ -95,9 +96,9 @@ export default function MainProfile({
             startDate={new Date(`${year}/01/01`)}
             panelColors={{
               1: "#e4b293",
-              3: "#d48462",
-              5: "#c2533a",
-              7: "#ad001d",
+              2: "#d48462",
+              4: "#c2533a",
+              6: "#ad001d",
             }}
           />
         </div>
@@ -148,19 +149,25 @@ function SelectYear({
   setYear: React.Dispatch<number>;
   heatMapYears: number[];
 }) {
+  const year = new Date().getFullYear();
   return (
     <Select
-      defaultValue={(heatMapYears[0] ?? new Date().getFullYear()).toString()}
+      defaultValue={heatMapYears[0].toString() ?? year.toString()}
       onValueChange={(e) => {
-        setYear(parseInt(e.valueOf()));
+        if (heatMapYears.length !== 0) {
+          setYear(parseInt(e.valueOf()));
+        }
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="2023">
-          {heatMapYears[0] ?? new Date().getFullYear()}
-        </SelectValue>
+        <SelectValue>{heatMapYears[0] ?? year}</SelectValue>
       </SelectTrigger>
       <SelectContent>
+        {heatMapYears.length === 0 && (
+          <SelectItem value={year.toString()}>
+            {heatMapYears[0] ?? new Date().getFullYear()}
+          </SelectItem>
+        )}
         {heatMapYears.map((heatMapYear, i) => {
           return (
             <SelectItem key={i} value={heatMapYear.toString()}>

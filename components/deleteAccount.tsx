@@ -79,10 +79,9 @@ function Alert({ open, setOpen }: AlertDialog) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel
+            disabled={loading}
             onClick={() => {
-              if (!loading) {
-                setOpen(false);
-              }
+              setOpen(false);
             }}
           >
             Cancel
@@ -94,15 +93,18 @@ function Alert({ open, setOpen }: AlertDialog) {
               setLoading(true);
               if (!loading) {
                 try {
-                  await deleteAccount({});
+                  const actionRes = await deleteAccount({});
+                  if (actionRes?.error) {
+                    toast({ title: actionRes.error, variant: "destructive" });
+                    setLoading(false);
+                    return;
+                  }
                   await signOut();
                 } catch (err) {
-                  const error = err as Error;
                   toast({
-                    title: "Unable to Delete Your account",
+                    title: "Internal Server Error",
                     variant: "destructive",
                   });
-                  console.log(error.message);
                 }
               }
               setLoading(false);

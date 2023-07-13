@@ -55,8 +55,23 @@ export default function UDFrom({
   const checkName = useCallback(
     debounce(async (userName: string) => {
       setChecking(true);
-      setIsPresentInDb(await checkUserNameExists({ userName }));
-      setChecking(false);
+      try {
+        //it is not inferring type idk why
+        const actionRes = await checkUserNameExists({ userName });
+        if (typeof actionRes === "object" && "error" in actionRes) {
+          toast({
+            title: "Please refresh page (Internal Server Error)",
+            variant: "destructive",
+          });
+          return;
+        }
+        if (typeof actionRes === "boolean") {
+          setIsPresentInDb(actionRes);
+          setChecking(false);
+        }
+      } catch (err) {
+        toast({ title: "Internal Server Error", variant: "destructive" });
+      }
     }, 300),
     [setIsPresentInDb]
   );
@@ -67,10 +82,14 @@ export default function UDFrom({
   async function onSubmit(value: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
-      await ChangeProfile({
+      const actionRes = await ChangeProfile({
         description: value.description,
         userName: value.userName,
       });
+      if (actionRes?.error) {
+        toast({ title: actionRes.error, variant: "destructive" });
+        return;
+      }
       setProfileUrl(`https://striversheet.pradeepbisht.com/${value.userName}`);
       setCopyUrl(false);
 
@@ -80,9 +99,8 @@ export default function UDFrom({
       });
       toast({ title: "Your Information Is Updated" });
     } catch (err) {
-      const error = err as Error;
       toast({
-        title: error.message,
+        title: "Internal Server Error",
         variant: "destructive",
       });
     } finally {

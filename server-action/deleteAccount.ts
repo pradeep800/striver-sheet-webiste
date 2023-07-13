@@ -3,6 +3,7 @@
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
+import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { zact } from "zact/server";
@@ -10,7 +11,10 @@ import { zact } from "zact/server";
 export const deleteAccount = zact()(async () => {
   const session = await getServerSession(authOption);
   if (!session || !session.user) {
-    throw new Error("Unauthorized");
+    return {
+      error:
+        "please login or if you already login please signout and then login",
+    };
   }
   const userId = session.user.id;
 
@@ -23,55 +27,51 @@ export const deleteAccount = zact()(async () => {
       .from(schema.users)
       .where(eq(schema.users.id, userId))
       .limit(1);
+    if (!userInfo) {
+      return {
+        error: `Your account is deleted please signout by going ${absoluteUrl(
+          "/api/auth/signout"
+        )}`,
+      };
+    }
+
     const sheetId = userInfo.sheeId as string;
     await db.transaction(async (tx) => {
       try {
         //delete all users
-        const deleteUser = await tx
-          .delete(schema.users)
-          .where(eq(schema.users.id, userId));
+        await tx.delete(schema.users).where(eq(schema.users.id, userId));
 
         //delete all accounts
-        const deleteAccounts = await tx
+        await tx
           .delete(schema.accounts)
           .where(eq(schema.accounts.userId, userId));
 
         //delete all sessions
-        const deleteSessions = await tx
+        await tx
           .delete(schema.sessions)
           .where(eq(schema.sessions.userId, userId));
 
         //delete all question solved
-        const deleteQuestions = await tx
+        await tx
           .delete(schema.questions)
           .where(eq(schema.questions.sheet_id, sheetId));
 
         ///remove all tracking questions
-        const deleteTrackingQuestions = await tx
+        await tx
           .delete(schema.trackingQuestions)
           .where(eq(schema.trackingQuestions.userId, userId));
 
         //remove all verification token
-        const deleteVerificationTokens = await tx
+        await tx
           .delete(schema.verificationTokens)
           .where(
             eq(schema.verificationTokens.identifier, userInfo.email as string)
           );
 
         //remove all reminders
-        const deleteReminders = await tx
+        await tx
           .delete(schema.reminders)
           .where(eq(schema.reminders.user_id, userId));
-
-        // await Promise.all([
-        //   deleteReminders,
-        //   deleteVerificationTokens,
-        //   deleteTrackingQuestions,
-        //   deleteQuestions,
-        //   deleteSessions,
-        //   deleteAccounts,
-        //   deleteUser,
-        // ]);
       } catch (err) {
         const error = err as Error;
         console.log(error.message);
@@ -81,6 +81,9 @@ export const deleteAccount = zact()(async () => {
     });
   } catch (err) {
     const error = err as Error;
-    throw new Error("Unable to delete your account");
+    console.log(
+      `Error on deleteAccount page for id ${session.user.id} and error message is ${error.message}`
+    );
+    return { error: "Unable to delete your account" };
   }
 });

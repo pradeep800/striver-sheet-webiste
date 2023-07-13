@@ -25,8 +25,8 @@ export default function ShouldSendEmailSetting({
       <CardHeader>
         <CardTitle className="text-2xl text-red-500">Email Reminder</CardTitle>
         <CardDescription>
-          You can change your preference on email option should will shown in
-          reminder option or not
+          You can change your preference on what should be your default email
+          reminder option
         </CardDescription>
       </CardHeader>
 
@@ -35,14 +35,18 @@ export default function ShouldSendEmailSetting({
           checked={default_should_send_email}
           onCheckedChange={async (e) => {
             try {
-              await changeEmailPreferences({
-                id: user.id,
+              const actionRes = await changeEmailPreferences({
                 default_should_send_email: e.valueOf(),
               });
+              if (actionRes?.error) {
+                toast({ title: actionRes.error, variant: "destructive" });
+              } else {
+                toast({
+                  title: `default reminder option is ${default_should_send_email}`,
+                });
+              }
             } catch (err) {
-              const error = err as Error;
-              console.log(error.message);
-              toast({ title: error.message, variant: "destructive" });
+              toast({ title: "Server Error", variant: "destructive" });
             }
           }}
         />
