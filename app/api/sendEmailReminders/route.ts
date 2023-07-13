@@ -16,6 +16,7 @@ export async function GET(req: Request) {
   const { day: todayDay, month: todayMonth } = getIndianTime(
     new Date().toISOString()
   );
+  console.log(new Date());
   const resendIds: string[] = [];
   const adminUsers = await db
     .select({ id: users.id, email: users.email })
