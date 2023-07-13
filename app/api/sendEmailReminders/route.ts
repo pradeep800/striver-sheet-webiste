@@ -13,10 +13,7 @@ const resend = new Resend(env.RESEND_API_KEY);
 
 export async function GET(req: Request) {
   //get all admin
-  const { day: todayDay, month: todayMonth } = getIndianTime(
-    new Date().toISOString()
-  );
-  console.log(new Date());
+
   const resendIds: string[] = [];
   const adminUsers = await db
     .select({ id: users.id, email: users.email })
@@ -91,8 +88,5 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     ids: resendIds,
-    todayDay,
-    todayMonth,
-    date: new Date(),
   });
 }
