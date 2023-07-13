@@ -39,6 +39,6 @@ stripe.exe
 
 #Only want for development
 app/api/rs/
-#app/api/bare/
+app/api/bare/
  
 #drizzle
