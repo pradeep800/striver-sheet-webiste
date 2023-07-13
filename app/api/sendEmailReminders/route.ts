@@ -89,5 +89,10 @@ export async function GET(req: Request) {
     await Promise.all(markingReminderSended);
   }
 
-  return NextResponse.json({ ids: resendIds, todayDay, todayMonth });
+  return NextResponse.json({
+    ids: resendIds,
+    todayDay,
+    todayMonth,
+    date: new Date(),
+  });
 }
