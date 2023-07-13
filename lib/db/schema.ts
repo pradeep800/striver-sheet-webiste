@@ -75,9 +75,9 @@ export const users = mysqlTable(
     leftProfileChanges: int("left_profile_changes").notNull().default(2),
     description: varchar("description", { length: 205 }),
 
-    default_should_send_email: boolean("default_should_send_email").default(
-      true
-    ),
+    default_should_send_email: boolean("default_should_send_email")
+      .default(true)
+      .notNull(),
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),

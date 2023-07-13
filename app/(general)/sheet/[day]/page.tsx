@@ -110,6 +110,7 @@ export default async function DayPage({ params }: Props) {
 
   return (
     <MainDay
+      defaultShouldSendEmail={user.default_should_send_email}
       questionSet={questionSet}
       topicTitle={topicTitle}
       total={total}

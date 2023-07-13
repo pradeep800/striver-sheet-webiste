@@ -8,8 +8,12 @@ import React, {
 import QuestionLinks from "./questionLinks";
 type Props = {
   questionInfo: questionInfoForDay;
+  defaultShouldSendEmail: boolean;
 };
-export default function MainQuestion({ questionInfo }: Props) {
+export default function MainQuestion({
+  questionInfo,
+  defaultShouldSendEmail,
+}: Props) {
   return (
     <div className="max-w-[800px] mx-auto mt-3 flex items-center h-[70vh] sm:h-[80vh]">
       <div className="w-[100%] ">
@@ -24,7 +28,11 @@ export default function MainQuestion({ questionInfo }: Props) {
           />
         </div>
         <div className="flex gap-3 mt-3 w-[100%] justify-center">
-          <QuestionLinks questionInfo={questionInfo} onYoutube={false} />
+          <QuestionLinks
+            questionInfo={questionInfo}
+            onYoutube={false}
+            defaultShouldSendEmail={defaultShouldSendEmail}
+          />
         </div>
       </div>
     </div>

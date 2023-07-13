@@ -9,12 +9,14 @@ type Props = {
   total: number;
   questionSet: questionInfoForDay[];
   solvedCount: number;
+  defaultShouldSendEmail: boolean;
 };
 export default function MainDay({
   questionSet,
   topicTitle,
   total,
   solvedCount,
+  defaultShouldSendEmail,
 }: Props) {
   return (
     <div className="max-w-[800px] mx-auto ">
@@ -23,6 +25,7 @@ export default function MainDay({
         {questionSet.map((question) => {
           return (
             <QuestionCard
+              defaultShouldSendEmail={defaultShouldSendEmail}
               key={question.questionNumber}
               questionInfo={question}
             />

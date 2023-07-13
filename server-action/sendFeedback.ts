@@ -9,7 +9,10 @@ import { feedbacks } from "@/lib/db/schema";
 export const sendFeedback = zact(feedBackSchema)(async (input) => {
   const session = await getServerSession(authOption);
   if (!session || !session.user) {
-    throw new Error("Please login");
+    return {
+      error:
+        "please login or if you already login please signout and then login",
+    };
   }
   try {
     await db.insert(feedbacks).values({
@@ -19,8 +22,8 @@ export const sendFeedback = zact(feedBackSchema)(async (input) => {
       userRole: session.user.role,
     });
   } catch (err) {
-    console.log("unable to insert feedback");
+    console.log(`unable to insert ${input.type} from ${session.user.id}`);
     const error = err as Error;
-    throw new Error("Unable To Send Feedback");
+    return { error: `unable to send ${input.type}` };
   }
 });

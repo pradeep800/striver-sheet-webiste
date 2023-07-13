@@ -29,11 +29,13 @@ type Props = {
   onYoutube?: boolean;
   className?: string;
   questionInfo: questionInfoForDay;
+  defaultShouldSendEmail: boolean;
 };
 
 export default function QuestionLinks({
   onYoutube = true,
   questionInfo,
+  defaultShouldSendEmail,
 }: Props) {
   const [open, setOpen] = useState(false); //for work around of select /* radix ui select was not working */
   const router = useRouter();
@@ -56,6 +58,7 @@ export default function QuestionLinks({
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
             target="_blank"
+            prefetch={false}
             href={absoluteUrl(
               `/countingLinks/${questionInfo.questionNumber}-1`
             )}
@@ -68,6 +71,7 @@ export default function QuestionLinks({
           <Link
             className="hover:fill-red-400 fill-red-500"
             onClick={stopPropagation}
+            prefetch={false}
             target="_blank"
             href={absoluteUrl(
               `/countingLinks/${questionInfo.questionNumber}-2`
@@ -156,6 +160,7 @@ export default function QuestionLinks({
           setReminderClicked={setReminderClicked}
           reminderClicked={reminderClicked}
           questionInfo={questionInfo}
+          defaultShouldSendEmail={defaultShouldSendEmail}
         />
       </div>
     </>

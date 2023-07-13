@@ -21,7 +21,7 @@ export default async function ManageSubscription() {
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!user) {
-    throw new Error("account deleted");
+    return { error: "please signout it seems like your account is deleted" };
   }
   if (user.role === "USER" || !user.customerId) {
     redirect(

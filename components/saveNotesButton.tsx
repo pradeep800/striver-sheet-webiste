@@ -34,7 +34,7 @@ export default function SaveNotes({ questionInfo, data }: Props) {
       }}
     >
       {loading && <Loading />}
-      <p className="mx-2 text-lg font-bold">Save</p>
+      <p className="mx-2 text-lg font-bold dark:text-white">Save</p>
     </Button>
   );
 }

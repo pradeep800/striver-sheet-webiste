@@ -13,6 +13,9 @@ const resend = new Resend(env.RESEND_API_KEY);
 
 export async function GET(req: Request) {
   //get all admin
+  const { day: todayDay, month: todayMonth } = getIndianTime(
+    new Date().toISOString()
+  );
   const resendIds: string[] = [];
   const adminUsers = await db
     .select({ id: users.id, email: users.email })
@@ -85,5 +88,5 @@ export async function GET(req: Request) {
     await Promise.all(markingReminderSended);
   }
 
-  return NextResponse.json({ ids: resendIds });
+  return NextResponse.json({ ids: resendIds, todayDay, todayMonth });
 }

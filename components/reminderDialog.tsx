@@ -5,8 +5,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -15,7 +13,6 @@ import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -42,6 +39,7 @@ type Props = {
   setReminderClicked: React.Dispatch<SetStateAction<boolean>>;
   reminderClicked: boolean;
   questionInfo: questionInfoForDay;
+  defaultShouldSendEmail: boolean;
 };
 
 const { maxDate, minDate } = getMinMaxReminderTime();
@@ -50,13 +48,14 @@ maxDate.setHours(maxDate.getHours() + 5, maxDate.getMinutes() + 30);
 console.log(minDate);
 export default function ReminderDialog({
   questionInfo,
+  defaultShouldSendEmail,
   reminderClicked,
   setReminderClicked,
 }: Props) {
   const router = useRouter();
   const form = useForm<z.infer<typeof reminderDialogSchema>>({
     resolver: zodResolver(reminderDialogSchema),
-    defaultValues: { dueDate: minDate, shouldSendMail: true },
+    defaultValues: { dueDate: minDate, shouldSendMail: defaultShouldSendEmail },
   });
   const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();

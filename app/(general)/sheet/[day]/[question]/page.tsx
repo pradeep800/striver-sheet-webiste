@@ -43,7 +43,10 @@ export default async function QuestionPage({ params }: Props) {
     redirect("/");
   }
   const [userInfo] = await db
-    .select({ striver_sheet_id_30_days: users.striver_sheet_id_30_days })
+    .select({
+      striver_sheet_id_30_days: users.striver_sheet_id_30_days,
+      defaultShouldSendEmail: users.default_should_send_email,
+    })
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!userInfo) {
@@ -67,5 +70,10 @@ export default async function QuestionPage({ params }: Props) {
     youTubeLink: question?.videoSolution,
     questionDay: question.topicNo + 1,
   };
-  return <MainQuestion questionInfo={neededQuestionInfo} />;
+  return (
+    <MainQuestion
+      questionInfo={neededQuestionInfo}
+      defaultShouldSendEmail={userInfo.defaultShouldSendEmail}
+    />
+  );
 }

@@ -11,9 +11,13 @@ import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import clsx from "clsx";
 type Props = {
   questionInfo: questionInfoForDay;
+  defaultShouldSendEmail: boolean;
 };
 
-export default function QuestionCard({ questionInfo }: Props) {
+export default function QuestionCard({
+  questionInfo,
+  defaultShouldSendEmail,
+}: Props) {
   const path = usePathname();
   const router = useRouter();
 
@@ -41,7 +45,10 @@ export default function QuestionCard({ questionInfo }: Props) {
         <div className="w-[300px] text-center sm:text-left  font-semibold">
           {questionInfo.questionTitle}
         </div>
-        <QuestionLinks questionInfo={questionInfo} />
+        <QuestionLinks
+          questionInfo={questionInfo}
+          defaultShouldSendEmail={defaultShouldSendEmail}
+        />
       </div>
     </div>
   );

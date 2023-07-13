@@ -40,12 +40,17 @@ export default function ContactPage() {
   async function onSubmit(data: formSchema) {
     setLoading(true);
     try {
-      await sendFeedback(data);
-      toast({ title: "Your Query Is Submitted Successfully" });
-      form.reset({ content: "", type: data.type });
+      const actionRes = await sendFeedback(data);
+
+      if (actionRes?.error) {
+        toast({ title: actionRes.error, variant: "destructive" });
+      } else {
+        toast({ title: "Your Query Is Submitted Successfully" });
+        form.reset({ content: "", type: data.type });
+      }
     } catch (err) {
       const error = err as Error;
-      toast({ title: error.message, variant: "destructive" });
+      toast({ title: "server error", variant: "destructive" });
     } finally {
       setLoading(false);
     }

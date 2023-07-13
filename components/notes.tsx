@@ -2,7 +2,7 @@
 import Back from "@/components/svg/back";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import "@/styles/editor.css";
+
 import Editor from "./editor";
 import EditorHeading from "@/components/editorHeading";
 
