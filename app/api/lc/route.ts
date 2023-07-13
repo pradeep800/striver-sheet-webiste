@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+export const revalidate = 0;
 export function GET() {
   const a = new Date();
   const options = { timeZone: "Asia/Kolkata" };

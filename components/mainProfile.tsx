@@ -84,13 +84,10 @@ export default function MainProfile({
           <HeatMap
             value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}
             rectRender={(props, data) => {
+              if (!data.count) return <rect {...props} />;
               return (
-                <Tooltip
-                  key={props.key}
-                  placement="top"
-                  content={`count: ${data.count || 0}`}
-                >
-                  <rect className=" " {...props} />
+                <Tooltip key={props.key} placement="top" content={data.content}>
+                  <rect {...props} />
                 </Tooltip>
               );
             }}

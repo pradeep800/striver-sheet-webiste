@@ -11,7 +11,7 @@ import { getIndianTime } from "@/lib/dateTimeFun";
 import { absoluteUrl } from "@/lib/utils";
 
 const resend = new Resend(env.RESEND_API_KEY);
-
+export const revalidate = 0;
 export async function GET(req: Request) {
   //get all admin
 
@@ -80,15 +80,15 @@ export async function GET(req: Request) {
 
     const markingReminderSended: any[] = [];
     //mark mail send
-    reminderWhichHaveTodayDate.map((reminder) => {
-      markingReminderSended.push(
-        db
-          .update(reminders)
-          .set({ mail_sended: true })
-          .where(eq(reminders.id, reminder.reminderId))
-      );
-    });
-    await Promise.all(markingReminderSended);
+    //   reminderWhichHaveTodayDate.map((reminder) => {
+    //     markingReminderSended.push(
+    //       db
+    //         .update(reminders)
+    //         .set({ mail_sended: true })
+    //         .where(eq(reminders.id, reminder.reminderId))
+    //     );
+    //   });
+    //   await Promise.all(markingReminderSended);
   }
 
   return NextResponse.json({
