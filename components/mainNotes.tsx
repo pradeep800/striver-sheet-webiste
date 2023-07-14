@@ -20,11 +20,10 @@ export type NotesInfo = {
 };
 export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
-  const { questionNo } = params;
-  const questionNumber = parseInt(questionNo);
+  const { questionno } = params;
+  const questionNumber = parseInt(questionno);
   const session = await getServerSession(authOption);
-  console.log("questoin no", questionNumber);
-  console.log(params);
+
   if (!session || !session.user || !session.user.id) {
     redirect("/");
   }
