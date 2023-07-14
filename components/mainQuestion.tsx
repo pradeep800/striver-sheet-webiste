@@ -6,14 +6,15 @@ import React, {
   useState,
 } from "react";
 import QuestionLinks from "./questionLinks";
+import { Session } from "next-auth";
 type Props = {
   questionInfo: questionInfoForDay;
-  defaultShouldSendEmail: boolean;
+  userInfo: {
+    defaultShouldSendEmail: boolean;
+    role: Session["user"]["role"];
+  };
 };
-export default function MainQuestion({
-  questionInfo,
-  defaultShouldSendEmail,
-}: Props) {
+export default function MainQuestion({ questionInfo, userInfo }: Props) {
   return (
     <div className="max-w-[800px] mx-auto mt-3 flex items-center h-[70vh] sm:h-[80vh]">
       <div className="w-[100%] ">
@@ -31,7 +32,7 @@ export default function MainQuestion({
           <QuestionLinks
             questionInfo={questionInfo}
             onYoutube={false}
-            defaultShouldSendEmail={defaultShouldSendEmail}
+            userInfo={userInfo}
           />
         </div>
       </div>

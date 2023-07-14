@@ -15,9 +15,10 @@ type Props = {
 export type NotesInfo = {
   content: unknown | null;
   title: string;
-  day: number;
+  questionNo: number;
   sheetId: string;
 };
+export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
   const { questionNo } = params;
   const questionNumber = parseInt(questionNo);
@@ -50,14 +51,14 @@ export default async function MainNotes({ params, type }: Props) {
   if (!dbNoteInfo) {
     notesInfo = {
       content: null,
-      day: getQuestionDay(questionNumber),
+      questionNo: questionNumber,
       title: question.problem,
       sheetId: userInfo.sheetId,
     };
   } else {
     notesInfo = {
       content: dbNoteInfo.content,
-      day: getQuestionDay(questionNumber),
+      questionNo: questionNumber,
       title: question.problem,
       sheetId: userInfo.sheetId,
     };

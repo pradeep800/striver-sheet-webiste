@@ -1,4 +1,3 @@
-import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { NotesInfo } from "./mainNotes";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
@@ -17,12 +16,17 @@ export default function SaveNotes({ notesInfo, data }: Props) {
       onClick={async () => {
         try {
           setLoading(true);
-          await saveNotes({
-            questionNo: notesInfo.day,
+          console.log(notesInfo, data);
+          const serverAction = await saveNotes({
+            questionNo: notesInfo.questionNo,
             sheetId: notesInfo.sheetId,
             content: data,
           });
-          toast({ title: "successfully notes are updated" });
+          if (serverAction?.error) {
+            toast({ title: serverAction?.error, variant: "destructive" });
+          } else {
+            toast({ title: "successfully notes are updated" });
+          }
         } catch (err) {
           const error = err as Error;
           toast({ title: "Unable to update", variant: "destructive" });

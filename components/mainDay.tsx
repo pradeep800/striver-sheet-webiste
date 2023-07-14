@@ -3,20 +3,24 @@ import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import MainCard from "./mainCard";
 import QuestionCard from "./questionCard";
 import { useEffect, useState } from "react";
+import { Session } from "next-auth";
 
 type Props = {
   topicTitle: string;
   total: number;
   questionSet: questionInfoForDay[];
   solvedCount: number;
-  defaultShouldSendEmail: boolean;
+  userInfo: {
+    defaultShouldSendEmail: boolean;
+    role: Session["user"]["role"];
+  };
 };
 export default function MainDay({
   questionSet,
   topicTitle,
   total,
   solvedCount,
-  defaultShouldSendEmail,
+  userInfo,
 }: Props) {
   return (
     <div className="max-w-[800px] mx-auto ">
@@ -25,7 +29,7 @@ export default function MainDay({
         {questionSet.map((question) => {
           return (
             <QuestionCard
-              defaultShouldSendEmail={defaultShouldSendEmail}
+              userInfo={userInfo}
               key={question.questionNumber}
               questionInfo={question}
             />

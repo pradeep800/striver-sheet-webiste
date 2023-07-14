@@ -31,7 +31,8 @@ export default async function QuestionPage({ params }: Props) {
   }
   const [userInfo] = await db
     .select({
-      striver_sheet_id_30_days: users.striver_sheet_id_30_days,
+      role: users.role,
+      sheetId: users.striver_sheet_id_30_days,
       defaultShouldSendEmail: users.default_should_send_email,
     })
     .from(users)
@@ -45,7 +46,7 @@ export default async function QuestionPage({ params }: Props) {
     .from(questions)
     .where(
       and(
-        eq(questions.sheet_id, userInfo.striver_sheet_id_30_days),
+        eq(questions.sheet_id, userInfo.sheetId),
         eq(questions.number, questionNumber)
       )
     )
@@ -59,10 +60,5 @@ export default async function QuestionPage({ params }: Props) {
     youTubeLink: question?.videoSolution,
     questionDay: question.topicNo + 1,
   };
-  return (
-    <MainQuestion
-      questionInfo={neededQuestionInfo}
-      defaultShouldSendEmail={userInfo.defaultShouldSendEmail}
-    />
-  );
+  return <MainQuestion questionInfo={neededQuestionInfo} userInfo={userInfo} />;
 }

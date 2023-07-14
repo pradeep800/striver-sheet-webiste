@@ -36,7 +36,11 @@ export default async function DayPage({ params }: Props) {
   const questionsDay = getDayFromParams(day);
 
   const [user] = await db
-    .select()
+    .select({
+      role: users.role,
+      defaultShouldSendEmail: users.default_should_send_email,
+      sheetId: users.striver_sheet_id_30_days,
+    })
     .from(users)
     .where(eq(users.id, session.user.id));
   if (!user) {
@@ -44,13 +48,14 @@ export default async function DayPage({ params }: Props) {
   }
   const topicTitle = getDayTitle(questionsDay);
   const databaseQuestionSet = await db
-    .select()
+    .select({
+      title: questions.title,
+      solved: questions.solved,
+      number: questions.number,
+    })
     .from(questions)
     .where(
-      and(
-        eq(questions.sheet_id, user.striver_sheet_id_30_days),
-        eq(questions.day, questionsDay)
-      )
+      and(eq(questions.sheet_id, user.sheetId), eq(questions.day, questionsDay))
     )
     .orderBy(asc(questions.number));
 
@@ -108,7 +113,7 @@ export default async function DayPage({ params }: Props) {
 
   return (
     <MainDay
-      defaultShouldSendEmail={user.default_should_send_email}
+      userInfo={user}
       questionSet={questionSet}
       topicTitle={topicTitle}
       total={total}

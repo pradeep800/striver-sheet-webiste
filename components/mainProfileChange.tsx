@@ -1,9 +1,8 @@
 "use client";
-import { UploadButton, UploadDropzone, Uploader } from "@uploadthing/react";
+import { UploadDropzone } from "@uploadthing/react";
 import { DbUser } from "@/lib/db/types";
-import { FormEvent, useEffect, useId, useState, useTransition } from "react";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { useEffect, useId, useState, useTransition } from "react";
+
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import "@uploadthing/react/styles.css";
 import { useRouter } from "next/navigation";
@@ -14,8 +13,9 @@ import { toast } from "./ui/use-toast";
 import UDFrom from "./formForChangingDescriptionAndName";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
+type NavUser = Pick<DbUser, "userName" | "description" | "leftProfileChanges">;
 type Props = {
-  user: DbUser;
+  user: NavUser;
 };
 export default function MainProfileChange({ user }: Props) {
   const [profileUrl, setProfileUrl] = useState(

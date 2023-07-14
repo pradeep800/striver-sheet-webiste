@@ -1,12 +1,9 @@
 "use server";
-import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, reminders, users } from "@/lib/db/schema";
-import { ssQuestions } from "@/static/striverSheet";
 import { and, eq } from "drizzle-orm";
-import { Session, getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { Session } from "next-auth";
+
 import { zact } from "zact/server";
 import { z } from "zod";
 import { reminderDialogSchema } from "./zodType/reminderDialogsSchema";
@@ -37,7 +34,11 @@ export const saveQuestionInfo = zact(
     }
 
     const [user] = await db
-      .select()
+      .select({
+        id: users.id,
+        sheetId: users.striver_sheet_id_30_days,
+        role: users.role,
+      })
       .from(users)
       .where(eq(users.id, session.user.id));
 
@@ -46,11 +47,11 @@ export const saveQuestionInfo = zact(
     }
 
     const question = await db
-      .select()
+      .select({ solved: questions.solved })
       .from(questions)
       .where(
         and(
-          eq(questions.sheet_id, user.striver_sheet_id_30_days),
+          eq(questions.sheet_id, user.sheetId),
           eq(questions.number, input.questionNumber)
         )
       )
@@ -87,7 +88,7 @@ export const saveQuestionInfo = zact(
             number: input.questionNumber,
             title: input.name,
             day: input.questionDay,
-            sheet_id: user.striver_sheet_id_30_days,
+            sheet_id: user.sheetId,
             solved: input.solved,
           });
         } else {
@@ -112,7 +113,7 @@ export const saveQuestionInfo = zact(
             })
             .where(
               and(
-                eq(questions.sheet_id, user.striver_sheet_id_30_days),
+                eq(questions.sheet_id, user.sheetId),
                 eq(questions.number, input.questionNumber)
               )
             );

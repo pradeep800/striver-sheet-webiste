@@ -7,7 +7,6 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -18,13 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { solved } from "@/types/general";
-import React, {
-  SetStateAction,
-  useEffect,
-  useState,
-  useTransition,
-} from "react";
+import React, { SetStateAction, useState, useTransition } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { reminderDialogSchema } from "@/server-action/zodType/reminderDialogsSchema";
@@ -35,11 +28,16 @@ import Loading from "./svg/loading";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { useRouter } from "next/navigation";
 import { getMinMaxReminderTime } from "@/lib/dateTimeFun";
+import { Session } from "next-auth";
 type Props = {
   setReminderClicked: React.Dispatch<SetStateAction<boolean>>;
   reminderClicked: boolean;
   questionInfo: questionInfoForDay;
-  defaultShouldSendEmail: boolean;
+
+  userInfo: {
+    defaultShouldSendEmail: boolean;
+    role: Session["user"]["role"];
+  };
 };
 
 const { maxDate, minDate } = getMinMaxReminderTime();
@@ -48,14 +46,17 @@ maxDate.setHours(maxDate.getHours() + 5, maxDate.getMinutes() + 30);
 console.log(minDate);
 export default function ReminderDialog({
   questionInfo,
-  defaultShouldSendEmail,
+  userInfo,
   reminderClicked,
   setReminderClicked,
 }: Props) {
   const router = useRouter();
   const form = useForm<z.infer<typeof reminderDialogSchema>>({
     resolver: zodResolver(reminderDialogSchema),
-    defaultValues: { dueDate: minDate, shouldSendMail: defaultShouldSendEmail },
+    defaultValues: {
+      dueDate: minDate,
+      shouldSendMail: userInfo.defaultShouldSendEmail,
+    },
   });
   const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -63,22 +64,21 @@ export default function ReminderDialog({
   async function onSubmit(data: z.infer<typeof reminderDialogSchema>) {
     setLoading(true);
     try {
-      await saveQuestionInfo({
+      const actionRes = await saveQuestionInfo({
         name: questionInfo.questionTitle,
         questionNumber: questionInfo.questionNumber,
         questionDay: questionInfo.questionDay,
         solved: "REMINDER",
         reminderData: data,
       });
-
-      setReminderClicked(false);
-      startTransition(() => {
-        router.refresh();
-      });
-
-      toast({
-        title: "Reminder is created",
-      });
+      if (actionRes?.error) {
+        toast({ title: actionRes.error, variant: "destructive" });
+      } else {
+        setReminderClicked(false);
+        startTransition(() => {
+          router.refresh();
+        });
+      }
     } catch (err) {
       toast({
         title: "Unable to create this reminder",
@@ -128,26 +128,31 @@ export default function ReminderDialog({
                     );
                   }}
                 />
-                <FormField
-                  control={form.control}
-                  name="shouldSendMail"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="flex gap-3  flex-col items-center justify-center my-2">
-                        <FormLabel className="">Send Email Reminder</FormLabel>
-                        <FormControl>
-                          <Switch
-                            className=""
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                            aria-readonly
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
+                {(userInfo.role === "ADMIN" || userInfo.role === "PROUSER") && (
+                  <FormField
+                    control={form.control}
+                    name="shouldSendMail"
+                    render={({ field }) => {
+                      return (
+                        <FormItem className="flex gap-3  flex-col items-center justify-center my-2">
+                          <FormLabel className="">
+                            Send Email Reminder
+                          </FormLabel>
+                          <FormControl>
+                            <Switch
+                              className=""
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              aria-readonly
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      );
+                    }}
+                  />
+                )}
+
                 <div className="flex justify-between w-[100%] mt-3">
                   <AlertDialogCancel
                     className="dark:text-white"

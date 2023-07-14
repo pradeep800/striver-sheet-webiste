@@ -9,15 +9,16 @@ import React, {
 } from "react";
 import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import clsx from "clsx";
+import { Session } from "next-auth";
 type Props = {
   questionInfo: questionInfoForDay;
-  defaultShouldSendEmail: boolean;
+  userInfo: {
+    defaultShouldSendEmail: boolean;
+    role: Session["user"]["role"];
+  };
 };
 
-export default function QuestionCard({
-  questionInfo,
-  defaultShouldSendEmail,
-}: Props) {
+export default function QuestionCard({ userInfo, questionInfo }: Props) {
   const path = usePathname();
   const router = useRouter();
 
@@ -45,10 +46,7 @@ export default function QuestionCard({
         <div className="w-[300px] text-center sm:text-left  font-semibold">
           {questionInfo.questionTitle}
         </div>
-        <QuestionLinks
-          questionInfo={questionInfo}
-          defaultShouldSendEmail={defaultShouldSendEmail}
-        />
+        <QuestionLinks questionInfo={questionInfo} userInfo={userInfo} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Editor from "./editor";
 import Modal from "./modal";
 import EditorHeading from "./editorHeading";
@@ -8,6 +8,8 @@ import { X } from "lucide-react";
 import SaveAlert from "./saveAlert";
 import { NotesInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
+import { revalidatePath } from "next/cache";
+import { useRouter } from "next/router";
 type Props = {
   notesInfo: NotesInfo;
 };
@@ -24,7 +26,6 @@ export default function NotesModal({ notesInfo }: Props) {
   );
   const [isEditModeOn, setIsEditModeOn] = useState(true);
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {
       event.returnValue = "There are unsaved changes. Leave now?";

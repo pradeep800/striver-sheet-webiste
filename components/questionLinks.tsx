@@ -25,17 +25,18 @@ import { solved } from "@/types/general";
 import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import ReminderDialog from "./reminderDialog";
+import { Session } from "next-auth";
 type Props = {
   onYoutube?: boolean;
   className?: string;
   questionInfo: questionInfoForDay;
-  defaultShouldSendEmail: boolean;
+  userInfo: { defaultShouldSendEmail: boolean; role: Session["user"]["role"] };
 };
 
 export default function QuestionLinks({
   onYoutube = true,
   questionInfo,
-  defaultShouldSendEmail,
+  userInfo,
 }: Props) {
   const [open, setOpen] = useState(false); //for work around of select /* radix ui select was not working */
   const router = useRouter();
@@ -117,22 +118,23 @@ export default function QuestionLinks({
 
                 setLoading(true);
                 try {
-                  await saveQuestionInfo({
+                  const actionRes = await saveQuestionInfo({
                     name: questionInfo.questionTitle,
                     questionNumber: questionInfo.questionNumber,
                     questionDay: questionInfo.questionDay,
                     solved: solved,
                   });
-
-                  startTransition(() => {
-                    router.refresh();
-                  });
+                  if (actionRes?.error) {
+                    toast({ title: actionRes.error, variant: "destructive" });
+                  } else {
+                    startTransition(() => {
+                      router.refresh();
+                    });
+                  }
                 } catch (err) {
                   const error = err as Error;
                   toast({
-                    title: "Unable To Update",
-                    description:
-                      "After again trying if it doesn't work please report.",
+                    title: "Internal Server  Error",
                     variant: "destructive",
                   });
 
@@ -160,7 +162,7 @@ export default function QuestionLinks({
           setReminderClicked={setReminderClicked}
           reminderClicked={reminderClicked}
           questionInfo={questionInfo}
-          defaultShouldSendEmail={defaultShouldSendEmail}
+          userInfo={userInfo}
         />
       </div>
     </>

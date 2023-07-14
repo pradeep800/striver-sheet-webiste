@@ -12,7 +12,11 @@ export default async function Home() {
     redirect("/");
   }
   const [user] = await db
-    .select()
+    .select({
+      description: users.description,
+      userName: users.userName,
+      leftProfileChanges: users.leftProfileChanges,
+    })
     .from(users)
     .where(eq(users.id, session.user.id));
 

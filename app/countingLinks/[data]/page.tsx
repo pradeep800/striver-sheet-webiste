@@ -1,6 +1,6 @@
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { trackingQuestions } from "@/lib/db/schema";
+import { trackingQuestions, users } from "@/lib/db/schema";
 import { ssQuestions } from "@/static/striverSheet";
 import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
@@ -27,7 +27,7 @@ export default async function CountingLinkPage({ params }: Props) {
     redirect("/");
   }
   const questions = await db
-    .select()
+    .select({ id: trackingQuestions.id })
     .from(trackingQuestions)
     .where(
       and(

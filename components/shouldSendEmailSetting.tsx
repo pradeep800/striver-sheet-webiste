@@ -42,7 +42,7 @@ export default function ShouldSendEmailSetting({
                 toast({ title: actionRes.error, variant: "destructive" });
               } else {
                 toast({
-                  title: `default reminder option is ${default_should_send_email}`,
+                  title: `default reminder option is ${!default_should_send_email}`,
                 });
               }
             } catch (err) {

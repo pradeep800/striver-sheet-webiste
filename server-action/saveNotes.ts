@@ -1,3 +1,4 @@
+"use server";
 import { db } from "@/lib/db";
 import { notes, users } from "@/lib/db/schema";
 import { LogServerAndReturn } from "@/lib/serverActionUtils";
@@ -21,6 +22,7 @@ export const saveNotes = zact(
       .from(users)
       .where(eq(users.id, session.user.id))
       .limit(1);
+
     if (!userInfo) {
       return {
         error: "Your account is deleted",

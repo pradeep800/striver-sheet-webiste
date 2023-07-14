@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import SaveAlert from "./saveAlert";
 import { NotesInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
+import { Revalidate } from "@/lib/revalidate";
 
 type Props = {
   notesInfo: NotesInfo;
@@ -38,6 +39,7 @@ export default function Notes({ notesInfo }: Props) {
     //work around because removeEventListener is not working
     return () => {
       window.onbeforeunload = null;
+      router.refresh();
     };
   }, []);
   const title = notesInfo.title;
