@@ -6,16 +6,13 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
-import Mode from "./mode";
 import { SessionUser } from "@/types/next-auth";
 import Link from "next/link";
-import { absoluteUrl } from "@/lib/utils";
 
 interface UserProps {
   user: SessionUser;
@@ -58,19 +55,13 @@ export default function UserAvatar({ user }: UserProps) {
           </div>
           <DropdownMenuSeparator />
           <Link href={`/${user.userName}`}>
-            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500  ">
-              Profile
-            </DropdownMenuItem>
+            <DropdownMenuItem className="">Profile</DropdownMenuItem>
           </Link>
           <Link href={"/sheet/changeProfile"}>
-            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
-              change profile
-            </DropdownMenuItem>
+            <DropdownMenuItem className="">Change Profile</DropdownMenuItem>
           </Link>
           <Link href={"/sheet/settings"}>
-            <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 ">
-              settings
-            </DropdownMenuItem>
+            <DropdownMenuItem className="">Settings</DropdownMenuItem>
           </Link>
 
           <DropdownMenuItem

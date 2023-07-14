@@ -16,6 +16,7 @@ export default async function Home() {
       description: users.description,
       userName: users.userName,
       leftProfileChanges: users.leftProfileChanges,
+      name: users.name,
     })
     .from(users)
     .where(eq(users.id, session.user.id));
