@@ -9,8 +9,6 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { changeEmailPreferences } from "@/server-action/changeEmailPreferences";
 import { SessionUser } from "@/types/next-auth";
-import { useEffect, useState } from "react";
-import { experimental_useOptimistic as useOptimistic } from "react";
 import { toast } from "./ui/use-toast";
 type Props = {
   user: SessionUser;
