@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
 import { eq, sql } from "drizzle-orm";
-import { redirect } from "next/navigation";
 export const revalidate = 0;
 type DayType = { solvedQuestions: string; month: number; day: number };
 export type HeatMapDataForYear = {

@@ -20,8 +20,9 @@ export type NotesInfo = {
 };
 export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
-  const { questionno } = params;
-  const questionNumber = parseInt(questionno);
+  ///questionNo is not working in production
+  const { question } = params;
+  const questionNumber = parseInt(question);
   const session = await getServerSession(authOption);
 
   if (!session || !session.user || !session.user.id) {
@@ -36,7 +37,7 @@ export default async function MainNotes({ params, type }: Props) {
     redirect("/accountDeleted");
   }
 
-  const question = getQuestionInfo(questionNumber);
+  const questionName = getQuestionInfo(questionNumber).problem;
   let notesInfo!: NotesInfo;
   const [dbNoteInfo] = await db
     .select({ content: notes.content })
@@ -52,14 +53,14 @@ export default async function MainNotes({ params, type }: Props) {
     notesInfo = {
       content: null,
       questionNo: questionNumber,
-      title: question.problem,
+      title: questionName,
       sheetId: userInfo.sheetId,
     };
   } else {
     notesInfo = {
       content: dbNoteInfo.content,
       questionNo: questionNumber,
-      title: question.problem,
+      title: questionName,
       sheetId: userInfo.sheetId,
     };
   }

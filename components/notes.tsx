@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import SaveAlert from "./saveAlert";
 import { NotesInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
-import { Revalidate } from "@/lib/revalidate";
 
 type Props = {
   notesInfo: NotesInfo;

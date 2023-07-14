@@ -26,9 +26,6 @@ export default function SaveNotes({ notesInfo, data }: Props) {
             sheetId: notesInfo.sheetId,
             content: data,
           });
-          startTransition(() => {
-            router.refresh();
-          });
           if (serverAction?.error) {
             toast({ title: serverAction?.error, variant: "destructive" });
           } else {
