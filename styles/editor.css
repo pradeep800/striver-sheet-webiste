@@ -23,7 +23,52 @@
   font-weight: bold;
 }
 
-h6 {
+.editor h6 {
   font-size: 0.67em;
   font-weight: bold;
 }
+.editor .cdx-search-field__input {
+  color: black;
+}
+.editor .ce-code__textarea {
+  @apply bg-background border shadow-sm dark:text-white;
+}
+/* too much work just leavintg it here*/
+/*
+.editor .tc-popover {
+  @apply bg-background;
+}
+.editor .tc-popover__item-icon {
+  @apply bg-background;
+}
+.editr .tc-cell {
+  @apply bg-background;
+}
+.editr .tc-row {
+  @apply bg-background active:bg-background;
+}
+.editor .tc-add-column {
+  @apply bg-background;
+}
+.editor .tc-toolbox__toggler {
+  @apply bg-background;
+}
+.editor .tc-cell--selected {
+  @apply bg-background;
+}
+.editor .tc-row--selected {
+  @apply bg-background;
+}
+.editor .tc-add-row {
+  @apply bg-background dark:hover:bg-slate-700;
+}
+.editor .tc-add-column {
+  @apply bg-background dark:hover:bg-slate-700 dark:hover:before:bg-slate-700;
+}
+.editor .ce-toolbar__plus {
+  @apply bg-background dark:hover:bg-slate-700 dark:border dark:text-white;
+}
+.editor .ce-toolbar__settings-btn {
+  @apply bg-background dark:hover:bg-slate-700 dark:border dark:text-white;
+}
+*/

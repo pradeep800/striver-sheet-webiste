@@ -5,7 +5,10 @@ import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
-const asap = Asap({ subsets: ["latin"] });
+const asap = Asap({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 export const metadata: Metadata = {
   metadataBase: new URL("https://striversheet.pradeepbisht.com"),
   title: {

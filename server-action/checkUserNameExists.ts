@@ -5,7 +5,7 @@ import { users } from "@/lib/db/schema";
 import { identifiers } from "@/static/identifier";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { isIdentifier } from "@/lib/isIdentifier";
+import { isIdentifier } from "@/lib/serverActionUtils";
 import { zact } from "zact/server";
 import { z } from "zod";
 type UserNameObj = {

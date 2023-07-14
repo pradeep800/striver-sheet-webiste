@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 export default function Example() {
   const router = useRouter();
@@ -16,26 +15,31 @@ export default function Example() {
     <div className="w-full">
       <Card className="w-[95%] sm:w-[500px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
         <CardHeader>
-          <CardTitle>Account Deleted</CardTitle>
-          <CardDescription>
-            it seems like you have deleted your account from another device
-          </CardDescription>
+          <CardTitle>Error</CardTitle>
+          <CardDescription>internal server error</CardDescription>
         </CardHeader>
         <CardContent className="">
-          <p>For creating a new account or going to home page please signout</p>
+          <p>
+            Please check url if you think everything is fine you can report this
+            bug
+          </p>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex flex-col gap-3">
           <Button
             className="hover:bg-red-400 bg-red-500 dark:text-white w-[100%]"
-            onClick={async () => {
-              await signOut({ redirect: false });
-
-              setTimeout(() => {
-                router.push("/");
-              }, 200);
+            onClick={() => {
+              router.push("/");
             }}
           >
-            Signout
+            Home
+          </Button>
+          <Button
+            className="hover:bg-red-400 bg-red-500 dark:text-white w-[100%]"
+            onClick={() => {
+              router.push("/feedback?type=bug");
+            }}
+          >
+            Report Bug
           </Button>
         </CardFooter>
       </Card>

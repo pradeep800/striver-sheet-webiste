@@ -29,14 +29,23 @@ import { feedBackSchema } from "@/server-action/zodType/feedbackSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sendFeedback } from "@/server-action/sendFeedback";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "@/components/svg/loading";
+import { useRouter, useSearchParams } from "next/navigation";
 type formSchema = z.infer<typeof feedBackSchema>;
+type type = formSchema["type"];
 export default function ContactPage() {
+  const searchParams = useSearchParams();
   const form = useForm<formSchema>({
     resolver: zodResolver(feedBackSchema),
+    defaultValues: {
+      type: (searchParams.get("type")?.toUpperCase() as type) ?? undefined,
+    },
   });
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
+
   async function onSubmit(data: formSchema) {
     setLoading(true);
     try {

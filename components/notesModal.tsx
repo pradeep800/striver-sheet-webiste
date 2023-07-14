@@ -38,9 +38,10 @@ export default function NotesModal({ questionInfo }: Props) {
   const title = questionInfo.title;
   return (
     <Modal>
-      <div className="max-w-[800px] mx-auto p-3 bg-white  rounded-md   ">
+      <div className="max-w-[800px] mx-auto p-3   rounded-md  bg-background border shadow-md ">
         <div className="flex justify-between ">
           <X
+            className="dark:fill-white"
             onClick={() => {
               setOpen(true);
             }}

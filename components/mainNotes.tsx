@@ -1,7 +1,7 @@
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
-import "@/styles/editor.css";
+
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
@@ -20,8 +20,8 @@ export type questionInfo = {
   notes_content: unknown | null;
 };
 export default async function MainNotes({ params, type }: Props) {
-  const { questionno } = params;
-  const questionNumber = parseInt(questionno);
+  const { questionNo } = params;
+  const questionNumber = parseInt(questionNo);
   const session = await getServerSession(authOption);
 
   if (!session || !session.user || !session.user.id) {
@@ -33,7 +33,7 @@ export default async function MainNotes({ params, type }: Props) {
     .where(eq(users.id, session.user.id));
 
   if (!userInfo) {
-    throw new Error("account deleted");
+    redirect("/accountDeleted");
   }
 
   const [databaseQuestionInfo] = await db

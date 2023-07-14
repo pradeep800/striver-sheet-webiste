@@ -9,35 +9,24 @@ import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { questionInfoForDay } from "../page";
+import {
+  checkQuestionInfoIsCorrect,
+  getDayFromParams,
+  getQuestionInfo,
+} from "@/components/pagesUtils";
 
 type Props = {
   params: { [key: string]: string };
 };
 export default async function QuestionPage({ params }: Props) {
-  const { question: questionIndex, day } = params;
-  const matches = day.match(/day-(\d+)/);
-  if (!matches || !matches[1]) {
-    throw Error("Unable to find topic Number");
-  }
-  const topicNumber = parseInt(matches[1]); //i am using 1 base indexing in urls
-  if (isNaN(topicNumber) || topicNumber > 27) {
-    throw Error("Unable To find the topic");
-  }
+  const { questionNo: questionNumberInString, day } = params;
 
-  const questionIndexInNumber = parseInt(questionIndex);
-  const question = ssQuestions[questionIndexInNumber - 1];
+  const questionDay = getDayFromParams(day);
+  const questionNumber = parseInt(questionNumberInString);
+  checkQuestionInfoIsCorrect(questionDay, questionNumber);
+  checkQuestionInfoIsCorrect(questionDay, questionNumber);
+  const question = getQuestionInfo(questionNumber);
 
-  if (question.topicNo + 1 !== topicNumber) {
-    throw Error("Unable To find Page");
-  }
-
-  if (
-    questionIndexInNumber > 191 ||
-    questionIndexInNumber <= 0 ||
-    isNaN(questionIndexInNumber)
-  ) {
-    throw Error("Unable to find question");
-  }
   const session = await getServerSession(authOption);
   if (!session || !session.user || !session.user.id) {
     redirect("/");
@@ -48,23 +37,25 @@ export default async function QuestionPage({ params }: Props) {
       defaultShouldSendEmail: users.default_should_send_email,
     })
     .from(users)
-    .where(eq(users.id, session.user.id));
+    .where(eq(users.id, session.user.id))
+    .limit(1);
   if (!userInfo) {
-    throw new Error("account deleted");
+    redirect("/accountDeleted");
   }
   const [questionInfo] = await db
-    .select()
+    .select({ solved: questions.solved })
     .from(questions)
     .where(
       and(
         eq(questions.sheet_id, userInfo.striver_sheet_id_30_days),
-        eq(questions.number, questionIndexInNumber)
+        eq(questions.number, questionNumber)
       )
-    );
+    )
+    .limit(1);
   const neededQuestionInfo: questionInfoForDay = {
     codingNinja: question.codingNinja,
     leetCodeLink: question.leetCode,
-    questionNumber: questionIndexInNumber,
+    questionNumber: questionNumber,
     questionTitle: question.problem,
     solved: questionInfo?.solved ?? "UNATTEMPTED",
     youTubeLink: question?.videoSolution,

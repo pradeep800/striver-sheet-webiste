@@ -7,7 +7,7 @@ import { and, eq, ne } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { zact } from "zact/server";
 import { ChangeProfileType } from "./zodType/changeProfileSchema";
-import { isIdentifier } from "@/lib/isIdentifier";
+import { isIdentifier } from "@/lib/serverActionUtils";
 import { redirect } from "next/navigation";
 import { absoluteUrl } from "@/lib/utils";
 import { DbUser } from "@/lib/db/types";

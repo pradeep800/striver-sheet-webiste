@@ -73,7 +73,6 @@ export async function GET(req: Request) {
       }),
       headers: {
         "X-Entity-Ref-ID": Date.now().toString(),
-        "List-Unsubscribe": absoluteUrl("/sheet/settings"),
       },
     });
     resendIds.push(id.id);
