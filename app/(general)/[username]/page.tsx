@@ -1,10 +1,8 @@
 import MainProfile from "@/components/mainProfile";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
-import { absoluteUrl } from "@/lib/utils";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
 import { eq, sql } from "drizzle-orm";
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 export const revalidate = 0;
 type DayType = { solvedQuestions: string; month: number; day: number };
@@ -18,52 +16,6 @@ export type HeatMapData = HeatMapDataForYear[];
 type Props = {
   params: Record<string, string>;
 };
-
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata | undefined> {
-  const { username } = params;
-  const [userInfo] = await db
-    .select({
-      description: users.description,
-      name: users.name,
-      image: users.image,
-    })
-    .from(users)
-    .where(eq(users.userName, username))
-    .limit(1);
-  if (userInfo) {
-    const url = new URL("api/og", absoluteUrl(""));
-    url.searchParams.set("name", userInfo?.name ?? "");
-    url.searchParams.set("username", username ?? "");
-
-    url.searchParams.set("description", userInfo?.description ?? "");
-    url.searchParams.set("image", userInfo?.image ?? "");
-    const urlInString = url.toString();
-
-    return {
-      title: username,
-      openGraph: {
-        title: "Striver Sheet",
-        type: "website",
-        locale: "en_US",
-        siteName: "Striver Sheet",
-        description: userInfo?.description ?? "",
-        images: [urlInString],
-        url: "https://striversheet.pradeepbisht.com",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: "Striver Sheet",
-        description: userInfo?.description ?? "",
-        images: [urlInString],
-
-        creator: "@pradeep8b0",
-      },
-    };
-  }
-}
-
 export default async function ProfilePage({ params }: Props) {
   const { username } = params;
 
@@ -93,23 +45,23 @@ export default async function ProfilePage({ params }: Props) {
   for (let year = websiteBirthday; year <= todayYear; year++) {
     const days = (
       await db.execute(
-        sql`select count(${questions.id}) as solvedQuestions
-        ,extract(month from ${
-          questions.updated_at
-        }) as month,extract(day from ${
-          questions.updated_at
-        }) as day  from ${questions} where ${
-          questions.solved
-        }=${"SOLVED"} and ${questions.sheet_id}=${
-          user[0].sheet_id
-        } and extract(year from ${
-          questions.updated_at
-        })=${year} group by month,day order by month,day`
+        sql`SELECT COUNT(id) AS solvedQuestions, month, day
+  FROM (
+    SELECT id, EXTRACT(MONTH FROM ${questions.updated_at}) AS month,
+           EXTRACT(DAY FROM ${questions.updated_at}) AS day
+    FROM ${questions}
+    WHERE ${questions.solved} = ${"SOLVED"}
+      AND ${questions.sheet_id} = ${user[0].sheet_id}
+      AND EXTRACT(YEAR FROM ${questions.updated_at}) = ${year}
+  ) AS subquery
+  GROUP BY month, day
+  ORDER BY month, day`
       )
     ).rows as DayType[];
 
     const data: HeatMapDataForYear = days.map((day) => {
       totalSolvedQuestion += parseInt(day.solvedQuestions);
+      console.log(day);
       return {
         date: `${year}/${day.month}/${day.day}`,
         count: parseInt(day.solvedQuestions),
