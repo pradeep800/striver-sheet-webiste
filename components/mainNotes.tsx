@@ -24,6 +24,7 @@ export default async function MainNotes({ params, type }: Props) {
   const questionNumber = parseInt(questionNo);
   const session = await getServerSession(authOption);
   console.log("questoin no", questionNumber);
+  console.log(params);
   if (!session || !session.user || !session.user.id) {
     redirect("/");
   }
