@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();
@@ -20,7 +21,7 @@ export const ourFileRouter = {
         .where(eq(users.id, user.id));
 
       if (!userInfo) {
-        throw new Error("unable to find user");
+        redirect("/accountDeleted");
       }
       if (!userInfo.leftProfileChanges) {
         throw new Error("profile Change Count Is 0");

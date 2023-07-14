@@ -17,7 +17,7 @@ export default async function Home() {
     .where(eq(users.id, session.user.id));
 
   if (!user) {
-    throw new Error("account deleted");
+    redirect("/accountDeleted");
   }
   return <MainProfileChange user={user} />;
 }

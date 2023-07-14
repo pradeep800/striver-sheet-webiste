@@ -26,7 +26,7 @@ export default async function Pricing() {
       .from(users)
       .where(eq(users.id, sessionUser.id));
     if (!user.role) {
-      throw new Error("account deleted");
+      redirect("/accountDeleted");
     }
     if (user.role == "PROUSER") {
       redirect("/sheet");

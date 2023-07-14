@@ -24,7 +24,7 @@ export default async function Home() {
 
   const [user] = uUser;
   if (!user) {
-    throw new Error("account deleted");
+    redirect("/accountDeleted");
   }
   const solvedQuestionsCount = await db
     .select({

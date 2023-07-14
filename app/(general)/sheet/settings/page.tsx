@@ -19,7 +19,7 @@ export default async function SettingPage() {
     .where(eq(users.id, session.user.id));
 
   if (!userInfo) {
-    throw new Error("account deleted");
+    redirect("/accountDeleted");
   }
 
   const user = session.user;
