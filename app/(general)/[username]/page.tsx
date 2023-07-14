@@ -61,7 +61,6 @@ export default async function ProfilePage({ params }: Props) {
 
     const data: HeatMapDataForYear = days.map((day) => {
       totalSolvedQuestion += parseInt(day.solvedQuestions);
-      console.log(day);
       return {
         date: `${year}/${day.month}/${day.day}`,
         count: parseInt(day.solvedQuestions),
