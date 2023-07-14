@@ -1,14 +1,15 @@
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
-import { questionInfo } from "./mainNotes";
+import { NotesInfo } from "./mainNotes";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 import { useState } from "react";
 import Loading from "./svg/loading";
+import { saveNotes } from "@/server-action/saveNotes";
 type Props = {
-  questionInfo: questionInfo;
+  notesInfo: NotesInfo;
   data: any;
 };
-export default function SaveNotes({ questionInfo, data }: Props) {
+export default function SaveNotes({ notesInfo, data }: Props) {
   const [loading, setLoading] = useState(false);
   return (
     <Button
@@ -16,12 +17,10 @@ export default function SaveNotes({ questionInfo, data }: Props) {
       onClick={async () => {
         try {
           setLoading(true);
-          await saveQuestionInfo({
-            name: questionInfo.title,
-            questionDay: questionInfo.question_day_in_sheet,
-            questionNumber: questionInfo.number,
-            solved: questionInfo.solved,
-            notes: data,
+          await saveNotes({
+            questionNo: notesInfo.day,
+            sheetId: notesInfo.sheetId,
+            content: data,
           });
           toast({ title: "successfully notes are updated" });
         } catch (err) {

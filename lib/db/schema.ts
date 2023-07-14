@@ -117,9 +117,8 @@ export const questions = mysqlTable(
     sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
     number: int("number").notNull(),
     title: varchar("name", { length: 301 }).notNull(),
-    notes_content: json("content"),
     solved: problem_state_enum.notNull().default("UNATTEMPTED"),
-    question_day_in_sheet: int("question_day_in_sheet").notNull(),
+    day: int("day").notNull(),
     created_at: timestamp("created_at").defaultNow(),
     updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
   },
@@ -154,12 +153,12 @@ export const trackingQuestions = mysqlTable(
   "tracking_questions",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
-    createdAt: timestamp("createdAt").defaultNow(),
-    questionNumber: int("questionNumber").notNull(),
-    userId: varchar("userId", { length: 255 }).notNull(),
+    created_at: timestamp("created_at").defaultNow(),
+    question_number: int("question_number").notNull(),
+    user_id: varchar("user_id", { length: 255 }).notNull(),
   },
   (trackingQuestions) => ({
-    UserIdIndex: index("user_id_idx").on(trackingQuestions.userId),
+    UserIdIndex: index("user_id_idx").on(trackingQuestions.user_id),
   })
 );
 const feedback_type = mysqlEnum("feedback_type", [
@@ -171,17 +170,24 @@ export const feedbacks = mysqlTable(
   "feedbacks",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
-    createdAt: timestamp("createdAt").defaultNow(),
+    created_at: timestamp("create_at").defaultNow(),
     type: feedback_type.notNull(),
-    userId: varchar("userId", { length: 255 }).notNull(),
-    userRole: role_enum.notNull(),
+    user_id: varchar("user_id", { length: 255 }).notNull(),
+    user_role: role_enum.notNull(),
     content: varchar("content", { length: 1001 }),
   },
-  (feedback) => ({ UserIdIndex: index("userIdIndex").on(feedback.userId) })
+  (feedback) => ({ UserIdIndex: index("user_id_idx").on(feedback.user_id) })
 );
 
-export const testing = mysqlTable("testing", {
-  id: int("id").notNull().autoincrement().primaryKey(),
-  dateTime: datetime("dateTime"),
-  timestamp: timestamp("timestamp"),
-});
+export const notes = mysqlTable(
+  "notes",
+  {
+    id: int("id").notNull().autoincrement().primaryKey(),
+    question_no: int("question_no").notNull(),
+    sheet_id: varchar("sheet_id", { length: 255 }).notNull(),
+    content: json("content"),
+    created_at: timestamp("created_at").defaultNow(),
+    updated_at: timestamp("updated_at").onUpdateNow().defaultNow(),
+  },
+  (notes) => ({ sheetIndex: index("sheet_id_idx").on(notes.sheet_id) })
+);

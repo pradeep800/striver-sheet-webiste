@@ -1,23 +1,22 @@
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { questions, users } from "@/lib/db/schema";
+import { notes, users } from "@/lib/db/schema";
 
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
-import { ssQuestions } from "@/static/striverSheet";
 import Notes from "@/components/notes";
 import NotesModal from "./notesModal";
+import { getQuestionDay, getQuestionInfo } from "./pagesUtils";
 type Props = {
   params: Record<string, string>;
   type: "modal" | "real";
 };
-export type questionInfo = {
-  number: number;
-  solved: "UNATTEMPTED" | "REMINDER" | "SOLVED";
+export type NotesInfo = {
+  content: unknown | null;
   title: string;
-  question_day_in_sheet: number;
-  notes_content: unknown | null;
+  day: number;
+  sheetId: string;
 };
 export default async function MainNotes({ params, type }: Props) {
   const { questionNo } = params;
@@ -28,7 +27,7 @@ export default async function MainNotes({ params, type }: Props) {
     redirect("/");
   }
   const [userInfo] = await db
-    .select()
+    .select({ sheetId: users.striver_sheet_id_30_days })
     .from(users)
     .where(eq(users.id, session.user.id));
 
@@ -36,41 +35,40 @@ export default async function MainNotes({ params, type }: Props) {
     redirect("/accountDeleted");
   }
 
-  const [databaseQuestionInfo] = await db
-    .select({
-      number: questions.number,
-      solved: questions.solved,
-      title: questions.title,
-      question_day_in_sheet: questions.question_day_in_sheet,
-      notes_content: questions.notes_content,
-    })
-    .from(questions)
+  const question = getQuestionInfo(questionNumber);
+  let notesInfo!: NotesInfo;
+  const [dbNoteInfo] = await db
+    .select({ content: notes.content })
+    .from(notes)
     .where(
       and(
-        eq(questions.sheet_id, userInfo.striver_sheet_id_30_days),
-        eq(questions.number, questionNumber)
+        eq(notes.sheet_id, userInfo.sheetId),
+        eq(notes.question_no, questionNumber)
       )
-    );
-  let questionInfo!: questionInfo;
-  if (!databaseQuestionInfo) {
-    const ssQuestion = ssQuestions[questionNumber - 1];
-    questionInfo = {
-      number: questionNumber,
-      solved: "UNATTEMPTED",
-      title: ssQuestion.problem,
-      question_day_in_sheet: ssQuestion.topicNo + 1,
-      notes_content: null,
+    )
+    .limit(1);
+  if (!dbNoteInfo) {
+    notesInfo = {
+      content: null,
+      day: getQuestionDay(questionNumber),
+      title: question.problem,
+      sheetId: userInfo.sheetId,
     };
   } else {
-    questionInfo = databaseQuestionInfo;
+    notesInfo = {
+      content: dbNoteInfo.content,
+      day: getQuestionDay(questionNumber),
+      title: question.problem,
+      sheetId: userInfo.sheetId,
+    };
   }
 
   return (
     <div>
       {type === "modal" ? (
-        <NotesModal questionInfo={questionInfo} />
+        <NotesModal notesInfo={notesInfo} />
       ) : (
-        <Notes questionInfo={questionInfo} />
+        <Notes notesInfo={notesInfo} />
       )}
     </div>
   );

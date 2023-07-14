@@ -49,7 +49,7 @@ export default async function DayPage({ params }: Props) {
     .where(
       and(
         eq(questions.sheet_id, user.striver_sheet_id_30_days),
-        eq(questions.question_day_in_sheet, questionsDay)
+        eq(questions.day, questionsDay)
       )
     )
     .orderBy(asc(questions.number));

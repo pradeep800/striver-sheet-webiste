@@ -28,6 +28,9 @@ export function checkQuestionNumberIsCorrect(questionNumber: number) {
 export function getQuestionInfo(questionNumber: number) {
   return ssQuestions[questionNumber - 1];
 }
+export function getQuestionDay(questionNumber: number) {
+  return ssQuestions[questionNumber - 1].topicNo + 1;
+}
 export function getDayTitle(questionDay: number) {
   return ssTopics[questionDay - 1];
 }

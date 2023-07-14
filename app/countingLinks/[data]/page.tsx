@@ -31,14 +31,14 @@ export default async function CountingLinkPage({ params }: Props) {
     .from(trackingQuestions)
     .where(
       and(
-        eq(trackingQuestions.questionNumber, questionNumber),
-        eq(trackingQuestions.userId, session.user.id)
+        eq(trackingQuestions.question_number, questionNumber),
+        eq(trackingQuestions.user_id, session.user.id)
       )
     );
   if (questions.length === 0) {
     await db.insert(trackingQuestions).values({
-      questionNumber: questionNumber,
-      userId: session.user.id,
+      question_number: questionNumber,
+      user_id: session.user.id,
     });
   }
 

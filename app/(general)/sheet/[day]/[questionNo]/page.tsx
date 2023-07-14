@@ -1,10 +1,8 @@
 import MainQuestion from "@/components/mainQuestion";
-import QuestionLinks from "@/components/questionLinks";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
 
-import { ssQuestions, ssTopics } from "@/static/striverSheet";
 import { and, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";

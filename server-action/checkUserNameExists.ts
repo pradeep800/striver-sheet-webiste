@@ -5,7 +5,7 @@ import { users } from "@/lib/db/schema";
 import { identifiers } from "@/static/identifier";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { isIdentifier } from "@/lib/serverActionUtils";
+import { LogServerAndReturn, isIdentifier } from "@/lib/serverActionUtils";
 import { zact } from "zact/server";
 import { z } from "zod";
 type UserNameObj = {
@@ -46,11 +46,7 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
         }
         return false;
       } catch (err) {
-        const error = err as Error;
-        console.log(
-          `Error on checkUserNameExists on id ${session.user.id} and error is ${error.message}`
-        );
-        return { error: "Internal Server Error" };
+        return LogServerAndReturn(err, session);
       }
     }
   }

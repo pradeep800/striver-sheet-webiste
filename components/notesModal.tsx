@@ -6,14 +6,14 @@ import EditorHeading from "./editorHeading";
 import { X } from "lucide-react";
 
 import SaveAlert from "./saveAlert";
-import { questionInfo } from "./mainNotes";
+import { NotesInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
 type Props = {
-  questionInfo: questionInfo;
+  notesInfo: NotesInfo;
 };
-export default function NotesModal({ questionInfo }: Props) {
+export default function NotesModal({ notesInfo }: Props) {
   const [data, setData] = useState<any>(
-    questionInfo?.notes_content ?? [
+    notesInfo?.content ?? [
       {
         type: "paragraph",
         data: {
@@ -35,7 +35,7 @@ export default function NotesModal({ questionInfo }: Props) {
     };
   }, []);
 
-  const title = questionInfo.title;
+  const title = notesInfo.title;
   return (
     <Modal>
       <div className="max-w-[800px] mx-auto p-3   rounded-md  bg-background border shadow-md ">
@@ -46,7 +46,7 @@ export default function NotesModal({ questionInfo }: Props) {
               setOpen(true);
             }}
           />
-          <SaveNotes questionInfo={questionInfo} data={data} />
+          <SaveNotes notesInfo={notesInfo} data={data} />
         </div>
         <div>
           <div className="mt-2">

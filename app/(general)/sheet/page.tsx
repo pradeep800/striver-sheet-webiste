@@ -18,7 +18,7 @@ export default async function Home() {
     redirect("/");
   }
   const uUser = await db
-    .select({ striver_sheet_id_30_days: users.striver_sheet_id_30_days })
+    .select({ sheetId: users.striver_sheet_id_30_days })
     .from(users)
     .where(eq(users.id, session.user.id));
 
@@ -29,26 +29,23 @@ export default async function Home() {
   const solvedQuestionsCount = await db
     .select({
       count: sql`count(${questions.id})`,
-      day: questions.question_day_in_sheet,
+      day: questions.day,
     })
     .from(questions)
     .where(
-      and(
-        eq(questions.sheet_id, user.striver_sheet_id_30_days),
-        eq(questions.solved, "SOLVED")
-      )
+      and(eq(questions.sheet_id, user.sheetId), eq(questions.solved, "SOLVED"))
     )
     .groupBy(({ day }) => day)
     .orderBy(({ day }) => day);
   const reminderQuestionsCount = await db
     .select({
       count: sql`count(${questions.id})`,
-      day: questions.question_day_in_sheet,
+      day: questions.day,
     })
     .from(questions)
     .where(
       and(
-        eq(questions.sheet_id, user.striver_sheet_id_30_days),
+        eq(questions.sheet_id, user.sheetId),
         eq(questions.solved, "REMINDER")
       )
     )

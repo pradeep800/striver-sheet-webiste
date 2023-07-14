@@ -8,18 +8,18 @@ import EditorHeading from "@/components/editorHeading";
 
 import { useRouter } from "next/navigation";
 import SaveAlert from "./saveAlert";
-import { questionInfo } from "./mainNotes";
+import { NotesInfo } from "./mainNotes";
 import SaveNotes from "./saveNotesButton";
 
 type Props = {
-  questionInfo: questionInfo;
+  notesInfo: NotesInfo;
 };
 
-export default function Notes({ questionInfo }: Props) {
+export default function Notes({ notesInfo }: Props) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [data, setData] = useState<any>(
-    questionInfo?.notes_content ?? [
+    notesInfo?.content ?? [
       {
         type: "paragraph",
         data: {
@@ -40,7 +40,7 @@ export default function Notes({ questionInfo }: Props) {
       window.onbeforeunload = null;
     };
   }, []);
-  const title = questionInfo.title;
+  const title = notesInfo.title;
   return (
     <div className=" mx-auto">
       <div className="flex  justify-between items-center">
@@ -52,7 +52,7 @@ export default function Notes({ questionInfo }: Props) {
         >
           <Back />
         </div>
-        <SaveNotes questionInfo={questionInfo} data={data} />
+        <SaveNotes notesInfo={notesInfo} data={data} />
       </div>
       <div className="max-w-[650px] mx-auto">
         <div className="mt-8">

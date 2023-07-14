@@ -56,10 +56,15 @@ export const deleteAccount = zact()(async () => {
           .delete(schema.questions)
           .where(eq(schema.questions.sheet_id, sheetId));
 
+        //remove all notes
+        await tx
+          .delete(schema.notes)
+          .where(eq(schema.questions.sheet_id, sheetId));
+
         ///remove all tracking questions
         await tx
           .delete(schema.trackingQuestions)
-          .where(eq(schema.trackingQuestions.userId, userId));
+          .where(eq(schema.trackingQuestions.user_id, userId));
 
         //remove all verification token
         await tx
