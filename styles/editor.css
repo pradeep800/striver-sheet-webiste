@@ -39,7 +39,7 @@
 .dark .ce-toolbar__settings-btn,
 .dark .cdx-button,
 .dark .ce-toolbar__plus:hover {
-  @apply bg-background;
+  @apply bg-background hover:bg-slate-700;
 }
 .ce-popover {
   @apply bg-background border-[1px];
@@ -52,7 +52,8 @@
 .dark .ce-toolbox__button,
 .dark .cdx-settings-button,
 .dark .ce-toolbar__plus {
-  color: inherit;
+  color: text-white bg-background;
+  @apply bg-slate-700 stroke-white;
 }
 .ce-popover-item {
   @apply dark:text-white;
