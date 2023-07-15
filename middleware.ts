@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req });
+
     const isAuth = !!token;
     const isAuthPage = req.nextUrl.pathname.startsWith("/login");
     if (isAuthPage) {
@@ -49,5 +50,6 @@ export const config = {
     "/",
     "/feedback",
     "/notes/:path*",
+    "/reminders",
   ],
 };

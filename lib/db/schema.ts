@@ -175,6 +175,7 @@ export const feedbacks = mysqlTable(
     user_id: varchar("user_id", { length: 255 }).notNull(),
     user_role: role_enum.notNull(),
     content: varchar("content", { length: 1001 }),
+    read: boolean("read").default(false).notNull(),
   },
   (feedback) => ({ UserIdIndex: index("user_id_idx").on(feedback.user_id) })
 );

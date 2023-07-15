@@ -225,6 +225,48 @@
       "when": 1689327335313,
       "tag": "0031_common_starhawk",
       "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "5",
+      "when": 1689394504849,
+      "tag": "0032_early_warstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "5",
+      "when": 1689395083321,
+      "tag": "0033_small_night_nurse",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "5",
+      "when": 1689395652770,
+      "tag": "0034_white_maverick",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "5",
+      "when": 1689395998940,
+      "tag": "0035_cold_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "5",
+      "when": 1689396240692,
+      "tag": "0036_sloppy_sebastian_shaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "5",
+      "when": 1689396350630,
+      "tag": "0037_awesome_ezekiel_stane",
+      "breakpoints": true
     }
   ]
 }

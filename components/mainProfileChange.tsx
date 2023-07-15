@@ -14,9 +14,10 @@ import UDFrom from "./formForChangingDescriptionAndName";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { absoluteUrl } from "@/lib/utils";
+import Image from "next/image";
 export type ProfileUser = Pick<
   DbUser,
-  "userName" | "description" | "leftProfileChanges" | "name"
+  "userName" | "description" | "leftProfileChanges"
 >;
 type Props = {
   user: ProfileUser;
@@ -30,6 +31,7 @@ export default function MainProfileChange({ user }: Props) {
   const [clicked, setClicked] = useState(false);
   const router = useRouter();
   const id = useId();
+
   const { update, data } = useSession();
   useEffect(() => {
     setClicked(false);
@@ -111,12 +113,6 @@ export default function MainProfileChange({ user }: Props) {
                 toast({ title: error.message, variant: "destructive" });
               }}
             />
-          </div>
-        </div>
-        <div className="max-w-[200px] mx-auto my-8 ">
-          <h2 className="text-center font-semibold">Upload Profile Photo</h2>
-          <div className="dark:border-white dark:border border-dashed dark:bg-background">
-            <Image src={absoluteUrl("/og")} />
           </div>
         </div>
       </div>

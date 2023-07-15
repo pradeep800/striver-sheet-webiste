@@ -11,4 +11,5 @@ export const identifiers = [
   "countinglinks",
   "sheet",
   "reminders",
+  "admin",
 ];

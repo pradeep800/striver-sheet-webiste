@@ -1,8 +1,10 @@
 import MainProfile from "@/components/mainProfile";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
+import { absoluteUrl } from "@/lib/utils";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
 import { eq, sql } from "drizzle-orm";
+import { Metadata } from "next";
 export const revalidate = 0;
 type DayType = { solvedQuestions: string; month: number; day: number };
 export type HeatMapDataForYear = {
@@ -15,6 +17,50 @@ export type HeatMapData = HeatMapDataForYear[];
 type Props = {
   params: Record<string, string>;
 };
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata | undefined> {
+  const { username } = params;
+  const [userInfo] = await db
+    .select({
+      description: users.description,
+      name: users.name,
+      image: users.image,
+    })
+    .from(users)
+    .where(eq(users.userName, username))
+    .limit(1);
+  if (userInfo) {
+    const url = new URL("api/og", absoluteUrl("/"));
+    url.searchParams.set("name", userInfo?.name ?? "");
+    url.searchParams.set("username", username ?? "");
+
+    url.searchParams.set("description", userInfo?.description ?? "");
+    url.searchParams.set("image", userInfo?.image ?? "");
+    const urlInString = url.toString();
+
+    return {
+      title: username,
+      openGraph: {
+        title: "Striver Sheet",
+        type: "website",
+        locale: "en_US",
+        siteName: "Striver Sheet",
+        description: userInfo?.description ?? "",
+        images: [urlInString],
+        url: "https://striversheet.pradeepbisht.com",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Striver Sheet",
+        description: userInfo?.description ?? "",
+        images: [urlInString],
+
+        creator: "@pradeep8b0",
+      },
+    };
+  }
+}
 export default async function ProfilePage({ params }: Props) {
   const { username } = params;
 

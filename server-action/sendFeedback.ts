@@ -20,6 +20,7 @@ export const sendFeedback = zact(feedBackSchema)(async (input) => {
       content: input.content,
       user_id: session.user.id,
       user_role: session.user.role,
+      read: false,
     });
   } catch (err) {
     console.log(`unable to insert ${input.type} from ${session.user.id}`);
