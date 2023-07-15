@@ -1,16 +1,15 @@
 "use server";
-import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
+import { serverSession } from "@/lib/serverSession";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
-
+//redirect don't work without form
 export default async function ManageSubscription() {
-  const session = await getServerSession(authOption);
+  const session = await serverSession();
   const settingUrl = absoluteUrl("/sheet/settings");
   if (!session) {
     redirect("/?error=please login");
@@ -20,12 +19,13 @@ export default async function ManageSubscription() {
     .select({ role: users.role, customerId: users.stripe_customer_id })
     .from(users)
     .where(eq(users.id, session.user.id));
+
   if (!user) {
     return { error: "please signout it seems like your account is deleted" };
   }
-  if (user.role === "USER" || !user.customerId) {
+  if (!user.customerId) {
     redirect(
-      "/sheet/settings?error=Please first buy subscription after you can manage it"
+      "/pricing?error=Please first buy subscription after you can manage it"
     );
   }
   let stripeSession!: Stripe.Response<Stripe.BillingPortal.Session>;

@@ -2,18 +2,16 @@
 import { NotesInfo } from "./mainNotes";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import Loading from "./svg/loading";
 import { saveNotes } from "@/server-action/saveNotes";
-import { useRouter } from "next/navigation";
 type Props = {
   notesInfo: NotesInfo;
   data: any;
 };
 export default function SaveNotes({ notesInfo, data }: Props) {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
+
   return (
     <Button
       className="hover:bg-red-400 bg-red-500"
@@ -23,7 +21,6 @@ export default function SaveNotes({ notesInfo, data }: Props) {
           console.log(notesInfo, data);
           const serverAction = await saveNotes({
             questionNo: notesInfo.questionNo,
-            sheetId: notesInfo.sheetId,
             content: data,
           });
           if (serverAction?.error) {

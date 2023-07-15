@@ -1,24 +1,27 @@
 "use server";
 
-import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
+import {
+  LogServerAndReturn,
+  ReturnDeletedAccount,
+  ReturnNoSession,
+} from "@/lib/serverActionUtils";
+import { serverSession } from "@/lib/serverSession";
 import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
-import { getServerSession } from "next-auth";
+import { Session } from "next-auth";
 import { zact } from "zact/server";
 
 export const deleteAccount = zact()(async () => {
-  const session = await getServerSession(authOption);
-  if (!session || !session.user) {
-    return {
-      error:
-        "please login or if you already login please signout and then login",
-    };
-  }
-  const userId = session.user.id;
-
+  let session: Session | undefined;
   try {
+    session = await serverSession();
+    if (!session) {
+      return ReturnNoSession();
+    }
+    const userId = session.user.id;
+
     const [userInfo] = await db
       .select({
         sheeId: schema.users.striver_sheet_id_30_days,
@@ -28,11 +31,7 @@ export const deleteAccount = zact()(async () => {
       .where(eq(schema.users.id, userId))
       .limit(1);
     if (!userInfo) {
-      return {
-        error: `Your account is deleted please signout by going ${absoluteUrl(
-          "/api/auth/signout"
-        )}`,
-      };
+      return ReturnDeletedAccount();
     }
 
     const sheetId = userInfo.sheeId as string;
@@ -85,10 +84,6 @@ export const deleteAccount = zact()(async () => {
       }
     });
   } catch (err) {
-    const error = err as Error;
-    console.log(
-      `Error on deleteAccount page for id ${session.user.id} and error message is ${error.message}`
-    );
-    return { error: "Unable to delete your account" };
+    return LogServerAndReturn("deleteAccount", err, session);
   }
 });

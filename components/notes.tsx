@@ -1,6 +1,5 @@
 "use client";
 import Back from "@/components/svg/back";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import "@/styles/editor.css";
 import Editor from "./editor";
@@ -28,7 +27,12 @@ export default function Notes({ notesInfo }: Props) {
       },
     ]
   );
-  const [isEditModeOn, setIsEditModeOn] = useState(true);
+  const [isEditModeOn, setIsEditModeOn] = useState(() => {
+    if (notesInfo && notesInfo.content) {
+      return false;
+    }
+    return true;
+  });
 
   useEffect(() => {
     function onbeforeunload(event: BeforeUnloadEvent) {

@@ -24,7 +24,12 @@ export default function NotesModal({ notesInfo }: Props) {
       },
     ]
   );
-  const [isEditModeOn, setIsEditModeOn] = useState(true);
+  const [isEditModeOn, setIsEditModeOn] = useState(() => {
+    if (notesInfo && notesInfo.content) {
+      return false;
+    }
+    return true;
+  });
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

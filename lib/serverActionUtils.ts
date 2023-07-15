@@ -11,6 +11,7 @@ export function isIdentifier(name: string) {
 }
 
 export function LogServerAndReturn(
+  actionName: string,
   err: unknown,
   session: Session | boolean | undefined
 ) {
@@ -22,8 +23,22 @@ export function LogServerAndReturn(
   } else {
     userId = "(not define)";
   }
+  const date = new Date().toISOString();
   console.log(
-    `Error on checkUserNameExists on id ${userId} and error is ${error.message}`
+    `Error on ${actionName} on id ${userId} and error is ${error.message} on date ${date}`
   );
   return { error: "Internal Server Error" };
+}
+
+export function ReturnNoSession() {
+  return {
+    error: "Your not login",
+  };
+}
+
+export function ReturnDeletedAccount() {
+  return {
+    error:
+      "You deleted this account from another device please logout and create new account",
+  };
 }

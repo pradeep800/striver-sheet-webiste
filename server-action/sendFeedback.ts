@@ -1,20 +1,20 @@
 "use server";
 import { zact } from "zact/server";
 import { feedBackSchema } from "./zodType/feedbackSchema";
-import { getServerSession } from "next-auth";
-import { authOption } from "@/lib/auth";
+import { Session } from "next-auth";
 import { db } from "@/lib/db";
 import { feedbacks } from "@/lib/db/schema";
+import { serverSession } from "@/lib/serverSession";
+import { LogServerAndReturn, ReturnNoSession } from "@/lib/serverActionUtils";
 
 export const sendFeedback = zact(feedBackSchema)(async (input) => {
-  const session = await getServerSession(authOption);
-  if (!session || !session.user) {
-    return {
-      error:
-        "please login or if you already login please signout and then login",
-    };
-  }
+  let session: Session | undefined;
   try {
+    session = await serverSession();
+    if (!session) {
+      return ReturnNoSession();
+    }
+
     await db.insert(feedbacks).values({
       type: input.type,
       content: input.content,
@@ -23,8 +23,6 @@ export const sendFeedback = zact(feedBackSchema)(async (input) => {
       read: false,
     });
   } catch (err) {
-    console.log(`unable to insert ${input.type} from ${session.user.id}`);
-    const error = err as Error;
-    return { error: `unable to send ${input.type}` };
+    return LogServerAndReturn("sendFeedback", err, session);
   }
 });

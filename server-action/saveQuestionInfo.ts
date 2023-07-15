@@ -8,7 +8,11 @@ import { zact } from "zact/server";
 import { z } from "zod";
 import { reminderDialogSchema } from "./zodType/reminderDialogsSchema";
 import { getQuestionDay, getQuestionInfo } from "@/components/pagesUtils";
-import { LogServerAndReturn } from "@/lib/serverActionUtils";
+import {
+  LogServerAndReturn,
+  ReturnDeletedAccount,
+  ReturnNoSession,
+} from "@/lib/serverActionUtils";
 import { serverSession } from "@/lib/serverSession";
 export const saveQuestionInfo = zact(
   z.object({
@@ -20,11 +24,11 @@ export const saveQuestionInfo = zact(
     reminderData: reminderDialogSchema.optional(),
   })
 )(async (input) => {
-  let session: Session | boolean | undefined;
+  let session: Session | undefined;
   try {
     session = await serverSession();
-    if (typeof session === "boolean") {
-      return { error: "Your are not login" };
+    if (!session) {
+      return ReturnNoSession();
     }
 
     if (input.solved === "REMINDER") {
@@ -43,7 +47,7 @@ export const saveQuestionInfo = zact(
       .where(eq(users.id, session.user.id));
 
     if (!user) {
-      return { error: "Your account is deleted" };
+      return ReturnDeletedAccount();
     }
 
     const question = await db
@@ -131,6 +135,6 @@ export const saveQuestionInfo = zact(
       }
     });
   } catch (err) {
-    return LogServerAndReturn(err, session);
+    return LogServerAndReturn("saveQuestionInfo", err, session);
   }
 });

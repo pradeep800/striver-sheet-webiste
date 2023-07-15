@@ -52,7 +52,7 @@ export default function Editor({ data, setData, isEditModeOn }: Props) {
         version: "2.25.0",
         blocks: data,
       },
-
+      readOnly: !isEditModeOn,
       tools: {
         header: Header,
         list: List,

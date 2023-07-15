@@ -44,6 +44,9 @@
 .ce-popover {
   @apply bg-background border-[1px];
 }
+.dark .ce_code {
+  @apply bg-background;
+}
 .dark .ce-code__textarea {
   @apply bg-background border shadow-sm text-white;
 }
