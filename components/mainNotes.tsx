@@ -2,7 +2,7 @@ import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notes, users } from "@/lib/db/schema";
 
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import Notes from "@/components/notes";
@@ -17,6 +17,7 @@ export type NotesInfo = {
   title: string;
   questionNo: number;
   sheetId: string;
+  userRole: Session["user"]["role"];
 };
 export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
@@ -28,7 +29,7 @@ export default async function MainNotes({ params, type }: Props) {
     redirect("/");
   }
   const [userInfo] = await db
-    .select({ sheetId: users.striver_sheet_id_30_days })
+    .select({ sheetId: users.striver_sheet_id_30_days, role: users.role })
     .from(users)
     .where(eq(users.id, session.user.id));
 
@@ -50,6 +51,7 @@ export default async function MainNotes({ params, type }: Props) {
     .limit(1);
   if (!dbNoteInfo) {
     notesInfo = {
+      userRole: userInfo.role,
       content: null,
       questionNo: questionNumber,
       title: questionName,
@@ -57,6 +59,7 @@ export default async function MainNotes({ params, type }: Props) {
     };
   } else {
     notesInfo = {
+      userRole: userInfo.role,
       content: dbNoteInfo.content,
       questionNo: questionNumber,
       title: questionName,

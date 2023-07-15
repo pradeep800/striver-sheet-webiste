@@ -80,6 +80,9 @@
 .dark .cdx-search-field {
   @apply bg-background text-inherit;
 }
+.dark .cdx-input {
+  @apply bg-background;
+}
 
 .dark ::selection {
   @apply bg-slate-700;

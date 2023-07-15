@@ -68,7 +68,12 @@ export default function Notes({ notesInfo }: Props) {
           />
 
           <div className="editor">
-            <Editor data={data} setData={setData} isEditModeOn={isEditModeOn} />
+            <Editor
+              data={data}
+              setData={setData}
+              isEditModeOn={isEditModeOn}
+              userRole={notesInfo.userRole}
+            />
           </div>
         </div>
       </div>

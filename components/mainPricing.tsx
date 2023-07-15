@@ -76,7 +76,9 @@ export default function MainPricing({ sessionUser }: Props) {
               className="bg-red-500 hover:bg-red-400 dark:text-white w-[100%]"
               onClick={async () => {
                 const actionRes = await BuyProSubscription();
+
                 if (typeof actionRes === "object" && "error" in actionRes) {
+                  //inference is not working here idk why (type narrowing)
                   toast({ title: actionRes.error, variant: "destructive" });
                 } else {
                   if (actionRes.url) {

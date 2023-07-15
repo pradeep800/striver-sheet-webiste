@@ -2,30 +2,43 @@
 
 import EditorJS from "@editorjs/editorjs";
 import { Loader2 } from "lucide-react";
+import { Session } from "next-auth";
 import { useCallback, useEffect, useRef, useState } from "react";
 type Props = {
   data: any;
   setData: React.Dispatch<any>;
   isEditModeOn: boolean;
+  userRole: Session["user"]["role"];
 };
-export default function Editor({ data, setData, isEditModeOn }: Props) {
+export default function Editor({
+  data,
+  setData,
+  isEditModeOn,
+  userRole,
+}: Props) {
   const ref = useRef<EditorJS>();
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const initializeEditor = useCallback(async () => {
     const EditorJS = (await import("@editorjs/editorjs")).default;
+    let tool: Record<string, any> = {};
     //@ts-ignore
-    const Header = (await import("@editorjs/header")).default;
-    //@ts-ignore
-    const Table = (await import("@editorjs/table")).default;
-    //@ts-ignore
-    const List = (await import("@editorjs/list")).default;
-    //@ts-ignore
-    const Code = (await import("@editorjs/code")).default;
-    //@ts-ignore
-    const CheckBox = (await import("@editorjs/checklist")).default;
+    tool = { header: (await import("@editorjs/header")).default };
 
+    if (userRole === "PROUSER" || userRole == "ADMIN") {
+      tool = {
+        ...tool,
+        //@ts-ignore
+        table: (await import("@editorjs/table")).default,
+        //@ts-ignore
+        list: (await import("@editorjs/list")).default,
+        //@ts-ignore
+        code: (await import("@editorjs/code")).default,
+        //@ts-ignore
+        CheckBox: (await import("@editorjs/checklist")).default,
+      };
+    }
     const editor = new EditorJS({
       holder: "editor",
       autofocus: true,
@@ -53,13 +66,7 @@ export default function Editor({ data, setData, isEditModeOn }: Props) {
         blocks: data,
       },
       readOnly: !isEditModeOn,
-      tools: {
-        header: Header,
-        list: List,
-        code: Code,
-        table: Table,
-        CheckBox: CheckBox,
-      },
+      tools: tool,
     });
   }, []);
 

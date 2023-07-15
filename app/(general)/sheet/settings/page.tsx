@@ -14,7 +14,11 @@ export default async function SettingPage() {
     redirect("/");
   }
   const [userInfo] = await db
-    .select({ default_should_send_email: users.default_should_send_email })
+    .select({
+      default_should_send_email: users.default_should_send_email,
+      stripeCustomerId: users.stripe_customer_id,
+      role: users.role,
+    })
     .from(users)
     .where(eq(users.id, session.user.id));
 
@@ -25,8 +29,8 @@ export default async function SettingPage() {
   const user = session.user;
   return (
     <div className="max-w-[800px] mx-auto">
-      {user.role === "PROUSER" ? <Billing /> : null}
-      {user.role === "PROUSER" ? (
+      {userInfo.stripeCustomerId ? <Billing /> : null}
+      {userInfo.role === "PROUSER" ? (
         <ShouldSendEmailSetting
           user={user}
           default_should_send_email={

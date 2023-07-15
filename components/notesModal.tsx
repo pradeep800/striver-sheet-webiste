@@ -66,6 +66,7 @@ export default function NotesModal({ notesInfo }: Props) {
 
             <div className="editor overflow-scroll h-[600px]">
               <Editor
+                userRole={notesInfo.userRole}
                 setData={setData}
                 data={data}
                 isEditModeOn={isEditModeOn}
