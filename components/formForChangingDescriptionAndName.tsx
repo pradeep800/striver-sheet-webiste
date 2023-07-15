@@ -70,7 +70,7 @@ export default function UDFrom({
           setChecking(false);
         }
       } catch (err) {
-        toast({ title: "Internal Server Error", variant: "destructive" });
+        toast({ title: "Please try again", variant: "destructive" });
       }
     }, 300),
     [setIsPresentInDb]
@@ -100,7 +100,7 @@ export default function UDFrom({
       toast({ title: "Your Information Is Updated" });
     } catch (err) {
       toast({
-        title: "Internal Server Error",
+        title: "Please Try again",
         variant: "destructive",
       });
     } finally {

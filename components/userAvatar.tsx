@@ -64,13 +64,13 @@ export default function UserAvatar({ user }: UserProps) {
             <DropdownMenuItem className="">Settings</DropdownMenuItem>
           </Link>
 
-          <DropdownMenuItem
-            className="hover:bg-red-500 border-3 border-red-500 p-0 "
-            onClick={() => {
-              signOut();
-            }}
-          >
-            <div className=" hover:bg-red-500 w-full h-full rounded-sm p-1 pl-2">
+          <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 p-0 ">
+            <div
+              className=" hover:bg-red-500 w-full h-full rounded-sm p-1 pl-2"
+              onClick={() => {
+                signOut();
+              }}
+            >
               {" "}
               Logout
             </div>

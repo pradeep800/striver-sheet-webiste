@@ -47,7 +47,7 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
         }
         return false;
       } catch (err) {
-        return LogServerAndReturn("checkUserName", err, session);
+        return LogServerAndReturn("checkUserNameExits", err, session);
       }
     }
   }

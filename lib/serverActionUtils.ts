@@ -27,7 +27,7 @@ export function LogServerAndReturn(
   console.log(
     `Error on ${actionName} on id ${userId} and error is ${error.message} on date ${date}`
   );
-  return { error: "Internal Server Error" };
+  return { error: "Please try again" };
 }
 
 export function ReturnNoSession() {

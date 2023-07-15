@@ -49,7 +49,7 @@ export default function NotesModal({ notesInfo }: Props) {
       <div className="max-w-[800px] mx-auto p-3   rounded-md  bg-background border shadow-md ">
         <div className="flex justify-between ">
           <X
-            className="dark:fill-white"
+            className="dark:fill-white hover:text-red-500 w-[50px]"
             onClick={() => {
               setOpen(true);
             }}

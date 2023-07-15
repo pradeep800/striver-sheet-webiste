@@ -5,7 +5,7 @@ export default function Back() {
 
   return (
     <div
-      className=" rounded-md flex items-center gap-1 font-semibold  dark:text-white"
+      className=" rounded-md flex items-center gap-1 font-semibold  dark:text-white px-3 py-2 dark:hover:bg-slate-700 hover:bg-slate-200"
       onMouseEnter={() => {
         setAnimation(true);
       }}

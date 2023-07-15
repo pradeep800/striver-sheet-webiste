@@ -9,11 +9,13 @@ type SmallScreenProps = {
   activeNavLink: string;
   oneTimeClickToHamburger: boolean;
   user?: SessionUser;
+  stripeCustomerId: null | string;
 };
 export default function MobileNav({
   activeNavLink,
   oneTimeClickToHamburger,
   user,
+  stripeCustomerId,
 }: SmallScreenProps) {
   const nav = useRef<HTMLDivElement>(null);
   const [themeChanged, setThemeChanged] = useState(false);
@@ -35,7 +37,7 @@ export default function MobileNav({
     };
   });
   //one condition for if user become user and one for if user became pro user
-  if (user && user.role == "PROUSER") {
+  if (user && (stripeCustomerId || user.role === "ADMIN")) {
     NAVBARITEMS[1].url = "/reminders";
     NAVBARITEMS[1].name = "Reminders";
   } else {

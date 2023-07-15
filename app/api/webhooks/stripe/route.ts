@@ -16,15 +16,6 @@ type WebhookHandlers = {
     sessionObject: Stripe.Checkout.Session
   ) => Promise<void>;
 };
-//why we need to event because
-/*
-reason 1:
-because checkout.session.complete have metadata and metadata have userId property which we can use for identifying user
-there is no email or metadata.userId in invoice.payment_succeeded
-reason 2:
-when user is buying first time save customer id so we can track in another time when he renew the subscription
-*/
-//
 
 const webhookHandlers: WebhookHandlers = {
   "checkout.session.completed": async (sessionObject) => {

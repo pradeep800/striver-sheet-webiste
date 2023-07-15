@@ -7,10 +7,15 @@ import { useTheme } from "next-themes";
 type bigScreenProps = {
   activeNavLink: string;
   user?: SessionUser;
+  stripeCustomerId: string | null;
 };
-export default function DesktopNav({ activeNavLink, user }: bigScreenProps) {
+export default function DesktopNav({
+  activeNavLink,
+  user,
+  stripeCustomerId,
+}: bigScreenProps) {
   const { theme } = useTheme();
-  if (user && user.role == "PROUSER") {
+  if (user && (stripeCustomerId || user.role === "ADMIN")) {
     NAVBARITEMS[1].url = "/reminders";
     NAVBARITEMS[1].name = "Reminders";
   } else {

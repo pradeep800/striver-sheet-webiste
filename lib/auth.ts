@@ -113,6 +113,7 @@ export const authOption: NextAuthOptions = {
           userName: User.userName,
         };
       }
+
       return token;
     },
   },

@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 //login they will not able
 //leave this route because it will try to
 // transport to authenticated route but they can't
-// go to auth route and will not able escape this route
+// go to auth route because they are not login
 
 const AuthenticatedRoutes = ["feedback", "sheet", "notes"];
 export default function RegisterPage() {

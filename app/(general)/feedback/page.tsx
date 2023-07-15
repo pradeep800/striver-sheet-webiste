@@ -59,7 +59,7 @@ export default function ContactPage() {
       }
     } catch (err) {
       const error = err as Error;
-      toast({ title: "server error", variant: "destructive" });
+      toast({ title: "Please try again", variant: "destructive" });
     } finally {
       setLoading(false);
     }

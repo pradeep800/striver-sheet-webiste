@@ -12,9 +12,10 @@ import { SessionUser } from "@/types/next-auth";
 import useUpdateRole from "@/lib/useUpdateRole";
 interface UserProps {
   user?: SessionUser;
+  stripeCustomerId: string | null;
 }
 
-export default function NavBar({ user }: UserProps) {
+export default function NavBar({ user, stripeCustomerId }: UserProps) {
   const pathName = usePathname();
   useUpdateRole({ user });
   const [activeNavLink, setActiveNavLink] = useState<string>(pathName);
@@ -41,9 +42,14 @@ export default function NavBar({ user }: UserProps) {
       >
         SS
       </Link>
-      <DesktopNav activeNavLink={activeNavLink} user={user} />
+      <DesktopNav
+        activeNavLink={activeNavLink}
+        user={user}
+        stripeCustomerId={stripeCustomerId}
+      />
       <MobileNav
         activeNavLink={activeNavLink}
+        stripeCustomerId={stripeCustomerId}
         oneTimeClickToHamburger={oneTimeClickToHamburger}
         user={user}
       />

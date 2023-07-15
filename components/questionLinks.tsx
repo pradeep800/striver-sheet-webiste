@@ -134,7 +134,7 @@ export default function QuestionLinks({
                 } catch (err) {
                   const error = err as Error;
                   toast({
-                    title: "Internal Server  Error",
+                    title: "Please try Again",
                     variant: "destructive",
                   });
 

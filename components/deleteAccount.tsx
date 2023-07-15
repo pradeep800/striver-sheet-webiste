@@ -102,7 +102,7 @@ function Alert({ open, setOpen }: AlertDialog) {
                   await signOut();
                 } catch (err) {
                   toast({
-                    title: "Internal Server Error",
+                    title: "Please try again",
                     variant: "destructive",
                   });
                 }

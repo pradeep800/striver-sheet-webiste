@@ -44,7 +44,7 @@ export default function ShouldSendEmailSetting({
                 });
               }
             } catch (err) {
-              toast({ title: "Server Error", variant: "destructive" });
+              toast({ title: "Please try again", variant: "destructive" });
             }
           }}
         />

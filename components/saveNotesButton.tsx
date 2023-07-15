@@ -26,7 +26,7 @@ export default function SaveNotes({ notesInfo, data }: Props) {
           if (serverAction?.error) {
             toast({ title: serverAction?.error, variant: "destructive" });
           } else {
-            toast({ title: "successfully notes are updated" });
+            toast({ title: "Successfully notes are saved" });
           }
         } catch (err) {
           const error = err as Error;

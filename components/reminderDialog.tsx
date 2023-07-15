@@ -81,7 +81,7 @@ export default function ReminderDialog({
       }
     } catch (err) {
       toast({
-        title: "Unable to create this reminder",
+        title: "Unable to create this reminder.",
         variant: "destructive",
       });
     } finally {

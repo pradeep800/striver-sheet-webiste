@@ -30,7 +30,7 @@ export default async function SettingPage() {
   return (
     <div className="max-w-[800px] mx-auto">
       {userInfo.stripeCustomerId ? <Billing /> : null}
-      {userInfo.role === "PROUSER" ? (
+      {userInfo.role === "PROUSER" || userInfo.role === "ADMIN" ? (
         <ShouldSendEmailSetting
           user={user}
           default_should_send_email={
