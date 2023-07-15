@@ -14,7 +14,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOption);
   const user = session?.user;
   let stripeCustomerId: null | string = null;
 
@@ -23,10 +23,9 @@ export default async function RootLayout({
       .select({ customerId: users.stripe_customer_id })
       .from(users)
       .where(eq(users.id, session.user.id));
-    console.log("user", user);
     if (user && user.customerId) stripeCustomerId = user.customerId;
   }
-  console.log(session);
+
   return (
     <Provider>
       <NavBar user={user} stripeCustomerId={stripeCustomerId} />
