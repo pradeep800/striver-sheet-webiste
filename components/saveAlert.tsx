@@ -41,17 +41,19 @@ export default function SaveAlert({ open, back, setOpen }: Props) {
         <AlertDialogFooter>
           <AlertDialogCancel
             onClick={() => {
+              setIsCancel(false);
+            }}
+          >
+            {" "}
+            Yet To Save
+          </AlertDialogCancel>
+          <AlertDialogAction
+            className="dark:text-white bg-red-500 hover:bg-red-400"
+            onClick={() => {
               setIsCancel(true);
             }}
           >
             Already Saved
-          </AlertDialogCancel>
-          <AlertDialogAction
-            onClick={() => {
-              setIsCancel(false);
-            }}
-          >
-            Yet To Save
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

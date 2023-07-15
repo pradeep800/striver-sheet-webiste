@@ -28,47 +28,78 @@
   font-weight: bold;
 }
 .editor .cdx-search-field__input {
-  color: black;
+  @apply dark:text-white;
 }
-.editor .ce-code__textarea {
-  @apply bg-background border shadow-sm dark:text-white;
-}
-/* too much work just leavintg it here*/
-/*
-.editor .tc-popover {
+.dark .ce-block--selected .ce-block__content,
+.dark .ce-inline-toolbar,
+.dark .codex-editor--narrow .ce-toolbox,
+.dark .ce-conversion-toolbar,
+.dark .ce-settings,
+.dark .ce-settings__button,
+.dark .ce-toolbar__settings-btn,
+.dark .cdx-button,
+.dark .ce-toolbar__plus:hover {
   @apply bg-background;
 }
-.editor .tc-popover__item-icon {
-  @apply bg-background;
+.ce-popover {
+  @apply bg-background border-[1px];
 }
-.editr .tc-cell {
-  @apply bg-background;
+.dark .ce-code__textarea {
+  @apply bg-background border shadow-sm text-white;
 }
-.editr .tc-row {
-  @apply bg-background active:bg-background;
+.dark .ce-inline-tool,
+.dark .ce-conversion-toolbar__label,
+.dark .ce-toolbox__button,
+.dark .cdx-settings-button,
+.dark .ce-toolbar__plus {
+  color: inherit;
 }
-.editor .tc-add-column {
-  @apply bg-background;
+.ce-popover-item {
+  @apply dark:text-white;
 }
-.editor .tc-toolbox__toggler {
-  @apply bg-background;
+.ce-popover-item:hover {
+  @apply dark:bg-slate-700;
 }
-.editor .tc-cell--selected {
-  @apply bg-background;
+.ce-popover-item__icon {
+  @apply dark:bg-background;
 }
-.editor .tc-row--selected {
-  @apply bg-background;
+
+.ce-popover {
+  @apply dark:bg-background;
+  @apply dark:text-white;
 }
-.editor .tc-add-row {
-  @apply bg-background dark:hover:bg-slate-700;
+.dark .ce-popover__item-icon,
+.dark .ce-conversion-tool__icon {
+  @apply bg-background shadow-sm;
 }
-.editor .tc-add-column {
-  @apply bg-background dark:hover:bg-slate-700 dark:hover:before:bg-slate-700;
+
+.dark .cdx-search-field {
+  @apply bg-background text-inherit;
 }
-.editor .ce-toolbar__plus {
-  @apply bg-background dark:hover:bg-slate-700 dark:border dark:text-white;
+
+.dark ::selection {
+  @apply bg-slate-700;
 }
-.editor .ce-toolbar__settings-btn {
-  @apply bg-background dark:hover:bg-slate-700 dark:border dark:text-white;
+
+.dark .cdx-settings-button:hover,
+.dark .ce-settings__button:hover,
+.dark .ce-toolbox__button--active,
+.dark .ce-toolbox__button:hover,
+.dark .cdx-button:hover,
+.dark .ce-inline-toolbar__dropdown:hover,
+.dark .ce-inline-tool:hover,
+.dark .ce-popover__item:hover,
+.dark .ce-conversion-tool:hover,
+.dark .ce-toolbar__settings-btn:hover {
+  @apply bg-slate-700;
+  @apply text-white;
 }
-*/
+
+.dark .cdx-notify--error {
+  @apply bg-red-400 text-white;
+}
+
+.dark .cdx-notify__cross::after,
+.dark .cdx-notify__cross::before {
+  background: white;
+}

@@ -20,7 +20,6 @@ export type NotesInfo = {
 };
 export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
-  ///questionNo is not working in production
   const { question } = params;
   const questionNumber = parseInt(question);
   const session = await getServerSession(authOption);
