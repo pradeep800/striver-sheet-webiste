@@ -1,5 +1,5 @@
 "use client";
-import { HeatMapData } from "@/app/(general)/[username]/page";
+import { HeatMapDataForYear } from "@/app/(general)/[username]/page";
 import {
   Select,
   SelectValue,
@@ -11,7 +11,7 @@ import darkModeProfile from "@/public/bg-profile-dark.jpg";
 import lightModeProfile from "@/public/bg-profile-light.jpg";
 import Tooltip from "@uiw/react-tooltip";
 import HeatMap from "@uiw/react-heat-map";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
 import Image from "next/image";
 
@@ -20,6 +20,9 @@ import { Poppins } from "next/font/google";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 import { toast } from "./ui/use-toast";
+import { usePathname, useRouter } from "next/navigation";
+import { absoluteUrl } from "@/lib/utils";
+import { Skeleton } from "./ui/skeleton";
 const poppins = Poppins({ weight: "300", subsets: ["latin"] });
 type User = {
   name: string;
@@ -29,8 +32,8 @@ type User = {
 
 type Props = {
   user: User;
-  heatMapData: HeatMapData;
-  heatMapYears: number[];
+  heatMapData: HeatMapDataForYear;
+  heatMapYears: number;
   totalSolvedQuestion: number;
 };
 export default function MainProfile({
@@ -39,8 +42,11 @@ export default function MainProfile({
   heatMapYears,
   totalSolvedQuestion,
 }: Props) {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [year, setYear] = useState(heatMapYears);
   const [progress, setProgress] = useState(0);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   useEffect(() => {
     const timer = setTimeout(() => {
       const solvedPer = parseInt(
@@ -50,9 +56,16 @@ export default function MainProfile({
     }, 500);
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    if (heatMapYears !== year) {
+      startTransition(() => {
+        router.push(absoluteUrl(`/${pathname}?year=${year}`));
+      });
+    }
+  }, [year]);
   return (
     <div className="max-w-[800px] mx-auto mt-5 ">
-      <BackgroundStripe />
+      <ProfileBackground />
       <ProfilePhoto photo={user.photo} />
 
       <div className="translate-y-[-40px] ">
@@ -78,47 +91,55 @@ export default function MainProfile({
 
       <div className="overflow-auto dark:bg-background border shadow-sm rounded-lg">
         <div className="max-w-[200px] m-2 mx-auto">
-          <SelectYear heatMapYears={heatMapYears} setYear={setYear} />
+          <SelectYear year={year} selected={heatMapYears} setYear={setYear} />
         </div>
         <div className=" w-[800px] mx-auto">
-          <HeatMap
-            value={heatMapData?.[heatMapYears.indexOf(year)] ?? []}
-            rectRender={(props, data) => {
-              if (!data.count) return <rect {...props} />;
-              return (
-                <Tooltip key={props.key} placement="top" content={data.content}>
-                  <rect {...props} />
-                </Tooltip>
-              );
-            }}
-            className="w-[700px] mx-auto"
-            style={{
-              color: "red",
-              // @ts-ignore
-              "--rhm-rect": "#b9b9b9",
-              "--rhm-rect-active": "red",
-            }}
-            startDate={new Date(`${year}/01/01`)}
-            /*
+          {isPending ? (
+            <Skeleton className="h-[150px]" />
+          ) : (
+            <HeatMap
+              value={heatMapData ?? []}
+              rectRender={(props, data) => {
+                if (!data.count) return <rect {...props} />;
+                return (
+                  <Tooltip
+                    key={props.key}
+                    placement="top"
+                    content={data.content}
+                  >
+                    <rect {...props} />
+                  </Tooltip>
+                );
+              }}
+              className="w-[700px] mx-auto"
+              style={{
+                color: "red",
+                // @ts-ignore
+                "--rhm-rect": "#b9b9b9",
+                "--rhm-rect-active": "red",
+              }}
+              startDate={new Date(`${heatMapYears}/01/01`)}
+              /*
             1-> 1st colro
             2,3->2nd color
             4,5->3rd color
             6,192->4th color
             */
-            panelColors={{
-              2: "#e4b293",
-              4: "#d48462",
-              6: "#b91c1c",
-              193: "#450a0a",
-            }}
-          />
+              panelColors={{
+                2: "#e4b293",
+                4: "#d48462",
+                6: "#b91c1c",
+                193: "#450a0a",
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function BackgroundStripe() {
+function ProfileBackground() {
   return (
     <div className="w-[100%] h-[20vh] overflow-hidden  rounded-md ">
       <Image
@@ -154,39 +175,38 @@ function ProfilePhoto({ photo }: { photo: string | null }) {
 }
 
 function SelectYear({
+  selected,
   setYear,
-  heatMapYears,
+  year,
 }: {
+  selected: number;
   setYear: React.Dispatch<number>;
-  heatMapYears: number[];
+  year: number;
 }) {
-  const year = new Date().getFullYear();
+  const options = { timeZone: "Asia/Kolkata" };
+  const currentDate = new Date();
+  const indianDate = currentDate.toLocaleDateString("en-US", options);
+  const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));
+  const SelectedItems: React.ReactNode[] = [];
+  for (let year = websiteBirthday; year <= todayYear; year += 1) {
+    SelectedItems.push(
+      <SelectItem key={year} value={year.toString()}>
+        {year.toString()}
+      </SelectItem>
+    );
+  }
+
   return (
     <Select
-      defaultValue={heatMapYears?.[0]?.toString() ?? year.toString()}
+      value={selected.toString()}
       onValueChange={(e) => {
-        if (heatMapYears.length !== 0) {
-          setYear(parseInt(e.valueOf()));
-        }
+        setYear(parseInt(e.valueOf()));
       }}
     >
       <SelectTrigger>
-        <SelectValue>{heatMapYears?.[0] ?? year}</SelectValue>
+        <SelectValue>{selected}</SelectValue>
       </SelectTrigger>
-      <SelectContent>
-        {heatMapYears.length === 0 && (
-          <SelectItem value={year?.toString()}>
-            {heatMapYears[0] ?? new Date().getFullYear()}
-          </SelectItem>
-        )}
-        {heatMapYears.map((heatMapYear, i) => {
-          return (
-            <SelectItem key={i} value={heatMapYear.toString()}>
-              {heatMapYear}
-            </SelectItem>
-          );
-        })}
-      </SelectContent>
+      <SelectContent>{SelectedItems}</SelectContent>
     </Select>
   );
 }

@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
 import { absoluteUrl } from "@/lib/utils";
 import { websiteBirthday } from "@/static/websiteBirthdayYear";
-import { eq, sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { Metadata } from "next";
 export const revalidate = 0;
 type DayType = {
@@ -17,7 +17,6 @@ export type HeatMapDataForYear = {
   count: number;
   content: string;
 }[];
-export type HeatMapData = HeatMapDataForYear[];
 
 export async function generateMetadata({
   params,
@@ -63,6 +62,7 @@ export async function generateMetadata({
     };
   }
 }
+
 type Props = {
   params: Record<string, string>;
   searchParams: Record<string, string>;
@@ -95,79 +95,65 @@ export default async function ProfilePage({ params, searchParams }: Props) {
     .from(users)
     .where(eq(users.userName, username))
     .limit(1);
-
-  if (user.length === 0) {
+  if (user.length == 0) {
     throw new Error("Unable to find user");
   }
+  const userInfo = user[0];
+  // prettier-ignore
+  const daysPromise = db.execute(
+      sql`SELECT COUNT(id) AS solvedQuestions, month, day
+          FROM (SELECT id,DAY(CONVERT_TZ(${questions.updated_at}, 'UTC', 'Asia/Kolkata')) AS day,
+                      MONTH(CONVERT_TZ(${questions.updated_at}, 'UTC', 'Asia/Kolkata')) AS month
+                FROM ${questions}
+                WHERE ${questions.solved} = ${"SOLVED"} AND 
+                      ${questions.sheet_id} = ${userInfo.sheet_id} AND 
+                       year(CONVERT_TZ(${questions.updated_at}, 'UTC', 'Asia/Kolkata')) = ${yearInNumber}
+                ) as sq 
+         GROUP BY month, day
+         ORDER BY month, day`
+    )
 
-  // const currentDate = new Date();
-  // currentDate.setHours(0, 0, 0, 0);
+  const totalSolvedQuestionPromise = db
+    .select({ count: sql`count(${questions.id})` })
+    .from(questions)
+    .where(
+      and(
+        eq(questions.sheet_id, userInfo.sheet_id),
+        eq(questions.solved, "SOLVED")
+      )
+    );
+  const [daysQueryResult, totalSolvedQuestionQueryResult] = await Promise.all([
+    daysPromise,
+    totalSolvedQuestionPromise,
+  ]);
+  const days = daysQueryResult.rows as DayType[];
+  const [totalSolvedQuestionObject] = totalSolvedQuestionQueryResult;
 
-  const heatMapData: HeatMapData = [];
-  const heatMapYears: number[] = [];
-  let totalSolvedQuestion: number = 0;
+  const HeatmapData = days.map<HeatMapDataForYear[number]>((day) => {
+    return {
+      date: `${yearInNumber}/${day.month}/${day.day}`,
+      content: `${day.solvedQuestions} question solved`,
+      count: parseInt(day.solvedQuestions),
+    };
+  });
 
-  const a = await db.execute(
-    sql`
-    SELECT count(id) AS solvedQuestions, day, month
-    FROM (
-        SELECT DAY(CONVERT_TZ(questions.updated_at, 'UTC', 'Asia/Kolkata')) AS day,
-               MONTH(CONVERT_TZ(questions.updated_at, 'UTC', 'Asia/Kolkata')) AS month,
-               questions.updated_at AS id
-        FROM questions        
-        WHERE questions.sheet_id = ? AND 
-              questions.solved = 'SOLVED'
-        GROUP BY id
-    ) AS subquery
-    WHERE subquery.sheet_id = ? AND 
-          subquery.solved = 'SOLVED'
-    GROUP BY solvedQuestions
-    ORDER BY month, day
-`
+  let totalSolveQuestion = 0;
+  if (totalSolvedQuestionObject.count) {
+    totalSolveQuestion = parseInt(totalSolvedQuestionObject.count as string);
+  }
+  if (isNaN(totalSolveQuestion)) {
+    totalSolveQuestion = 0;
+  }
+  return (
+    <MainProfile
+      heatMapData={HeatmapData}
+      heatMapYears={yearInNumber}
+      user={{
+        name: userInfo?.name ?? username,
+        photo: userInfo.image,
+        description: userInfo.description,
+      }}
+      totalSolvedQuestion={totalSolveQuestion}
+    />
   );
-
-  console.log("timezone");
-  console.log(a);
-  // const days = (
-  //   await db.execute(
-  //     sql`SELECT COUNT(id) AS solvedQuestions, month, day
-  // FROM (
-  //   SELECT id,EXTRACT(MONTH FROM ${questions.updated_at}) AS month,
-  //             EXTRACT(DAY FROM ${questions.updated_at}) AS day
-  //   FROM ${questions}
-  //   WHERE ${questions.solved} = ${"SOLVED"}
-  //     AND ${questions.sheet_id} = ${user[0].sheet_id}
-  //     AND extract(year from ${questions.updated_at})=${year}
-  // ) AS subquery
-  // GROUP BY month, day
-  // ORDER BY month, day`
-  //   )
-  // ).rows as DayType[];
-  // console.log(days);
-  // const lastYear=days.length===0?
-  // const data: HeatMapDataForYear = days.map((day) => {
-  //   totalSolvedQuestion += parseInt(day.solvedQuestions);
-  //   return {
-  //     date: `${year}/${day.month}/${day.day}`,
-  //     count: parseInt(day.solvedQuestions),
-  //     content: `${day.solvedQuestions} questions solved`,
-  //   };
-  // });
-  // if (data.length > 0) {
-  //   heatMapYears.push(year);
-  //   heatMapData.push(data);
-  // }
-  return <div>hello world</div>;
-  // return (
-  //   <MainProfile
-  //     heatMapData={heatMapData}
-  //     heatMapYears={heatMapYears}
-  //     user={{
-  //       name: user[0]?.name ?? username,
-  //       photo: user[0].image,
-  //       description: user[0].description,
-  //     }}
-  //     totalSolvedQuestion={totalSolvedQuestion}
-  //   />
-  // );
 }
