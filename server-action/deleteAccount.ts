@@ -35,6 +35,7 @@ export const deleteAccount = zact()(async () => {
     }
 
     const sheetId = userInfo.sheeId as string;
+    //at point of time promise.all was not working
     await db.transaction(async (tx) => {
       try {
         //delete all users

@@ -150,3 +150,16 @@ h6 {
 body {
   scrollbar-color: #e5e7eb;
 }
+a {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
+  user-select: none; /* Disable text selection */
+}
+
+.mobile-select-removed {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
+  user-select: none;
+}
+button {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
+  user-select: none;
+}

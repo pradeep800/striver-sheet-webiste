@@ -1,11 +1,11 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "75d32fe8-2524-4127-953d-56d8cc2791da",
+  "id": "6c9966c4-36a5-452f-9f19-74b6f3baf375",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "accounts": {
-      "name": "accounts",
+    "striver_sheet_accounts": {
+      "name": "striver_sheet_accounts",
       "columns": {
         "id": {
           "name": "id",
@@ -128,10 +128,11 @@
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "notes": {
-      "name": "notes",
+    "striver_sheet_feedbacks": {
+      "name": "striver_sheet_feedbacks",
       "columns": {
         "id": {
           "name": "id",
@@ -140,9 +141,85 @@
           "notNull": true,
           "autoincrement": true
         },
-        "title": {
-          "name": "title",
-          "type": "varchar(300)",
+        "create_at": {
+          "name": "create_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "feedback_type": {
+          "name": "feedback_type",
+          "type": "enum('BUG','FEEDBACK','REQUEST')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "enum('USER','PROUSER','ADMIN')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'USER'"
+        },
+        "content": {
+          "name": "content",
+          "type": "varchar(1001)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "read": {
+          "name": "read",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        }
+      },
+      "indexes": {
+        "user_id_idx": {
+          "name": "user_id_idx",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "striver_sheet_notes": {
+      "name": "striver_sheet_notes",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "question_no": {
+          "name": "question_no",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sheet_id": {
+          "name": "sheet_id",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -170,79 +247,6 @@
           "autoincrement": false,
           "onUpdate": true,
           "default": "(now())"
-        },
-        "question_id": {
-          "name": "question_id",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "question_id_idx": {
-          "name": "question_id_idx",
-          "columns": [
-            "question_id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {}
-    },
-    "questions": {
-      "name": "questions",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "int",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "answer_on": {
-          "name": "answer_on",
-          "type": "datetime",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "problem_status": {
-          "name": "problem_status",
-          "type": "enum('UNATTEMPTED','REMINDER','SOLVED')",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "'UNATTEMPTED'"
-        },
-        "number": {
-          "name": "number",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(300)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "question_day_in_sheet": {
-          "name": "question_day_in_sheet",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "sheet_id": {
-          "name": "sheet_id",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
         }
       },
       "indexes": {
@@ -255,10 +259,95 @@
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "reminders": {
-      "name": "reminders",
+    "striver_sheet_questions": {
+      "name": "striver_sheet_questions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "sheet_id": {
+          "name": "sheet_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "number": {
+          "name": "number",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(301)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "problem_status": {
+          "name": "problem_status",
+          "type": "enum('UNATTEMPTED','REMINDER','SOLVED')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'UNATTEMPTED'"
+        },
+        "day": {
+          "name": "day",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {
+        "update_at_idx": {
+          "name": "update_at_idx",
+          "columns": [
+            "updated_at"
+          ],
+          "isUnique": false
+        },
+        "sheet_id_idx": {
+          "name": "sheet_id_idx",
+          "columns": [
+            "sheet_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "striver_sheet_reminders": {
+      "name": "striver_sheet_reminders",
       "columns": {
         "id": {
           "name": "id",
@@ -277,9 +366,16 @@
         },
         "due_time": {
           "name": "due_time",
-          "type": "datetime",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "should_send_mail": {
+          "name": "should_send_mail",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         },
         "mail_sended": {
@@ -290,9 +386,16 @@
           "autoincrement": false,
           "default": false
         },
-        "creator_id": {
-          "name": "creator_id",
+        "user_id": {
+          "name": "user_id",
           "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "question_no": {
+          "name": "question_no",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -302,16 +405,17 @@
         "reminder_creator_id_index": {
           "name": "reminder_creator_id_index",
           "columns": [
-            "creator_id"
+            "user_id"
           ],
           "isUnique": false
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "sessions": {
-      "name": "sessions",
+    "striver_sheet_sessions": {
+      "name": "striver_sheet_sessions",
       "columns": {
         "id": {
           "name": "id",
@@ -377,10 +481,11 @@
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "tracking_question": {
-      "name": "tracking_question",
+    "striver_sheet_tracking_questions": {
+      "name": "striver_sheet_tracking_questions",
       "columns": {
         "id": {
           "name": "id",
@@ -389,35 +494,44 @@
           "notNull": true,
           "autoincrement": true
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
           "default": "(now())"
         },
-        "questionNumber": {
-          "name": "questionNumber",
+        "question_number": {
+          "name": "question_number",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "userId": {
-          "name": "userId",
+        "user_id": {
+          "name": "user_id",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "user_id_idx": {
+          "name": "user_id_idx",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": false
+        }
+      },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "users": {
-      "name": "users",
+    "striver_sheet_users": {
+      "name": "striver_sheet_users",
       "columns": {
         "id": {
           "name": "id",
@@ -462,6 +576,36 @@
           "autoincrement": false,
           "default": "'USER'"
         },
+        "user_name": {
+          "name": "user_name",
+          "type": "varchar(15)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "left_profile_changes": {
+          "name": "left_profile_changes",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 2
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar(205)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "default_should_send_email": {
+          "name": "default_should_send_email",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
         "stripe_customer_id": {
           "name": "stripe_customer_id",
           "type": "varchar(255)",
@@ -485,7 +629,7 @@
         },
         "pro_subscription_end": {
           "name": "pro_subscription_end",
-          "type": "datetime",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -526,10 +670,11 @@
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
-    "verification_tokens": {
-      "name": "verification_tokens",
+    "striver_sheet_verification_tokens": {
+      "name": "striver_sheet_verification_tokens",
       "columns": {
         "identifier": {
           "name": "identifier",
@@ -581,7 +726,8 @@
         }
       },
       "foreignKeys": {},
-      "compositePrimaryKeys": {}
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     }
   },
   "schemas": {},

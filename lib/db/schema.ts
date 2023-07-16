@@ -1,7 +1,6 @@
 import {
   int,
   timestamp,
-  mysqlTable,
   varchar,
   mysqlEnum,
   json,
@@ -10,6 +9,7 @@ import {
   text,
   index,
   uniqueIndex,
+  mysqlTableCreator,
 } from "drizzle-orm/mysql-core";
 
 const role_enum = mysqlEnum("role", ["USER", "PROUSER", "ADMIN"]);
@@ -18,7 +18,9 @@ const problem_state_enum = mysqlEnum("problem_status", [
   "REMINDER",
   "SOLVED",
 ]);
-export const accounts = mysqlTable(
+const table = mysqlTableCreator((name) => `striver_sheet_${name}`);
+
+export const accounts = table(
   "accounts",
   {
     id: varchar("id", { length: 255 }).primaryKey().notNull(),
@@ -44,7 +46,7 @@ export const accounts = mysqlTable(
   })
 );
 
-export const sessions = mysqlTable(
+export const sessions = table(
   "sessions",
   {
     id: varchar("id", { length: 255 }).primaryKey().notNull(),
@@ -62,7 +64,7 @@ export const sessions = mysqlTable(
   })
 );
 
-export const users = mysqlTable(
+export const users = table(
   "users",
   {
     id: varchar("id", { length: 255 }).primaryKey().notNull(),
@@ -94,7 +96,7 @@ export const users = mysqlTable(
   })
 );
 
-export const verificationTokens = mysqlTable(
+export const verificationTokens = table(
   "verification_tokens",
   {
     identifier: varchar("identifier", { length: 255 }).primaryKey().notNull(),
@@ -110,7 +112,7 @@ export const verificationTokens = mysqlTable(
   })
 );
 
-export const questions = mysqlTable(
+export const questions = table(
   "questions",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
@@ -128,7 +130,7 @@ export const questions = mysqlTable(
   })
 );
 
-export const reminders = mysqlTable(
+export const reminders = table(
   "reminders",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
@@ -149,7 +151,7 @@ export const reminders = mysqlTable(
   })
 );
 
-export const trackingQuestions = mysqlTable(
+export const trackingQuestions = table(
   "tracking_questions",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
@@ -166,7 +168,7 @@ const feedback_type = mysqlEnum("feedback_type", [
   "FEEDBACK",
   "REQUEST",
 ]);
-export const feedbacks = mysqlTable(
+export const feedbacks = table(
   "feedbacks",
   {
     id: int("id").notNull().autoincrement().primaryKey(),
@@ -180,7 +182,7 @@ export const feedbacks = mysqlTable(
   (feedback) => ({ UserIdIndex: index("user_id_idx").on(feedback.user_id) })
 );
 
-export const notes = mysqlTable(
+export const notes = table(
   "notes",
   {
     id: int("id").notNull().autoincrement().primaryKey(),

@@ -1,1 +1,0 @@
-ALTER TABLE `feedbacks` MODIFY COLUMN `feedback_type` enum('BUG','FEEDBACK','REQUEST') NOT NULL;

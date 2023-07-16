@@ -1,1 +1,0 @@
-ALTER TABLE `users` MODIFY COLUMN `pro_subscription_end` timestamp;

@@ -39,7 +39,7 @@
 .dark .ce-toolbar__settings-btn,
 .dark .cdx-button,
 .dark .ce-toolbar__plus:hover {
-  @apply !bg-background hover:!bg-slate-700;
+  @apply !bg-background hover:!bg-background;
 }
 .ce-popover {
   @apply !bg-background !border-[1px];
@@ -56,7 +56,7 @@
 .dark .cdx-settings-button,
 .dark .ce-toolbar__plus {
   color: text-white !important;
-  @apply !bg-slate-700 !stroke-white;
+  @apply !bg-background !stroke-white;
 }
 .ce-popover-item {
   @apply dark:!text-white;
@@ -99,7 +99,7 @@
 .dark .ce-conversion-tool:hover,
 .dark .ce-toolbar__settings-btn:hover {
   @apply !bg-slate-700;
-  @apply !text-white;
+  @apply !text-white !rounded-md;
 }
 
 .dark .cdx-notify--error {
@@ -109,4 +109,7 @@
 .dark .cdx-notify__cross::after,
 .dark .cdx-notify__cross::before {
   background: white !important;
+}
+.editor a {
+  @apply !underline !decoration-red-500 hover:!text-red-500;
 }

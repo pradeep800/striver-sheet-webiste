@@ -1,1 +1,0 @@
-ALTER TABLE `users` ADD `description` varchar(400);

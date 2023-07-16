@@ -1,1 +1,0 @@
-ALTER TABLE `reminders` MODIFY COLUMN `due_time` timestamp NOT NULL;

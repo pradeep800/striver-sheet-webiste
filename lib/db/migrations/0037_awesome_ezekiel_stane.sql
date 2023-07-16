@@ -1,1 +1,0 @@
-ALTER TABLE `feedbacks` MODIFY COLUMN `read` boolean NOT NULL;
