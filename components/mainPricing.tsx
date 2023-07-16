@@ -48,7 +48,7 @@ export default function MainPricing({ sessionUser }: Props) {
           <CardFooter>
             <Link href="/login?callback=%2Fpricing" className="w-[100%]">
               <Button className="bg-red-500 hover:bg-red-400 dark:text-white w-[100%] ">
-                SignIn
+                Login
               </Button>
             </Link>
           </CardFooter>

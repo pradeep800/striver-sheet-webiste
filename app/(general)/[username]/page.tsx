@@ -72,7 +72,11 @@ export default async function ProfilePage({ params, searchParams }: Props) {
   const { year } = searchParams;
 
   let yearInNumber = parseInt(year);
-  const todayYear = new Date().getFullYear();
+  const options = { timeZone: "Asia/Kolkata" };
+  const currentDate = new Date();
+  const indianDate = currentDate.toLocaleDateString("en-US", options);
+  const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));
+
   if (
     isNaN(yearInNumber) ||
     todayYear < yearInNumber ||
@@ -96,16 +100,33 @@ export default async function ProfilePage({ params, searchParams }: Props) {
     throw new Error("Unable to find user");
   }
 
-  const currentDate = new Date();
-  currentDate.setHours(0, 0, 0, 0);
-  const options = { timeZone: "Asia/Kolkata" };
-  const indianDate = currentDate.toLocaleDateString("en-US", options);
-  // const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));
+  // const currentDate = new Date();
+  // currentDate.setHours(0, 0, 0, 0);
 
   const heatMapData: HeatMapData = [];
   const heatMapYears: number[] = [];
   let totalSolvedQuestion: number = 0;
-  const a = await db.execute(sql`select timezone`);
+
+  const a = await db.execute(
+    sql`
+    SELECT count(id) AS solvedQuestions, day, month
+    FROM (
+        SELECT DAY(CONVERT_TZ(questions.updated_at, 'UTC', 'Asia/Kolkata')) AS day,
+               MONTH(CONVERT_TZ(questions.updated_at, 'UTC', 'Asia/Kolkata')) AS month,
+               questions.updated_at AS id
+        FROM questions        
+        WHERE questions.sheet_id = ? AND 
+              questions.solved = 'SOLVED'
+        GROUP BY id
+    ) AS subquery
+    WHERE subquery.sheet_id = ? AND 
+          subquery.solved = 'SOLVED'
+    GROUP BY solvedQuestions
+    ORDER BY month, day
+`
+  );
+
+  console.log("timezone");
   console.log(a);
   // const days = (
   //   await db.execute(

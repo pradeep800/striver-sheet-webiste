@@ -55,7 +55,7 @@ export default function MobileNav({
   return (
     <div
       ref={nav}
-      className={`cursor-pointer  md:hidden flex gap-8 flex-col font-medium text-xl justify-center p-3 bg-[rgba(242,242,242,0.3)] backdrop-blur-md fixed inset-0 ${
+      className={`cursor-pointer mobile-select-removed  md:hidden flex gap-8 flex-col font-medium text-xl justify-center p-3 bg-[rgba(242,242,242,0.3)] backdrop-blur-md fixed inset-0 ${
         !oneTimeClickToHamburger && "hidden"
       } `}
     >
