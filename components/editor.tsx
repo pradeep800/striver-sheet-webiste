@@ -3,7 +3,7 @@
 import EditorJS from "@editorjs/editorjs";
 import { Loader2 } from "lucide-react";
 import { Session } from "next-auth";
-import "@/styles/editor.css";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 type Props = {
   data: any;

@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
-import "./globals.css";
+import "@/styles/globals.css";
+import "@/styles/editor.css"; //not working in motals
 import { Asap } from "next/font/google";
 import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";

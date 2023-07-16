@@ -25,9 +25,9 @@ export default function MainCard({
     return () => clearTimeout(timer);
   }, [solvedCount]);
   return (
-    <Card className={`${className} border-0 shadow-none`}>
+    <Card className={`${className} border-0 shadow-none `}>
       <CardHeader>
-        <CardTitle className="text-center font-bold text-2xl">
+        <CardTitle className="text-center font-bold text-4xl text-red-500">
           {title}
         </CardTitle>
       </CardHeader>

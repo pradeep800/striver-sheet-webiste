@@ -50,7 +50,7 @@ export default function TopicCard({
   return (
     <Link className="" href={`/sheet/day-${topicDay}`}>
       <Card
-        className={`${className} hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400`}
+        className={`${className} hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400 text-black`}
       >
         <CardHeader>
           <CardTitle className="">
