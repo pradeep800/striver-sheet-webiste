@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 // transport to authenticated route but they can't
 // go to auth route because they are not login
 
-const AuthenticatedRoutes = ["feedback", "sheet", "notes"];
+const AuthenticatedRoutes = ["feedback", "sheet", "notes", "admin"];
 export default function RegisterPage() {
   const search = useSearchParams();
 

@@ -28,7 +28,7 @@
   font-weight: bold;
 }
 .editor .cdx-search-field__input {
-  @apply dark:text-white;
+  @apply dark:!text-white;
 }
 .dark .ce-block--selected .ce-block__content,
 .dark .ce-inline-toolbar,
@@ -39,53 +39,53 @@
 .dark .ce-toolbar__settings-btn,
 .dark .cdx-button,
 .dark .ce-toolbar__plus:hover {
-  @apply bg-background hover:bg-slate-700;
+  @apply !bg-background hover:!bg-slate-700;
 }
 .ce-popover {
-  @apply bg-background border-[1px];
+  @apply !bg-background !border-[1px];
 }
 .dark .ce_code {
-  @apply bg-background;
+  @apply !bg-background;
 }
 .dark .ce-code__textarea {
-  @apply bg-background border shadow-sm text-white;
+  @apply !bg-background !border !shadow-sm !text-white;
 }
 .dark .ce-inline-tool,
 .dark .ce-conversion-toolbar__label,
 .dark .ce-toolbox__button,
 .dark .cdx-settings-button,
 .dark .ce-toolbar__plus {
-  color: text-white bg-background;
-  @apply bg-slate-700 stroke-white;
+  color: text-white !important;
+  @apply !bg-slate-700 !stroke-white;
 }
 .ce-popover-item {
-  @apply dark:text-white;
+  @apply dark:!text-white;
 }
 .ce-popover-item:hover {
-  @apply dark:bg-slate-700;
+  @apply dark:!bg-slate-700;
 }
 .ce-popover-item__icon {
-  @apply dark:bg-background;
+  @apply dark:!bg-background;
 }
 
 .ce-popover {
-  @apply dark:bg-background;
-  @apply dark:text-white;
+  @apply dark:!bg-background;
+  @apply dark:!text-white;
 }
 .dark .ce-popover__item-icon,
 .dark .ce-conversion-tool__icon {
-  @apply bg-background shadow-sm;
+  @apply !bg-background !shadow-sm;
 }
 
 .dark .cdx-search-field {
-  @apply bg-background text-inherit;
+  @apply !bg-background !text-inherit;
 }
 .dark .cdx-input {
-  @apply bg-background;
+  @apply !bg-background;
 }
 
 .dark ::selection {
-  @apply bg-slate-700;
+  @apply !bg-slate-700;
 }
 
 .dark .cdx-settings-button:hover,
@@ -98,15 +98,15 @@
 .dark .ce-popover__item:hover,
 .dark .ce-conversion-tool:hover,
 .dark .ce-toolbar__settings-btn:hover {
-  @apply bg-slate-700;
-  @apply text-white;
+  @apply !bg-slate-700;
+  @apply !text-white;
 }
 
 .dark .cdx-notify--error {
-  @apply bg-red-400 text-white;
+  @apply !bg-red-400 !text-white;
 }
 
 .dark .cdx-notify__cross::after,
 .dark .cdx-notify__cross::before {
-  background: white;
+  background: white !important;
 }
