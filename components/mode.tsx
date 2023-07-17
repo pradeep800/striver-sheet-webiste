@@ -28,7 +28,7 @@ export default function Mode({ className }: { className?: string }) {
           transitionTimingFunction: "steps(10)",
         }}
         className={cn(
-          `leading-none w-[660px] h-[100%]  block overflow-hidden transition-transform  duration-100`,
+          `leading-none w-[660px] h-[100%]  block overflow-hidden transition-transform  duration-100 mobile-select-removed`,
           theme === "dark" ? "translate-x-[-93%] " : "translate-x-0"
         )}
       >

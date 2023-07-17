@@ -41,9 +41,7 @@ type Props = {
 };
 
 const { maxDate, minDate } = getMinMaxReminderTime();
-minDate.setHours(minDate.getHours() + 5, minDate.getMinutes() + 30);
-maxDate.setHours(maxDate.getHours() + 5, maxDate.getMinutes() + 30);
-console.log(minDate);
+
 export default function ReminderDialog({
   questionInfo,
   userInfo,

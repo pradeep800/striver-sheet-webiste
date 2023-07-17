@@ -1,4 +1,5 @@
 import MainProfile from "@/components/mainProfile";
+import { getIndianTime } from "@/lib/dateTimeFun";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
 import { absoluteUrl } from "@/lib/utils";
@@ -72,10 +73,8 @@ export default async function ProfilePage({ params, searchParams }: Props) {
   const { year } = searchParams;
 
   let yearInNumber = parseInt(year);
-  const options = { timeZone: "Asia/Kolkata" };
-  const currentDate = new Date();
-  const indianDate = currentDate.toLocaleDateString("en-US", options);
-  const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));
+
+  const { year: todayYear } = getIndianTime();
 
   if (
     isNaN(yearInNumber) ||
@@ -144,6 +143,7 @@ export default async function ProfilePage({ params, searchParams }: Props) {
   if (isNaN(totalSolveQuestion)) {
     totalSolveQuestion = 0;
   }
+
   return (
     <MainProfile
       heatMapData={HeatmapData}
