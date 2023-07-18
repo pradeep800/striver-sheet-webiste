@@ -44,9 +44,7 @@ export async function GET(req: Request) {
         const { day: reminderDay, month: reminderMonth } = getIndianTime(
           reminder.due_date.toISOString()
         );
-        const { day: todayDay, month: todayMonth } = getIndianTime(
-          new Date().toISOString()
-        );
+        const { day: todayDay, month: todayMonth } = getIndianTime();
 
         return reminderDay === todayDay && todayMonth === reminderMonth;
       }

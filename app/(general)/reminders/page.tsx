@@ -1,3 +1,66 @@
-export default function ReminderPage() {
-  return <div>Reminder</div>;
+import MainReminder from "@/components/mainReminders";
+import { parseDaysAndReminders } from "@/components/pagesUtils";
+import { db } from "@/lib/db";
+import { questions, reminders, users } from "@/lib/db/schema";
+import { serverSession } from "@/lib/serverSession";
+import { and, eq, sql } from "drizzle-orm";
+import { redirect } from "next/navigation";
+
+type Props = {
+  params: Record<string, string>;
+  searchParams: Record<string, string>;
+};
+export type DbQuestionInfo = {
+  questionNo: number;
+  questionDay: number;
+};
+export type DaysAndItsQuestions = Record<string, DbQuestionInfo[]>[];
+export const maxQuestions = 10;
+export default async function ReminderPage({ searchParams }: Props) {
+  const session = await serverSession();
+  if (!session) {
+    redirect("/");
+  }
+  const [userInfo] = await db
+    .select({ sheetId: users.striver_sheet_id_30_days, id: users.id })
+    .from(users)
+    .where(eq(users.id, session.user.id))
+    .limit(1);
+  if (!userInfo) {
+    redirect("/accountDeleted");
+  }
+  const [reminderCount] = await db
+    .select({ count: sql`count(${questions.sheet_id})` })
+    .from(questions)
+    .where(
+      and(
+        eq(questions.sheet_id, userInfo.sheetId),
+        eq(questions.solved, "REMINDER")
+      )
+    );
+  const totalReminders = parseInt(reminderCount.count as string);
+  const reminderQuestions = await db
+    .select({
+      questionNo: questions.number,
+      questionDay: questions.day,
+      remindersDueDate: reminders.due_date,
+    })
+    .from(questions)
+    .innerJoin(reminders, eq(questions.number, reminders.question_no))
+    .orderBy(reminders.due_date)
+    .where(
+      and(
+        eq(questions.sheet_id, userInfo.sheetId),
+        eq(questions.solved, "REMINDER")
+      )
+    )
+    .limit(maxQuestions);
+
+  const daysAndQuestions = parseDaysAndReminders(reminderQuestions);
+  return (
+    <MainReminder
+      daysAndQuestions={daysAndQuestions}
+      totalReminders={totalReminders}
+    />
+  );
 }

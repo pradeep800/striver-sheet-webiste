@@ -30,7 +30,7 @@ export default async function RootLayout({
     <Provider>
       <NavBar user={user} stripeCustomerId={stripeCustomerId} />
       <ToastRedirect />
-      <main className="min-h-[85vh]">{children}</main>
+      <main className="min-h-[70vh]">{children}</main>
       <div className="pt-3">
         <Footer />
       </div>

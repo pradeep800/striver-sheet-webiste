@@ -63,5 +63,6 @@ export const config = {
     "/notes/:path*",
     "/feedback",
     "/admin",
+    "/reminders",
   ],
 };

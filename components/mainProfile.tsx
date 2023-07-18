@@ -23,6 +23,7 @@ import { toast } from "./ui/use-toast";
 import { usePathname, useRouter } from "next/navigation";
 import { absoluteUrl } from "@/lib/utils";
 import { Skeleton } from "./ui/skeleton";
+import { getIndianTime } from "@/lib/dateTimeFun";
 const poppins = Poppins({ weight: "300", subsets: ["latin"] });
 type User = {
   name: string;
@@ -183,10 +184,7 @@ function SelectYear({
   setYear: React.Dispatch<number>;
   year: number;
 }) {
-  const options = { timeZone: "Asia/Kolkata" };
-  const currentDate = new Date();
-  const indianDate = currentDate.toLocaleDateString("en-US", options);
-  const todayYear = parseInt(indianDate.replace(/(\d+)\/(\d+)\/(\d+)/, "$3"));
+  const { year: todayYear } = getIndianTime();
   const SelectedItems: React.ReactNode[] = [];
   for (let year = websiteBirthday; year <= todayYear; year += 1) {
     SelectedItems.push(

@@ -144,7 +144,7 @@ dependencies:
     specifier: ^16.3.1
     version: 16.3.1
   drizzle-orm:
-    specifier: ^0.27.0
+    specifier: ^0.27.2
     version: 0.27.2(@planetscale/database@1.8.0)
   editorjs-html:
     specifier: ^3.4.2
@@ -203,6 +203,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.45.1
     version: 7.45.1(react@18.2.0)
+  react-infinite-scroll-component:
+    specifier: ^6.1.0
+    version: 6.1.0(react@18.2.0)
   resend:
     specifier: ^0.17.1
     version: 0.17.1
@@ -239,8 +242,8 @@ devDependencies:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.23)
   drizzle-kit:
-    specifier: ^0.19.3
-    version: 0.19.5
+    specifier: ^0.19.6
+    version: 0.19.6
   postcss:
     specifier: 8.4.23
     version: 8.4.23
@@ -3296,8 +3299,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.19.5:
-    resolution: {integrity: sha512-eX+M4QpPLbbZwLUamCxRhS9Y98ppZLk3jew2FghKoAr7bGEC3omFIm+YPiwtrhe/alZZgrJCn/1TDTRHwo1r9w==}
+  /drizzle-kit@0.19.6:
+    resolution: {integrity: sha512-Feb/9yKPn6rZI95NvaUwTwpfRJkwGx9MR7ObhUropm+rEwcT9BfHdiJXGzLf4oNcoSFCqmY7zIj8j92lusjyRA==}
     hasBin: true
     dependencies:
       '@drizzle-team/studio': 0.0.1
@@ -5600,6 +5603,15 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-infinite-scroll-component@6.1.0(react@18.2.0):
+    resolution: {integrity: sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==}
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      react: 18.2.0
+      throttle-debounce: 2.3.0
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -6217,6 +6229,11 @@ packages:
 
   /three@0.154.0:
     resolution: {integrity: sha512-Uzz8C/5GesJzv8i+Y2prEMYUwodwZySPcNhuJUdsVMH2Yn4Nm8qlbQe6qRN5fOhg55XB0WiLfTPBxVHxpE60ug==}
+    dev: false
+
+  /throttle-debounce@2.3.0:
+    resolution: {integrity: sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==}
+    engines: {node: '>=8'}
     dev: false
 
   /timers-ext@0.1.7:

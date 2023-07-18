@@ -24,6 +24,7 @@ export const saveQuestionInfo = zact(
     reminderData: reminderDialogSchema.optional(),
   })
 )(async (input) => {
+  console.log(input);
   let session: Session | undefined;
   try {
     session = await serverSession();
@@ -49,7 +50,7 @@ export const saveQuestionInfo = zact(
     if (!user) {
       return ReturnDeletedAccount();
     }
-
+    console.log(user);
     const question = await db
       .select({ solved: questions.solved })
       .from(questions)
@@ -73,19 +74,6 @@ export const saveQuestionInfo = zact(
     await db.transaction(async (tx) => {
       try {
         //function for creating reminder
-        const createReminder = async (
-          data: NonNullable<typeof input.reminderData>
-        ) => {
-          const isEligibleForEmailReminder =
-            user.role === "ADMIN" || user.role === "PROUSER";
-          await tx.insert(reminders).values({
-            due_date: data.dueDate,
-            user_id: user.id,
-            should_send_mail: isEligibleForEmailReminder && data.shouldSendMail,
-            mail_sended: false,
-            question_no: input.questionNumber,
-          });
-        };
 
         if (!question.length) {
           await tx.insert(questions).values({
@@ -124,14 +112,24 @@ export const saveQuestionInfo = zact(
         }
         if (input.solved === "REMINDER") {
           if (input.reminderData) {
-            createReminder(input.reminderData);
+            const isEligibleForEmailReminder =
+              user.role === "ADMIN" || user.role === "PROUSER";
+            const a = await tx.insert(reminders).values({
+              due_date: input.reminderData.dueDate,
+              user_id: user.id,
+              should_send_mail:
+                isEligibleForEmailReminder && input.reminderData.shouldSendMail,
+              mail_sended: false,
+              question_no: input.questionNumber,
+            });
           } else {
             tx.rollback();
-            return;
+            return { error: "Please add reminder Info" };
           }
         }
       } catch (err) {
         tx.rollback();
+        return { error: "Please try again" };
       }
     });
   } catch (err) {

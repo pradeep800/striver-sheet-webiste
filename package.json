@@ -59,7 +59,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
-    "drizzle-orm": "^0.27.0",
+    "drizzle-orm": "^0.27.2",
     "editorjs-html": "^3.4.2",
     "editorjs-toggle-block": "^0.3.11",
     "esbuild-register": "^3.4.2",
@@ -79,6 +79,7 @@
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "resend": "^0.17.1",
     "stripe": "^12.8.0",
     "tailwind-merge": "^1.12.0",
@@ -92,7 +93,7 @@
   },
   "devDependencies": {
     "autoprefixer": "10.4.14",
-    "drizzle-kit": "^0.19.3",
+    "drizzle-kit": "^0.19.6",
     "esbuild-register": "^3.4.2",
     "postcss": "8.4.23",
     "tailwindcss": "3.3.2"

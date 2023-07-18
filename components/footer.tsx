@@ -1,28 +1,25 @@
 "use client";
+import { Socials } from "@/app/(general)/about/page";
 import { MenuSquare } from "lucide-react";
 
 export default function Footer() {
   return (
-    <div>
+    <div className="mt-4 flex flex-col gap-2">
       <hr />
-
-      <a
-        className="flex w-[100%] justify-center gap-2 hover:text-red-500"
-        href="https://resume.pradeepbisht.com"
-      >
-        <span>Download My Resume</span> <MenuSquare />
-      </a>
 
       <div className="font-light text-center">
         Content in this website is from{" "}
         <a
-          className="underline hover:text-red-500"
+          className="underline hover:text-red-400 text-red-500"
           href="https://takeuforward.org/"
           target="_blank"
         >
           takeuforward website
         </a>{" "}
         and This website does not claim any ownership or copyright.
+      </div>
+      <div className="text-red-500 flex justify-center gap-5">
+        <Socials />
       </div>
     </div>
   );
