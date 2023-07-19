@@ -71,6 +71,7 @@ export default function NavBar({
       )}
       <div className=" md:hidden isolate z-[1]">
         <Hamburger
+          userRole={user?.role}
           oneTimeClickToHamburger={oneTimeClickToHamburger}
           setOneTimeClickToHamburger={setOneTimeClickToHamburger}
           showNotification={showNotification}

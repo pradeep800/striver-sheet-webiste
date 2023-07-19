@@ -1,15 +1,17 @@
 "use client";
 import { useHamburger } from "@/lib/useHamburger";
 import { BellDot } from "lucide-react";
-import { useState } from "react";
+import { Session } from "next-auth";
 type setOneTimeClickToHamburger = React.Dispatch<React.SetStateAction<boolean>>;
 type HamburgerTypeProps = {
   oneTimeClickToHamburger: boolean;
   setOneTimeClickToHamburger: setOneTimeClickToHamburger;
   showNotification: boolean;
   stripeCustomerId: string | null;
+  userRole: Session["user"]["role"] | undefined;
 };
 export default function Hamburger({
+  userRole,
   oneTimeClickToHamburger,
   setOneTimeClickToHamburger,
   showNotification,
@@ -57,7 +59,9 @@ export default function Hamburger({
           d="M52.553 31.44H4.44702C2.32237 31.44 0.6 33.1624 0.6 35.287C0.6 37.4117 2.32237 39.134 4.44702 39.134H52.553C54.6776 39.134 56.4 37.4117 56.4 35.287C56.4 33.1624 54.6776 31.44 52.553 31.44Z"
         />
       </svg>
-      {stripeCustomerId && showNotification ? (
+
+      {(stripeCustomerId || (userRole && userRole === "ADMIN")) &&
+      showNotification ? (
         <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full translate-x-[100%]" />
       ) : null}
     </div>

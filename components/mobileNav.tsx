@@ -55,7 +55,7 @@ export default function MobileNav({
     NAVBARITEMS[0].name = "Home";
     NAVBARITEMS[0].url = "/";
   }
-  showNotification = true;
+
   return (
     <div
       ref={nav}
@@ -67,7 +67,7 @@ export default function MobileNav({
         if (
           navItem.name === "Reminders" &&
           showNotification &&
-          stripeCustomerId
+          (stripeCustomerId || (user && user.role === "ADMIN"))
         ) {
           return (
             <div

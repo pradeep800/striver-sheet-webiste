@@ -9,7 +9,6 @@ import { reminders, users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { eq, sql } from "drizzle-orm";
 import { getIndianTime } from "@/lib/dateTimeFun";
-import { date } from "zod";
 
 export default async function RootLayout({
   children,

@@ -91,9 +91,10 @@ export default function UserAvatar({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      {!stripeCustomerId && showNotification && (
-        <BellDot className="w-[10px] h-[10px] text-red-500 absolute bottom-0 right-0 rounded-full translate-x-[100%]" />
-      )}
+      {(!stripeCustomerId || (user && user.role !== "ADMIN")) &&
+        showNotification && (
+          <BellDot className="w-[10px] h-[10px] text-red-500 absolute bottom-0 right-0 rounded-full translate-x-[100%]" />
+        )}
     </div>
   );
 }

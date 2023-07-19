@@ -33,14 +33,14 @@ export default function DesktopNav({
     NAVBARITEMS[0].name = "Home";
     NAVBARITEMS[0].url = "/";
   }
-  showNotification = true;
+
   return (
     <div className="font-medium text-xl hidden md:flex gap-6  mr-auto  items-center">
       {NAVBARITEMS.map((navItem, i) => {
         if (
           navItem.name === "Reminders" &&
           showNotification &&
-          stripeCustomerId
+          (stripeCustomerId || (user && user.role === "ADMIN"))
         ) {
           return (
             <Link

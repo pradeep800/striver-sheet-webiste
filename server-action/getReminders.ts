@@ -50,7 +50,6 @@ export const getReminders = zact(z.object({ offset: z.number() }))(
         )
         .limit(maxQuestionsInReminderPage)
         .offset(input.offset);
-
       return reminderQuestions;
     } catch (err) {
       return LogServerAndReturn("getReminders", err, session);

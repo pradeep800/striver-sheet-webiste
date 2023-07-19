@@ -145,7 +145,7 @@ export default function QuestionLinks({
               }, 100);
             }}
           >
-            <SelectTrigger className="border-2 border-slate-500 dark:border-slate-600">
+            <SelectTrigger className="border-2 border-slate-500 dark:border-gray-700">
               <SelectValue placeholder="UNATTEMPTED" />
             </SelectTrigger>
             <SelectContent className="">

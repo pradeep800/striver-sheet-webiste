@@ -86,7 +86,7 @@ export default function MainReminder({
                 href={absoluteUrl(currentReminderUrl)}
                 key={currentReminder.questionDay}
               >
-                <div className="m-2 border hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400 flex justify-between p-4 items-center rounded-md dark:text-white shadow-sm">
+                <div className="m-2 border hover:bg-slate-200 dark:bg-gray-600 dark:hover:bg-gray-500 flex justify-between p-4 items-center rounded-md dark:text-white shadow-sm">
                   <div className="text-lg font-semibold">
                     {question.problem}
                   </div>

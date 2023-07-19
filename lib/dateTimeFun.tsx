@@ -21,7 +21,6 @@ export function getMinMaxReminderTime(): { minDate: Date; maxDate: Date } {
 
 export function getIndianTime(isoString = new Date().toISOString()) {
   const day = dayjs(isoString).tz("Asia/Kolkata");
-  console.log(day);
   return {
     day: day.date(),
     month: day.month() + 1,
