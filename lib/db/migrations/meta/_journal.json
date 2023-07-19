@@ -15,6 +15,13 @@
       "when": 1689750829293,
       "tag": "0001_small_silhouette",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1689775287897,
+      "tag": "0002_faulty_leech",
+      "breakpoints": true
     }
   ]
 }
