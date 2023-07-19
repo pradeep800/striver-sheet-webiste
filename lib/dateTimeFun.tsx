@@ -6,8 +6,8 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 export function getMinMaxReminderTime(): { minDate: Date; maxDate: Date } {
-  const date = dayjs
-    .tz(new Date(), "Asia/Kolkata")
+  const date = dayjs(new Date())
+    .tz("Asia/Kolkata")
     .set("second", 0)
     .set("minute", 0)
     .set("hour", 0)
@@ -20,8 +20,8 @@ export function getMinMaxReminderTime(): { minDate: Date; maxDate: Date } {
 }
 
 export function getIndianTime(isoString = new Date().toISOString()) {
-  const day = dayjs.tz(isoString, "Asia/Kolkata");
-
+  const day = dayjs(isoString).tz("Asia/Kolkata");
+  console.log(day);
   return {
     day: day.date(),
     month: day.month() + 1,
