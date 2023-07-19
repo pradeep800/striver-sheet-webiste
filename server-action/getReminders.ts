@@ -36,6 +36,8 @@ export const getReminders = zact(z.object({ offset: z.number() }))(
           questionNo: questions.number,
           questionDay: questions.day,
           remindersDueDate: reminders.due_date,
+          mailSended: reminders.mail_sended,
+          shouldSendMail: reminders.should_send_mail,
         })
         .from(questions)
         .innerJoin(reminders, eq(questions.number, reminders.question_no))

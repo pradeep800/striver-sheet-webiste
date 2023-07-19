@@ -13,16 +13,22 @@ type Props = {
 export type DbQuestionInfo = {
   questionNo: number;
   questionDay: number;
+  mailSended: boolean;
+  shouldSendMail: boolean;
 };
 export type DaysAndItsQuestions = Record<string, DbQuestionInfo[]>[];
-export const maxQuestions = 10;
+export const maxQuestions = 20;
 export default async function ReminderPage({ searchParams }: Props) {
   const session = await serverSession();
   if (!session) {
     redirect("/");
   }
   const [userInfo] = await db
-    .select({ sheetId: users.striver_sheet_id_30_days, id: users.id })
+    .select({
+      sheetId: users.striver_sheet_id_30_days,
+      id: users.id,
+      role: users.role,
+    })
     .from(users)
     .where(eq(users.id, session.user.id))
     .limit(1);
@@ -44,6 +50,8 @@ export default async function ReminderPage({ searchParams }: Props) {
       questionNo: questions.number,
       questionDay: questions.day,
       remindersDueDate: reminders.due_date,
+      mailSended: reminders.mail_sended,
+      shouldSendMail: reminders.should_send_mail,
     })
     .from(questions)
     .innerJoin(reminders, eq(questions.number, reminders.question_no))
@@ -61,6 +69,7 @@ export default async function ReminderPage({ searchParams }: Props) {
     <MainReminder
       daysAndQuestions={daysAndQuestions}
       totalReminders={totalReminders}
+      userRole={userInfo.role}
     />
   );
 }

@@ -25,12 +25,12 @@ export default function QuestionCard({ userInfo, questionInfo }: Props) {
   return (
     <div
       className={cn([
-        "mt-3  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-500 dark:hover:bg-gray-400 border-2 border-slate-500 dark:border-slate-600 text-black mobile-select-removed",
+        "mt-3  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-500 dark:hover:bg-gray-400 border-2 border-slate-500 dark:border-slate-600 text-black dark:text-black mobile-select-removed ",
         questionInfo.youTubeLink ? "cursor-pointer" : "cursor-not-allowed",
         questionInfo.solved == "SOLVED" &&
-          "bg-green-200 dark:bg-green-200 hover:bg-green-100 dark:text-black dark:hover:bg-green-100 border-green-500 border-2",
+          "bg-green-200 dark:bg-green-200 hover:bg-green-100  dark:hover:bg-green-100 border-green-500 border-2",
         questionInfo.solved === "REMINDER" &&
-          "bg-red-200 dark:bg-red-200 hover:bg-red-100 dark:text-black dark:hover:bg-red-100 border-red-500 border-2",
+          "bg-red-200 dark:bg-red-200 hover:bg-red-100  dark:hover:bg-red-100 border-red-500 border-2",
       ])}
       onClick={(e) => {
         if (questionInfo.youTubeLink) {

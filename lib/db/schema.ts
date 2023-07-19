@@ -137,8 +137,8 @@ export const reminders = table(
 
     created_at: timestamp("created_at").defaultNow(),
     due_date: timestamp("due_time").notNull(),
-    should_send_mail: boolean("should_send_mail"),
-    mail_sended: boolean("mail_sended").default(false),
+    should_send_mail: boolean("should_send_mail").notNull(),
+    mail_sended: boolean("mail_sended").default(false).notNull(),
     user_id: varchar("user_id", {
       length: 255,
     }).notNull(),

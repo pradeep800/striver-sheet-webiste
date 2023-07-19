@@ -62,8 +62,6 @@ export function parseDaysAndReminders(
   JoinInfo: InnerJoinRemindersAndQuestions,
   oldInfo: DayAndReminders = []
 ): DayAndReminders {
-  console.log("real old info");
-  console.log(oldInfo);
   let newInfo: DayAndReminders = [];
   let oldDay: Key;
   let index = -1;
@@ -81,6 +79,8 @@ export function parseDaysAndReminders(
           {
             questionDay: questionInfo.questionDay,
             questionNo: questionInfo.questionNo,
+            mailSended: questionInfo.mailSended,
+            shouldSendMail: questionInfo.shouldSendMail,
           },
         ],
       });
@@ -88,6 +88,8 @@ export function parseDaysAndReminders(
       newInfo[index][newDay].push({
         questionDay: questionInfo.questionDay,
         questionNo: questionInfo.questionNo,
+        mailSended: questionInfo.mailSended,
+        shouldSendMail: questionInfo.shouldSendMail,
       });
     } else {
       index++;
@@ -97,25 +99,25 @@ export function parseDaysAndReminders(
           {
             questionDay: questionInfo.questionDay,
             questionNo: questionInfo.questionNo,
+            mailSended: questionInfo.mailSended,
+            shouldSendMail: questionInfo.shouldSendMail,
           },
         ],
       });
     }
   });
-  console.log(oldInfo, newInfo);
-  // if (oldInfo.length !== 0) {
-  //   const oldInfoLastDay = oldInfo[oldInfo.length - 1];
-  //   const oldLastDate = Object.keys(oldInfoLastDay)[0];
-  //   if (newInfo.length !== 0) {
-  //     const firstDateInfo = newInfo[newInfo.length - 1];
-  //     const firstDate = Object.keys(firstDateInfo)[0];
-  //     console.log(oldLastDate, firstDate);
-  //     if (oldLastDate === firstDate) {
-  //       oldInfoLastDay[oldLastDate].push(...firstDateInfo[firstDate]);
-  //       delete firstDateInfo[firstDate];
-  //     }
-  //   }
-  // }
+
+  if (oldInfo.length !== 0 && newInfo.length !== 0) {
+    const oldInfoLastDay = oldInfo[oldInfo.length - 1];
+    const oldLastDate = Object.keys(oldInfoLastDay)[0];
+
+    const firstDateInfo = newInfo[0];
+    const firstDate = Object.keys(firstDateInfo)[0];
+    if (oldLastDate === firstDate) {
+      oldInfoLastDay[oldLastDate].push(...firstDateInfo[firstDate]);
+      newInfo.shift();
+    }
+  }
 
   oldInfo.push(...newInfo);
   return oldInfo;

@@ -152,14 +152,11 @@ body {
 }
 a {
   -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
-  user-select: none; /* Disable text selection */
 }
 
 .mobile-select-removed {
   -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
-  user-select: none;
 }
 button {
   -webkit-tap-highlight-color: transparent; /* Remove tap highlight color on iOS */
-  user-select: none;
 }

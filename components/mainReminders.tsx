@@ -1,7 +1,7 @@
 "use client";
 
 import { DaysAndItsQuestions } from "@/app/(general)/reminders/page";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   getQuestionInfo,
@@ -14,74 +14,41 @@ import { toast } from "./ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { absoluteUrl } from "@/lib/utils";
+import { Separator } from "./ui/separator";
+import { Session } from "next-auth";
+import { MailCheck, MailQuestion, MailX } from "lucide-react";
+import { NToolTip } from "./tooltip";
 type Props = {
   daysAndQuestions: DaysAndItsQuestions;
   totalReminders: number;
+  userRole: Session["user"]["role"];
 };
 export default function MainReminder({
   totalReminders,
   daysAndQuestions,
+  userRole,
 }: Props) {
   const [loadedReminderSize, setLoadedReminderSize] = useState(() => {
     const size = sizeOfDaysAndReminders(daysAndQuestions);
-    console.log(size);
     return size;
   });
   const [loadedReminders, setLoadedReminders] = useState(daysAndQuestions);
-  useEffect(() => {
-    setLoadedReminderSize(sizeOfDaysAndReminders(loadedReminders));
-  }, [loadedReminders]);
+
   const fetchMore = async () => {
     const newReminders = await getReminders({ offset: loadedReminderSize });
-
     if ("error" in newReminders) {
       toast({ title: newReminders.error, variant: "destructive" });
     } else {
-      console.log("loadedreminders");
-      console.log(loadedReminders);
-      const nextReminders = parseDaysAndReminders(
-        newReminders,
-        loadedReminders
-      );
-
-      // setLoadedReminders(nextReminders);
+      const allReminders = parseDaysAndReminders(newReminders, loadedReminders);
+      const size = sizeOfDaysAndReminders(allReminders);
+      setLoadedReminderSize(size);
+      setLoadedReminders(allReminders);
     }
   };
 
-  const reminderEle = loadedReminders
-    .map((reminders) => {
-      const nodes: React.ReactNode[] = [];
-      const reminderDay = Object.keys(reminders)[0];
-      for (let i = 0; i < reminders[reminderDay].length; i++) {
-        const currentReminder = reminders[reminderDay][i];
-        const question = getQuestionInfo(currentReminder.questionNo);
-        let currentReminderUrl = `/sheet/day-${currentReminder.questionDay}`;
-        if (question?.videoSolution) {
-          currentReminderUrl += `/${currentReminder.questionNo}`;
-        }
-
-        nodes.push(
-          <Link
-            href={absoluteUrl(currentReminderUrl)}
-            key={currentReminder.questionNo}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>{question.problem}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div>hello there</div>
-              </CardContent>
-            </Card>
-          </Link>
-        );
-      }
-      return nodes;
-    })
-    .flat();
-  console.log(loadedReminders);
   return (
-    <div className="w-[800px] mx-auto">
+    <div className="max-w-[800px] mx-auto">
+      {loadedReminderSize == 0 && <div>No Reminder</div>}
       <InfiniteScroll
         next={fetchMore}
         dataLength={loadedReminderSize}
@@ -92,7 +59,57 @@ export default function MainReminder({
           </div>
         }
       >
-        {reminderEle}
+        {loadedReminders.map((reminders) => {
+          const nodes: React.ReactNode[] = [];
+          const reminderDay = Object.keys(reminders)[0];
+          nodes.push(
+            <div className="flex justify-between items-center mt-4 mb-2">
+              <span className="h-[2px] bg-black grow-[1] dark:bg-white " />
+              <span className="px-3 my-3 dark:text-white">{reminderDay}</span>
+              <span className="h-[2px] bg-black grow-[1] dark:bg-white" />
+            </div>
+          );
+          for (let i = 0; i < reminders[reminderDay].length; i++) {
+            const currentReminder = reminders[reminderDay][i];
+            const question = getQuestionInfo(currentReminder.questionNo);
+            let currentReminderUrl = `/sheet/day-${currentReminder.questionDay}`;
+            if (question?.videoSolution) {
+              currentReminderUrl += `/${currentReminder.questionNo}`;
+            }
+
+            nodes.push(
+              <Link
+                href={absoluteUrl(currentReminderUrl)}
+                key={currentReminder.questionNo}
+              >
+                <div className="m-2 border hover:bg-slate-200 dark:bg-gray-500 dark:hover:bg-gray-400 flex justify-between p-4 items-center rounded-md dark:text-white shadow-sm">
+                  <div className="text-lg font-semibold">
+                    {question.problem}
+                  </div>
+                  <div>
+                    {(userRole === "PROUSER" || userRole === "ADMIN") &&
+                    currentReminder.shouldSendMail ? (
+                      currentReminder.mailSended ? (
+                        <NToolTip description="Mail Sended">
+                          <MailCheck className="w-[30px] p-1" />
+                        </NToolTip>
+                      ) : (
+                        <NToolTip description="In Process">
+                          <MailQuestion className="min-w-[30px]" />
+                        </NToolTip>
+                      )
+                    ) : (
+                      <NToolTip description="No Reminder Set">
+                        <MailX className="min-w-[30px]" />
+                      </NToolTip>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            );
+          }
+          return nodes;
+        })}
       </InfiniteScroll>
     </div>
   );

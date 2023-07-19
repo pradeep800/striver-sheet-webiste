@@ -8,6 +8,13 @@
       "when": 1689490618710,
       "tag": "0000_smiling_bug",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1689750829293,
+      "tag": "0001_small_silhouette",
+      "breakpoints": true
     }
   ]
 }

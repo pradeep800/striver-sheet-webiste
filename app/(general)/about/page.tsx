@@ -5,14 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Github, Linkedin, Mail, MenuSquare, Twitter } from "lucide-react";
 
+import { Github, Linkedin, Mail, MenuSquare, Twitter } from "lucide-react";
+import { NToolTip } from "@/components/tooltip";
 export default function AboutPage() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center pt-3">
@@ -44,54 +39,36 @@ export default function AboutPage() {
     </div>
   );
 }
-function SToolTipTrigger({
-  children,
-  description,
-}: {
-  children: React.ReactNode;
-  description: string;
-}) {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>{children}</TooltipTrigger>
-        <TooltipContent>{description}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-}
+
 export function Socials() {
   return (
     <>
-      <SToolTipTrigger description="Resume">
+      <NToolTip description="Resume">
         <a href="https://resume.pradeepbisht.com/" target="_blank">
           <span className="sr-only">Resume Icon</span>
           <MenuSquare className="hover:text-red-400" />
         </a>
-      </SToolTipTrigger>
-      <SToolTipTrigger description="Mail">
+      </NToolTip>
+      <NToolTip description="Mail">
         <a href="mailto:pradeep8b0@gmail.com">
           <span className="sr-only">Mail Icon</span>
 
           <Mail className="hover:text-red-400" />
         </a>
-      </SToolTipTrigger>
-      <SToolTipTrigger description="Github">
+      </NToolTip>
+      <NToolTip description="Github">
         <a href="https://github.com/pradeep800" target="_blank">
           <span className="sr-only">Github Icon</span>
 
           <Github className="hover:text-red-400" />
         </a>
-      </SToolTipTrigger>
-      <SToolTipTrigger description="Linkedin">
-        <a
-          href="https://www.linkedin.com/in/pradeep-b-6554a41b0/"
-          target="_blank"
-        >
+      </NToolTip>
+      <NToolTip description="Linkedin">
+        <a href="https://twitter.com/pradeep8b00" target="_blank">
           <span className="sr-only">Linkedin Icon</span>
-          <Linkedin className="hover:text-red-400" />
+          <Twitter className="hover:text-red-400" />
         </a>
-      </SToolTipTrigger>
+      </NToolTip>
     </>
   );
 }
