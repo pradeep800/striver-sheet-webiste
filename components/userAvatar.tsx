@@ -1,6 +1,6 @@
 "use client";
 import { User as user } from "next-auth";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+
 import { BellDot, User } from "lucide-react";
 import {
   DropdownMenu,

@@ -1,6 +1,6 @@
 "use client";
-import { Socials } from "@/app/(general)/about/page";
 import { MenuSquare } from "lucide-react";
+import { Socials } from "./socials";
 
 export default function Footer() {
   return (

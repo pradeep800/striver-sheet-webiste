@@ -1,6 +1,5 @@
 "use server";
-import { maxQuestions } from "@/app/(general)/reminders/page";
-import { parseDaysAndReminders } from "@/components/pagesUtils";
+
 import { db } from "@/lib/db";
 import { questions, reminders, users } from "@/lib/db/schema";
 import {
@@ -9,6 +8,7 @@ import {
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
 import { serverSession } from "@/lib/serverSession";
+import { maxQuestionsInReminderPage } from "@/static/infiniteScrolling";
 import { and, eq } from "drizzle-orm";
 import { Session } from "next-auth";
 import { zact } from "zact/server";
@@ -48,7 +48,7 @@ export const getReminders = zact(z.object({ offset: z.number() }))(
             eq(questions.solved, "REMINDER")
           )
         )
-        .limit(maxQuestions)
+        .limit(maxQuestionsInReminderPage)
         .offset(input.offset);
 
       return reminderQuestions;

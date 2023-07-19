@@ -3,6 +3,7 @@ import { parseDaysAndReminders } from "@/components/pagesUtils";
 import { db } from "@/lib/db";
 import { questions, reminders, users } from "@/lib/db/schema";
 import { serverSession } from "@/lib/serverSession";
+import { maxQuestionsInReminderPage } from "@/static/infiniteScrolling";
 import { and, eq, sql } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
@@ -17,7 +18,7 @@ export type DbQuestionInfo = {
   shouldSendMail: boolean;
 };
 export type DaysAndItsQuestions = Record<string, DbQuestionInfo[]>[];
-export const maxQuestions = 20;
+
 export default async function ReminderPage({ searchParams }: Props) {
   const session = await serverSession();
   if (!session) {
@@ -62,7 +63,7 @@ export default async function ReminderPage({ searchParams }: Props) {
         eq(questions.solved, "REMINDER")
       )
     )
-    .limit(maxQuestions);
+    .limit(maxQuestionsInReminderPage);
 
   const daysAndQuestions = parseDaysAndReminders(reminderQuestions);
   return (
