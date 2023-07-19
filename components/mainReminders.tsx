@@ -48,7 +48,11 @@ export default function MainReminder({
 
   return (
     <div className="max-w-[800px] mx-auto">
-      {loadedReminderSize == 0 && <div>No Reminder</div>}
+      {loadedReminderSize == 0 && (
+        <div className="h-[80vh] w-full flex justify-center items-center">
+          No Reminder
+        </div>
+      )}
       <InfiniteScroll
         next={fetchMore}
         dataLength={loadedReminderSize}

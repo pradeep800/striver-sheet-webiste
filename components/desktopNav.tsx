@@ -4,15 +4,18 @@ import Link from "next/link";
 import { SessionUser } from "@/types/next-auth";
 import Mode from "./mode";
 import { useTheme } from "next-themes";
+import { BellDot } from "lucide-react";
 type bigScreenProps = {
   activeNavLink: string;
   user?: SessionUser;
   stripeCustomerId: string | null;
+  showNotification: boolean;
 };
 export default function DesktopNav({
   activeNavLink,
   user,
   stripeCustomerId,
+  showNotification,
 }: bigScreenProps) {
   const { theme } = useTheme();
   if (user && (stripeCustomerId || user.role === "ADMIN")) {
@@ -30,9 +33,30 @@ export default function DesktopNav({
     NAVBARITEMS[0].name = "Home";
     NAVBARITEMS[0].url = "/";
   }
+  showNotification = true;
   return (
     <div className="font-medium text-xl hidden md:flex gap-6  mr-auto  items-center">
       {NAVBARITEMS.map((navItem, i) => {
+        if (
+          navItem.name === "Reminders" &&
+          showNotification &&
+          stripeCustomerId
+        ) {
+          return (
+            <Link
+              className={`${
+                navItem.url !== activeNavLink
+                  ? "relative  hover:text-red-500 after:contain-[''] after:scale-x-0 after:origin-bottom-left after:bg-red-500 after:absolute after:transition-transform  after:bottom-0 after:left-0 after:h-[3px] after:w-[100%] hover:after:scale-x-[1] origin-bottom-right after:duration-500"
+                  : " relative after:content-[''] after:bg-red-500 after:absolute  text-red-500 after:h-[3px] after:w-[100%] after:bottom-0 after:left-0 "
+              }`}
+              key={i}
+              href={navItem.url}
+            >
+              {navItem.name}
+              <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full translate-x-[100%]" />
+            </Link>
+          );
+        }
         return (
           <Link
             className={`${

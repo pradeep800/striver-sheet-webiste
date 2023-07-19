@@ -1,7 +1,7 @@
 "use client";
 import { User as user } from "next-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { User } from "lucide-react";
+import { BellDot, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,13 +16,19 @@ import Link from "next/link";
 
 interface UserProps {
   user: SessionUser;
+  stripeCustomerId: string | null;
+  showNotification: boolean;
 }
-export default function UserAvatar({ user }: UserProps) {
+export default function UserAvatar({
+  user,
+  stripeCustomerId,
+  showNotification,
+}: UserProps) {
   return (
-    <div className="flex md:mr-0 mr-3">
+    <div className="flex md:mr-0 mr-3 relative">
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="border-2 cursor-pointer relative z-[2] border-red-500 rounded-full overflow-hidden">
+          <div className="border-2 cursor-pointer  z-[2] border-red-500 rounded-full overflow-hidden relative">
             {user.image ? (
               <Image
                 src={user.image}
@@ -63,6 +69,14 @@ export default function UserAvatar({ user }: UserProps) {
           <Link href={"/sheet/settings"}>
             <DropdownMenuItem className="">Settings</DropdownMenuItem>
           </Link>
+          {!stripeCustomerId ? (
+            <Link className="relative" href={"/reminders"}>
+              <DropdownMenuItem className="">Reminders</DropdownMenuItem>
+              {showNotification ? (
+                <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full translate-x-[100%]" />
+              ) : null}
+            </Link>
+          ) : null}
 
           <DropdownMenuItem className="hover:bg-red-500 border-3 border-red-500 p-0 ">
             <div
@@ -77,6 +91,9 @@ export default function UserAvatar({ user }: UserProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      {!stripeCustomerId && showNotification && (
+        <BellDot className="w-[10px] h-[10px] text-red-500 absolute bottom-0 right-0 rounded-full translate-x-[100%]" />
+      )}
     </div>
   );
 }

@@ -13,9 +13,14 @@ import useUpdateRole from "@/lib/useUpdateRole";
 interface UserProps {
   user?: SessionUser;
   stripeCustomerId: string | null;
+  showNotification: boolean;
 }
 
-export default function NavBar({ user, stripeCustomerId }: UserProps) {
+export default function NavBar({
+  user,
+  stripeCustomerId,
+  showNotification,
+}: UserProps) {
   const pathName = usePathname();
   useUpdateRole({ user });
   const [activeNavLink, setActiveNavLink] = useState<string>(pathName);
@@ -46,18 +51,30 @@ export default function NavBar({ user, stripeCustomerId }: UserProps) {
         activeNavLink={activeNavLink}
         user={user}
         stripeCustomerId={stripeCustomerId}
+        showNotification={showNotification}
       />
       <MobileNav
         activeNavLink={activeNavLink}
         stripeCustomerId={stripeCustomerId}
         oneTimeClickToHamburger={oneTimeClickToHamburger}
         user={user}
+        showNotification={showNotification}
       />
-      {!user ? <Login /> : <UserAvatar user={user} />}
+      {!user ? (
+        <Login />
+      ) : (
+        <UserAvatar
+          user={user}
+          stripeCustomerId={stripeCustomerId}
+          showNotification={showNotification}
+        />
+      )}
       <div className=" md:hidden isolate z-[1]">
         <Hamburger
           oneTimeClickToHamburger={oneTimeClickToHamburger}
           setOneTimeClickToHamburger={setOneTimeClickToHamburger}
+          showNotification={showNotification}
+          stripeCustomerId={stripeCustomerId}
         />
       </div>
     </nav>

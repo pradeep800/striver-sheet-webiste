@@ -28,3 +28,7 @@ export function getIndianTime(isoString = new Date().toISOString()) {
     year: day.year(),
   };
 }
+export function getDate(isoString = new Date().toISOString()) {
+  const { day, month, year } = getIndianTime(isoString);
+  return `${day}/${month}/${year}`;
+}

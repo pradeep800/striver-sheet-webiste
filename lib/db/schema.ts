@@ -85,6 +85,8 @@ export const users = table(
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
     pro_subscription_end: timestamp("pro_subscription_end"),
 
+    reminderDays: json("reminderDays").default([]),
+
     striver_sheet_id_30_days: varchar("striver_sheet_id_30_days", {
       length: 255,
     }).notNull(),
@@ -142,6 +144,7 @@ export const reminders = table(
     user_id: varchar("user_id", {
       length: 255,
     }).notNull(),
+
     question_no: int("question_no").notNull(),
   },
   (reminder) => ({

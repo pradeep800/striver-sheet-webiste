@@ -5,17 +5,20 @@ import Link from "next/link";
 import { useHamburger } from "@/lib/useHamburger";
 import { SessionUser } from "@/types/next-auth";
 import Mode from "./mode";
+import { BellDot } from "lucide-react";
 type SmallScreenProps = {
   activeNavLink: string;
   oneTimeClickToHamburger: boolean;
   user?: SessionUser;
   stripeCustomerId: null | string;
+  showNotification: boolean;
 };
 export default function MobileNav({
   activeNavLink,
   oneTimeClickToHamburger,
   user,
   stripeCustomerId,
+  showNotification,
 }: SmallScreenProps) {
   const nav = useRef<HTMLDivElement>(null);
   const [themeChanged, setThemeChanged] = useState(false);
@@ -52,6 +55,7 @@ export default function MobileNav({
     NAVBARITEMS[0].name = "Home";
     NAVBARITEMS[0].url = "/";
   }
+  showNotification = true;
   return (
     <div
       ref={nav}
@@ -60,6 +64,35 @@ export default function MobileNav({
       } `}
     >
       {NAVBARITEMS.map((navItem, i) => {
+        if (
+          navItem.name === "Reminders" &&
+          showNotification &&
+          stripeCustomerId
+        ) {
+          return (
+            <div
+              className={`${
+                hamburgerOn && "translate-x-[-100%]"
+              } will-change-transform ${
+                hamburgerOn ? putIntoView[i] : putOutOfView[i]
+              } `}
+              key={i}
+            >
+              <Link
+                className={`${
+                  navItem.url !== activeNavLink
+                    ? "relative hover:text-red-500 after:contain-[''] after:scale-x-0 after:origin-bottom-left after:bg-red-500 after:absolute after:transition-transform  after:bottom-0 after:left-0 after:h-[3px] after:w-[100%] hover:after:scale-x-[1] origin-bottom-right after:duration-500"
+                    : " relative after:content-[''] after:bg-red-500 after:absolute  text-red-500 after:h-[3px] after:w-[100%] after:bottom-0 after:left-0 "
+                }`}
+                href={navItem.url}
+              >
+                {navItem.name}
+
+                <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full translate-x-[100%]" />
+              </Link>
+            </div>
+          );
+        }
         return (
           <div
             className={`${
