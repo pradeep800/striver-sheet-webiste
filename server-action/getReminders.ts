@@ -39,15 +39,17 @@ export const getReminders = zact(z.object({ offset: z.number() }))(
           mailSended: reminders.mail_sended,
           shouldSendMail: reminders.should_send_mail,
         })
-        .from(questions)
-        .innerJoin(reminders, eq(questions.number, reminders.question_no))
-        .orderBy(reminders.due_date)
-        .where(
+        .from(reminders)
+        .innerJoin(
+          questions,
           and(
-            eq(questions.sheet_id, userInfo.sheetId),
-            eq(questions.solved, "REMINDER")
+            eq(reminders.question_no, questions.number),
+            eq(reminders.user_id, userInfo.id),
+            eq(questions.sheet_id, userInfo.sheetId)
           )
         )
+        .where(eq(reminders.user_id, userInfo.id))
+        .orderBy(reminders.due_date)
         .limit(maxQuestionsInReminderPage)
         .offset(input.offset);
       return reminderQuestions;
