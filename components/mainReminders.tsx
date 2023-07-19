@@ -103,7 +103,7 @@ export default function MainReminder({
                         </NToolTip>
                       )
                     ) : (
-                      <NToolTip description="No Reminder Set">
+                      <NToolTip description="No Email Reminder Set">
                         <MailX className="min-w-[30px]" />
                       </NToolTip>
                     )}
