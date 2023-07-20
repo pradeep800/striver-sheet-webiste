@@ -117,7 +117,7 @@ export default function MobileNav({
       })}
 
       <Mode
-        className={`fixed left-[50%] translate-x-[-70%]  ${
+        className={`fixed left-[50%] translate-x-[-50%]  ${
           hamburgerOn ? "bottom-[-20px]" : "bottom-[15px]"
         } ${
           hamburgerOn || themeChanged
