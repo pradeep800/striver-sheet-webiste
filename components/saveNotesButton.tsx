@@ -18,7 +18,6 @@ export default function SaveNotes({ notesInfo, data }: Props) {
       onClick={async () => {
         try {
           setLoading(true);
-          console.log(notesInfo, data);
           const serverAction = await saveNotes({
             questionNo: notesInfo.questionNo,
             content: data,

@@ -31,7 +31,7 @@ export default async function RootLayout({
       .select({ reminderId: reminders.id })
       .from(reminders)
       .where(
-        sql`${reminders.user_id}=${user.id} and day(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) = ${date.day} and month(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) = ${date.month} and year(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) = ${date.year} `
+        sql`${reminders.user_id}=${user.id} and day(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) <= ${date.day} and month(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) <= ${date.month} and year(CONVERT_TZ(${reminders.due_date}, 'UTC', 'Asia/Kolkata')) <= ${date.year} `
       )
       .limit(1);
     showNotification = data ? true : false;

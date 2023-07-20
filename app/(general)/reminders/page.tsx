@@ -66,7 +66,6 @@ export default async function ReminderPage({ searchParams }: Props) {
     .where(eq(reminders.user_id, userInfo.id))
     .orderBy(reminders.due_date)
     .limit(maxQuestionsInReminderPage);
-
   const daysAndQuestions = parseDaysAndReminders(reminderQuestions);
   return (
     <MainReminder

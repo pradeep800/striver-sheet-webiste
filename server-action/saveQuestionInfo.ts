@@ -24,7 +24,6 @@ export const saveQuestionInfo = zact(
     reminderData: reminderDialogSchema.optional(),
   })
 )(async (input) => {
-  console.log(input);
   let session: Session | undefined;
   try {
     session = await serverSession();
@@ -50,7 +49,6 @@ export const saveQuestionInfo = zact(
     if (!user) {
       return ReturnDeletedAccount();
     }
-    console.log(user);
     const question = await db
       .select({ solved: questions.solved })
       .from(questions)

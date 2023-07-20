@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { db } from "@/lib/db";
 import { reminders, users } from "@/lib/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, or } from "drizzle-orm";
 import EmailReminder from "@/components/emailTemplate/emailReminder";
 
 import { ssQuestions } from "@/static/striverSheet";
@@ -19,7 +19,7 @@ export async function GET(req: Request) {
   const adminUsers = await db
     .select({ id: users.id, email: users.email })
     .from(users)
-    .where(eq(users.role, "PROUSER"));
+    .where(or(eq(users.role, "PROUSER"), eq(users.role, "ADMIN")));
 
   //traverse through admin and send them mail
   for (let i = 0; i < adminUsers.length; i++) {
