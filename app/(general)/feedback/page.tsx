@@ -73,7 +73,7 @@ export default function ContactPage() {
             {`If you want to give feedback, report bug or feature request you can
             send me those with this portal (use google drive links to send photo or video)`}
           </CardDescription>
-          <CardContent className="-ml-6">
+          <CardContent className="p-0 m-0">
             <Form {...form}>
               <form
                 className="flex flex-col gap-2"
@@ -118,7 +118,7 @@ export default function ContactPage() {
                       <FormLabel>Description</FormLabel>
                       <FormControl>
                         <Textarea
-                          className="min-h-[150px]"
+                          className="min-h-[200px] "
                           id="type-description"
                           {...field}
                           value={field.value}

@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -20,7 +21,7 @@ export default function AboutPage() {
             <div className="inline-block   text-2xl  origin-middle-hand animate-wave transform-origin  z-[-1]">
               👋
             </div>
-            <p>
+            <p className="hyphens-auto  ">
               My name is Pradeep Singh, and I am a 20-year-old living in
               Dehradun, Uttarakhand. I possess a strong passion for crafting
               interactive websites. Currently, I am actively seeking internship

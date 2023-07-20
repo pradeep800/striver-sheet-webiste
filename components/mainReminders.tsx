@@ -63,11 +63,14 @@ export default function MainReminder({
           </div>
         }
       >
-        {loadedReminders.map((reminders) => {
+        {loadedReminders.map((reminders, i) => {
           const nodes: React.ReactNode[] = [];
           const reminderDay = Object.keys(reminders)[0];
           nodes.push(
-            <div className="flex justify-between items-center mt-4 mb-2">
+            <div
+              className="flex justify-between items-center mt-4 mb-2 "
+              key={crypto.randomUUID().toString()}
+            >
               <span className="h-[2px] bg-black grow-[1] dark:bg-white " />
               <span className="px-3 my-3 dark:text-white">{reminderDay}</span>
               <span className="h-[2px] bg-black grow-[1] dark:bg-white" />
@@ -84,7 +87,7 @@ export default function MainReminder({
             nodes.push(
               <Link
                 href={absoluteUrl(currentReminderUrl)}
-                key={currentReminder.questionDay}
+                key={currentReminder.questionNo}
               >
                 <div className="m-2 border hover:bg-slate-200 dark:bg-gray-600 dark:hover:bg-gray-500 flex justify-between p-4 items-center rounded-md dark:text-white shadow-sm">
                   <div className="text-lg font-semibold">

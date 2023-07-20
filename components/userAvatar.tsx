@@ -25,7 +25,7 @@ export default function UserAvatar({
   showNotification,
 }: UserProps) {
   return (
-    <div className="flex md:mr-0 mr-3 relative">
+    <div className="flex md:mr-0 mr-3 relative ">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div className="border-2 cursor-pointer  z-[2] border-red-500 rounded-full overflow-hidden relative">
@@ -45,7 +45,7 @@ export default function UserAvatar({
             )}
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mx-4 md:mr-3">
+        <DropdownMenuContent className="mx-4 md:mr-3  ">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
             {
@@ -69,12 +69,14 @@ export default function UserAvatar({
           <Link href={"/sheet/settings"}>
             <DropdownMenuItem className="">Settings</DropdownMenuItem>
           </Link>
-          {!stripeCustomerId ? (
-            <Link className="relative" href={"/reminders"}>
-              <DropdownMenuItem className="">Reminders</DropdownMenuItem>
-              {showNotification ? (
-                <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full translate-x-[100%]" />
-              ) : null}
+          {!stripeCustomerId && user && user.role !== "ADMIN" ? (
+            <Link className="" href={"/reminders"}>
+              <DropdownMenuItem className="relative">
+                Reminders
+                {showNotification ? (
+                  <BellDot className="w-[10px] h-[10px] text-red-500 absolute top-0 right-0 rounded-full " />
+                ) : null}
+              </DropdownMenuItem>
             </Link>
           ) : null}
 
@@ -91,10 +93,9 @@ export default function UserAvatar({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      {(!stripeCustomerId || (user && user.role !== "ADMIN")) &&
-        showNotification && (
-          <BellDot className="w-[10px] h-[10px] text-red-500 absolute bottom-0 right-0 rounded-full translate-x-[100%]" />
-        )}
+      {!stripeCustomerId && showNotification && user.role !== "ADMIN" && (
+        <BellDot className="w-[10px] h-[10px] text-red-500 absolute bottom-0 right-0 rounded-full translate-x-[100%]" />
+      )}
     </div>
   );
 }

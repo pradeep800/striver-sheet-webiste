@@ -22,6 +22,7 @@ type Props = {
 export default function MainPricing({ sessionUser }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
   return (
     <div className="min-h-[80vh] flex flex-wrap   justify-center items-center gap-5  pt-3">
       {!sessionUser && (

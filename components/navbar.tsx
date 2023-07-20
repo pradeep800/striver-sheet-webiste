@@ -29,7 +29,15 @@ export default function NavBar({
   useEffect(() => {
     setActiveNavLink(`/${pathName.split("/")[1]}`);
   }, [pathName]);
-
+  useEffect(() => {
+    function popState() {
+      setHamburgerOn(false);
+    }
+    addEventListener("popstate", popState);
+    return () => {
+      removeEventListener("popstate", popState);
+    };
+  }, []);
   return (
     <nav
       className="flex  items-center relative z-[2] "
