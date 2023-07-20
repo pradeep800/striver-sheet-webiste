@@ -17,21 +17,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import React, { useState, useTransition } from "react";
+import React, { useState } from "react";
 import { deleteAccount } from "@/server-action/deleteAccount";
-import Loading from "./svg/loading";
 
 import { signOut } from "next-auth/react";
 import { toast } from "./ui/use-toast";
-import { useRouter } from "next/navigation";
 type Props = {
   user: SessionUser;
 };
 export default function DeleteAccount({}: Props) {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
+
   return (
     <Card className="my-6">
       <CardHeader>

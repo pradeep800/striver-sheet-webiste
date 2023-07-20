@@ -40,7 +40,7 @@ export default function NavBar({
   }, []);
   return (
     <nav
-      className="flex  items-center relative z-[2] "
+      className="flex  items-center relative z-[2]"
       onClick={() => hamburgerOn && setHamburgerOn(false)}
     >
       <Link

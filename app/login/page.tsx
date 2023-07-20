@@ -3,7 +3,7 @@ import AuthForm from "@/components/authForm";
 import Back from "@/components/svg/back";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 //if they are coming from these route in
 //login they will not able
 //leave this route because it will try to

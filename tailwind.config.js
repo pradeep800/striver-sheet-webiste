@@ -67,12 +67,12 @@ module.exports = {
       keyframes: {
         "top-to-down": {
           to: {
-            top: "15px",
+            bottom: "15px",
           },
         },
         "down-to-out-of-view": {
           to: {
-            top: "-20px",
+            bottom: "-20px",
           },
         },
         "accordion-down": {

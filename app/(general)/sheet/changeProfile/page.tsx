@@ -2,7 +2,6 @@ import MainProfileChange from "@/components/mainProfileChange";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
-import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";

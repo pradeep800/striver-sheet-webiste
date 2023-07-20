@@ -4,7 +4,7 @@ import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
 import { ssCount, ssTopics } from "@/static/striverSheet";
-import { and, asc, eq, sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 export type CountType = {

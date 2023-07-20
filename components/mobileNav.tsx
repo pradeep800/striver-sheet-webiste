@@ -115,9 +115,10 @@ export default function MobileNav({
           </div>
         );
       })}
+
       <Mode
         className={`fixed left-[50%] translate-x-[-70%]  ${
-          hamburgerOn ? "top-[-20px]" : "top-[15px]"
+          hamburgerOn ? "bottom-[-20px]" : "bottom-[15px]"
         } ${
           hamburgerOn || themeChanged
             ? "animate-top-to-down"
