@@ -24,5 +24,9 @@ export default async function Pricing() {
       redirect("/sheet?error=you are already a PROUSER");
     }
   }
-  return <MainPricing sessionUser={sessionUser} />;
+  return (
+    <div className="mt-8">
+      <MainPricing sessionUser={sessionUser} />
+    </div>
+  );
 }
