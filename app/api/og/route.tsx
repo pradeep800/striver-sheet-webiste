@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/server";
 
-export const revalidate = 60 * 60;
-
 export const runtime = "edge";
 
 const asap = fetch(
