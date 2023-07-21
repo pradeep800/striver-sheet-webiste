@@ -49,14 +49,14 @@ export async function generateMetadata({
         locale: "en_US",
         siteName: "Striver Sheet",
         description: userInfo?.description ?? "",
-        images: [urlInString],
+        images: [{ url: urlInString, width: 1200 }],
         url: "https://striversheet.pradeepbisht.com",
       },
       twitter: {
         card: "summary_large_image",
         title: "Striver Sheet",
         description: userInfo?.description ?? "",
-        images: [urlInString],
+        images: [{ url: urlInString, width: 1200 }],
 
         creator: "@pradeep8b0",
       },
