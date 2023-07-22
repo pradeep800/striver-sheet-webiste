@@ -4,10 +4,10 @@ import { Socials } from "./socials";
 
 export default function Footer() {
   return (
-    <div className="mt-4 flex flex-col gap-2">
+    <div className="my-2 flex flex-col gap-2">
       <hr />
 
-      <div className="font-light text-center">
+      <div className="font-light text-center mt-3">
         Content in this website is from{" "}
         <a
           className="underline hover:text-red-400 text-red-500"
@@ -18,7 +18,7 @@ export default function Footer() {
         </a>{" "}
         and This website does not claim any ownership or copyright.
       </div>
-      <div className="text-red-500 flex justify-center gap-5">
+      <div className="text-red-500 flex justify-center gap-5 ">
         <Socials />
       </div>
     </div>
