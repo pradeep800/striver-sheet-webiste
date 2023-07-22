@@ -7,9 +7,9 @@ export default function Login() {
   const pathName = usePathname();
 
   return (
-    <Button className="bg-red-500 hover:bg-red-400    mr-6 ml-6 md:mr-0  isolate z-[1] dark:text-white">
+    <Button className="bg-red-500 hover:bg-red-400    mr-6 ml-6 md:mr-0  isolate z-[1] dark:text-white h-[30px]">
       <Link
-        className="font-medium text-lg"
+        className="font-medium "
         href={`/login?callback=${encodeURIComponent(pathName)}`}
       >
         Login
