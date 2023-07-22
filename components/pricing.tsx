@@ -1,6 +1,5 @@
 import { authOption } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { BuyProSubscription } from "@/server-action/buyProSubscription";
 import { users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";

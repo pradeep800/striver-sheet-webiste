@@ -58,7 +58,7 @@ export default function MainPricing({ sessionUser }: Props) {
       <div>
         <Card className="min-h-[500px]  xs:w-[400px]  flex flex-col justify-center basis-[400px] ">
           <CardHeader>
-            <CardTitle>ProUser Plan</CardTitle>
+            <CardTitle>Pro User Plan</CardTitle>
             <CardTitle>
               <Rupee amount={300} />
             </CardTitle>
