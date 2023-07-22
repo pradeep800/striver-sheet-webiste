@@ -24,7 +24,7 @@ export default function Error({
         <CardTitle className="text-2xl text-red-500">Server error</CardTitle>
         <CardDescription>
           {
-            "Please refresh this page and if still not working please logout and login again"
+            "Please refresh this page and if it is still not working please logout and login again"
           }
         </CardDescription>
       </CardHeader>
