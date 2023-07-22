@@ -14,7 +14,7 @@ export default function StartToday() {
         <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-red-500 font-bold">
           Practice DSA questions in structure manner in 27 days.
         </h1>
-        <p className=" max-w-[300px] xs:max-w-[350px] sm:max-w-[500px] lg:max-w-[700px] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+        <p className=" max-w-[250px] xs:max-w-[350px] sm:max-w-[500px] lg:max-w-[700px] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           Level up your interview skills in 27 days with 191 frequently asked
           questions with videos, curated for DSA interviews.
         </p>
