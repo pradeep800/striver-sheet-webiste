@@ -35,4 +35,3 @@ It has 6 Core Features:
 4. Install the dependency `pnpm install`
 5. Start a development server `pnpm run dev`
 6. Open your browser and visit [http://localhost:3008](http://localhost:3008)
-   ![Resume Builder Demo](https://utfs.io/f/dab876b6-49d1-4e54-ab05-c0b3b93a8cc3_striversheet.jpeg)
