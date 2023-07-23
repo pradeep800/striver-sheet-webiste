@@ -145,7 +145,10 @@ export default function QuestionLinks({
               }, 100);
             }}
           >
-            <SelectTrigger className="border-2 border-slate-500 dark:border-gray-700">
+            <SelectTrigger
+              className="border-2 border-slate-500 dark:border-gray-700"
+              aria-label="Select from unattempted solved and reminder"
+            >
               <SelectValue placeholder="UNATTEMPTED" />
             </SelectTrigger>
             <SelectContent className="">

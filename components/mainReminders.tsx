@@ -98,16 +98,25 @@ export default function MainReminder({
                     currentReminder.shouldSendMail ? (
                       currentReminder.mailSended ? (
                         <NToolTip description="Mail Sended">
-                          <MailCheck className="w-[30px] p-1" />
+                          <MailCheck
+                            className="w-[30px] p-1"
+                            aria-label="Icon for mail is sended"
+                          />
                         </NToolTip>
                       ) : (
                         <NToolTip description="In Process">
-                          <MailQuestion className="min-w-[30px]" />
+                          <MailQuestion
+                            className="min-w-[30px]"
+                            aria-label="Icon for mail is going to be sended"
+                          />
                         </NToolTip>
                       )
                     ) : (
                       <NToolTip description="No Email Reminder Set">
-                        <MailX className="min-w-[30px]" />
+                        <MailX
+                          className="min-w-[30px]"
+                          aria-label="Icon for no email reminder set"
+                        />
                       </NToolTip>
                     )}
                   </div>
