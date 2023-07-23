@@ -13,6 +13,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { SessionUser } from "@/types/next-auth";
 import Link from "next/link";
+import { useHamburger } from "@/lib/useHamburger";
 
 interface UserProps {
   user: SessionUser;
@@ -24,9 +25,14 @@ export default function UserAvatar({
   stripeCustomerId,
   showNotification,
 }: UserProps) {
+  const setHamburgerOn = useHamburger((state) => state.setHamburgerOn);
   return (
     <div className="flex md:mr-0 mr-3 relative ">
-      <DropdownMenu>
+      <DropdownMenu
+        onOpenChange={() => {
+          setHamburgerOn(false);
+        }}
+      >
         <DropdownMenuTrigger>
           <div className="border-2 cursor-pointer  z-[2] border-red-500 rounded-full overflow-hidden relative">
             {user.image ? (

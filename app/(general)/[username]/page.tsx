@@ -44,6 +44,7 @@ export async function generateMetadata({
 
       return {
         title: username,
+        description: userInfo?.description ?? "",
         openGraph: {
           title: "Striver Sheet",
           type: "website",

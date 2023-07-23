@@ -8,7 +8,6 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
 const asap = Asap({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 export const metadata: Metadata = {
   metadataBase: new URL("https://striversheet.pradeepbisht.com"),
@@ -19,7 +18,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/ss.png",
   },
-
+  description:
+    "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
+  keywords: [
+    "striver sheet dsa",
+    "striver sheet for interview preparation",
+    "striver sheet with reminder",
+    "striver sheet",
+    "dsa practice",
+  ],
   openGraph: {
     title: "Striver Sheet",
     type: "website",

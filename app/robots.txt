@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api
+Disallow: /countingLinks
+
+Sitemap: https://striversheet.pradeepbisht.com/sitemap.xml
