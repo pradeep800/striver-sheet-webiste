@@ -153,7 +153,7 @@ export default function UDFrom({
 
         <Button
           type="submit"
-          className="w-full disabled:bg-red-400 hover:bg-red-400 bg-red-500"
+          className="w-full disabled:bg-red-400 hover:bg-red-400 bg-red-500 dark:text-white"
           disabled={loading || isPresentInDb || checking}
         >
           {loading ? <Loader className="animate-spin" /> : "Save"}
