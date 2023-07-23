@@ -23,43 +23,52 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata | undefined> {
   const { username } = params;
-  const [userInfo] = await db
-    .select({
-      description: users.description,
-      name: users.name,
-      image: users.image,
-    })
-    .from(users)
-    .where(eq(users.userName, username))
-    .limit(1);
-  if (userInfo) {
-    const url = new URL("api/og", absoluteUrl("/"));
-    url.searchParams.set("name", userInfo?.name ?? "");
-    url.searchParams.set("username", username ?? "");
+  try {
+    const [userInfo] = await db
+      .select({
+        description: users.description,
+        name: users.name,
+        image: users.image,
+      })
+      .from(users)
+      .where(eq(users.userName, username))
+      .limit(1);
+    if (userInfo) {
+      const url = new URL("api/og", absoluteUrl("/"));
+      url.searchParams.set("name", userInfo?.name ?? "");
+      url.searchParams.set("username", username ?? "");
 
-    url.searchParams.set("description", userInfo?.description ?? "");
-    url.searchParams.set("image", userInfo?.image ?? "");
-    const urlInString = url.toString();
+      url.searchParams.set("description", userInfo?.description ?? "");
+      url.searchParams.set("image", userInfo?.image ?? "");
+      const urlInString = url.toString();
 
+      return {
+        title: username,
+        openGraph: {
+          title: "Striver Sheet",
+          type: "website",
+          locale: "en_US",
+          siteName: "Striver Sheet",
+          description: userInfo?.description ?? "",
+          images: [{ url: urlInString, width: 1200 }],
+          url: "https://striversheet.pradeepbisht.com",
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: "Striver Sheet",
+          description: userInfo?.description ?? "",
+          images: [{ url: urlInString, width: 1200 }],
+
+          creator: "@pradeep8b0",
+        },
+        alternates: { canonical: `/${username}` },
+      };
+    }
+  } catch (err) {
     return {
-      title: username,
-      openGraph: {
-        title: "Striver Sheet",
-        type: "website",
-        locale: "en_US",
-        siteName: "Striver Sheet",
-        description: userInfo?.description ?? "",
-        images: [{ url: urlInString, width: 1200 }],
-        url: "https://striversheet.pradeepbisht.com",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: "Striver Sheet",
-        description: userInfo?.description ?? "",
-        images: [{ url: urlInString, width: 1200 }],
-
-        creator: "@pradeep8b0",
-      },
+      title: "Not found",
+      description: "The page you are looking for does not exists",
+      alternates: { canonical: `/${username}` },
     };
   }
 }
