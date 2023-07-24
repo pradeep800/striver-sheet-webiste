@@ -6,11 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ManageSubscription from "@/server-action/ManagingSubscription";
+import manageSubscription from "@/server-action/manageProSubscription";
 
 export default async function Billing() {
   return (
-    <form className="my-6" action={ManageSubscription}>
+    <form className="my-6" action={manageSubscription}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl text-red-500">Billing</CardTitle>

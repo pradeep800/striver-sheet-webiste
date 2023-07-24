@@ -10,7 +10,7 @@ export function Socials() {
         </a>
       </NToolTip>
       <NToolTip description="Mail">
-        <a href="mailto:pradeep8b0@gmail.com">
+        <a href="mailto:pradeep8b0@gmail.com" target="_blank">
           <span className="sr-only">Mail Icon</span>
 
           <Mail className="hover:text-red-400" />

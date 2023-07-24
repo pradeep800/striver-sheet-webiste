@@ -8,7 +8,7 @@ import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
 //redirect don't work without form
-export default async function ManageSubscription() {
+export default async function manageSubscription() {
   const session = await serverSession();
   const settingUrl = absoluteUrl("/sheet/settings");
   if (!session) {
