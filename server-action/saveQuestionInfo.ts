@@ -9,7 +9,7 @@ import { z } from "zod";
 import { reminderDialogSchema } from "./zodType/reminderDialogsSchema";
 import { getQuestionDay, getQuestionInfo } from "@/components/pagesUtils";
 import {
-  LogServerAndReturn,
+  LogServerAndReturnError,
   ReturnDeletedAccount,
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
@@ -131,6 +131,6 @@ export const saveQuestionInfo = zact(
       }
     });
   } catch (err) {
-    return LogServerAndReturn("saveQuestionInfo", err, session);
+    return LogServerAndReturnError("saveQuestionInfo", err, session);
   }
 });

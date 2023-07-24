@@ -3,7 +3,7 @@
 import { db } from "@/lib/db";
 import { questions, reminders, users } from "@/lib/db/schema";
 import {
-  LogServerAndReturn,
+  LogServerAndReturnError,
   ReturnDeletedAccount,
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
@@ -54,7 +54,7 @@ export const getReminders = zact(z.object({ offset: z.number() }))(
         .offset(input.offset);
       return reminderQuestions;
     } catch (err) {
-      return LogServerAndReturn("getReminders", err, session);
+      return LogServerAndReturnError("getReminders", err, session);
     }
   }
 );

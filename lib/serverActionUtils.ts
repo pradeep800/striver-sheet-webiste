@@ -10,7 +10,7 @@ export function isIdentifier(name: string) {
   return false;
 }
 
-export function LogServerAndReturn(
+export function LogServerAndReturnError(
   actionName: string,
   err: unknown,
   session: Session | boolean | undefined

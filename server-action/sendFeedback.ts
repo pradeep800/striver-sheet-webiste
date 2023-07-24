@@ -5,7 +5,10 @@ import { Session } from "next-auth";
 import { db } from "@/lib/db";
 import { feedbacks } from "@/lib/db/schema";
 import { serverSession } from "@/lib/serverSession";
-import { LogServerAndReturn, ReturnNoSession } from "@/lib/serverActionUtils";
+import {
+  LogServerAndReturnError,
+  ReturnNoSession,
+} from "@/lib/serverActionUtils";
 
 export const sendFeedback = zact(feedBackSchema)(async (input) => {
   let session: Session | undefined;
@@ -23,6 +26,6 @@ export const sendFeedback = zact(feedBackSchema)(async (input) => {
       user_role: session.user.role,
     });
   } catch (err) {
-    return LogServerAndReturn("sendFeedback", err, session);
+    return LogServerAndReturnError("sendFeedback", err, session);
   }
 });

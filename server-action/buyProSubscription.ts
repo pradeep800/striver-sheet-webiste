@@ -3,7 +3,10 @@ import { absoluteUrl } from "@/lib/utils";
 import { stripe } from "@/lib/stripe";
 import { env } from "@/env.mjs";
 import { serverSession } from "@/lib/serverSession";
-import { LogServerAndReturn, ReturnNoSession } from "@/lib/serverActionUtils";
+import {
+  LogServerAndReturnError,
+  ReturnNoSession,
+} from "@/lib/serverActionUtils";
 import { Session } from "next-auth";
 
 export async function BuyProSubscription() {
@@ -39,6 +42,6 @@ export async function BuyProSubscription() {
     const url = stripeSession.url;
     return { url: url };
   } catch (err) {
-    return LogServerAndReturn("buyProSubscription", err, session);
+    return LogServerAndReturnError("buyProSubscription", err, session);
   }
 }

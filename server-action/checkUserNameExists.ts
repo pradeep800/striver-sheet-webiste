@@ -2,7 +2,7 @@
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { LogServerAndReturn, isIdentifier } from "@/lib/serverActionUtils";
+import { LogServerAndReturnError, isIdentifier } from "@/lib/serverActionUtils";
 import { zact } from "zact/server";
 import { z } from "zod";
 import { serverSession } from "@/lib/serverSession";
@@ -47,7 +47,7 @@ export const checkUserNameExists = zact(z.object({ userName: z.string() }))(
         }
         return false;
       } catch (err) {
-        return LogServerAndReturn("checkUserNameExits", err, session);
+        return LogServerAndReturnError("checkUserNameExits", err, session);
       }
     }
   }

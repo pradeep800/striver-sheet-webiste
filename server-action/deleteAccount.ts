@@ -3,7 +3,7 @@
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
 import {
-  LogServerAndReturn,
+  LogServerAndReturnError,
   ReturnDeletedAccount,
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
@@ -84,6 +84,6 @@ export const deleteAccount = zact()(async () => {
       }
     });
   } catch (err) {
-    return LogServerAndReturn("deleteAccount", err, session);
+    return LogServerAndReturnError("deleteAccount", err, session);
   }
 });

@@ -2,7 +2,7 @@
 import { db } from "@/lib/db";
 import { notes, users } from "@/lib/db/schema";
 import {
-  LogServerAndReturn,
+  LogServerAndReturnError,
   ReturnDeletedAccount,
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
@@ -58,6 +58,6 @@ export const saveNotes = zact(
       });
     }
   } catch (err) {
-    return LogServerAndReturn("saveNotes", err, session);
+    return LogServerAndReturnError("saveNotes", err, session);
   }
 });

@@ -1,7 +1,10 @@
 "use server";
 import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
-import { LogServerAndReturn, ReturnNoSession } from "@/lib/serverActionUtils";
+import {
+  LogServerAndReturnError,
+  ReturnNoSession,
+} from "@/lib/serverActionUtils";
 import { serverSession } from "@/lib/serverSession";
 import { eq } from "drizzle-orm";
 import { Session } from "next-auth";
@@ -25,7 +28,7 @@ export const changeEmailPreferences = zact(
       .set({ default_should_send_email: input.default_should_send_email })
       .where(eq(users.id, session.user.id));
   } catch (err) {
-    return LogServerAndReturn("changeEmailPreferences", err, session);
+    return LogServerAndReturnError("changeEmailPreferences", err, session);
   }
   revalidatePath("/sheet/settings");
 });

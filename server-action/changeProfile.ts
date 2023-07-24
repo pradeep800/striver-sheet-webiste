@@ -5,7 +5,7 @@ import { and, eq, ne } from "drizzle-orm";
 import { zact } from "zact/server";
 import { ChangeProfileType } from "./zodType/changeProfileSchema";
 import {
-  LogServerAndReturn,
+  LogServerAndReturnError,
   ReturnDeletedAccount,
   ReturnNoSession,
   isIdentifier,
@@ -79,7 +79,7 @@ export const ChangeProfile = zact(ChangeProfileType)(
         })
         .where(eq(users.id, session.user.id));
     } catch (err) {
-      return LogServerAndReturn("changeProfile", err, session);
+      return LogServerAndReturnError("changeProfile", err, session);
     }
   }
 );
