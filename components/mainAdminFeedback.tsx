@@ -62,7 +62,7 @@ export default function MainAdminFeedback({
       <div className="max-w-[600px] mx-auto mt-5 flex flex-col gap-3">
         {loadedFeedback.map((feedback) => {
           return (
-            <Card key={feedback.id}>
+            <Card className="" key={feedback.id}>
               <CardHeader>
                 <CardTitle>{feedback.type}</CardTitle>
               </CardHeader>
@@ -71,7 +71,7 @@ export default function MainAdminFeedback({
 
                 <div className="mt-3 flex gap-2 flex-wrap">
                   <div
-                    className="border-2 rounded-md  text-sm p-1 hover:bg-slate-300 cursor-pointer"
+                    className="border-2 rounded-md  text-sm p-1 hover:bg-slate-300 bg-slate-400  cursor-pointer text-black"
                     onClick={() => {
                       navigator.clipboard.writeText(feedback.role);
                       toast({ title: "copied successful" });
@@ -80,7 +80,7 @@ export default function MainAdminFeedback({
                     {feedback.role}
                   </div>
                   <div
-                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 cursor-pointer"
+                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 bg-slate-400 cursor-pointer text-black"
                     onClick={() => {
                       navigator.clipboard.writeText(feedback.name || "");
                       toast({ title: "copied successful" });
@@ -89,7 +89,7 @@ export default function MainAdminFeedback({
                     {feedback.name}
                   </div>
                   <div
-                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 cursor-pointer"
+                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 bg-slate-400 cursor-pointer text-black"
                     onClick={() => {
                       navigator.clipboard.writeText(feedback.userName);
                       toast({ title: "copied successful" });
@@ -98,7 +98,7 @@ export default function MainAdminFeedback({
                     {feedback.userName}
                   </div>
                   <div
-                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 cursor-pointer"
+                    className="border-2 rounded-md text-sm p-1 hover:bg-slate-300 bg-slate-400 cursor-pointer text-black"
                     onClick={() => {
                       navigator.clipboard.writeText(feedback.email);
                       toast({ title: "copied successful" });
@@ -114,7 +114,7 @@ export default function MainAdminFeedback({
 
               <CardFooter>
                 <a
-                  className="w-full text-center hover:bg-slate-300 bg-slate-400 p-1 rounded-md cursor-pointer"
+                  className="w-full text-center hover:bg-slate-300 bg-slate-400 p-1 rounded-md cursor-pointer dark:text-black"
                   href={`mailto:${feedback.email}`}
                   target={"_blank"}
                 >
