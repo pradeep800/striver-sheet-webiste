@@ -7,6 +7,7 @@ import { eq, sql } from "drizzle-orm";
 export default async function AdminFeedback() {
   const feedbacks = await db
     .select({
+      id: fbs.id,
       userName: users.userName,
       email: fbs.mail,
       content: fbs.content,
