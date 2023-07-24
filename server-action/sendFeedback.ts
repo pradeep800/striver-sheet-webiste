@@ -17,6 +17,7 @@ export const sendFeedback = zact(feedBackSchema)(async (input) => {
 
     await db.insert(feedbacks).values({
       type: input.type,
+      mail: session.user.email ?? "",
       content: input.content,
       user_id: session.user.id,
       user_role: session.user.role,

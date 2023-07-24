@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import Notes from "@/components/notes";
 import NotesModal from "./notesModal";
-import { getQuestionDay, getQuestionInfo } from "./pagesUtils";
+import { getQuestionInfo } from "./pagesUtils";
 type Props = {
   params: Record<string, string>;
   type: "modal" | "real";

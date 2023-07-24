@@ -1,7 +1,7 @@
 "use client";
 
 import { DaysAndItsQuestions } from "@/app/(general)/reminders/page";
-import { useState, useEffect, useMemo } from "react";
+import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   getQuestionInfo,
@@ -11,10 +11,8 @@ import {
 import Loading from "./svg/loading";
 import { getReminders } from "@/server-action/getReminders";
 import { toast } from "./ui/use-toast";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { absoluteUrl } from "@/lib/utils";
-import { Separator } from "./ui/separator";
 import { Session } from "next-auth";
 import { MailCheck, MailQuestion, MailX } from "lucide-react";
 import { NToolTip } from "./tooltip";

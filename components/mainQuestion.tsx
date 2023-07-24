@@ -21,7 +21,7 @@ export default function MainQuestion({ questionInfo, userInfo }: Props) {
         <h1 className="text-2xl font-bold text-center text-red-500 mb-4">
           {questionInfo.questionTitle}
         </h1>
-        <div className="max-w-[700px] aspect-video">
+        <div className=" aspect-video">
           <iframe
             className="w-[100%] h-[100%] "
             src={questionInfo.youTubeLink}

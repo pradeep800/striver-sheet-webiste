@@ -2,11 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { absoluteUrl, cn } from "@/lib/utils";
 import QuestionLinks from "./questionLinks";
-import React, {
-  useEffect,
-  experimental_useOptimistic as useOptimistic,
-  useState,
-} from "react";
+import React, { experimental_useOptimistic as useOptimistic } from "react";
 import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";
 import clsx from "clsx";
 import { Session } from "next-auth";

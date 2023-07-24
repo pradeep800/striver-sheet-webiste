@@ -8,7 +8,6 @@ import {
   ReturnNoSession,
 } from "@/lib/serverActionUtils";
 import { serverSession } from "@/lib/serverSession";
-import { absoluteUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { Session } from "next-auth";
 import { zact } from "zact/server";

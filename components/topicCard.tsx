@@ -1,10 +1,9 @@
 "use client";
 import { Progress } from "./ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ssQuestions, ssTopics } from "@/static/striverSheet";
-import { CountType } from "@/app/(general)/sheet/page";
+
 type Props = {
   topicTitle: string;
   className?: string;

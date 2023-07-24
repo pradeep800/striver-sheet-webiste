@@ -179,6 +179,7 @@ export const feedbacks = table(
     user_role: role_enum.notNull(),
     content: varchar("content", { length: 1001 }),
     read: boolean("read").default(false).notNull(),
+    mail: varchar("mail", { length: 255 }).notNull(),
   },
   (feedback) => ({ UserIdIndex: index("user_id_idx").on(feedback.user_id) })
 );

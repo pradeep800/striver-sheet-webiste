@@ -11,13 +11,7 @@ import StickyNotesLink from "./stickyNotesLink";
 import LeetCode from "./svg/leetCode";
 import CodingNinjaSvg from "./svg/codingNinja";
 import { Loader, Youtube } from "lucide-react";
-import {
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-  useTransition,
-} from "react";
+import { MouseEvent, useState, useTransition } from "react";
 import { absoluteUrl } from "@/lib/utils";
 import { saveQuestionInfo } from "@/server-action/saveQuestionInfo";
 import { questionInfoForDay } from "@/app/(general)/sheet/[day]/page";

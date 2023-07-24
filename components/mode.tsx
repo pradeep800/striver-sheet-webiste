@@ -2,8 +2,8 @@
 import Image from "next/image";
 import modeImg from "@/public/mode.png";
 import { useTheme } from "next-themes";
-import { cn, debounce, throttling } from "@/lib/utils";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 export default function Mode({ className }: { className?: string }) {
   const { setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);

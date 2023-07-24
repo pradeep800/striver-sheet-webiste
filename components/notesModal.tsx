@@ -1,5 +1,5 @@
 "use client";
-import { startTransition, useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import Editor from "./editor";
 import Modal from "./modal";
 import EditorHeading from "./editorHeading";

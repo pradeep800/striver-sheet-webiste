@@ -10,6 +10,7 @@ export default withAuth(
     const isAuthPage = req.nextUrl.pathname.startsWith("/login");
     const isAdminPage = req.nextUrl.pathname.startsWith("/admin");
     // check if user is authenticated and role is admin
+
     if (isAdminPage && token && token.role === "ADMIN") {
       return null;
     }
@@ -62,7 +63,7 @@ export const config = {
     "/feedback",
     "/notes/:path*",
     "/feedback",
-    "/admin",
+    "/admin/:path*",
     "/reminders",
   ],
 };

@@ -75,6 +75,12 @@ export default function UserAvatar({
           <Link href={"/sheet/settings"}>
             <DropdownMenuItem className="">Settings</DropdownMenuItem>
           </Link>
+          {user.role === "ADMIN" && (
+            <Link href={"/admin/feedback"}>
+              <DropdownMenuItem className="">All Feedbacks</DropdownMenuItem>
+            </Link>
+          )}
+
           {!stripeCustomerId && user && user.role !== "ADMIN" ? (
             <Link className="" href={"/reminders"}>
               <DropdownMenuItem className="relative">
