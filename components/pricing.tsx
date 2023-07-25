@@ -24,7 +24,7 @@ export default async function Pricing() {
     }
   }
   return (
-    <div className="mt-2">
+    <div className="mt-8 min-h-[80vh] flex justify-center items-center">
       <MainPricing sessionUser={sessionUser} />
     </div>
   );

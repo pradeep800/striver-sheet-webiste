@@ -24,7 +24,7 @@ export default function MainPricing({ sessionUser }: Props) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="min-h-[80vh] flex flex-wrap   justify-center items-center gap-5  pt-3">
+    <div className=" flex flex-wrap   justify-center items-center gap-5  ">
       {!sessionUser && (
         <Card className="min-h-[500px]  xs:w-[400px] flex flex-col justify-center basis-[400px]  ">
           <CardHeader>

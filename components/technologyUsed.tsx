@@ -8,7 +8,7 @@ type Props = {
 export default function Technology({ className }: Props) {
   return (
     <div
-      className={`max-w-[800px] mx-auto flex gap-2  flex-wrap mb-8 ${className}`}
+      className={`max-w-[800px] mx-auto flex gap-2  flex-wrap  ${className}`}
     >
       <Icon iconName="Next Js 13" icon={<NextJs />} />
       <Icon iconName="Tailwind" icon={<Tailwind />} />
