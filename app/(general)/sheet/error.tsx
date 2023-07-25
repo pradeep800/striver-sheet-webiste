@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation";
 export default function Example() {
   const router = useRouter();
   return (
-    <div className="w-full">
-      <Card className="w-[95%] sm:w-[500px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
+    <div className="w-full min-h-[80vh] relative">
+      <Card className="w-[95%] sm:w-[500px] absolute  left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
         <CardHeader>
           <CardTitle>Error</CardTitle>
           <CardDescription>internal server error</CardDescription>

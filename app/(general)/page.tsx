@@ -9,7 +9,7 @@ export default function Page() {
     <div>
       <StartToday />
       <div className="mb-12 mt-8">
-        <div className="flex justify-center items-center gap-2 text-red-500 mb-3">
+        <div className="flex justify-center items-center gap-2 text-red-500 mb-4">
           <Gem />
           <h1 className="text-2xl font-bold text-center tracking-wide ">
             Pricing
