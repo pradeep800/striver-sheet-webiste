@@ -10,6 +10,14 @@ export default function Mode({ className }: { className?: string }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+  useEffect(() => {
+    if (mounted) {
+      const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      if (darkModeQuery && theme === "system") {
+        setTheme(darkModeQuery.matches ? "dark" : "light");
+      }
+    }
+  }, [mounted]);
 
   const onClick = () => {
     setTheme(theme === "light" ? "dark" : "light");
