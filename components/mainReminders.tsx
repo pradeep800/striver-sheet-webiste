@@ -104,7 +104,7 @@ export default function MainReminder({
                       ) : (
                         <NToolTip description="In Process">
                           <MailQuestion
-                            className="min-w-[30px]"
+                            className="w-[30px]"
                             aria-label="Icon for mail is going to be sended"
                           />
                         </NToolTip>
@@ -112,7 +112,7 @@ export default function MainReminder({
                     ) : (
                       <NToolTip description="No Email Reminder Set">
                         <MailX
-                          className="min-w-[30px]"
+                          className="w-[30px]"
                           aria-label="Icon for no email reminder set"
                         />
                       </NToolTip>
