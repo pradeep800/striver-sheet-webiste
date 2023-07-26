@@ -70,8 +70,7 @@ export default function ContactPage() {
         <CardHeader>
           <CardTitle>Feedback And Feature Request</CardTitle>
           <CardDescription>
-            {`If you want to give feedback, report bug or feature request you can
-            send me those with this portal (use google drive links to send photo or video)`}
+            {`If you want to give feedback, report bug or feature request you can send me those with this portal (use google drive links to send photo or video)`}
           </CardDescription>
           <CardContent className="p-0 m-0">
             <Form {...form}>
