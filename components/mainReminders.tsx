@@ -97,7 +97,7 @@ export default function MainReminder({
                       currentReminder.mailSended ? (
                         <NToolTip description="Mail Sended">
                           <MailCheck
-                            className="w-[30px] p-1"
+                            className="w-[30px] "
                             aria-label="Icon for mail is sended"
                           />
                         </NToolTip>
