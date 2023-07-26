@@ -91,20 +91,20 @@ export default function MainReminder({
                   <div className="text-lg font-semibold">
                     {question.problem}
                   </div>
-                  <div>
+                  <div className="">
                     {(userRole === "PROUSER" || userRole === "ADMIN") &&
                     currentReminder.shouldSendMail ? (
                       currentReminder.mailSended ? (
                         <NToolTip description="Mail Sended">
                           <MailCheck
-                            className="w-[30px] "
+                            className="min-w-[30px] "
                             aria-label="Icon for mail is sended"
                           />
                         </NToolTip>
                       ) : (
                         <NToolTip description="In Process">
                           <MailQuestion
-                            className="w-[30px]"
+                            className="min-w-[30px] "
                             aria-label="Icon for mail is going to be sended"
                           />
                         </NToolTip>
@@ -112,7 +112,7 @@ export default function MainReminder({
                     ) : (
                       <NToolTip description="No Email Reminder Set">
                         <MailX
-                          className="w-[30px]"
+                          className="min-w-[30px] "
                           aria-label="Icon for no email reminder set"
                         />
                       </NToolTip>
