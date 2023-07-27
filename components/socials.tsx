@@ -4,7 +4,7 @@ export function Socials() {
   return (
     <>
       <NToolTip description="Resume">
-        <a href="/Pradeep-Resume.pdf" target="_blank">
+        <a href="https://resume.pradeepbisht.com/" target="_blank">
           <span className="sr-only">Resume Icon</span>
           <MenuSquare className="hover:text-red-400" />
         </a>
