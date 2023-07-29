@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <Button className="bg-red-500 hover:bg-red-400    mr-6 ml-6 md:mr-0  isolate z-[1] dark:text-white h-[35px] flex items-center justify-center">
       <Link
-        className="font-medium "
+        className="font-medium w-full h-full"
         href={`/login?callback=${encodeURIComponent(pathName)}`}
       >
         Login
