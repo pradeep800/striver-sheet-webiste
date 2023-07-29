@@ -18,9 +18,11 @@ export default function StartToday() {
           Level up your interview skills in 27 days with 191 frequently asked
           questions with videos, curated for DSA interviews.
         </p>
-        <Button className="space-x-4 bg-red-500 hover:bg-red-400 dark:text-white">
-          <Link href="/login">Get Started</Link>
-        </Button>
+        <Link href="/login">
+          <Button className="space-x-4 bg-red-500 hover:bg-red-400 dark:text-white">
+            Get Started
+          </Button>
+        </Link>
       </div>
     </section>
   );
