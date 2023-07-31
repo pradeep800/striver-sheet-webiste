@@ -27,6 +27,7 @@ export default function MainCard({
       </CardHeader>
       <CardContent>
         <SRProgress
+          main={true}
           reminderValue={totalReminder}
           solvedValue={solvedCount}
           total={total}

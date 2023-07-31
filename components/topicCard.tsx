@@ -33,6 +33,7 @@ export default function TopicCard({
         </CardHeader>
         <CardContent>
           <SRProgress
+            main={false}
             reminderValue={
               totalReminder ? (isNaN(totalReminder) ? 0 : totalReminder) : 0
             }
