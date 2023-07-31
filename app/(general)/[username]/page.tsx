@@ -45,7 +45,12 @@ export async function generateMetadata({
       return {
         title: username,
         description: userInfo?.description ?? "",
-        keywords: [`stirversheet ${username}`, `${username} striversheet`],
+        keywords: [
+          `stirversheet ${username}`,
+          `${username} striversheet`,
+          "dsa",
+          `${userInfo.name} striversheet`,
+        ],
         openGraph: {
           title: "Striver Sheet",
           type: "website",
