@@ -13,6 +13,7 @@ type Props = {
     defaultShouldSendEmail: boolean;
     role: Session["user"]["role"];
   };
+  totalReminder: number;
 };
 export default function MainDay({
   questionSet,
@@ -20,10 +21,16 @@ export default function MainDay({
   total,
   solvedCount,
   userInfo,
+  totalReminder,
 }: Props) {
   return (
-    <div className="max-w-[800px] mx-auto ">
-      <MainCard title={topicTitle} total={total} solvedCount={solvedCount} />
+    <div className=" max-w-[800px] mx-auto">
+      <MainCard
+        title={topicTitle}
+        total={total}
+        solvedCount={solvedCount}
+        totalReminder={totalReminder}
+      />
       <div>
         {questionSet.map((question) => {
           return (

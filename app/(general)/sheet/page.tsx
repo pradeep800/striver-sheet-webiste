@@ -1,5 +1,6 @@
 import MainCard from "@/components/mainCard";
 import TopicCard from "@/components/topicCard";
+import SRProgress from "@/components/SRprogress";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
@@ -67,7 +68,12 @@ export default async function Home() {
 
   return (
     <div className="max-w-[800px] mx-auto">
-      <MainCard title="Striver Sheet" total={80} solvedCount={solvedCount} />
+      <MainCard
+        title="Striver Sheet"
+        total={191}
+        solvedCount={solvedCount}
+        totalReminder={countReminder}
+      />
       {ssTopics.map((title, i) => {
         const day = i + 1;
         const totalReminders = parseInt(
@@ -79,15 +85,17 @@ export default async function Home() {
             ?.count as string
         );
         return (
-          <TopicCard
-            totalReminder={totalReminders}
-            totalSolved={totalSolved}
-            topicDay={day}
-            topicTitle={title}
-            key={i}
-            totalCount={ssCount[i]}
-            className="mt-3"
-          />
+          <>
+            <TopicCard
+              totalReminder={totalReminders}
+              totalSolved={totalSolved}
+              topicDay={day}
+              topicTitle={title}
+              key={i}
+              totalCount={ssCount[i]}
+              className="mt-3"
+            />
+          </>
         );
       })}
     </div>

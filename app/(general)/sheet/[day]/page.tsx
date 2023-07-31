@@ -3,12 +3,13 @@ import {
   getCheckBoxToQuestionNumber,
   getDayFromParams,
   getDayTitle,
+  getNumberOfQuestionInTopic,
 } from "@/components/pagesUtils";
 import { authOption } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { questions, users } from "@/lib/db/schema";
-import { ssQuestions } from "@/static/striverSheet";
-import { and, asc, eq } from "drizzle-orm";
+import { ssCount, ssQuestions } from "@/static/striverSheet";
+import { and, asc, between, eq, sql } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 type Props = {
@@ -60,6 +61,7 @@ export default async function DayPage({ params }: Props) {
   /*
    * getting all question which have are in this day
    */
+
   const questionsOfThisTopic = ssQuestions.filter(
     (questions) => questions.topicNo == questionsDay - 1
   );
@@ -108,6 +110,30 @@ export default async function DayPage({ params }: Props) {
       };
     }
   );
+  ///get all reminder count
+  let end = 0;
+  for (let i = 0; i < questionsDay; i++) {
+    end += ssCount[i];
+  }
+  const totalReminderInObject = await db
+    .select({ count: sql`count(${questions.id})` })
+    .from(questions)
+    .where(
+      and(
+        eq(questions.sheet_id, user.sheetId),
+        eq(questions.solved, "REMINDER"),
+        between(
+          questions.number,
+          end - getNumberOfQuestionInTopic(questionsDay),
+          end
+        )
+      )
+    );
+  const totalReminderInString = totalReminderInObject[0].count as string;
+  const totalReminderInNumber = parseInt(totalReminderInString);
+  if (isNaN(totalReminderInNumber)) {
+    throw new Error("server error");
+  }
 
   return (
     <MainDay
@@ -115,6 +141,7 @@ export default async function DayPage({ params }: Props) {
       questionSet={questionSet}
       topicTitle={topicTitle}
       total={total}
+      totalReminder={totalReminderInNumber}
       solvedCount={solvedCount}
     />
   );

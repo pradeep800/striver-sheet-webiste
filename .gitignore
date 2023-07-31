@@ -42,4 +42,4 @@ app/api/rs/
 app/api/bare/
 app/api/fq
  
-#drizzle
+app/example

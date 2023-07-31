@@ -2,28 +2,22 @@
 import { Progress } from "./ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import React, { useEffect, useState } from "react";
+import SRProgress from "./SRprogress";
 
 type Props = {
   title: string;
   total: number;
   solvedCount: number;
   className?: string;
+  totalReminder: number;
 };
 export default function MainCard({
   title,
   total,
   className,
   solvedCount,
+  totalReminder,
 }: Props) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const solvedPer = parseInt(((solvedCount / total) * 100).toFixed(2));
-      setProgress(solvedPer);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [solvedCount]);
   return (
     <Card className={`${className} border-0 shadow-none `}>
       <CardHeader>
@@ -32,7 +26,11 @@ export default function MainCard({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Progress value={progress} />
+        <SRProgress
+          reminderValue={totalReminder}
+          solvedValue={solvedCount}
+          total={total}
+        />
       </CardContent>
     </Card>
   );

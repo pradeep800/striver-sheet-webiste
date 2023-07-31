@@ -16,6 +16,7 @@ export function getDayFromParams(day: string) {
   }
   return topicNumber;
 }
+
 export function checkQuestionInfoIsCorrect(
   questionDay: number,
   questionNo: number
@@ -54,6 +55,7 @@ export function getCheckBoxToQuestionNumber(checkbox: string) {
   }
   return questionNumber;
 }
+
 type InnerJoinRemindersAndQuestions = (DbQuestionInfo & {
   remindersDueDate: Date;
 })[];

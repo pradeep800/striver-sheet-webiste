@@ -15,7 +15,7 @@ export function NToolTip({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipTrigger className="">{children}</TooltipTrigger>
         <TooltipContent>{description}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
