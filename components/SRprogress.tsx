@@ -47,8 +47,8 @@ export default function SRProgress({
           <div className=" bg-red-500 w-4 h-4 rounded-lg" />
           <div>{`Reminder (${reminderValue}/${total})`}</div>
         </div>
-        <div className="bg-green-600 flex items-center gap-1">
-          <div className=" w-4 h-4 rounded-lg" />
+        <div className=" flex items-center gap-1">
+          <div className="bg-green-600 w-4 h-4 rounded-lg" />
           <div>{`Solved (${solvedValue}/${total})`}</div>
         </div>
       </div>
