@@ -57,7 +57,7 @@ export async function GET(req: Request) {
       ),
       {
         width: 1200,
-        height: 600,
+        height: 630,
         fonts: [
           {
             name: "asap",
