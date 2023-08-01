@@ -64,7 +64,7 @@ export async function generateMetadata({
           card: "summary_large_image",
           title: "Striver Sheet",
           description: userInfo?.description ?? "",
-          images: [urlInString],
+          images: urlInString,
 
           creator: "@pradeep8b0",
         },
