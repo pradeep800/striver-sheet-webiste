@@ -57,21 +57,14 @@ export async function generateMetadata({
           locale: "en_US",
           siteName: "Striver Sheet",
           description: userInfo?.description ?? "",
-          images: [{ url: urlInString, width: 1200 }],
+          images: urlInString,
           url: "https://striversheet.pradeepbisht.com",
         },
         twitter: {
           card: "summary_large_image",
           title: "Striver Sheet",
           description: userInfo?.description ?? "",
-          images: [
-            {
-              url: urlInString,
-              alt: "profile with description",
-              width: 1200,
-              height: 630,
-            },
-          ],
+          images: urlInString,
 
           creator: "@pradeep8b0",
         },
