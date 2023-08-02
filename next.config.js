@@ -3,15 +3,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  async redirects() {
-    return [
-      {
-        source: "/Sheet",
-        destination: "/sheet",
-        permanent: true,
-      },
-    ];
-  },
+
   images: {
     domains: [
       "avatars.githubusercontent.com",
