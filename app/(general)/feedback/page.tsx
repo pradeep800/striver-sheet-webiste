@@ -61,6 +61,7 @@ export default function ContactPage() {
       const error = err as Error;
       toast({ title: "Please try again", variant: "destructive" });
     } finally {
+      router.refresh();
       setLoading(false);
     }
   }
