@@ -38,6 +38,7 @@ export const deleteAccount = zact()(async () => {
     await db.transaction(async (tx) => {
       try {
         //delete all users
+
         await tx.delete(schema.users).where(eq(schema.users.id, userId));
 
         //delete all accounts
@@ -56,9 +57,7 @@ export const deleteAccount = zact()(async () => {
           .where(eq(schema.questions.sheet_id, sheetId));
 
         //remove all notes
-        await tx
-          .delete(schema.notes)
-          .where(eq(schema.questions.sheet_id, sheetId));
+        await tx.delete(schema.notes).where(eq(schema.notes.sheet_id, sheetId));
 
         ///remove all tracking questions
         await tx
