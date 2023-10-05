@@ -36,6 +36,27 @@
       "when": 1690206189384,
       "tag": "0004_young_russian",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1696411797080,
+      "tag": "0005_deep_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1696415031139,
+      "tag": "0006_petite_terrax",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1696424354982,
+      "tag": "0007_cool_blob",
+      "breakpoints": true
     }
   ]
 }

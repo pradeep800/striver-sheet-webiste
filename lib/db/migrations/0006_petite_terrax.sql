@@ -1,0 +1,1 @@
+ALTER TABLE `striver_sheet_ai_chat_messages` ADD `sender` enum('USER','SYSTEM');

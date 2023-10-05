@@ -195,3 +195,15 @@ export const notes = table(
   },
   (notes) => ({ sheetIndex: index("sheet_id_idx").on(notes.sheet_id) })
 );
+export const aiChatMessages = table(
+  "ai_chat_messages",
+  {
+    id: int("id").notNull().autoincrement().primaryKey(),
+    question_no: int("question_no").notNull(),
+    sender: mysqlEnum("sender", ["USER", "AI"]),
+    userId: varchar("user_id", { length: 255 }).notNull(),
+    message: varchar("message", { length: 1500 }),
+    created_at: timestamp("created_at").defaultNow(),
+  },
+  (chat) => ({ sheetIndex: index("userId_index").on(chat.userId) })
+);

@@ -16,6 +16,7 @@ export const env = createEnv({
     STRIVER_PRO_SUB_ID: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
+    OPENAI_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_STRIPE_SECRET: z.string().min(1),
@@ -39,5 +40,6 @@ export const env = createEnv({
     STRIVER_PRO_SUB_ID: process.env.STRIVER_PRO_SUB_ID,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    OPENAI_KEY: process.env.OPENAI_KEYS,
   },
 });

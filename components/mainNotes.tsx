@@ -19,6 +19,7 @@ export type NotesInfo = {
   sheetId: string;
   userRole: Session["user"]["role"];
 };
+
 export const revalidate = 0;
 export default async function MainNotes({ params, type }: Props) {
   const { question } = params;
