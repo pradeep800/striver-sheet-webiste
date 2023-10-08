@@ -71,7 +71,7 @@
     "html-react-parser": "^4.0.0",
     "lucide-react": "^0.221.0",
     "next": "13.5.4",
-    "next-auth": "^4.22.1",
+    "next-auth": "^4.23.2",
     "next-themes": "^0.2.1",
     "nextjs-toploader": "^1.4.2",
     "nodemailer": "^6.9.2",

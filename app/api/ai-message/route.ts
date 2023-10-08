@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       sender: "USER",
     });
     const question = fs.readFileSync(
-      `/sheet-questions/${data.data.questionsNumber}`,
+      `./sheet-questions/${data.data.questionsNumber}`,
       "utf-8"
     );
     const previousConversations = await db
