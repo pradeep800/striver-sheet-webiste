@@ -10,7 +10,13 @@ import { useMemo } from "react";
 // transport to authenticated route but they can't
 // go to auth route because they are not login
 
-const AuthenticatedRoutes = ["feedback", "sheet", "notes", "admin"];
+const AuthenticatedRoutes = [
+  "feedback",
+  "sheet",
+  "notes",
+  "admin",
+  "reminders",
+];
 export default function RegisterPage() {
   const search = useSearchParams();
 
