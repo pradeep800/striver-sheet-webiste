@@ -4,12 +4,11 @@ import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { env } from "@/env.mjs";
 import { getValidationMail } from "./verficationMail";
-import { MailOptions } from "nodemailer/lib/json-transport";
-import nodemailer from "nodemailer";
 import { DrizzleAdapter } from "./drizzleAdapater";
 import { db } from "./db";
 import { users } from "./db/schema";
 import { eq } from "drizzle-orm";
+import { Resend } from "resend";
 
 export const authOption: NextAuthOptions = {
   adapter: DrizzleAdapter(),
@@ -33,41 +32,25 @@ export const authOption: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
-      from: env.GMAIL,
+      from: "verification@pradeepbisht.com",
       sendVerificationRequest: async ({ identifier, url, provider }) => {
-        const mailTransporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: env.GMAIL,
-            pass: env.GENERATED_PASSWORD,
-          },
-        });
-        const mailOptions: MailOptions = {
-          from: env.GMAIL,
-          to: identifier,
+        const resend = new Resend(env.RESEND_API_KEY);
+
+        const data = await resend.emails.send({
+          from: "verification@pradeepbisht.com",
+          to: [identifier],
           subject: "Verification Link",
-          html: getValidationMail(url),
           headers: {
-            References: Date.now().toString(),
+            "X-Entity-Ref-ID": Date.now().toString(),
           },
-        };
-        await new Promise((resolve, reject) => {
-          mailTransporter.sendMail(mailOptions, (err, data) => {
-            if (err) {
-              console.log(err.message);
-              reject(err);
-            } else {
-              console.log(
-                "gmail send successfully. data response:-",
-                data.response
-              );
-              resolve(data);
-            }
-          });
+          html: getValidationMail(url),
         });
+
+        console.log(data);
       },
     }),
   ],
+
   callbacks: {
     session: ({ session, token }) => {
       return {

@@ -25,7 +25,7 @@ export function Socials() {
       </NToolTip>
       <NToolTip description="Linkedin">
         <a href="https://twitter.com/pradeep8b0" target="_blank">
-          <span className="sr-only">Linkedin Icon</span>
+          <span className="sr-only">Twitter Icon</span>
           <Twitter className="hover:text-red-400" />
         </a>
       </NToolTip>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useToast } from "./ui/use-toast";
 
 import LoginWithGithubButton from "./loginWithGithub";
@@ -27,7 +27,8 @@ export default function AuthForm() {
     setIsLoading(false);
     setType(undefined);
   }
-  async function SignIn() {
+  async function SignIn(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setType("gmail");
     setIsLoading(true);
     const emailSchema = z.string().email("Invalid Email");
@@ -66,21 +67,23 @@ export default function AuthForm() {
         <h1 className="text-center font-bold text-2xl mb-4 text-red-500 cursor-default">
           Welcome To Striver Sheet
         </h1>
-        <Input
-          className="w-[100%] dark:border-gray-500"
-          disabled={isLoading}
-          placeholder="example@gmail.com"
-          onChange={onChange}
-        />
+        <form className="" onSubmit={SignIn}>
+          <Input
+            className="w-[100%] dark:border-gray-500"
+            disabled={isLoading}
+            placeholder="example@gmail.com"
+            onChange={onChange}
+          />
 
-        <Button
-          className="bg-red-500 hover:bg-red-400 w-[100%]"
-          disabled={isLoading}
-          onClick={SignIn}
-        >
-          {type === "gmail" && isLoading ? <Loading /> : null}
-          <p className="pl-2 text-white">Send Verification Mail</p>
-        </Button>
+          <Button
+            className="bg-red-500 hover:bg-red-400 w-[100%] mt-2"
+            disabled={isLoading}
+          >
+            {type === "gmail" && isLoading ? <Loading /> : null}
+            <p className="pl-2 text-white">Send Verification Mail</p>
+          </Button>
+        </form>
+
         <LoginWithGoogleButton
           isLoading={isLoading}
           setIsLoading={setIsLoading}

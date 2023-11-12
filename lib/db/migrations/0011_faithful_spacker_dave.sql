@@ -1,0 +1,1 @@
+ALTER TABLE `striver_sheet_users` RENAME COLUMN `ai_token` TO `lambdaToken`;

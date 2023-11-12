@@ -4,7 +4,7 @@ import { authOption } from "@/lib/auth";
 import Footer from "@/components/footer";
 import { Provider } from "@/components/sessionProvider";
 import ToastRedirect from "@/components/toastRedirect";
-import Confetti from "@/components/confetti";
+import { Confetti } from "@/components/confetti";
 import { reminders, users } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { eq, sql } from "drizzle-orm";

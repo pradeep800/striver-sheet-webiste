@@ -10,6 +10,7 @@ import {
   index,
   uniqueIndex,
   mysqlTableCreator,
+  primaryKey,
 } from "drizzle-orm/mysql-core";
 
 const role_enum = mysqlEnum("role", ["USER", "PROUSER", "ADMIN"]);
@@ -80,6 +81,7 @@ export const users = table(
     default_should_send_email: boolean("default_should_send_email")
       .default(false)
       .notNull(),
+    lambdaToken: text("lambdaToken"),
     stripe_customer_id: varchar("stripe_customer_id", { length: 255 }),
     stripe_subscription_id: varchar("stripe_subscription_id", { length: 255 }),
     stripe_price_id: varchar("stripe_price_id", { length: 255 }),
@@ -93,22 +95,6 @@ export const users = table(
   },
   (user) => ({
     emailIndex: uniqueIndex("users__email__idx").on(user.email),
-  })
-);
-
-export const verificationTokens = table(
-  "verification_tokens",
-  {
-    identifier: varchar("identifier", { length: 255 }).primaryKey().notNull(),
-    token: varchar("token", { length: 255 }).notNull(),
-    expires: datetime("expires").notNull(),
-    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
-  },
-  (verificationToken) => ({
-    tokenIndex: uniqueIndex("verification_tokens__token__idx").on(
-      verificationToken.token
-    ),
   })
 );
 
@@ -129,7 +115,12 @@ export const questions = table(
     sheetIdIndex: index("sheet_id_idx").on(question.sheet_id),
   })
 );
-
+export const verificationTokens = table("verification_tokens", {
+  id: int("id").notNull().autoincrement().primaryKey(),
+  identifier: varchar("identifier", { length: 255 }).notNull(),
+  token: text("token").notNull(),
+  expires: datetime("expires").notNull(),
+});
 export const reminders = table(
   "reminders",
   {

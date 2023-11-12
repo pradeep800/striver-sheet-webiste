@@ -3,7 +3,7 @@ import { useConfetti } from "@/lib/useConfatti";
 import confetti from "canvas-confetti";
 import { useEffect, useId } from "react";
 
-export default function Confetti() {
+export function Confetti() {
   const id = useId();
   const confettiOn = useConfetti((state) => state.confettiOn);
   const setConfettiOn = useConfetti((state) => state.setConfettiOn);
@@ -11,6 +11,7 @@ export default function Confetti() {
     if (!confettiOn) {
       return;
     }
+
     const myCanvas = document.getElementById(id) as HTMLCanvasElement;
     const myConfetti = confetti.create(myCanvas, {
       resize: true,

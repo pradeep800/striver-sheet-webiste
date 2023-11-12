@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { ConsoleLogUnableToStatusUpdate } from "@/lib/utils";
+import jwt from "jsonwebtoken";
 export const revalidate = 0;
 type WebhookHandlers = {
   "checkout.session.completed": (
@@ -24,12 +25,20 @@ const webhookHandlers: WebhookHandlers = {
     );
     try {
       const [user] = await db
-        .select({ countOfProfileChange: users.leftProfileChanges })
+        .select({
+          countOfProfileChange: users.leftProfileChanges,
+          id: users.id,
+          email: users.email,
+        })
         .from(users)
         .where(eq(users.id, sessionObject.metadata?.userId as string));
       if (!user) {
         throw new Error("unable to find user inside webhook");
       }
+      const token = jwt.sign(
+        { id: user.id, email: user.email },
+        env.LAMBDA_SECRET
+      );
       await db
         .update(users)
         .set({
@@ -40,6 +49,7 @@ const webhookHandlers: WebhookHandlers = {
           pro_subscription_end: new Date(
             subscription.current_period_end * 1000
           ),
+          lambdaToken: token,
           leftProfileChanges: user.countOfProfileChange + 3,
         })
         .where(eq(users.id, sessionObject.metadata?.userId as string));
@@ -52,10 +62,26 @@ const webhookHandlers: WebhookHandlers = {
     const subscription = await stripe.subscriptions.retrieve(
       sessionObject.subscription as string
     );
+    const [user] = await db
+      .select({
+        countOfProfileChange: users.leftProfileChanges,
+        id: users.id,
+        email: users.email,
+      })
+      .from(users)
+      .where(eq(users.stripe_subscription_id, subscription.id as string));
+    if (!user) {
+      throw new Error("unable to find user inside webhook");
+    }
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      env.LAMBDA_SECRET
+    );
     try {
       await db
         .update(users)
         .set({
+          lambdaToken: token,
           stripe_price_id: subscription.items.data[0].price.id as string,
           pro_subscription_end: new Date(
             subscription.current_period_end * 1000

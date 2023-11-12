@@ -1,0 +1,1 @@
+DROP TABLE `striver_sheet_verification_tokens`;

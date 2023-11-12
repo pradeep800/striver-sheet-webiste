@@ -4,7 +4,6 @@ import "@/styles/editor.css"; //not working in motals
 import { Asap } from "next/font/google";
 import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
 const asap = Asap({
   subsets: ["latin"],
@@ -65,7 +64,6 @@ export default async function RootLayout({
           </main>
         </NextThemeProvider>
         <Toaster />
-        <VercelAnalytics />
         {modal}
       </body>
     </html>
