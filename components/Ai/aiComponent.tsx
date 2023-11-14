@@ -88,8 +88,8 @@ export default function AiComponent({ modal }: Props) {
 
       // Get the current scroll position
       const scrollPosition = chatRef.current.parentElement?.scrollTop as number;
-
-      if (scrollableHeight - scrollPosition < 900) {
+      console.log(scrollableHeight - scrollPosition);
+      if (scrollableHeight - scrollPosition < 650) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     } else {
@@ -101,7 +101,8 @@ export default function AiComponent({ modal }: Props) {
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      if (totalScrollableHeight - scrolledValue < 900) {
+      console.log(totalScrollableHeight - scrolledValue);
+      if (totalScrollableHeight - scrolledValue < 780) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     }
