@@ -6,7 +6,7 @@ import { Session } from "next-auth";
 
 import { zact } from "zact/server";
 import { z } from "zod";
-import { reminderDialogSchema } from "./zodType/reminderDialogsSchema";
+import { reminderDialogSchema } from "../lib/zodType/reminderDialogsSchema";
 import { getQuestionDay, getQuestionInfo } from "@/components/pagesUtils";
 import {
   LogServerAndReturnError,

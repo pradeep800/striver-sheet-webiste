@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { feedBackSchema } from "@/server-action/zodType/feedbackSchema";
+import { feedBackSchema } from "@/lib/zodType/feedbackSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sendFeedback } from "@/server-action/sendFeedback";
 import { toast } from "@/components/ui/use-toast";

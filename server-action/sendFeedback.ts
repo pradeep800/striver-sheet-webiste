@@ -1,6 +1,6 @@
 "use server";
 import { zact } from "zact/server";
-import { feedBackSchema } from "./zodType/feedbackSchema";
+import { feedBackSchema } from "../lib/zodType/feedbackSchema";
 import { Session } from "next-auth";
 import { db } from "@/lib/db";
 import { feedbacks } from "@/lib/db/schema";

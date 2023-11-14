@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { and, eq, ne } from "drizzle-orm";
 import { zact } from "zact/server";
-import { ChangeProfileType } from "./zodType/changeProfileSchema";
+import { ChangeProfileType } from "../lib/zodType/changeProfileSchema";
 import {
   LogServerAndReturnError,
   ReturnDeletedAccount,

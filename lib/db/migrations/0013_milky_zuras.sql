@@ -1,0 +1,1 @@
+DROP TABLE `striver_sheet_ai_chat_messages`;

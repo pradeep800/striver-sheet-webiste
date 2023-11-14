@@ -1,12 +1,16 @@
 "use client";
+import { cn } from "@/lib/utils";
 import React from "react";
 import { useState } from "react";
-export default function Back() {
+export default function Back({ className }: { className?: string }) {
   const [animation, setAnimation] = useState(false);
 
   return (
     <div
-      className=" rounded-md flex items-center gap-1 font-semibold  dark:text-white px-3 py-2 dark:hover:bg-slate-700 hover:bg-slate-200"
+      className={cn(
+        ` rounded-md flex items-center gap-1 font-semibold  dark:text-white px-3 py-2 dark:hover:bg-slate-700 hover:bg-slate-200`,
+        className
+      )}
       onMouseEnter={() => {
         setAnimation(true);
       }}

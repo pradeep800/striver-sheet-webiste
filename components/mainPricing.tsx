@@ -18,8 +18,9 @@ import { useState } from "react";
 import Loading from "./svg/loading";
 type Props = {
   sessionUser: Session["user"] | undefined;
+  backUrl: string;
 };
-export default function MainPricing({ sessionUser }: Props) {
+export default function MainPricing({ sessionUser, backUrl }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +48,7 @@ export default function MainPricing({ sessionUser }: Props) {
             </div>
           </CardContent>
           <CardFooter>
-            <Link href="/login?callback=%2Fpricing" className="w-[100%]">
+            <Link href={backUrl} className="w-[100%]">
               <Button className="bg-red-500 hover:bg-red-400 dark:text-white w-[100%] ">
                 Login
               </Button>

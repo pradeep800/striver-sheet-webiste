@@ -45,13 +45,13 @@ export default function NavBar({
     >
       <Link
         className="mr-auto relative text-2xl font-bold isolate z-[1] hidden md:block text-red-500 "
-        href="/"
+        href={user ? "/sheet" : "/"}
       >
         {`Striver's Sheet`}
       </Link>
       <Link
         className="mr-auto relative text-2xl font-bold text-red-500 tracking-wider isolate z-[1]  block md:hidden "
-        href="/"
+        href={user ? "/sheet" : "/"}
       >
         SS
       </Link>

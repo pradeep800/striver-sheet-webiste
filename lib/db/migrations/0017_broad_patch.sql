@@ -1,0 +1,1 @@
+CREATE INDEX `created_at_index` ON `striver_sheet_ai_chat_messages` (`created_at`);

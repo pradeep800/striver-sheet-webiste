@@ -26,7 +26,7 @@ import { Loader, Router } from "lucide-react";
 import { debounce } from "@/lib/utils";
 import { checkUserNameExists } from "@/server-action/checkUserNameExists";
 import { useRouter } from "next/navigation";
-import { ChangeProfileType } from "@/server-action/zodType/changeProfileSchema";
+import { ChangeProfileType } from "@/lib/zodType/changeProfileSchema";
 import { useSession } from "next-auth/react";
 type Props = {
   userName: string;

@@ -20,7 +20,7 @@ import {
 import React, { SetStateAction, useState, useTransition } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { reminderDialogSchema } from "@/server-action/zodType/reminderDialogsSchema";
+import { reminderDialogSchema } from "@/lib/zodType/reminderDialogsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Switch } from "./ui/switch";
 import { toast } from "./ui/use-toast";

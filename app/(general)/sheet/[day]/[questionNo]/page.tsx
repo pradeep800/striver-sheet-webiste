@@ -22,7 +22,6 @@ export default async function QuestionPage({ params }: Props) {
   const questionDay = getDayFromParams(day);
   const questionNumber = parseInt(questionNumberInString);
   checkQuestionInfoIsCorrect(questionDay, questionNumber);
-  checkQuestionInfoIsCorrect(questionDay, questionNumber);
   const question = getQuestionInfo(questionNumber);
 
   const session = await getServerSession(authOption);

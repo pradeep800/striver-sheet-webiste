@@ -23,7 +23,7 @@ export function Socials() {
           <Github className="hover:text-red-400" />
         </a>
       </NToolTip>
-      <NToolTip description="Linkedin">
+      <NToolTip description="Twitter">
         <a href="https://twitter.com/pradeep8b0" target="_blank">
           <span className="sr-only">Twitter Icon</span>
           <Twitter className="hover:text-red-400" />

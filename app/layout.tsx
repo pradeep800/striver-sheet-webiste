@@ -5,6 +5,7 @@ import { Asap } from "next/font/google";
 import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
+import { Providers } from "@/components/providers";
 const asap = Asap({
   subsets: ["latin"],
 });
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/ss.png",
+    shortcut: "/ss-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   description:
     "Level up your interview skills in 27 days with 191 frequently asked questions with videos, curated for DSA interviews.",
@@ -46,6 +49,7 @@ export const metadata: Metadata = {
     creator: "@pradeep8b0",
   },
 };
+
 export default async function RootLayout({
   children,
   modal,
@@ -57,14 +61,20 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${asap.className} scrollbar`}>
-        <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextTopLoader />
-          <main className="min-h-[100%] p-3 dark:bg-background">
-            {children}
-          </main>
-        </NextThemeProvider>
-        <Toaster />
-        {modal}
+        <Providers>
+          <NextThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+          >
+            <NextTopLoader />
+            <main className="min-h-[100%] p-3 dark:bg-background">
+              {children}
+            </main>
+          </NextThemeProvider>
+          <Toaster />
+          {modal}
+        </Providers>
       </body>
     </html>
   );

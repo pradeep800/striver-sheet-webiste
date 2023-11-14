@@ -15,7 +15,7 @@ export default function Page() {
             Pricing
           </h1>
         </div>
-        <MainPricing sessionUser={undefined} />
+        <MainPricing backUrl="/login" sessionUser={undefined} />
       </div>
 
       <div className="mb-12">

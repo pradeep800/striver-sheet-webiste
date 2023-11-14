@@ -11,6 +11,7 @@ import {
   uniqueIndex,
   mysqlTableCreator,
   primaryKey,
+  bigint,
 } from "drizzle-orm/mysql-core";
 
 const role_enum = mysqlEnum("role", ["USER", "PROUSER", "ADMIN"]);
@@ -189,12 +190,14 @@ export const notes = table(
 export const aiChatMessages = table(
   "ai_chat_messages",
   {
-    id: int("id").notNull().autoincrement().primaryKey(),
+    id: varchar("id", { length: 255 }).primaryKey().notNull(),
     question_no: int("question_no").notNull(),
-    sender: mysqlEnum("sender", ["USER", "AI"]),
+    sender: mysqlEnum("sender", ["USER", "AI"]).notNull().default("USER"), //<-- only for migration
     userId: varchar("user_id", { length: 255 }).notNull(),
-    message: varchar("message", { length: 1500 }),
-    created_at: timestamp("created_at").defaultNow(),
+    message: text("message"),
+    created_at: bigint("created_at", { mode: "number" }).notNull(),
   },
-  (chat) => ({ sheetIndex: index("userId_index").on(chat.userId) })
+  (data) => {
+    return { created_idx: index("created_at_index").on(data.created_at) };
+  }
 );
