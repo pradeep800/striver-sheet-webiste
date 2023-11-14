@@ -15,15 +15,19 @@ import { useChatContext } from "@/components/chatContext";
 import { Button } from "@/components/ui/button";
 import Loading from "@/components/svg/loading";
 import { getQuestionInfo } from "@/components/pagesUtils";
+import { useParams } from "next/navigation";
 type Props = {
-  questionNumber: number;
+  modal: boolean;
 };
-export default function MainAiComponent({ questionNumber }: Props) {
+export default function AiComponent({ modal }: Props) {
   const lastDiv = useRef<HTMLDivElement>(null);
-  const [scrollDown, setScrollDown] = useState("not-down");
+  const chatRef = useRef<HTMLDivElement>(null);
   const { message, handleInputChange, addMessage, isLoading } =
     useChatContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { questionNo } = useParams();
+
+  const questionNumber = parseInt(questionNo as string);
   const {
     data: chatPages,
     isLoading: isChatLoading,
@@ -49,7 +53,6 @@ export default function MainAiComponent({ questionNumber }: Props) {
       refetchOnWindowFocus: false,
     }
   );
-  console.log(chatPages);
   const intersectionObserver = useRef<IntersectionObserver>();
 
   const lastMessage = useCallback(
@@ -59,10 +62,13 @@ export default function MainAiComponent({ questionNumber }: Props) {
       if (intersectionObserver.current)
         intersectionObserver.current.disconnect();
       intersectionObserver.current = new IntersectionObserver((messages) => {
-        if (messages[0]?.isIntersecting && hasNextPage) {
-          void fetchNextPage();
-        }
+        messages.map((element) => {
+          if (element?.isIntersecting && hasNextPage) {
+            void fetchNextPage();
+          }
+        });
       });
+
       if (message) intersectionObserver.current.observe(message);
     },
     [isFetchingNextPage, fetchNextPage, hasNextPage]
@@ -71,8 +77,38 @@ export default function MainAiComponent({ questionNumber }: Props) {
     if (chatPages?.pages.length === 1) {
       lastDiv.current?.scrollIntoView({ inline: "nearest" });
     }
+
+    //check if it is model
+    if (modal) {
+      if (!chatRef.current) {
+        return;
+      }
+
+      const scrollableHeight = chatRef.current.scrollHeight;
+
+      // Get the current scroll position
+      const scrollPosition = chatRef.current.parentElement?.scrollTop as number;
+
+      if (scrollableHeight - scrollPosition < 900) {
+        lastDiv.current?.scrollIntoView({ inline: "end" });
+      }
+    } else {
+      const scrolledValue = window.scrollY;
+      const totalScrollableHeight = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+      if (totalScrollableHeight - scrolledValue < 900) {
+        lastDiv.current?.scrollIntoView({ inline: "end" });
+      }
+    }
   }, [chatPages]);
-
+  useEffect(() => {
+    lastDiv.current?.scrollIntoView({ inline: "end" });
+  }, []);
   useEffect(() => {
     if (hasNextPage) {
       const onScroll = (e: Event) => {
@@ -90,47 +126,18 @@ export default function MainAiComponent({ questionNumber }: Props) {
       };
     }
   }, [hasNextPage]);
-  useEffect(() => {
-    if (hasNextPage) {
-      const onScroll = (e: Event) => {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        const maxScrollTop = 200;
 
-        if (scrollTop < maxScrollTop) {
-          window.scrollTo(0, maxScrollTop);
-        }
-      };
-      addEventListener("scroll", onScroll);
-      return () => {
-        removeEventListener("scroll", onScroll);
-      };
-    }
-  }, [hasNextPage]);
-  useEffect(() => {
-    console.log(scrollDown);
-    if (scrollDown === "down") {
-      const timeout = setTimeout(() => {
-        lastDiv.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-        setScrollDown("not-down");
-      }, 200);
-      return () => clearTimeout(timeout);
-    }
-  }, [scrollDown, setScrollDown]);
   const questionInfo = getQuestionInfo(questionNumber);
   if (isChatLoading) {
     return (
-      <div className="max-w-[800px]  mx-auto h-[100%] flex justify-center items-center ">
+      <div className="max-w-[800px]  mx-auto h-[100vh] flex justify-center items-center ">
         <Loading />
       </div>
     );
   }
-  console.log("scroll down value inside", scrollDown);
   return (
-    <div className="max-w-[800px] mx-auto min-h-[80vh] ">
-      <div className="sticky top-0 left-0 right-0  bg-[rgba(255, 255, 255, 0.9)] dark:bg-[rgba(0, 0, 0, 0.77)] ">
+    <div className="max-w-[800px] mx-auto min-h-[80vh] " ref={chatRef}>
+      <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
         <div className="max-w-[800px]  mx-auto ">
           <div className="cursor-pointer justify-end w-full">
             <div className="w-min pt-2">
@@ -145,7 +152,7 @@ export default function MainAiComponent({ questionNumber }: Props) {
         </div>
       </div>
       <div>
-        <div className="flex  flex-col-reverse ">
+        <div className="flex  flex-col-reverse min-h-[80vh] w-full">
           {chatPages?.pages?.map((messages, indexOfPage) => {
             return messages.map((message, index) => {
               if (
@@ -165,9 +172,7 @@ export default function MainAiComponent({ questionNumber }: Props) {
           })}
         </div>
 
-        <div ref={lastDiv} className=" ">
-          asdfasd
-        </div>
+        <div ref={lastDiv} id="last" className="w-full h-[30px]"></div>
         <div
           onSubmit={(e) => e.preventDefault()}
           className="sticky bottom-0 w-[100%]  bg-white pb-3 dark:bg-background"
@@ -190,7 +195,7 @@ export default function MainAiComponent({ questionNumber }: Props) {
                 }
               }}
               placeholder="Enter your question..."
-              className="flex w-full rounded-md border border-input bg-background px-3  ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none pr-12 text-base py-3 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch "
+              className="flex w-full rounded-md border border-input bg-background px-3  ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none pr-14 text-base py-3 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch "
             />
 
             <Button
@@ -201,7 +206,6 @@ export default function MainAiComponent({ questionNumber }: Props) {
                 addMessage();
 
                 textareaRef.current?.focus();
-                setScrollDown("down");
               }}
             >
               <Send className="h-4 w-4" />

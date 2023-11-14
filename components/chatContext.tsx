@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { trpc } from "@/app/_trpc/client";
 import { infiniteChatLimit } from "@/static/infiniteScrolling";
 import { useToast } from "./ui/use-toast";
+import { useParams } from "next/navigation";
 type StreamResponse = {
   addMessage: () => void;
   message: string;
@@ -19,7 +20,6 @@ export const ChatContext = createContext<StreamResponse>({
 });
 
 interface Props {
-  questionNumber: number;
   children: ReactNode;
   lambdaToken: string | null;
 }
@@ -28,15 +28,13 @@ export function useChatContext() {
   return object;
 }
 
-export const ChatContextProvider = ({
-  questionNumber,
-  children,
-  lambdaToken,
-}: Props) => {
+export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
   const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const utils = trpc.useContext();
+  const { questionNo } = useParams();
 
+  const questionNumber = parseInt(questionNo as string);
   const { toast } = useToast();
 
   const backupMessage = useRef("");
@@ -88,8 +86,7 @@ export const ChatContextProvider = ({
           let newPages = [...old.pages];
 
           let latestPage = newPages[0]!;
-          console.log("latest page", latestPage);
-          console.log("old", old);
+
           latestPage = [
             {
               createdAt: Date.now(),
@@ -136,14 +133,12 @@ export const ChatContextProvider = ({
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
         const chunkValue = decoder.decode(value);
-        console.log(chunkValue);
         accResponse += chunkValue;
 
         // append chunk to the actual message
         utils.infiniteMessage.setInfiniteData(
           { questionNo: questionNumber },
           (old) => {
-            console.log(old);
             if (!old) return { pages: [], pageParams: [] };
 
             let isAiResponseCreated = old.pages.some((page) =>

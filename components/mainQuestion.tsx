@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import QuestionLinks from "./questionLinks";
 import { Session } from "next-auth";
+import { Button } from "./ui/button";
+import Link from "next/link";
 type Props = {
   questionInfo: questionInfoForDay;
   userInfo: {
@@ -36,6 +38,14 @@ export default function MainQuestion({ questionInfo, userInfo }: Props) {
           />
         </div>
       </div>
+      <Link href={`/ai/${questionInfo.questionNumber}`}>
+        <Button
+          aria-label="Ai Link"
+          className="fixed bottom-2 right-2 rounded-full w-14 h-14 bg-red-500 hover:bg-red-400 text-2xl font-bold"
+        >
+          AI
+        </Button>
+      </Link>
     </div>
   );
 }
