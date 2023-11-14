@@ -49,5 +49,5 @@ const Messages = forwardRef<HTMLDivElement, { message: Message }>(
     );
   }
 );
-
+Messages.displayName = "Message";
 export default Messages;
