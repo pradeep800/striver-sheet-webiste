@@ -149,7 +149,7 @@ export default function AiComponent({ modal, back }: Props) {
   return (
     <div className="max-w-[800px] mx-auto min-h-[80vh] " ref={chatRef}>
       <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
-        <div className="max-w-[800px]  mx-auto ">
+        <div className="max-w-[800px]  mx-auto mobile-select-removed">
           <div className="cursor-pointer justify-end w-full select">
             <div onClick={() => back()} className="w-min pt-2">
               <Back className="p-1  hover:bg-slate-300 ml-4" />
