@@ -14,6 +14,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useChatContext } from "@/components/chatContext";
 import { Button } from "@/components/ui/button";
 import Loading from "@/components/svg/loading";
+import { infiniteChatLimit } from "@/static/infiniteScrolling";
+
 import { getQuestionInfo } from "@/components/pagesUtils";
 import { useParams } from "next/navigation";
 type Props = {
@@ -44,9 +46,10 @@ export default function AiComponent({ modal, back }: Props) {
         for (let i = 0; i < allPage.length; i++) {
           count += allPage[i].length;
         }
-        if (lastPage.length === 0) {
+        if (lastPage.length < infiniteChatLimit) {
           return undefined;
         }
+
         return count;
       },
       staleTime: Infinity,
@@ -75,11 +78,6 @@ export default function AiComponent({ modal, back }: Props) {
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
   useLayoutEffect(() => {
-    if (chatPages?.pages.length === 1) {
-      console.log("hell there");
-      lastDiv.current?.scrollIntoView({ inline: "nearest" });
-    }
-
     //check if it is model
     if (modal) {
       if (!chatRef.current) {
@@ -90,10 +88,8 @@ export default function AiComponent({ modal, back }: Props) {
 
       // Get the current scroll position
       const scrollPosition = chatRef.current.parentElement?.scrollTop as number;
-      console.log(scrollableHeight - scrollPosition);
-      if (scrollableHeight - scrollPosition < 650) {
+      if (scrollableHeight - scrollPosition < 800) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
-        console.log("modal");
       }
     } else {
       const scrolledValue = window.scrollY;
@@ -104,16 +100,21 @@ export default function AiComponent({ modal, back }: Props) {
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      console.log(totalScrollableHeight - scrolledValue);
-      console.log("not modal");
-      if (totalScrollableHeight - scrolledValue < 900) {
+      if (totalScrollableHeight - scrolledValue < 950) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     }
   }, [chatPages]);
   useEffect(() => {
+    //whenever component get mounted scroll down mostly used for modal
     lastDiv.current?.scrollIntoView({ inline: "end" });
   }, []);
+  useLayoutEffect(() => {
+    if (chatPages?.pages.length === 1 && !isChatLoading) {
+      lastDiv.current?.scrollIntoView({ inline: "nearest" });
+    }
+  }, [isChatLoading]);
+
   useEffect(() => {
     if (hasNextPage) {
       const onScroll = (e: Event) => {
@@ -144,11 +145,12 @@ export default function AiComponent({ modal, back }: Props) {
       </div>
     );
   }
+
   return (
     <div className="max-w-[800px] mx-auto min-h-[80vh] " ref={chatRef}>
       <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
         <div className="max-w-[800px]  mx-auto ">
-          <div className="cursor-pointer justify-end w-full">
+          <div className="cursor-pointer justify-end w-full select">
             <div onClick={() => back()} className="w-min pt-2">
               <Back className="p-1  hover:bg-slate-300 ml-4" />
             </div>
@@ -161,7 +163,12 @@ export default function AiComponent({ modal, back }: Props) {
         </div>
       </div>
       <div>
-        <div className="flex  flex-col-reverse min-h-[80vh] w-full">
+        <div className={`flex  flex-col-reverse min-h-[80vh] w-full`}>
+          {chatPages?.pages[0]?.length === 0 && !modal ? (
+            <div className="w-full h-[80vh] flex justify-center items-center font-bold text-lg">
+              Start Asking Queries
+            </div>
+          ) : null}
           {chatPages?.pages?.map((messages, indexOfPage) => {
             return messages.map((message, index) => {
               if (

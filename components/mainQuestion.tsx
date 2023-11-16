@@ -38,14 +38,16 @@ export default function MainQuestion({ questionInfo, userInfo }: Props) {
           />
         </div>
       </div>
-      <Link href={`/ai/${questionInfo.questionNumber}`}>
-        <Button
-          aria-label="Ai Link"
-          className="fixed bottom-2 right-2 rounded-full w-14 h-14 bg-red-500 hover:bg-red-400 text-2xl font-bold"
-        >
-          AI
-        </Button>
-      </Link>
+      {userInfo.role === "ADMIN" || userInfo.role === "PROUSER" ? (
+        <Link href={`/ai/${questionInfo.questionNumber}`}>
+          <Button
+            aria-label="Ai Link"
+            className="fixed bottom-2 right-2 rounded-full w-14 h-14 bg-red-500 hover:bg-red-400 text-2xl font-bold"
+          >
+            AI
+          </Button>
+        </Link>
+      ) : null}
     </div>
   );
 }
