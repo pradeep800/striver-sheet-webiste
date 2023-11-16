@@ -100,7 +100,7 @@ export default function AiComponent({ modal, back }: Props) {
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      if (totalScrollableHeight - scrolledValue < 950) {
+      if (totalScrollableHeight - scrolledValue < 900) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     }
