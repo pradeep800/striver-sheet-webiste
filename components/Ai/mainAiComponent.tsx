@@ -6,9 +6,9 @@ import { users } from "@/lib/db/schema";
 import { authOption } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
-import AiComponent from "@/components/Ai/aiComponent";
 import { UserInfoContext } from "@/components/userInfoContext";
 import { AiModal } from "./aiModal";
+import { FullPageComponent } from "./fullPageAiComponent";
 type pageProps = {
   model: boolean;
 };
@@ -34,7 +34,7 @@ export default async function MainAiComponent({ model }: pageProps) {
       userName={session.user.name ?? session.user.userName}
     >
       <ChatContextProvider lambdaToken={userInfo.lambdaToken}>
-        {model ? <AiModal /> : <AiComponent modal={false} />}
+        {model ? <AiModal /> : <FullPageComponent />}
       </ChatContextProvider>
     </UserInfoContext>
   );

@@ -18,8 +18,9 @@ import { getQuestionInfo } from "@/components/pagesUtils";
 import { useParams } from "next/navigation";
 type Props = {
   modal: boolean;
+  back: () => void;
 };
-export default function AiComponent({ modal }: Props) {
+export default function AiComponent({ modal, back }: Props) {
   const lastDiv = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
   const { message, handleInputChange, addMessage, isLoading } =
@@ -75,6 +76,7 @@ export default function AiComponent({ modal }: Props) {
   );
   useLayoutEffect(() => {
     if (chatPages?.pages.length === 1) {
+      console.log("hell there");
       lastDiv.current?.scrollIntoView({ inline: "nearest" });
     }
 
@@ -91,6 +93,7 @@ export default function AiComponent({ modal }: Props) {
       console.log(scrollableHeight - scrollPosition);
       if (scrollableHeight - scrollPosition < 650) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
+        console.log("modal");
       }
     } else {
       const scrolledValue = window.scrollY;
@@ -102,7 +105,8 @@ export default function AiComponent({ modal }: Props) {
         document.documentElement.offsetHeight
       );
       console.log(totalScrollableHeight - scrolledValue);
-      if (totalScrollableHeight - scrolledValue < 780) {
+      console.log("not modal");
+      if (totalScrollableHeight - scrolledValue < 900) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     }
@@ -131,7 +135,11 @@ export default function AiComponent({ modal }: Props) {
   const questionInfo = getQuestionInfo(questionNumber);
   if (isChatLoading) {
     return (
-      <div className="max-w-[800px]  mx-auto h-[100vh] flex justify-center items-center ">
+      <div
+        className={`${
+          modal ? "h-[80vh]" : "h-[100vh]"
+        }  mx-auto max-w-[800px] flex justify-center items-center `}
+      >
         <Loading />
       </div>
     );
@@ -141,8 +149,8 @@ export default function AiComponent({ modal }: Props) {
       <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
         <div className="max-w-[800px]  mx-auto ">
           <div className="cursor-pointer justify-end w-full">
-            <div className="w-min pt-2">
-              <Back className="p-1 " />
+            <div onClick={() => back()} className="w-min pt-2">
+              <Back className="p-1  hover:bg-slate-300 ml-4" />
             </div>
           </div>
           <div className="flex justify-between flex-wrap gap-3 mb-2 flex-col items-center  ">
@@ -189,7 +197,9 @@ export default function AiComponent({ modal }: Props) {
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
-
+                  if (isLoading) {
+                    return;
+                  }
                   addMessage();
 
                   textareaRef.current?.focus();
