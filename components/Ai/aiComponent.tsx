@@ -164,11 +164,11 @@ export default function AiComponent({ modal, back }: Props) {
       </div>
       <div>
         <div className={`flex  flex-col-reverse min-h-[80vh] w-full`}>
-          {chatPages?.pages[0]?.length === 0 && !modal ? (
+          {/* {chatPages?.pages[0]?.length === 0 && !modal ? (
             <div className="w-full h-[80vh] flex justify-center items-center font-bold text-lg">
               Start Asking Queries
             </div>
-          ) : null}
+          ) : null} */}
           {chatPages?.pages?.map((messages, indexOfPage) => {
             return messages.map((message, index) => {
               if (
