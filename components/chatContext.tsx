@@ -190,11 +190,10 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
       );
     },
     onSettled: async () => {
-      setIsLoading(false);
-
       await utils.infiniteMessage.invalidate({
         questionNo: questionNumber,
       });
+      setIsLoading(false);
     },
   });
 

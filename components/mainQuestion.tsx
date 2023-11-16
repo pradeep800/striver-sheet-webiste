@@ -18,7 +18,7 @@ type Props = {
 };
 export default function MainQuestion({ questionInfo, userInfo }: Props) {
   return (
-    <div className="max-w-[800px] mx-auto mt-3 flex items-center h-[70vh] sm:h-[80vh]">
+    <div className="max-w-[800px] mx-auto mt-3 flex items-center min-h-[70vh] sm:min-h-[80vh]">
       <div className="w-[100%] ">
         <h1 className="text-2xl font-bold text-center text-red-500 mb-4">
           {questionInfo.questionTitle}
