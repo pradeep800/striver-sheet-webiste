@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 type Props = {
   params: { data: `${number}-${number}` }; //
 };
+export const dynamic = "force-dynamic";
 export default async function CountingLinkPage({ params }: Props) {
   const { data } = params;
   const questionInfo = data.match(/(\d+)-(\d+)/);
