@@ -10,6 +10,8 @@ type StreamResponse = {
   message: string;
   handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   isLoading: boolean;
+  scrollDown: "not-down" | "down";
+  setScrollDownWrapper: (data: "not-down" | "down") => void;
 };
 
 export const ChatContext = createContext<StreamResponse>({
@@ -17,6 +19,8 @@ export const ChatContext = createContext<StreamResponse>({
   message: "",
   handleInputChange: () => {},
   isLoading: false,
+  scrollDown: "not-down",
+  setScrollDownWrapper: (data: "not-down" | "down") => {},
 });
 
 interface Props {
@@ -33,7 +37,7 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const utils = trpc.useContext();
   const { questionNo } = useParams();
-
+  const [scrollDown, setScrollDown] = useState<"not-down" | "down">("not-down");
   const questionNumber = parseInt(questionNo as string);
   const { toast } = useToast();
 
@@ -104,7 +108,9 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
           ];
 
           newPages[0] = latestPage;
-
+          setTimeout(() => {
+            setScrollDown("down");
+          }, 500);
           return {
             ...old,
             pages: newPages,
@@ -199,6 +205,9 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
     }
     sendMessage({ message });
   };
+  function setScrollDownWrapper(data: "not-down" | "down") {
+    setScrollDown(data);
+  }
 
   return (
     <ChatContext.Provider
@@ -207,6 +216,8 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
         message,
         handleInputChange,
         isLoading,
+        scrollDown,
+        setScrollDownWrapper,
       }}
     >
       {children}

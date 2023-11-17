@@ -16,7 +16,7 @@ type Props = {
   setOpen: React.Dispatch<boolean>;
   back?: () => void;
 };
-export default function SaveAlert({ open, back, setOpen }: Props) {
+export default function Alert({ open, back, setOpen }: Props) {
   const [isCancel, setIsCancel] = useState(false);
   const router = useRouter();
   useEffect(() => {

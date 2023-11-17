@@ -25,11 +25,16 @@ type Props = {
 export default function AiComponent({ modal, back }: Props) {
   const lastDiv = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
-  const { message, handleInputChange, addMessage, isLoading } =
-    useChatContext();
+  const {
+    message,
+    handleInputChange,
+    addMessage,
+    isLoading,
+    setScrollDownWrapper,
+    scrollDown,
+  } = useChatContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { questionNo } = useParams();
-  const [scrollDown, setScrollDown] = useState(false);
 
   const questionNumber = parseInt(questionNo as string);
   const {
@@ -108,15 +113,13 @@ export default function AiComponent({ modal, back }: Props) {
     }
   }, [chatPages]);
   useEffect(() => {
-    //scroll down wait for load optimistic message to load
-    if (scrollDown) {
+    if (scrollDown === "down") {
       const timeout = setTimeout(() => {
         lastDiv.current?.scrollIntoView({
-          inline: "end",
           behavior: "smooth",
         });
-        setScrollDown(false);
-      }, 500);
+        setScrollDownWrapper("not-down");
+      }, 400);
       return () => clearTimeout(timeout);
     }
   }, [scrollDown]);
@@ -208,7 +211,7 @@ export default function AiComponent({ modal, back }: Props) {
           onSubmit={(e) => e.preventDefault()}
           className="sticky bottom-0 w-[100%]  bg-white pb-3 dark:bg-background"
         >
-          <div className="relative">
+          <div className="relative mx-2">
             <TextareaAutosize
               rows={1}
               maxRows={3}
@@ -237,8 +240,7 @@ export default function AiComponent({ modal, back }: Props) {
               aria-label="send message"
               onClick={() => {
                 addMessage();
-                console.log();
-                setScrollDown(true);
+
                 textareaRef.current?.focus();
               }}
             >

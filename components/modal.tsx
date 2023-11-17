@@ -8,11 +8,13 @@ import React, {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
-import SaveAlert from "./saveAlert";
+import Alert from "./saveAlert";
 type Props = {
   children: React.ReactNode;
+  alert: boolean;
 };
-export default function Modal({ children }: Props) {
+
+export default function Modal({ children, alert }: Props) {
   const [open, setOpen] = useState(false);
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
@@ -21,7 +23,11 @@ export default function Modal({ children }: Props) {
   const onClick = useCallback(
     (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
       if (e.target === overlay.current || e.target === wrapper.current) {
-        setOpen(true);
+        if (alert) {
+          setOpen(true);
+        } else {
+          router.back();
+        }
       }
     },
     [overlay, wrapper]
@@ -46,7 +52,7 @@ export default function Modal({ children }: Props) {
     >
       <div ref={wrapper} className="">
         {children}
-        <SaveAlert open={open} setOpen={setOpen} />
+        <Alert open={open} setOpen={setOpen} />
       </div>
     </div>
   );
