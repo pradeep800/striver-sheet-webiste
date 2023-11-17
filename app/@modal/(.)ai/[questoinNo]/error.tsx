@@ -1,40 +1,47 @@
 "use client";
+//remove this page
+import { Asap } from "next/font/google";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-export default function Example() {
-  const router = useRouter();
+
+const asap = Asap({
+  subsets: ["latin"],
+});
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
   return (
-    <div className="w-full h-full absolute top-0 backdrop-blur-sm">
-      <Card className="w-[95%] sm:w-[500px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
-        <CardHeader>
-          <CardTitle>Error</CardTitle>
-          <CardDescription>internal server error</CardDescription>
-        </CardHeader>
-        <CardContent className="">
-          <p>
-            {`Please check url (notes/questionNumber<=192)  if you think everything is fine you can report this
-            bug`}
-          </p>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-3">
-          <Button
-            className="hover:bg-red-400 bg-red-500 dark:text-white w-[100%]"
-            onClick={() => {
-              router.back();
-            }}
-          >
-            Back
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card
+      className={`sm:w-[400px] w-[95%] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] ${asap.className}`}
+    >
+      <CardHeader>
+        <CardTitle className="text-2xl text-red-500">Error</CardTitle>
+        <CardDescription className="text-lg">
+          {
+            "Please check question number (1<=questionNo>=191) if everything is okay try refreshing page"
+          }
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex gap-2  flex-col ">
+        <Button
+          className="hover:bg-red-400 bg-red-500 dark:text-white grow-[1]"
+          onClick={() => {
+            reset();
+          }}
+        >
+          Refresh Page
+        </Button>
+      </CardContent>
+    </Card>
   );
 }

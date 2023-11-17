@@ -29,6 +29,7 @@ export default function AiComponent({ modal, back }: Props) {
     useChatContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { questionNo } = useParams();
+  const [scrollDown, setScrollDown] = useState(false);
 
   const questionNumber = parseInt(questionNo as string);
   const {
@@ -88,7 +89,8 @@ export default function AiComponent({ modal, back }: Props) {
 
       // Get the current scroll position
       const scrollPosition = chatRef.current.parentElement?.scrollTop as number;
-      if (scrollableHeight - scrollPosition < 800) {
+
+      if (scrollableHeight - scrollPosition < 700) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     } else {
@@ -100,18 +102,31 @@ export default function AiComponent({ modal, back }: Props) {
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      if (totalScrollableHeight - scrolledValue < 900) {
+      if (totalScrollableHeight - scrolledValue < 850) {
         lastDiv.current?.scrollIntoView({ inline: "end" });
       }
     }
   }, [chatPages]);
+  useEffect(() => {
+    //scroll down wait for load optimistic message to load
+    if (scrollDown) {
+      const timeout = setTimeout(() => {
+        lastDiv.current?.scrollIntoView({
+          inline: "end",
+          behavior: "smooth",
+        });
+        setScrollDown(false);
+      }, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [scrollDown]);
   useEffect(() => {
     //whenever component get mounted scroll down mostly used for modal
     lastDiv.current?.scrollIntoView({ inline: "end" });
   }, []);
   useLayoutEffect(() => {
     if (chatPages?.pages.length === 1 && !isChatLoading) {
-      lastDiv.current?.scrollIntoView({ inline: "nearest" });
+      lastDiv.current?.scrollIntoView({ inline: "end" });
     }
   }, [isChatLoading]);
 
@@ -147,7 +162,7 @@ export default function AiComponent({ modal, back }: Props) {
   }
 
   return (
-    <div className="max-w-[800px] mx-auto min-h-[80vh] " ref={chatRef}>
+    <div className="max-w-[800px] mx-auto min-h-[80vh]" ref={chatRef}>
       <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
         <div className="max-w-[800px]  mx-auto mobile-select-removed">
           <div className="cursor-pointer justify-end w-full select">
@@ -222,7 +237,8 @@ export default function AiComponent({ modal, back }: Props) {
               aria-label="send message"
               onClick={() => {
                 addMessage();
-
+                console.log();
+                setScrollDown(true);
                 textareaRef.current?.focus();
               }}
             >

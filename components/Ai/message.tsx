@@ -7,14 +7,16 @@ import { AppRouter } from "@/trpc/index";
 import MarkDown from "react-markdown";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useUserInfo } from "@/components/userInfoContext";
+import Loading from "../svg/loading";
 type Message = inferRouterOutputs<AppRouter>["infiniteMessage"][number];
 const Messages = forwardRef<HTMLDivElement, { message: Message }>(
   ({ message }, ref) => {
     const userInfo = useUserInfo();
     const profilePhoto = userInfo?.image;
     const userName = userInfo?.userName;
+
     const messageComponent = (
-      <Card className="sm:mx-3 m-0 my-1 ">
+      <Card className=" m-0 my-1 mx-2 sm:mx-1">
         <CardTitle>
           <div className="flex gap-2 items-center p-6 pb-3 ">
             {message.sender === "USER" ? (
@@ -39,6 +41,7 @@ const Messages = forwardRef<HTMLDivElement, { message: Message }>(
         <CardContent>
           <div>
             <MarkDown>{message.message}</MarkDown>
+            {message.id === "ai-response" && <Loading />}
           </div>
         </CardContent>
       </Card>

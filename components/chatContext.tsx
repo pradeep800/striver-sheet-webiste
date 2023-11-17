@@ -90,6 +90,12 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
           latestPage = [
             {
               createdAt: Date.now(),
+              id: "ai-response",
+              message: "",
+              sender: "AI" as "AI" | "USER",
+            },
+            {
+              createdAt: Date.now(),
               id: crypto.randomUUID(),
               message: message,
               sender: "USER",
@@ -141,35 +147,20 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
           (old) => {
             if (!old) return { pages: [], pageParams: [] };
 
-            let isAiResponseCreated = old.pages.some((page) =>
-              page.some((message) => message.id === "ai-response")
-            );
-
             let updatedPages = old.pages.map((page) => {
               if (page === old.pages[0]) {
                 let updatedMessages;
 
-                if (!isAiResponseCreated) {
-                  updatedMessages = [
-                    {
-                      createdAt: Date.now(),
-                      id: "ai-response",
+                updatedMessages = page.map((message) => {
+                  if (message.id === "ai-response") {
+                    return {
+                      ...message,
                       message: accResponse,
-                      sender: "AI" as "AI" | "USER",
-                    },
-                    ...page,
-                  ];
-                } else {
-                  updatedMessages = page.map((message) => {
-                    if (message.id === "ai-response") {
-                      return {
-                        ...message,
-                        message: accResponse,
-                      };
-                    }
-                    return message;
-                  });
-                }
+                    };
+                  }
+                  return message;
+                });
+
                 return updatedMessages;
               }
 
