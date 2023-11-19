@@ -68,10 +68,11 @@ export default function MainPricing({ sessionUser, backUrl }: Props) {
           <CardContent>
             <div>
               <ListItem data={"All Feature Of Free Tier"} />
+              <ListItem data={"Ai assistant for every question"} />
+              <ListItem data={"Email Reminder For Question Revision"} />
               <ListItem
                 data={"Notes which includes table,heading and many more"}
               />
-              <ListItem data={"Email Reminder For Question Revision"} />
               <ListItem data={"Get +3 Profile Changes"} />
               <ListItem data={"More Priority For Feature Request"} />
             </div>

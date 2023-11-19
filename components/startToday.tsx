@@ -15,8 +15,9 @@ export default function StartToday() {
           Practice DSA questions in structure manner in 27 days.
         </h1>
         <p className=" max-w-[250px] xs:max-w-[350px] sm:max-w-[500px] lg:max-w-[700px] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          Level up your interview skills in 27 days with 191 frequently asked
-          questions with videos, curated for DSA interviews.
+          Interview prep platform with a 27-day plan, curated interview
+          questions, and an AI assistant. Track progress, take notes, set
+          reminders - all in one place for effective interview readiness.
         </p>
         <Link href="/login">
           <Button className="space-x-4 bg-red-500 hover:bg-red-400 dark:text-white">
