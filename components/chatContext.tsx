@@ -5,11 +5,11 @@ import { trpc } from "@/app/_trpc/client";
 import { infiniteChatLimit } from "@/static/infiniteScrolling";
 import { useToast } from "./ui/use-toast";
 import { useParams } from "next/navigation";
+import { useIsStreamingContext } from "./isChatStreamingContext";
 type StreamResponse = {
   addMessage: () => void;
   message: string;
   handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  isLoading: boolean;
   scrollDown: "not-down" | "down";
   setScrollDownWrapper: (data: "not-down" | "down") => void;
 };
@@ -18,7 +18,6 @@ export const ChatContext = createContext<StreamResponse>({
   addMessage: () => {},
   message: "",
   handleInputChange: () => {},
-  isLoading: false,
   scrollDown: "not-down",
   setScrollDownWrapper: (data: "not-down" | "down") => {},
 });
@@ -34,7 +33,7 @@ export function useChatContext() {
 
 export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
   const [message, setMessage] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isLoading, setIsLoading } = useIsStreamingContext();
   const utils = trpc.useContext();
   const { questionNo } = useParams();
   const [scrollDown, setScrollDown] = useState<"not-down" | "down">("not-down");
@@ -185,6 +184,7 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
         { questionNo: questionNumber },
         context?.previousMessages ?? []
       );
+      setIsLoading(false);
     },
     onSettled: async () => {
       await utils.infiniteMessage.invalidate({
@@ -215,7 +215,7 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
         addMessage,
         message,
         handleInputChange,
-        isLoading,
+
         scrollDown,
         setScrollDownWrapper,
       }}

@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { NextThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
 import { Providers } from "@/components/providers";
+import { IsChatStreamingContext } from "@/components/isChatStreamingContext";
 const asap = Asap({
   subsets: ["latin"],
 });
@@ -61,20 +62,22 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${asap.className} scrollbar`}>
-        <Providers>
-          <NextThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-          >
-            <NextTopLoader />
-            <main className="min-h-[100%] p-3 dark:bg-background">
-              {children}
-            </main>
-          </NextThemeProvider>
-          <Toaster />
-          {modal}
-        </Providers>
+        <IsChatStreamingContext>
+          <Providers>
+            <NextThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+            >
+              <NextTopLoader />
+              <main className="min-h-[100%] p-3 dark:bg-background">
+                {children}
+              </main>
+            </NextThemeProvider>
+            <Toaster />
+            {modal}
+          </Providers>
+        </IsChatStreamingContext>
       </body>
     </html>
   );

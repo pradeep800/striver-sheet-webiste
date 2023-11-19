@@ -18,6 +18,7 @@ import { infiniteChatLimit } from "@/static/infiniteScrolling";
 
 import { getQuestionInfo } from "@/components/pagesUtils";
 import { useParams } from "next/navigation";
+import { useIsStreamingContext } from "../isChatStreamingContext";
 type Props = {
   modal: boolean;
   back: () => void;
@@ -29,13 +30,13 @@ export default function AiComponent({ modal, back }: Props) {
     message,
     handleInputChange,
     addMessage,
-    isLoading,
+
     setScrollDownWrapper,
     scrollDown,
   } = useChatContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { questionNo } = useParams();
-
+  const { isLoading } = useIsStreamingContext();
   const questionNumber = parseInt(questionNo as string);
   const {
     data: chatPages,
@@ -163,7 +164,6 @@ export default function AiComponent({ modal, back }: Props) {
       </div>
     );
   }
-
   return (
     <div className="max-w-[800px] mx-auto min-h-[80vh]" ref={chatRef}>
       <div className="sticky top-0 left-0 right-0  backdrop-blur-xl ">
