@@ -21,7 +21,7 @@ export default function QuestionCard({ userInfo, questionInfo }: Props) {
   return (
     <div
       className={cn([
-        "mt-3  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-600 dark:hover:bg-gray-500 border-2 border-slate-500 dark:border-slate-600 text-black dark:text-white mobile-select-removed ",
+        "mt-3 mobile-select-removed  shadow-sm rounded-md hover:bg-slate-100 dark:bg-gray-600 dark:hover:bg-gray-500 border-2 border-slate-500 dark:border-slate-600 text-black dark:text-white mobile-select-removed ",
         questionInfo.youTubeLink ? "cursor-pointer" : "cursor-not-allowed",
         questionInfo.solved == "SOLVED" &&
           "bg-green-200 dark:bg-green-200 hover:bg-green-100  dark:hover:bg-green-100 border-green-500 border-2 dark:text-black",

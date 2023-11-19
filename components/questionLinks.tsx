@@ -46,7 +46,7 @@ export default function QuestionLinks({
 
   return (
     <>
-      <div className="flex gap-3 " onClick={(e) => {}}>
+      <div className="flex gap-3 mobile-select-removed" onClick={(e) => {}}>
         <StickyNotesLink id={questionInfo.questionNumber} />
         {questionInfo.codingNinja && (
           <Link
