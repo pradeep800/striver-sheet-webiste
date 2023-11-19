@@ -18,7 +18,7 @@ export default function Danger({ className }: Props) {
           </CardHeader>
           <CardContent>
             {
-              "I thought of this idea when striver sheet store data in localStorage but now striver sheet have database and everything so you might want to choose real striver sheet"
+              "I thought of this idea when striver sheet store data in localStorage but now TakeYouForward uses database"
             }
           </CardContent>
         </Card>
