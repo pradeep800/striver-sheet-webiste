@@ -33,7 +33,6 @@ export default function MainAdminFeedback({
   feedbacks,
   totalFeedbacks,
 }: Props) {
-  const router = useRouter();
   const [loadedFeedbackSize, setLoadedFeedbackSize] = useState(
     () => feedbacks.length
   );
@@ -48,6 +47,7 @@ export default function MainAdminFeedback({
       setLoadedFeedback(allFeedbacks);
     }
   }
+  console.log(totalFeedbacks, loadedFeedbackSize);
   return (
     <InfiniteScroll
       next={fetchMore}

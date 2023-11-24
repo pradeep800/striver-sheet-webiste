@@ -75,6 +75,9 @@ export const deleteAccount = zact()(async () => {
         await tx
           .delete(schema.reminders)
           .where(eq(schema.reminders.user_id, userId));
+        await tx
+          .delete(schema.feedbacks)
+          .where(eq(schema.feedbacks.user_id, userId));
       } catch (err) {
         const error = err as Error;
         console.log(error.message);

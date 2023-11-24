@@ -34,7 +34,7 @@ export default async function AdminFeedback() {
   if (totalFeedbacks === 0) {
     return (
       <div className="h-[80vh] max-w-[800px] mx-auto w-full flex justify-center items-center">
-        No Reminder
+        No Feedbacks
       </div>
     );
   }
