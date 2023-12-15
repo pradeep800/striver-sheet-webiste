@@ -3,12 +3,12 @@ import { NToolTip } from "./tooltip";
 export function Socials() {
   return (
     <>
-      <NToolTip description="Resume">
+      {/* <NToolTip description="Resume">
         <a href="https://resume.pradeepbisht.com/" target="_blank">
           <span className="sr-only">Resume Icon</span>
           <MenuSquare className="hover:text-red-400" />
         </a>
-      </NToolTip>
+      </NToolTip> */}
       <NToolTip description="Mail">
         <a href="mailto:pradeep8b0@gmail.com" target="_blank">
           <span className="sr-only">Mail Icon</span>
