@@ -22,11 +22,13 @@ export default function AboutPage() {
               👋
             </div>
             <p className="hyphens-auto  ">
-              We are team of web enthusiasts name Pradeep Singh, Pawan Bisht and
-              Pawan Fartyal. We love making cool website from dehradun
-              Uttarakhand, if you have need web projects or need hard working
-              folks to help please reach out to us we are all about creating
-              awesome web stuff that stick in people minds.
+              My name is Pradeep Singh, and I am a 20-year-old living in
+              Dehradun, Uttarakhand. I possess a strong passion for crafting
+              interactive websites. Currently, I am actively seeking internship
+              opportunities to further enhance my skills and knowledge in this
+              field. If you have any project ideas or if you are in search of
+              individuals who are eager to contribute through internships, I
+              kindly request you to reach out to me.
             </p>
           </div>
         </CardContent>
