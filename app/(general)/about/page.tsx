@@ -22,11 +22,11 @@ export default function AboutPage() {
               👋
             </div>
             <p className="hyphens-auto  ">
-              We are team of web enthusiasts name Pradeep Singh Pawan Bisht and
+              We are team of web enthusiasts name Pradeep Singh, Pawan Bisht and
               Pawan Fartyal. We love making cool website from dehradun
               Uttarakhand, if you have need web projects or need hard working
               folks to help please reach out to us we are all about creating
-              awesome web stuff that stick in people minds
+              awesome web stuff that stick in people minds.
             </p>
           </div>
         </CardContent>
