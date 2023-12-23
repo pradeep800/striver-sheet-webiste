@@ -45,7 +45,7 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
   const { mutate: sendMessage } = useMutation({
     mutationFn: async ({ message }: { message: string }) => {
       const url =
-        "https://aocbhhh2i7dhgpv6srjlmax6sy0lkawy.lambda-url.ap-south-1.on.aws/";
+        "https://lpwvgzi5w5tggfs5zvjbc2kk7m0ynybs.lambda-url.ap-south-1.on.aws/";
       const headers = {
         "Content-Type": "text/plain",
         Authorization: "Bearer " + lambdaToken,
