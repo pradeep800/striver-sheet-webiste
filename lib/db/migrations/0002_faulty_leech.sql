@@ -1,1 +1,0 @@
-ALTER TABLE `striver_sheet_reminders` MODIFY COLUMN `mail_sended` boolean NOT NULL;

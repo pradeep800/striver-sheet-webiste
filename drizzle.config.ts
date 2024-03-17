@@ -7,8 +7,11 @@ export default {
   driver: "mysql2",
 
   dbCredentials: {
-    //if you are seeing this please let me know
-    connectionString: process.env.DATABASE_URL as string,
+    user: process.env.DB_USER as string,
+    database: process.env.DATABASE as string,
+    password: process.env.PASSWORD as string,
+    host: process.env.HOST as string,
+    port: parseInt(process.env.PORT as string, 10),
   },
   breakpoints: true,
 } satisfies Config;

@@ -15,6 +15,14 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     LAMBDA_SECRET: z.string().min(1),
+    PORT: z
+      .string()
+      .transform((val) => parseInt(val, 10))
+      .pipe(z.number()),
+    HOST: z.string(),
+    PASSWORD: z.string(),
+    DB_USER: z.string(),
+    DATABASE: z.string(),
   },
   client: {
     NEXT_PUBLIC_STRIPE_SECRET: z.string().min(1),
@@ -37,5 +45,10 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     LAMBDA_SECRET: process.env.LAMBDA_SECRET,
+    DATABASE: process.env.DATABASE,
+    DB_USER: process.env.DB_USER,
+    PASSWORD: process.env.PASSWORD,
+    HOST: process.env.HOST,
+    PORT: process.env.PORT,
   },
 });

@@ -1,1 +1,0 @@
-ALTER TABLE `striver_sheet_users` ADD `ai_token` text;

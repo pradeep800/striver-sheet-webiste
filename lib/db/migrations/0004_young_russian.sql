@@ -1,1 +1,0 @@
-ALTER TABLE `striver_sheet_feedbacks` DROP COLUMN `read`;

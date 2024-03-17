@@ -1,1 +1,0 @@
-ALTER TABLE `striver_sheet_feedbacks` ADD `mail` varchar(255) NOT NULL;

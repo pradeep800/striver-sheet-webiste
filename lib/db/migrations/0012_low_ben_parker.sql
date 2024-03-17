@@ -1,2 +1,0 @@
-ALTER TABLE `striver_sheet_ai_chat_messages` MODIFY COLUMN `sender` enum('USER','AI') NOT NULL DEFAULT 'USER';--> statement-breakpoint
-ALTER TABLE `striver_sheet_ai_chat_messages` MODIFY COLUMN `created_at` timestamp NOT NULL DEFAULT (now());

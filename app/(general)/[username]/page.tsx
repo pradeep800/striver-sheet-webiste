@@ -141,7 +141,9 @@ export default async function ProfilePage({ params, searchParams }: Props) {
     daysPromise,
     totalSolvedQuestionPromise,
   ]);
-  const days = daysQueryResult.rows as DayType[];
+  //@ts-ignore
+  const days = daysQueryResult[0] as DayType[];
+  console.log(days);
   const [totalSolvedQuestionObject] = totalSolvedQuestionQueryResult;
 
   const HeatmapData = days.map<HeatMapDataForYear[number]>((day) => {

@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "6c9966c4-36a5-452f-9f19-74b6f3baf375",
+  "id": "4c3a65db-bfab-45e8-82f1-12b13d45a94e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "striver_sheet_accounts": {
@@ -131,6 +131,66 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
+    "striver_sheet_ai_chat_messages": {
+      "name": "striver_sheet_ai_chat_messages",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(255)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "question_no": {
+          "name": "question_no",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sender": {
+          "name": "sender",
+          "type": "enum('USER','AI')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'USER'"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "created_at_index": {
+          "name": "created_at_index",
+          "columns": [
+            "created_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "striver_sheet_feedbacks": {
       "name": "striver_sheet_feedbacks",
       "columns": {
@@ -178,13 +238,12 @@
           "notNull": false,
           "autoincrement": false
         },
-        "read": {
-          "name": "read",
-          "type": "boolean",
+        "mail": {
+          "name": "mail",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": false
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -375,14 +434,14 @@
           "name": "should_send_mail",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "mail_sended": {
           "name": "mail_sended",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": false
         },
@@ -606,6 +665,13 @@
           "autoincrement": false,
           "default": false
         },
+        "lambdaToken": {
+          "name": "lambdaToken",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "stripe_customer_id": {
           "name": "stripe_customer_id",
           "type": "varchar(255)",
@@ -676,16 +742,23 @@
     "striver_sheet_verification_tokens": {
       "name": "striver_sheet_verification_tokens",
       "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
         "identifier": {
           "name": "identifier",
           "type": "varchar(255)",
-          "primaryKey": true,
+          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "token": {
           "name": "token",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -696,35 +769,9 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "onUpdate": true,
-          "default": "(now())"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "onUpdate": true,
-          "default": "(now())"
         }
       },
-      "indexes": {
-        "verification_tokens__token__idx": {
-          "name": "verification_tokens__token__idx",
-          "columns": [
-            "token"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
