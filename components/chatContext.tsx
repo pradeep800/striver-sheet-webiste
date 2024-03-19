@@ -15,11 +15,11 @@ type StreamResponse = {
 };
 
 export const ChatContext = createContext<StreamResponse>({
-  addMessage: () => {},
+  addMessage: () => { },
   message: "",
-  handleInputChange: () => {},
+  handleInputChange: () => { },
   scrollDown: "not-down",
-  setScrollDownWrapper: (data: "not-down" | "down") => {},
+  setScrollDownWrapper: (data: "not-down" | "down") => { },
 });
 
 interface Props {
@@ -45,7 +45,7 @@ export const ChatContextProvider = ({ children, lambdaToken }: Props) => {
   const { mutate: sendMessage } = useMutation({
     mutationFn: async ({ message }: { message: string }) => {
       const url =
-        "https://xawnkep7mzdlp3u2spyj2xox3e0vmyrx.lambda-url.us-east-1.on.aws/";
+        "https://wdt5m27v3t72i53p745b6bxzzi0xyunp.lambda-url.us-east-1.on.aws/";
       const headers = {
         "Content-Type": "text/plain",
         Authorization: "Bearer " + lambdaToken,
