@@ -6,6 +6,9 @@ const pool = mysql.createPool({
   password: process.env.PASSWORD as string,
   host: process.env.HOST as string,
   connectTimeout: 30 * 1000,
+  ssl: {
+    rejectUnauthorized: false,
+  }
 });
 
 export const db = drizzle(pool);
